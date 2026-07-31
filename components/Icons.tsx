@@ -21,7 +21,8 @@ export type IconName =
   | "close"
   | "shield"
   | "clock"
-  | "chat";
+  | "chat"
+  | "chevron";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -105,6 +106,7 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M8.5 20l3-3.5" />
     </>
   ),
+  chevron: <path d="M6 9l6 6 6-6" />,
 };
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {

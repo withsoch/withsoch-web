@@ -46,6 +46,11 @@ export const CTAS = {
   secondary: { label: "Get Your Free Ops Score", href: "/ai-ops-score" },
 };
 
+export const CTA_BAND = {
+  heading: "Most early-stage teams are 5 automations away from feeling in control.",
+  lead: "Book a free call and we'll show you where automation creates the most leverage in your business.",
+};
+
 export const NAV = [
   { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
