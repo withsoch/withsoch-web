@@ -22,7 +22,10 @@ export type IconName =
   | "shield"
   | "clock"
   | "chat"
-  | "chevron";
+  | "chevron"
+  | "instagram"
+  | "facebook"
+  | "youtube";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -107,6 +110,25 @@ const PATHS: Record<IconName, ReactElement> = {
     </>
   ),
   chevron: <path d="M6 9l6 6 6-6" />,
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none" />
+    </>
+  ),
+  facebook: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M14 21v-7h2.3l.4-3H14V9.2c0-.9.3-1.5 1.6-1.5H17V5.1C16.6 5 15.7 5 14.7 5c-2.1 0-3.6 1.3-3.6 3.7V11H9v3h2.1v7z" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="3" y="5.5" width="18" height="13" rx="3.5" />
+      <path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" />
+    </>
+  ),
 };
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {

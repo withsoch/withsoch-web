@@ -1,6 +1,7 @@
 // components/sections/AskAI.tsx
 
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 
 const QUERY = "What do you know about Soch, the AI automation agency at withsoch.com?";
 const ENCODED_QUERY = encodeURIComponent(QUERY);
@@ -20,15 +21,9 @@ export function AskAI() {
       />
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         {LINKS.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-[0.95rem] font-semibold text-ink ring-1 ring-ink/20 transition-colors duration-200 hover:ring-ink/45"
-          >
+          <Button key={link.label} href={link.href} external variant="secondary">
             {link.label}
-          </a>
+          </Button>
         ))}
       </div>
     </Section>

@@ -1,7 +1,8 @@
 // components/ui/Button.tsx
 //
 // Flat, square-ish, no gradients/glow. Renders a <Link> when href is set,
-// else a <button>. Matches DESIGN.md §6 exactly.
+// a plain <a target="_blank"> when href + external are set, else a
+// <button>. Matches DESIGN.md §6 exactly.
 
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -24,6 +25,7 @@ const sizes: Record<Size, string> = {
 
 type ButtonProps = {
   href?: string;
+  external?: boolean;
   variant?: Variant;
   size?: Size;
   arrow?: boolean;
@@ -35,6 +37,7 @@ type ButtonProps = {
 
 export function Button({
   href,
+  external = false,
   variant = "primary",
   size = "md",
   arrow = false,
@@ -61,6 +64,14 @@ export function Button({
       )}
     </>
   );
+
+  if (href && external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+        {content}
+      </a>
+    );
+  }
 
   if (href) {
     return (

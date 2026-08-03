@@ -74,7 +74,7 @@ export function Nav() {
                     </p>
                     <ul className="mt-4 space-y-3">
                       <li>
-                        <Link href="/about#team" className="text-sm text-ink hover:text-brand">
+                        <Link href="/team" className="text-sm text-ink hover:text-brand">
                           Our Team
                         </Link>
                       </li>

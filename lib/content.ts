@@ -76,6 +76,8 @@ export type TeamMember = {
   linkedin: string;
   instagram?: string;
   initials: string;
+  bio?: string;
+  isFounder?: boolean;
 };
 
 export const TEAM: TeamMember[] = [
@@ -85,6 +87,8 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/consult-with-riz/",
     instagram: "https://www.instagram.com/etz.riz/",
     initials: "RM",
+    isFounder: true,
+    bio: "Rizwan helps early-stage founders bring clarity and structure to Operations, Product, and Strategy. With 10+ years of experience working at Wise, Bolt, Motive and Careem across Europe, Africa, and the Middle East, he specializes in building scalable systems that turn early traction into predictable growth.",
   },
   {
     name: "Umair Shahzad",
@@ -92,6 +96,85 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/umair-shahzad-us/",
     instagram: "https://www.instagram.com/_umairshahzad/",
     initials: "US",
+    isFounder: true,
+    bio: "Umair brings 10+ years of hands-on experience building, scaling, and leading high-growth startups — from launching a venture studio in MENAP to mentoring 100+ founders. He specializes in helping early-stage teams find direction, validate what truly matters, and move confidently toward product-market fit. His work has reached 18M+ users, earned multiple \"Startup of the Year\" awards, and been featured across major regional and global publications.",
+  },
+  {
+    name: "Mahad Imran",
+    role: "Team",
+    linkedin: "",
+    initials: "MI",
+    bio: "Mahad builds systems that solve real problems, helping early-stage teams turn ideas into structured, scalable products. He brings a rare blend of strategic thinking, operational discipline, and product execution. Mahad has 5+ years of experience building programs, teams, and ventures from the ground up. At Soch, he focuses on transforming ambiguity into clarity and momentum for growing startups.",
+  },
+  {
+    name: "Husnain Shafqat",
+    role: "Team",
+    linkedin: "",
+    initials: "HS",
+    bio: "Husnain is a business operations analyst and workflow architect across branding, Shopify, Webflow, fulfillment, and 3PL. He specializes in compressing complex processes into instantly actionable systems, blending strategic thinking with operational discipline. Husnain has helped ventures streamline execution and scale efficiently. At Soch, he focuses on transforming ambiguity into clarity, building repeatable frameworks, and driving momentum for startups and growing teams.",
+  },
+  {
+    name: "Muniba Javed",
+    role: "Team",
+    linkedin: "",
+    initials: "MJ",
+    bio: "Muniba supports founders and teams by bringing structure, consistency, and operational clarity to their day-to-day work. As a Business Operations Associate at Soch, she focuses on improving processes, strengthening execution, and helping early-stage startups run smoother and more efficiently.",
+  },
+  {
+    name: "Ahmad Tehseen",
+    role: "Team",
+    linkedin: "",
+    initials: "AT",
+    bio: "Ahmad builds automation systems that streamline operations and remove manual inefficiencies for growing teams. He focuses on creating scalable workflows that improve execution, strengthen processes, and help businesses operate with speed and clarity.",
+  },
+  {
+    name: "Abeeha Aslam",
+    role: "Team",
+    linkedin: "",
+    initials: "AA",
+    bio: "Abeeha helps brands communicate with clarity through structured, audience-focused content. She specializes in shaping narratives that simplify complexity, strengthen messaging, and drive meaningful engagement across channels.",
+  },
+  {
+    name: "Amna Qaiser",
+    role: "Team",
+    linkedin: "",
+    initials: "AQ",
+    bio: "Amna turns ideas into clean, modern, and purposeful visuals that elevate brand identity. She focuses on creating design systems that improve user experience, enhance communication, and bring consistency to fast-moving teams.",
+  },
+  {
+    name: "Bilal Aftab",
+    role: "Team",
+    linkedin: "",
+    initials: "BA",
+    bio: "Bilal brings over a decade of experience as a dynamic leader in technology and product development. He has founded and scaled ventures including Estately.io and Devbeans, specializing in SaaS platforms, IT consulting, and custom software solutions. With a strong background in computer software engineering, Bilal blends strategic vision with hands-on execution to deliver scalable digital products. At Soch, he focuses on driving innovation in property technology and building systems that simplify complex operations for growing businesses.",
+  },
+  {
+    name: "Faizan Mahmood",
+    role: "Team",
+    linkedin: "",
+    initials: "FM",
+    bio: "Faizan is a 4x founder and product strategist who specializes in turning bold ideas into market-ready products within weeks. He has delivered 100+ MVPs across FinTech, SaaS, PropTech, AI/ML, and HealthTech, helping startups secure funding and scale with confidence. With deep expertise in building elite remote engineering teams and full-stack execution, Faizan blends speed with quality to maximize ROI. At Soch, he focuses on guiding startups from concept to clarity, ensuring products are scalable, robust, and positioned for growth.",
+  },
+  {
+    name: "Bilal Tariq",
+    role: "Team",
+    linkedin: "",
+    initials: "BT",
+    bio: "Bilal is a seasoned technology leader with extensive experience in software engineering, IT consulting, and digital transformation. He has contributed to building scalable systems and guiding teams across diverse industries, blending technical depth with strategic execution. With a strong foundation in computer science and years of hands-on leadership, Bilal has helped organizations streamline operations and deliver impactful solutions. At Soch, he focuses on driving product innovation and mentoring teams to achieve clarity, efficiency, and sustainable growth.",
+  },
+  {
+    name: "Hijab Waheed",
+    role: "Team",
+    linkedin: "",
+    initials: "HW",
+    bio: "Hijab is an Implementation Manager with experience at The World Bank, where she contributes to projects that drive operational efficiency and sustainable development. With a strong academic foundation from the Lahore School of Economics and certifications in analytics from Harvard Business School, she blends data-driven insight with practical execution. Hijab specializes in aligning processes and teams to deliver measurable outcomes. At Soch, she focuses on implementing scalable systems that enhance productivity and support long-term growth.",
+  },
+  {
+    name: "Dilawar Ali",
+    role: "Board Member & Investor",
+    linkedin: "",
+    initials: "DA",
+    bio: "Dilawar is a Board Member and Investor at Soch, bringing deep expertise in venture capital, corporate law, and emerging growth companies. He advises entrepreneurs, founders, and investors on financings, M&A, and cross-border transactions, with a focus on technology, SaaS, AI, and digital platforms. With advanced legal training from Dickinson Law and LUMS, Dilawar blends strategic advisory with hands-on execution. At Soch, he contributes to governance, investment strategy, and guiding ventures toward sustainable growth.",
   },
 ];
 
