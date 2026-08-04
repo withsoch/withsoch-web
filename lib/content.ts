@@ -223,7 +223,7 @@ export type Service = {
   icon: IconName;
   title: string;
   hook: string;
-  description: string;
+  description: string | string[];
   points: string[];
   whoItsFor: string;
   commonSymptoms: string[];
@@ -231,6 +231,14 @@ export type Service = {
   deliverables: string[];
   outcomes: string[];
   offerings: { icon: IconName; title: string; description: string }[];
+  testimonial?: { quote: string; name: string; role: string; initials: string; accent: string };
+  ctaOverride?: { heading: string; buttonLabel: string };
+  // Optional per-service field (not a shared/generic block) — the copy here
+  // is written around this service's specific "build/run/scale" framing and
+  // doesn't generalize cleanly to the other four services' audiences. Add a
+  // matching array to another Service entry only when real per-service copy
+  // for it exists; don't reuse this one as a filler default.
+  audienceCards?: { no: string; tag: string; title: string; description: string }[];
 };
 
 export const SERVICES: Service[] = [
@@ -277,14 +285,24 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Data Extraction and Reporting Agents", description: "Pull data from unstructured sources, structure it, and surface insights on schedule." },
       { icon: "clock", title: "Agent Monitoring and Tuning", description: "Ongoing evaluation, prompt updates, and edge case fixes on retainer. Agents drift when the work changes. We keep yours sharp." },
     ],
+    testimonial: {
+      quote:
+        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
+      name: "Kym",
+      role: "Founder",
+      initials: "K",
+      accent: "brand",
+    },
   },
   {
     slug: "operations-process-automation",
     icon: "compass",
     title: "Operations and Process Automation",
     hook: "Stop doing manually what AI can do in seconds.",
-    description:
-      "We design, build, and maintain custom automation systems for startups and SMBs losing time, money, and accuracy to manual operations. We don't just wire tools together. We map the workflow first, redesign it, and then build an automation that runs reliably at scale.",
+    description: [
+      "We design, build, and maintain custom automation systems for startups and SMBs losing time, money, and accuracy to manual operations.",
+      "We don't just wire tools together. We map the workflow first, redesign it, and then build an automation that runs reliably at scale.",
+    ],
     points: ["Process Design", "System Integration", "Workflow Efficiency"],
     whoItsFor:
       "Founders, ops managers, and COOs at 10 to 150-person companies spending hours each week on manual data entry, tool-switching, and report building.",
@@ -320,6 +338,39 @@ export const SERVICES: Service[] = [
       { icon: "compass", title: "Cross-Tool Data Sync", description: "Connect your CRM, project management, billing, and communication tools into one source of truth. No more reconciling conflicting records across platforms." },
       { icon: "spark", title: "API and Webhook Integrations", description: "When native connectors hit their limits, we go direct. REST API calls, webhook triggers, and custom data transformation built clean and documented for the long run." },
       { icon: "shield", title: "Automation Monitoring and Maintenance", description: "Ongoing monitoring, error alerting, and proactive fixes on retainer. Automations break when tools update. We make sure yours keep running." },
+      { icon: "audit", title: "Automation Strategy and Optimization", description: "Quarterly audits and optimization sprints to keep your automation stack lean, effective, and aligned with business goals. Identify gaps, remove redundancies, and ensure every workflow delivers measurable ROI." },
+    ],
+    testimonial: {
+      quote:
+        "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
+      name: "Kaitlin Malaspina",
+      role: "CEO, Brenna Co.",
+      initials: "KM",
+      accent: "forest",
+    },
+    ctaOverride: {
+      heading: "Let us audit your workflows and find your first 3 agent use cases.",
+      buttonLabel: "Book a free call",
+    },
+    audienceCards: [
+      {
+        no: "01",
+        tag: "BUILD",
+        title: "Building the operating system",
+        description: "Founders wiring up the first tools and workflows before manual process becomes the bottleneck.",
+      },
+      {
+        no: "02",
+        tag: "RUN",
+        title: "Running the day-to-day",
+        description: "Ops managers keeping data, tools, and handoffs in sync so nothing slips between platforms.",
+      },
+      {
+        no: "03",
+        tag: "SCALE",
+        title: "Scaling without breaking",
+        description: "COOs who need the operational foundation to hold as headcount and volume grow.",
+      },
     ],
   },
   {
@@ -365,6 +416,14 @@ export const SERVICES: Service[] = [
       { icon: "spark", title: "CRM and Support Tool Sync", description: "Customer context flowing between support, sales, and product tools. Agents stop asking customers what they just told sales." },
       { icon: "clock", title: "Ongoing Tuning and Maintenance", description: "AI responses kept accurate as products, pricing, and policies change. Models drift. We keep yours grounded." },
     ],
+    testimonial: {
+      quote:
+        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
+      name: "Kym",
+      role: "Founder",
+      initials: "K",
+      accent: "brand",
+    },
   },
   {
     slug: "marketing-automation",
@@ -410,6 +469,14 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Pipeline Attribution and Reporting", description: "Clear dashboards connecting marketing spend and activity to actual pipeline and revenue. No more guessing which campaigns are worth continuing." },
       { icon: "shield", title: "Retargeting and Re-Engagement Automation", description: "Automated sequences that re-engage cold leads, website visitors, and churned customers based on behavioral triggers and time-based rules." },
     ],
+    testimonial: {
+      quote:
+        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
+      name: "Kym",
+      role: "Founder",
+      initials: "K",
+      accent: "brand",
+    },
   },
   {
     slug: "revops-automation",
@@ -455,6 +522,14 @@ export const SERVICES: Service[] = [
       { icon: "spark", title: "Marketing-to-Sales Lead Handoff", description: "Clean, automated handoff from marketing nurture to sales outreach. Lead score, activity history, and context all passed through so reps start every conversation informed." },
       { icon: "clock", title: "Onboarding and Playbook Automation", description: "New rep onboarding workflows, tool access provisioning, and playbook documentation so every new hire ramps faster with less management overhead." },
     ],
+    testimonial: {
+      quote:
+        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
+      name: "Kym",
+      role: "Founder",
+      initials: "K",
+      accent: "brand",
+    },
   },
 ];
 
