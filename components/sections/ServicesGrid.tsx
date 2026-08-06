@@ -1,39 +1,119 @@
 // components/sections/ServicesGrid.tsx
+//
+// Accordion + paired image panel for the homepage's "Services that turn
+// strategy into results" section. One row open at a time; the right-side
+// panel crossfades to match whichever service is open. Mirrors the
+// accordion/visual-panel pattern established in ServiceAccordion +
+// ServiceProcessPanel for the service detail pages.
+//
+// The right panel is a grid sibling of the left column (grid + stretch), so
+// it always matches the left column's rendered height instead of sizing to
+// its own content. Its contents are a simple centered placeholder for now —
+// real per-service diagrams land in a later round once reference
+// screenshots are provided.
 
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { SERVICES } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 
 export function ServicesGrid() {
+  const [openSlug, setOpenSlug] = useState(SERVICES[0].slug);
+  const activeService = SERVICES.find((service) => service.slug === openSlug) ?? SERVICES[0];
+
   return (
     <Section className="bg-mist">
       <SectionHeading
         title="Services that turn strategy into results"
         intro="Five areas where AI automation replaces manual work with systems that run on their own."
       />
-      <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {SERVICES.map((service) => (
-          <Link
-            key={service.slug}
-            href={`/services/${service.slug}`}
-            className="group flex flex-col gap-4 rounded-2xl bg-white p-7 shadow-soft ring-1 ring-line hover:shadow-card hover:ring-ink/15 transition-all duration-200"
-          >
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
-              <Icon name={service.icon} className="h-5.5 w-5.5" />
-            </span>
-            <h3 className="text-h3">{service.title}</h3>
-            <p className="text-slate">{service.hook}</p>
-            <ul className="mt-1 flex flex-col gap-2">
-              {service.points.map((point) => (
-                <li key={point} className="flex items-center gap-2 text-sm text-slate">
-                  <Icon name="check" className="h-4 w-4 shrink-0 text-leaf" />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </Link>
-        ))}
+      <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10">
+        <div className="flex flex-col gap-4">
+          {SERVICES.map((service) => {
+            const isOpen = service.slug === openSlug;
+            return (
+              <div
+                key={service.slug}
+                className={`rounded-xl border bg-white transition-colors duration-300 ease-in-out ${
+                  isOpen ? "border-brand/60" : "border-line hover:border-ink/20 hover:bg-mist/40"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenSlug(service.slug)}
+                  className="flex w-full items-center gap-4 px-6 py-5 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-peach text-brand">
+                    <Icon name={service.icon} className="h-5.5 w-5.5" />
+                  </span>
+                  <span
+                    className={`text-h3 text-[1.05rem] flex-1 transition-colors duration-300 ease-in-out ${
+                      isOpen ? "text-brand" : "text-ink"
+                    }`}
+                  >
+                    {service.title}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 90 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="shrink-0"
+                  >
+                    <Icon name="arrow" className={`h-5 w-5 ${isOpen ? "text-brand" : "text-muted"}`} />
+                  </motion.span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div className="flex flex-col gap-4 px-6 pb-6 pl-[4.25rem]">
+                        <p className="text-slate">{service.description}</p>
+                        <ul className="flex flex-wrap gap-2">
+                          {service.points.map((point) => (
+                            <li
+                              key={point}
+                              className="rounded-full bg-peach px-3.5 py-1.5 text-sm font-medium text-brand"
+                            >
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+        <div className="rounded-2xl border border-line bg-white overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeService.slug}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="flex h-full min-h-[26rem] flex-col items-center justify-center gap-4 p-8 text-center"
+            >
+              {/* placeholder — real per-service diagram pending */}
+              <span className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-peach text-brand">
+                <Icon name={activeService.icon} className="h-9 w-9" />
+              </span>
+              <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
+              <span className="text-sm text-muted">Visual coming soon</span>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </Section>
   );
