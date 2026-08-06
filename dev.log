@@ -1,0 +1,419 @@
+
+> withsoch-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.20.137:3000
+- Environments: .env
+✓ Ready in 1404ms
+
+ GET /services/operations-process-automation 200 in 2.6s (next.js: 1362ms, generate-params: 1002ms, application-code: 1217ms)
+ GET /services/operations-process-automation 200 in 848ms (next.js: 31ms, generate-params: 18ms, application-code: 817ms)
+ GET /images/services/operations-process-automation/hero-diagram.png 404 in 1006ms (next.js: 387ms, application-code: 619ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/hero-diagram.png received null
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 1003ms (next.js: 567ms, application-code: 435ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1207ms (next.js: 167ms, application-code: 1041ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1207ms (next.js: 248ms, application-code: 959ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1211ms (next.js: 378ms, application-code: 833ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1227ms (next.js: 694ms, application-code: 532ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/operations-process-automation 200 in 575ms (next.js: 25ms, generate-params: 11ms, application-code: 550ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/services/..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="inter_7b06...">
+                          <body
+                            className="min-h-full flex flex-col overflow-x-hidden bg-white"
+-                           data-new-gr-c-s-check-loaded="14.1315.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+ 
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 785ms (next.js: 112ms, application-code: 673ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /images/services/operations-process-automation/hero-diagram.png 404 in 800ms (next.js: 352ms, application-code: 448ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/hero-diagram.png received null
+ GET /images/services/operations-process-automation/state-common-symptoms.png 404 in 231ms (next.js: 23ms, application-code: 207ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-common-symptoms.png received null
+ GET /images/services/operations-process-automation/state-our-approach.png 404 in 286ms (next.js: 25ms, application-code: 262ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-our-approach.png received null
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 732ms (next.js: 59ms, application-code: 673ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 738ms (next.js: 155ms, application-code: 583ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 742ms (next.js: 222ms, application-code: 520ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 746ms (next.js: 314ms, application-code: 432ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /services/operations-process-automation 200 in 59ms (next.js: 29ms, generate-params: 12ms, application-code: 30ms)
+ GET /services/operations-process-automation 200 in 203ms (next.js: 11ms, generate-params: 36µs, application-code: 192ms)
+ GET /services/ai-agent-development 200 in 216ms (next.js: 20ms, generate-params: 8ms, application-code: 197ms)
+[browser] An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string. 
+[browser] Image is missing required "src" property: [object HTMLImageElement] 
+[browser] Image is missing required "src" property: [object HTMLImageElement] 
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 807ms (next.js: 56ms, application-code: 750ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 814ms (next.js: 172ms, application-code: 642ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 811ms (next.js: 483ms, application-code: 328ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/ai-agent-development 200 in 3.1s (next.js: 627ms, generate-params: 77ms, application-code: 2.5s)
+✓ Compiled in 1294.8s
+⨯ ReferenceError: PageHero is not defined
+    at ServiceDetailPage (app\services\[slug]\page.tsx:88:10)
+  86 |         </section>
+  87 |       ) : (
+> 88 |         <PageHero eyebrow="Services" heading={service.title} sub={service.description} />
+     |          ^
+  89 |       )}
+  90 |
+  91 |       <Section tight className="bg-mist border-b border-line"> {
+  digest: '2827776481'
+}
+⨯ ReferenceError: PageHero is not defined
+    at ServiceDetailPage (app\services\[slug]\page.tsx:88:10)
+  86 |         </section>
+  87 |       ) : (
+> 88 |         <PageHero eyebrow="Services" heading={service.title} sub={service.description} />
+     |          ^
+  89 |       )}
+  90 |
+  91 |       <Section tight className="bg-mist border-b border-line"> {
+  digest: '2827776481'
+}
+ GET /services/ai-agent-development 200 in 5.4s (next.js: 487ms, generate-params: 32ms, application-code: 4.9s)
+⨯ ReferenceError: PageHero is not defined
+    at ServiceDetailPage (app\services\[slug]\page.tsx:88:10)
+  86 |         </section>
+  87 |       ) : (
+> 88 |         <PageHero eyebrow="Services" heading={service.title} sub={service.description} />
+     |          ^
+  89 |       )}
+  90 |
+  91 |       <Section tight className="bg-mist border-b border-line"> {
+  digest: '2827776481'
+}
+⨯ ReferenceError: PageHero is not defined
+    at ServiceDetailPage (app\services\[slug]\page.tsx:88:10)
+  86 |         </section>
+  87 |       ) : (
+> 88 |         <PageHero eyebrow="Services" heading={service.title} sub={service.description} />
+     |          ^
+  89 |       )}
+  90 |
+  91 |       <Section tight className="bg-mist border-b border-line"> {
+  digest: '2827776481'
+}
+ GET /services/ai-agent-development 200 in 4.0s (next.js: 309ms, generate-params: 258µs, application-code: 3.7s)
+ GET /services/ai-agent-development 200 in 349ms (next.js: 31ms, generate-params: 11ms, application-code: 318ms)
+ GET /services/ai-agent-development 200 in 350ms (next.js: 120ms, generate-params: 49µs, application-code: 230ms)
+⨯ ReferenceError: isOperations is not defined
+    at ServiceDetailPage (app\services\[slug]\page.tsx:100:10)
+   98 |
+   99 |       <Section className="bg-white">
+> 100 |         {isOperations ? (
+      |          ^
+  101 |           <Reveal>
+  102 |             <div className="flex flex-col gap-10">
+  103 |               <h2 className="text-h2 mx-auto max-w-3xl text-center">{service.hook}</h2> {
+  digest: '454828362'
+}
+ GET /services/ai-agent-development 500 in 2.6s (next.js: 742ms, generate-params: 32ms, application-code: 1882ms)
+An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string.
+[browser] ⨯ unhandledRejection: ChunkLoadError: Failed to load chunk /_next/static/chunks/app_layout_tsx_007e4b2._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+ GET /services/ai-agent-development 200 in 3.3s (next.js: 642ms, generate-params: 46ms, application-code: 2.7s)
+[browser] An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string. 
+[browser] Image is missing required "src" property: [object HTMLImageElement] 
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 2.3s (next.js: 705ms, application-code: 1594ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 2.3s (next.js: 992ms, application-code: 1319ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1989ms (next.js: 419ms, application-code: 1571ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 2000ms (next.js: 550ms, application-code: 1450ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 2.0s (next.js: 696ms, application-code: 1313ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/ai-agent-development 200 in 3.7s (next.js: 427ms, generate-params: 20ms, application-code: 3.2s)
+ GET /services/ai-agent-development 200 in 2.1s (next.js: 44ms, generate-params: 142µs, application-code: 2.1s)
+ GET /services/ai-agent-development 200 in 1496ms (next.js: 404ms, generate-params: 16ms, application-code: 1093ms)
+ GET /services/ai-agent-development 200 in 402ms (next.js: 16ms, generate-params: 95µs, application-code: 386ms)
+○ Compiling / ...
+ GET / 200 in 22.7s (next.js: 7.6s, application-code: 15.1s)
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 3.9s (next.js: 1089ms, application-code: 2.9s)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /services/ai-agent-development 200 in 4.3s (next.js: 1130ms, generate-params: 54ms, application-code: 3.1s)
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 416ms (next.js: 140ms, application-code: 276ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 498ms (next.js: 238ms, application-code: 261ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/services/..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="inter_7b06...">
+                          <body
+                            className="min-h-full flex flex-col overflow-x-hidden bg-white"
+-                           data-new-gr-c-s-check-loaded="14.1315.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+ 
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 1350ms (next.js: 90ms, application-code: 1260ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1357ms (next.js: 223ms, application-code: 1134ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1363ms (next.js: 400ms, application-code: 963ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1373ms (next.js: 510ms, application-code: 864ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/operations-process-automation 200 in 438ms (next.js: 20ms, generate-params: 11ms, application-code: 418ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /images/services/operations-process-automation/hero-diagram.png 404 in 1055ms (next.js: 134ms, application-code: 921ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/hero-diagram.png received null
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 1080ms (next.js: 423ms, application-code: 657ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1728ms (next.js: 146ms, application-code: 1582ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1735ms (next.js: 373ms, application-code: 1363ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1725ms (next.js: 848ms, application-code: 877ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1734ms (next.js: 961ms, application-code: 773ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+⚠ Server is approaching the used memory threshold, restarting...
+⚠ Server is approaching the used memory threshold, restarting...
+⚠ Server is approaching the used memory threshold, restarting...
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.20.137:3000
+- Environments: .env
+✓ Ready in 1243ms
+
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 1734ms (next.js: 216ms, application-code: 1518ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 1721ms (next.js: 554ms, application-code: 1167ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+ GET /services/operations-process-automation 200 in 4.8s (next.js: 3.5s, generate-params: 2.7s, application-code: 1364ms)
+ GET /services/ai-agent-development 200 in 671ms (next.js: 41ms, generate-params: 22ms, application-code: 630ms)
+ GET /services/ai-agent-development 200 in 397ms (next.js: 30ms, generate-params: 18ms, application-code: 367ms)
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 906ms (next.js: 44ms, application-code: 862ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 912ms (next.js: 125ms, application-code: 787ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 941ms (next.js: 356ms, application-code: 585ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 939ms (next.js: 543ms, application-code: 396ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 276ms (next.js: 30ms, application-code: 246ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /services/marketing-automation 200 in 219ms (next.js: 30ms, generate-params: 9ms, application-code: 188ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /images/services/marketing-automation/state-who-its-for.png 404 in 1654ms (next.js: 104ms, application-code: 1550ms)
+⨯ The requested resource isn't a valid image for /images/services/marketing-automation/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1661ms (next.js: 250ms, application-code: 1411ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1672ms (next.js: 357ms, application-code: 1315ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1707ms (next.js: 735ms, application-code: 972ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 1278ms (next.js: 886ms, application-code: 392ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/marketing-automation/hero-diagram.png 404 in 302ms (next.js: 40ms, application-code: 262ms)
+⨯ The requested resource isn't a valid image for /images/services/marketing-automation/hero-diagram.png received null
+ GET /services/ai-agent-development 200 in 760ms (next.js: 34ms, generate-params: 22ms, application-code: 726ms)
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 500ms (next.js: 64ms, application-code: 436ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 497ms (next.js: 124ms, application-code: 373ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 853ms (next.js: 101ms, application-code: 752ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 860ms (next.js: 257ms, application-code: 603ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 849ms (next.js: 535ms, application-code: 314ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 220ms (next.js: 32ms, application-code: 187ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/ai-agent-development 200 in 811ms (next.js: 37ms, generate-params: 24ms, application-code: 774ms)
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 584ms (next.js: 61ms, application-code: 523ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 632ms (next.js: 279ms, application-code: 354ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 770ms (next.js: 112ms, application-code: 658ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 779ms (next.js: 220ms, application-code: 559ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 797ms (next.js: 473ms, application-code: 324ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 337ms (next.js: 85ms, application-code: 251ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /services/marketing-automation 200 in 2.6s (next.js: 392ms, generate-params: 27ms, application-code: 2.2s)
+ GET /services/marketing-automation 200 in 1571ms (next.js: 54ms, generate-params: 91µs, application-code: 1516ms)
+ GET /services/marketing-automation 200 in 880ms (next.js: 43ms, generate-params: 59µs, application-code: 837ms)
+ GET /services/marketing-automation 200 in 890ms (next.js: 310ms, generate-params: 85µs, application-code: 580ms)
+ GET /services/marketing-automation 200 in 1493ms (next.js: 278ms, generate-params: 12ms, application-code: 1215ms)
+ GET /services/marketing-automation 200 in 849ms (next.js: 16ms, generate-params: 57µs, application-code: 833ms)
+ GET /services/marketing-automation 200 in 636ms (next.js: 18ms, generate-params: 53µs, application-code: 618ms)
+ GET /services/marketing-automation 200 in 637ms (next.js: 154ms, generate-params: 46µs, application-code: 483ms)
+ GET /services/marketing-automation 200 in 1403ms (next.js: 201ms, generate-params: 8ms, application-code: 1201ms)
+ GET /services/marketing-automation 200 in 816ms (next.js: 11ms, generate-params: 58µs, application-code: 805ms)
+ GET /services/marketing-automation 200 in 481ms (next.js: 11ms, generate-params: 40µs, application-code: 469ms)
+ GET /services/marketing-automation 200 in 481ms (next.js: 153ms, generate-params: 45µs, application-code: 328ms)
+ GET /services/marketing-automation 200 in 888ms (next.js: 228ms, generate-params: 15ms, application-code: 660ms)
+ GET /services/marketing-automation 200 in 465ms (next.js: 10ms, generate-params: 36µs, application-code: 456ms)
+ GET /services/marketing-automation 200 in 362ms (next.js: 89ms, generate-params: 37µs, application-code: 273ms)
+ GET /services/marketing-automation 200 in 367ms (next.js: 8ms, generate-params: 33µs, application-code: 359ms)
+ GET /services/operations-process-automation 200 in 264ms (next.js: 32ms, generate-params: 20ms, application-code: 231ms)
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1851ms (next.js: 276ms, application-code: 1575ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1854ms (next.js: 422ms, application-code: 1432ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1912ms (next.js: 1219ms, application-code: 693ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1917ms (next.js: 1281ms, application-code: 635ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 613ms (next.js: 376ms, application-code: 237ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /images/services/operations-process-automation/hero-diagram.png 404 in 360ms (next.js: 41ms, application-code: 320ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/hero-diagram.png received null
+ GET /services/operations-process-automation 200 in 2.5s (next.js: 319ms, generate-params: 16ms, application-code: 2.2s)
+ GET /services/operations-process-automation 200 in 1738ms (next.js: 43ms, generate-params: 46µs, application-code: 1695ms)
+ GET /services/operations-process-automation 200 in 788ms (next.js: 79ms, generate-params: 105µs, application-code: 709ms)
+ GET /services/operations-process-automation 200 in 803ms (next.js: 458ms, generate-params: 55µs, application-code: 345ms)
+ GET /services/operations-process-automation 200 in 694ms (next.js: 41ms, generate-params: 27ms, application-code: 654ms)
+ GET /services/ai-agent-development 200 in 292ms (next.js: 11ms, generate-params: 31µs, application-code: 281ms)
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 2.2s (next.js: 426ms, application-code: 1753ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 2.2s (next.js: 1087ms, application-code: 1136ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 2.2s (next.js: 1246ms, application-code: 979ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 2.2s (next.js: 1434ms, application-code: 799ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/ai-agent-development/state-who-its-for.png 404 in 488ms (next.js: 42ms, application-code: 446ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/state-who-its-for.png received null
+ GET /images/services/ai-agent-development/hero-diagram.png 404 in 493ms (next.js: 114ms, application-code: 379ms)
+⨯ The requested resource isn't a valid image for /images/services/ai-agent-development/hero-diagram.png received null
+ GET /services/operations-process-automation 200 in 298ms (next.js: 35ms, generate-params: 16ms, application-code: 263ms)
+ GET /images/services/other-services-thumbs/customer-support-automation.png 404 in 1132ms (next.js: 69ms, application-code: 1063ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/customer-support-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1169ms (next.js: 269ms, application-code: 900ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1172ms (next.js: 368ms, application-code: 804ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1187ms (next.js: 737ms, application-code: 450ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/operations-process-automation/state-who-its-for.png 404 in 514ms (next.js: 58ms, application-code: 456ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/state-who-its-for.png received null
+ GET /images/services/operations-process-automation/hero-diagram.png 404 in 520ms (next.js: 157ms, application-code: 364ms)
+⨯ The requested resource isn't a valid image for /images/services/operations-process-automation/hero-diagram.png received null
+ GET /services/customer-support-automation 200 in 248ms (next.js: 21ms, generate-params: 10ms, application-code: 226ms)
+ GET /images/services/other-services-thumbs/ai-agent-development.png 404 in 1330ms (next.js: 94ms, application-code: 1236ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/ai-agent-development.png received null
+ GET /images/services/other-services-thumbs/operations-process-automation.png 404 in 1329ms (next.js: 188ms, application-code: 1140ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/operations-process-automation.png received null
+ GET /images/services/other-services-thumbs/marketing-automation.png 404 in 1325ms (next.js: 567ms, application-code: 758ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/marketing-automation.png received null
+ GET /images/services/other-services-thumbs/revops-automation.png 404 in 1329ms (next.js: 678ms, application-code: 651ms)
+⨯ The requested resource isn't a valid image for /images/services/other-services-thumbs/revops-automation.png received null
+ GET /images/services/customer-support-automation/state-who-its-for.png 404 in 478ms (next.js: 49ms, application-code: 429ms)
+⨯ The requested resource isn't a valid image for /images/services/customer-support-automation/state-who-its-for.png received null
+ GET /images/services/customer-support-automation/hero-diagram.png 404 in 504ms (next.js: 220ms, application-code: 284ms)
+⨯ The requested resource isn't a valid image for /images/services/customer-support-automation/hero-diagram.png received null
+ GET / 200 in 541ms (next.js: 200ms, application-code: 342ms)
+
+<--- Last few GCs --->
+
+[22500:0000028466CA0000]  8033842 ms: Mark-Compact 7608.3 (8205.1) -> 7536.1 (8197.7) MB, pooled: 0 MB, 16274.47 / 107.80 ms  (average mu = 0.230, current mu = 0.141) allocation failure; scavenge might not succeed
+[22500:0000028466CA0000]  8050447 ms: Mark-Compact 7621.6 (8219.3) -> 7550.2 (8211.7) MB, pooled: 0 MB, 13441.33 / 97.60 ms  (average mu = 0.212, current mu = 0.191) allocation failure; scavenge might not succeed
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 00007FF6826F403F node::OnFatalError+1343
+ 2: 00007FF68333FAA7 v8::Function::NewInstance+423
+ 3: 00007FF6831404D7 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 4: 00007FF6831441E4 v8::base::AddressSpaceReservation::AddressSpaceReservation+337700
+ 5: 00007FF68315313C v8::internal::StrongRootAllocatorBase::deallocate_impl+16604
+ 6: 00007FF68315297B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+ 7: 00007FF6845DA2AD v8::base::UnsignedDivisionByConstant<unsigned __int64>+2794653
+ 8: 00007FF68313DFA0 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+ 9: 00007FF6831587EA X509_STORE_set_cleanup+5098
+10: 00007FF68316496F uv_timer_set_repeat+19903
+11: 00007FF683172C1C uv_timer_set_repeat+77932
+12: 00007FF6833609D7 v8::Object::New+119
+13: 00007FF682766EF4 napi_create_object+84
+14: 00007FFA08AAABAA napi_register_module_v1+18484650
+15: 00007FFA08C13A12 napi_register_module_v1+19962898
+16: 00007FFA08AAADC1 napi_register_module_v1+18485185
+17: 00007FFA089E0AC9 napi_register_module_v1+17657033
+18: 00007FF68274C166 node_api_create_buffer_from_arraybuffer+5062
+19: 00007FF6833A70AB uv_run+1867
+20: 00007FF6833A6C1F uv_run+703
+21: 00007FF682808A6F node::DecodeWrite+351
+22: 00007FF682682C96 node::MultiIsolatePlatform::DisposeIsolate+250406
+23: 00007FF682751ADC node::Start+1052
+24: 00007FF68376E942 AES_cbc_encrypt+2546
+25: 00007FF6845E39B4 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2833316
+26: 00007FFABBB7E957 BaseThreadInitThunk+23
+27: 00007FFABD46AD6C RtlUserThreadStart+44
+[?25h

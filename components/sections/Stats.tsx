@@ -3,13 +3,15 @@
 import { STATS } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
 
-export function Stats() {
+export function Stats({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <Section className="bg-mist">
-      <SectionHeading
-        title="Real results from automation-first engagements"
-        intro="Our clients see measurable progress, faster decisions, steadier operations, and sharper products"
-      />
+      {showHeading && (
+        <SectionHeading
+          title="Real results from automation-first engagements"
+          intro="Our clients see measurable progress, faster decisions, steadier operations, and sharper products"
+        />
+      )}
       <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex flex-col gap-3">

@@ -169,7 +169,6 @@ export function HeroNetworkDiagram() {
     const INK = "28,43,38";
     const BRAND = "255,92,53";
     const LINE = "231,226,215";
-    const BG = "#f6f2ea";
 
     const pulses: any[] = [];
     const completions: any[] = [];
@@ -438,8 +437,9 @@ export function HeroNetworkDiagram() {
         dt = Math.min(now - lastFrame, 50);
       lastFrame = now;
       ctx!.globalCompositeOperation = "source-over";
-      ctx!.fillStyle = BG;
-      ctx!.fillRect(0, 0, W, H);
+      // Transparent clear (not an opaque fillRect) so the dot-grid texture
+      // painted behind the canvas via CSS shows through.
+      ctx!.clearRect(0, 0, W, H);
 
       const aiCore = nodes[6];
       const cx = px(aiCore.x),

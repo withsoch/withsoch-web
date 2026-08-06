@@ -139,6 +139,26 @@
     }
   }
 
+  /* Hide the native scrollbar on horizontally-scrollable rows (e.g. the
+     industries slider) while keeping the element scrollable/draggable. */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Flat dot-grid texture — reuse wherever an open surface needs a subtle
+     fill (e.g. the hero diagram band) instead of empty cream. No gradient,
+     no glow: just repeating 1px ink dots at low opacity. */
+  .bg-dot-grid {
+    background-image: radial-gradient(var(--color-ink) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0;
+    opacity: 0.07;
+  }
+
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }

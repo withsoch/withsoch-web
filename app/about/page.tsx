@@ -1,9 +1,20 @@
 // app/about/page.tsx
 
 import type { Metadata } from "next";
-import { TEAM, PRINCIPLES, VISION, MISSION, SITE } from "@/lib/content";
-import { PageHero } from "@/components/PageHero";
+import {
+  TEAM,
+  PRINCIPLES,
+  PRINCIPLES_HEADING,
+  PRINCIPLES_INTRO,
+  FOUNDERS_INTRO_QUOTE,
+  ABOUT_CTA_BAND,
+  SITE,
+} from "@/lib/content";
+import { AboutHero } from "@/components/AboutHero";
+import { VisionMissionAccordion } from "@/components/VisionMissionAccordion";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { LogoMarquee } from "@/components/sections/LogoMarquee";
+import { Stats } from "@/components/sections/Stats";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
@@ -16,49 +27,45 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="flex-1">
-      <PageHero
-        eyebrow="About Soch"
-        heading="Built to move faster than manual work"
-        sub={MISSION}
-      />
+      <AboutHero />
 
       <Reveal as="section">
         <Section id="team" className="bg-white">
-          <SectionHeading title="Founders" align="left" />
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <p className="lead mx-auto max-w-3xl text-center">{FOUNDERS_INTRO_QUOTE}</p>
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 sm:grid-cols-2 gap-6">
             {TEAM.filter((member) => member.isFounder).map((member) => (
               <div
                 key={member.name}
-                className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
+                className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-cream"
               >
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-mist text-lg font-semibold text-ink">
-                  {member.initials}
-                </span>
-                <div>
-                  <h3 className="text-h3">{member.name}</h3>
-                  <p className="text-slate">{member.role}</p>
-                </div>
-                <div className="flex gap-4">
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} on LinkedIn`}
-                    className="text-muted hover:text-brand transition-colors"
-                  >
-                    <Icon name="linkedin" className="h-5 w-5" />
-                  </a>
-                  {member.instagram && (
+                {/* Flat semi-transparent overlay panel — no gradient per DESIGN.md */}
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-black/50 px-5 py-5">
+                  <div>
+                    <h3 className="text-h3 font-medium text-cream">{member.name}</h3>
+                    <p className="text-sm text-cream/70">{member.role}</p>
+                  </div>
+                  <div className="flex gap-3">
                     <a
-                      href={member.instagram}
+                      href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${member.name} on Instagram`}
-                      className="text-muted hover:text-brand transition-colors"
+                      aria-label={`${member.name} on LinkedIn`}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/40 text-cream transition-colors hover:border-cream hover:text-brand"
                     >
-                      <Icon name="instagram" className="h-5 w-5" />
+                      <Icon name="linkedin" className="h-4 w-4" />
                     </a>
-                  )}
+                    {member.instagram && (
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name} on Instagram`}
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/40 text-cream transition-colors hover:border-cream hover:text-brand"
+                      >
+                        <Icon name="instagram" className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -68,10 +75,7 @@ export default function AboutPage() {
 
       <Reveal as="section">
         <Section className="bg-mist">
-          <SectionHeading
-            title="What we hold ourselves to"
-            intro="The principles behind every audit, build, and handover."
-          />
+          <SectionHeading title={PRINCIPLES_HEADING} intro={PRINCIPLES_INTRO} />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRINCIPLES.map((principle) => (
               <div
@@ -91,20 +95,21 @@ export default function AboutPage() {
 
       <Reveal as="section">
         <Section className="bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className="flex flex-col gap-4">
-              <span className="eyebrow w-fit">Vision</span>
-              <p className="text-h3 text-ink-soft">{VISION}</p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <span className="eyebrow w-fit">Mission</span>
-              <p className="text-h3 text-ink-soft">{MISSION}</p>
-            </div>
-          </div>
+          <VisionMissionAccordion />
         </Section>
       </Reveal>
 
-      <CtaBand />
+      <Reveal as="section">
+        <LogoMarquee />
+      </Reveal>
+
+      <Reveal as="section">
+        <Stats showHeading={false} />
+      </Reveal>
+
+      <CtaBand
+        override={{ heading: ABOUT_CTA_BAND.heading, buttonLabel: ABOUT_CTA_BAND.buttonLabel }}
+      />
     </main>
   );
 }

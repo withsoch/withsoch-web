@@ -51,6 +51,13 @@ export const CTA_BAND = {
   lead: "Book a free call and we'll show you where automation creates the most leverage in your business.",
 };
 
+// About page's CtaBand override — same component, page-specific copy.
+export const ABOUT_CTA_BAND = {
+  heading: "Let us audit your workflows and find your first 3 agent use cases.",
+  buttonLabel: "Book a free call",
+  buttonHref: SCHEDULER_URL,
+};
+
 export const NAV = [
   { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
@@ -64,6 +71,23 @@ export const HERO = {
   headline: "AI automation partners for startups that are ready to",
   headlineEmphasis: "move faster.",
   sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A startups identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
+};
+
+// About page hero. Kept separate from HERO (homepage) — different headline,
+// CTA, and a tag list; see PageHero vs AboutHero component split.
+export const ABOUT_HERO = {
+  headline: "AI automation partners for founders who want to move faster.",
+  sub: "We help early-stage startups build AI automation systems that remove manual work, speed up operations, and free their teams to focus on what actually drives growth.",
+  ctaLabel: "Let's Get You Moving",
+  ctaHref: SCHEDULER_URL,
+  tags: [
+    "Startups",
+    "Pre-seed to Series A",
+    "Technology and SaaS",
+    "Professional and B2B Services",
+    "Marketing and Media",
+    "Finance and FinTech",
+  ],
 };
 
 // ---------------------------------------------------------------------------
@@ -208,11 +232,28 @@ export const PRINCIPLES: Principle[] = [
   },
 ];
 
+export const PRINCIPLES_HEADING = "Principles that shape how we build";
+export const PRINCIPLES_INTRO =
+  "Our work is grounded in clear thinking and disciplined execution. These principles keep us focused, practical, and accountable in every engagement.";
+
 export const VISION =
   "To become the most trusted AI automation partner for startups globally, helping founders replace manual work with intelligent systems that compound over time.";
 
+export const VISION_TAGS = [
+  "AI-Native",
+  "Startup-First",
+  "Operator-Led",
+  "Client-Driven",
+  "Built to Scale",
+];
+
 export const MISSION =
   "To give early-stage startups access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
+
+// Founders section intro quote (About page only) — see FOUNDERS_INTRO_QUOTE prop
+// on the Founders block in app/about/page.tsx.
+export const FOUNDERS_INTRO_QUOTE =
+  "We combine AI-native thinking with hands-on operational experience. Every engagement is led by people who have built and scaled businesses themselves, which means we know which systems actually move the needle and which ones just look good in a deck.";
 
 // ---------------------------------------------------------------------------
 // Services
@@ -887,9 +928,9 @@ export const CLIENT_LOGOS = [
   { name: "Cycle Together", src: "/logos/cycle-together.svg" },
   { name: "Kuunda", src: "/logos/kuunda.svg" },
   { name: "Ncon", src: "/logos/ncon.svg" },
+  { name: "Pitch A Fête", src: "/logos/pitch-a-fete.svg" },
   { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
   { name: "Milkar", src: "/logos/milkar.svg" },
-  { name: "Client (name TBC)", src: "/logos/client-16.svg" }, // TODO: confirm name
   { name: "Client (name TBC)", src: "/logos/client-19.svg" }, // TODO: confirm name
 ];
 

@@ -1,7 +1,8 @@
 // components/sections/LogoMarquee.tsx
 //
-// Scrolling row of client wordmarks. Plain styled text for now — real SVGs
-// (CLIENT_LOGOS[].src) come later once re-exported from Webflow.
+// Scrolling row of client logos, each in its own light card/chip.
+// Plain <img> (not next/image) — these logos are hotlinked/local static
+// assets swapped in ad hoc, so we skip Next's image optimizer entirely.
 
 import { CLIENT_LOGOS } from "@/lib/content";
 
@@ -17,14 +18,19 @@ export function LogoMarquee() {
           focused on growth
         </p>
       </div>
-      <div className="flex w-max animate-marquee gap-16">
+      <div className="flex w-max animate-marquee gap-8">
         {logos.map((logo, i) => (
-          <span
+          <div
             key={`${logo.name}-${i}`}
-            className="whitespace-nowrap text-xl font-display font-medium text-slate/60"
+            className="flex h-32 w-64 shrink-0 items-center justify-center rounded-xl border border-line bg-white px-10 py-6"
           >
-            {logo.name}
-          </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logo.src}
+              alt={logo.name.replace(" (name TBC)", "")}
+              className="h-12 w-auto max-w-full object-contain"
+            />
+          </div>
         ))}
       </div>
     </section>

@@ -25,7 +25,9 @@ export type IconName =
   | "chevron"
   | "instagram"
   | "facebook"
-  | "youtube";
+  | "youtube"
+  | "plus"
+  | "minus";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -129,6 +131,13 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" />
     </>
   ),
+  plus: (
+    <>
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+    </>
+  ),
+  minus: <path d="M5 12h14" />,
 };
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {
