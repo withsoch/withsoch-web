@@ -614,11 +614,11 @@ export const STATS = [
     value: "2.1×",
     label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
   },
-  {
-    value: "€180k",
-    label: "AI-powered client outputs delivered through direct Claude API integration since early 2026.",
-  },
 ];
+
+export const STATS_HEADING = "Real results from automation-first engagements";
+export const STATS_INTRO =
+  "Our clients see measurable progress, faster decisions, steadier operations, and sharper products. Here's a glimpse of the outcomes we've delivered for SMBs and startups across sectors.";
 
 // ---------------------------------------------------------------------------
 // Testimonials
@@ -683,6 +683,12 @@ export type CaseStudy = {
   accent: string;
   image?: string; // TODO: re-export from Webflow CDN before launch
   href?: string;
+  // Homepage carousel-specific fields — audited verbatim from the Webflow
+  // "case-studies-carousel-source.html" custom code block (2026-08-10).
+  carouselTag?: string;
+  challenge?: string;
+  solution?: string;
+  heroStats?: { value: string; label: string }[]; // exactly 2
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -710,6 +716,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "teal",
     image: "/images/case-studies/clearwater-intelligence.webp", // TODO
     href: "/case-studies/clearwater-intelligence",
+    carouselTag: "Operations Automation",
+    challenge:
+      "Analysts were spending 20+ hours a week on manual research across dozens of sources. Classification was inconsistent, the CRM was always behind, and several key sources had no API — making standard automation unworkable.",
+    solution:
+      "We built a scheduled n8n pipeline using Puppeteer and Browser Use to scrape all sources, an OpenAI classification agent to categorise findings, and an automated daily digest that compiles and distributes intelligence every morning.",
+    heroStats: [
+      { value: "100%", label: "Manual research hours eliminated" },
+      { value: "80%+", label: "Reduction in processing time" },
+    ],
   },
   {
     slug: "northfield-media",
@@ -735,6 +750,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "leaf",
     image: "/images/case-studies/northfield-media.webp", // TODO
     href: "/case-studies/northfield-media",
+    carouselTag: "Content Operations",
+    challenge:
+      "The content team was spending most of each week on production with almost no time left for strategy. Brand voice was inconsistent across formats and SEO was being applied after the fact rather than baked in from the start.",
+    solution:
+      "We built a multi-agent n8n pipeline — an SEO Writer, a Claude-powered Humaniser, and an Editor — with brand voice stored in a Pinecone vector database so every agent retrieves the same style reference every time.",
+    heroStats: [
+      { value: "75%", label: "Reduction in production time" },
+      { value: "30 min", label: "Brief to finished piece" },
+    ],
   },
   {
     slug: "stockwell-commerce",
@@ -760,6 +784,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "teal",
     image: "/images/case-studies/stockwell-commerce.webp", // TODO
     href: "/case-studies/stockwell-commerce",
+    carouselTag: "Operations Automation",
+    challenge:
+      "Every new product required four to six manual actions from the CS team. No error handling — if a step was missed, no one knew until a customer hit a broken link. No reliable way to see which products had forms without checking the sheet manually.",
+    solution:
+      "We built an n8n workflow triggered by Google Sheets that retrieves the master Typeform template, personalises it via a JavaScript node, creates the new form via the Typeform API, and writes the link back to the tracking sheet — in under 4 seconds.",
+    heroStats: [
+      { value: "4 sec", label: "Per product form created" },
+      { value: "204", label: "Items processed per cycle" },
+    ],
   },
   {
     slug: "frontline-advisory",
@@ -785,6 +818,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "leaf",
     image: "/images/case-studies/frontline-advisory.webp", // TODO
     href: "/case-studies/frontline-advisory",
+    carouselTag: "Sales Automation",
+    challenge:
+      "First-contact time was measured in hours. Follow-up sequences were inconsistent — some leads received all five touchpoints, others received one. Contacts were sometimes duplicated and replied leads were still receiving automated messages.",
+    solution:
+      "We built two n8n workflows — an intake pipeline that fires a personalised SMS within seconds of capture, and a daily nurture sequence with reply detection that halts outreach the moment a lead responds.",
+    heroStats: [
+      { value: "Seconds", label: "Time to first contact" },
+      { value: "5-day", label: "Nurture sequence, automated" },
+    ],
   },
   {
     slug: "harmon-advisory",
@@ -810,6 +852,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "teal",
     image: "/images/case-studies/harmon-advisory.webp", // TODO
     href: "/case-studies/harmon-advisory",
+    carouselTag: "Customer Support Automation",
+    challenge:
+      "Triage was manual and inconsistent. Response time varied based on who was available, not urgency. Internal docs were spread across Google Drive with no time to search. Document updates meant manually re-briefing the support team each time.",
+    solution:
+      "We built a Gmail-triggered pipeline with an OpenAI classifier and a LangChain agent performing semantic search across a Supabase vector database — drafting responses directly in Gmail. A second workflow auto-ingests updated Google Drive documents.",
+    heroStats: [
+      { value: "0", label: "Manual triage steps per email" },
+      { value: "3×", label: "Support volume per team member" },
+    ],
   },
   {
     slug: "physical-therapy-first",
@@ -835,6 +886,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "leaf",
     image: "/images/case-studies/physical-therapy-first.avif", // TODO
     href: "/case-studies/physical-therapy-first",
+    carouselTag: "Operations Automation",
+    challenge:
+      "Every new patient meant twenty-plus minutes of manual insurance verification and chart setup, done by hand before they walked in. No-shows were running at 18% across all three clinics, with no shared waitlist to fill an empty slot when someone cancelled.",
+    solution:
+      "We built three connected workflows on top of PromptEMR — one that verifies insurance and pre-builds charts before the visit, one that shares a single waitlist across all three clinics, and one that times review requests to genuinely good outcomes.",
+    heroStats: [
+      { value: "80%", label: "Reduction in admin time per new patient" },
+      { value: "7%", label: "No-shows, down from 18%" },
+    ],
   },
   {
     slug: "be-london",
@@ -860,6 +920,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "teal",
     image: "/images/case-studies/be-london.jpg", // TODO
     href: "/case-studies/be-london",
+    carouselTag: "Customer Support Automation",
+    challenge:
+      "Enquiries were taking an average of five hours to answer outside office hours, checked by hand against dozens of listings across fifteen neighbourhoods. Bringing a new landlord's property live across every booking channel took two full weeks of manual setup.",
+    solution:
+      "We built a workflow that reads every enquiry for dates, group size, and budget and replies with tailored options in minutes, a pipeline that automates landlord onboarding end to end, and automatic length-of-stay repricing.",
+    heroStats: [
+      { value: "8 min", label: "Average first response time, down from 5 hours" },
+      { value: "31%", label: "More enquiries converting into booked stays" },
+    ],
   },
   {
     slug: "aesthetics-lab",
@@ -885,6 +954,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "leaf",
     image: "/images/case-studies/aesthetics-lab.jpg", // TODO
     href: "/case-studies/aesthetics-lab",
+    carouselTag: "Customer Support Automation",
+    challenge:
+      "Each of the six branches ran its own WhatsApp number, answered manually, with replies during peak hours taking 25 minutes on average. With more than 15,000 clients on file, there was no consistent way to remind anyone their next session in a package was due.",
+    solution:
+      "We built a workflow that answers pricing and availability questions instantly and books directly into the schedule, automated follow-ups for multi-session packages with one-tap rebooking, and offers matched to each client's real treatment history.",
+    heroStats: [
+      { value: "50 sec", label: "Average WhatsApp response time, down from 25 min" },
+      { value: "86%", label: "Package completion rate, up from 62%" },
+    ],
   },
   {
     slug: "fifth-avenue-hotel",
@@ -910,6 +988,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "teal",
     image: "/images/case-studies/fifth-avenue-hotel.jpg", // TODO
     href: "/case-studies/fifth-avenue-hotel",
+    carouselTag: "RevOps Automation",
+    challenge:
+      "Every private event inquiry took an average of four days to turn into a custom proposal, built by hand and checked against a floor plan and a spreadsheet of vendor rates. Thirty-eight percent of inquiries went cold before a proposal ever reached the client's inbox.",
+    solution:
+      "We built a workflow that drafts a branded proposal with room options, menus, and pricing within the hour, a timed follow-up sequence for undecided leads, and one live pipeline dashboard showing exactly what's booked, pending, and still in play.",
+    heroStats: [
+      { value: "3 hrs", label: "Proposal turnaround, down from four days" },
+      { value: "22%", label: "More inquiries converting into signed contracts" },
+    ],
   },
 ];
 

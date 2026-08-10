@@ -5,7 +5,7 @@ import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Stats } from "@/components/sections/Stats";
-import { CaseStudiesGrid } from "@/components/sections/CaseStudiesGrid";
+import { CaseStudiesCarousel } from "@/components/sections/CaseStudiesCarousel";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { ComparisonTable } from "@/components/sections/ComparisonTable";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -36,7 +36,7 @@ export default function Home() {
         <Stats />
       </Reveal>
       <Reveal as="section">
-        <CaseStudiesGrid />
+        <CaseStudiesCarousel />
       </Reveal>
       <Reveal as="section">
         <HowWeWork />

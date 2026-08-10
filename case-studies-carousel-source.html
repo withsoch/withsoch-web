@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Studies Slider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:    #f3ffc9;
+    --cream-88: rgba(243,255,201,0.88);
+    --cream-60: rgba(243,255,201,0.60);
+    --cream-30: rgba(243,255,201,0.30);
+    --cream-10: rgba(243,255,201,0.10);
+    --cream-06: rgba(243,255,201,0.06);
+    --black:    #000000;
+    --card-bg:  #161816;
+    --stat-bg:  #1f211f;
+    --line:     rgba(243,255,201,0.10);
+  }
+
+  .cs-wrap * { font-family: 'Wix Madefor Text', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .cs-wrap { width: 100%; padding: 2.5rem; margin: 0; display: block; }
+  .cs-slider { overflow: hidden; border-radius: 24px; position: relative; }
+  .cs-track { display: flex; transition: transform 0.55s cubic-bezier(.65,0,.35,1); will-change: transform; align-items: stretch; }
+
+  .cs-card { flex: 0 0 100%; width: 100%; background: var(--card-bg); display: flex; flex-direction: column; pointer-events: none; }
+  .cs-card.is-active { pointer-events: auto; }
+
+  .cs-card-inner { padding: 32px 32px 0; flex: 1; display: flex; flex-direction: column; }
+
+  .cs-tag {
+    font-size: 15px; font-weight: 500; color: #f3ffc9; letter-spacing: 0.02em; margin-bottom: 14px;
+    display: inline-block; width: fit-content; background: transparent; border: 1px solid rgba(243,255,201,0.35);
+    border-radius: 100px; padding: 4px 12px;
+  }
+
+  .cs-card-title { font-size: 2.75rem; font-weight: 500; line-height: 1.3em; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 0; }
+  .cs-title-wrap { flex: 1; display: flex; align-items: center; }
+  .cs-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; }
+
+  .cs-img-box { width: 100%; border-radius: 14px; overflow: hidden; background: #111; position: relative; min-height: 360px; }
+  .cs-img-box img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    filter: brightness(0.9) saturate(0.9); transition: transform 0.6s ease, filter 0.4s ease;
+  }
+  .cs-card:hover .cs-img-box img { transform: scale(1.03); filter: brightness(1) saturate(1); }
+
+  .cs-info { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 28px; height: 100%; }
+  .cs-info-top { display: flex; flex-direction: column; gap: 0; }
+  .cs-client { font-size: 17px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
+
+  .cs-meta {
+    font-size: 12px; color: var(--cream-60); line-height: 1.6; margin-bottom: 18px; display: inline-block;
+    width: fit-content; background: rgba(243,255,201,0.04); border: 1px solid var(--line); border-radius: 100px; padding: 3px 12px;
+  }
+
+  .cs-label { font-size: 15px; font-weight: 500; letter-spacing: 0.05em; color: #f3ffc9; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .cs-text { font-size: 16px; font-weight: 400; line-height: 1.65; color: #f3ffc9; margin-bottom: 16px; }
+  .cs-text:last-of-type { margin-bottom: 0; }
+
+  .cs-info-bottom { display: flex; flex-direction: column; gap: 16px; }
+  .cs-stats { display: flex; gap: 12px; }
+
+  .cs-stat-box { flex: 1; background: var(--stat-bg); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 5px; align-items: center; text-align: center; }
+  .cs-stat-val { font-size: clamp(20px, 2.2vw, 26px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--cream); }
+  .cs-stat-lbl { font-size: 14px; font-weight: 400; line-height: 1.4; color: #f3ffc9; }
+
+  .cs-view-btn { display: flex; justify-content: flex-end; }
+  .cs-view-link {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--cream);
+    text-decoration: none; border: 1px solid var(--cream-30); border-radius: 8px; padding: 10px 20px;
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .cs-view-link:hover { background: var(--cream-06); border-color: var(--cream-60); }
+  .cs-view-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .cs-card-footer { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px 28px; margin-top: 12px; border-top: 1px solid var(--line); }
+
+  .cs-all-link {
+    display: inline-flex; align-items: center; font-size: 1.125rem; font-weight: 500; color: #1a1c18; text-decoration: none;
+    background: var(--cream); border: none; border-radius: 12px; padding: 12px 28px;
+    transition: background 0.22s ease, transform 0.18s ease; letter-spacing: -0.01em;
+  }
+  .cs-all-link:hover { background: #e8f5b0; transform: translateY(-1px); }
+
+  .cs-controls { display: flex; align-items: center; gap: 10px; }
+  .cs-dots { display: flex; gap: 6px; align-items: center; margin-right: 6px; }
+  .cs-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cream-30); transition: background 0.25s, transform 0.25s; cursor: pointer; }
+  .cs-dot.active { background: var(--cream); transform: scale(1.3); }
+
+  .cs-arrow {
+    width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: rgba(243,255,201,0.04);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.22s, border-color 0.22s;
+  }
+  .cs-arrow:hover { background: var(--cream-06); border-color: var(--cream-30); }
+  .cs-arrow svg { width: 15px; height: 15px; stroke: var(--cream-88); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media screen and (max-width: 820px) {
+    .cs-wrap { padding: 0 16px !important; }
+    .cs-slider { border-radius: 20px !important; }
+    .cs-wrap .cs-card { height: auto !important; min-height: unset !important; flex-direction: column !important; overflow: visible !important; }
+    .cs-wrap .cs-card-inner { padding: 20px 20px 0 !important; flex: none !important; overflow: visible !important; height: auto !important; }
+    .cs-wrap .cs-tag { font-size: 12px !important; padding: 4px 10px !important; margin-bottom: 10px !important; }
+    .cs-wrap .cs-title-wrap { flex: none !important; align-items: flex-start !important; padding: 0 0 16px !important; }
+    .cs-wrap .cs-card-title { font-size: 20px !important; line-height: 1.3em !important; display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; }
+    .cs-wrap .cs-body { display: flex !important; flex-direction: column !important; gap: 16px !important; flex: none !important; overflow: visible !important; }
+    .cs-wrap .cs-img-box { width: 100% !important; min-height: unset !important; height: 0 !important; padding-bottom: 62% !important; border-radius: 12px !important; position: relative !important; overflow: hidden !important; }
+    .cs-wrap .cs-img-box img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; }
+    .cs-wrap .cs-info { display: flex !important; flex-direction: column !important; height: auto !important; justify-content: flex-start !important; padding-bottom: 0 !important; gap: 0 !important; overflow: visible !important; }
+    .cs-wrap .cs-client { font-size: 15px !important; margin-bottom: 4px !important; }
+    .cs-wrap .cs-meta { font-size: 11px !important; padding: 3px 10px !important; margin-bottom: 14px !important; white-space: normal !important; overflow: visible !important; text-overflow: unset !important; max-width: 100% !important; width: auto !important; }
+    .cs-wrap .cs-label { font-size: 11px !important; margin-bottom: 3px !important; }
+    .cs-wrap .cs-text { font-size: 13px !important; line-height: 1.6 !important; margin-bottom: 12px !important; display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; white-space: normal !important; }
+    .cs-wrap .cs-info-bottom { display: flex !important; flex-direction: column !important; gap: 12px !important; margin-top: 16px !important; }
+    .cs-wrap .cs-stats { display: flex !important; flex-direction: row !important; gap: 10px !important; }
+    .cs-wrap .cs-stat-box { flex: 1 !important; padding: 12px 10px !important; border-radius: 10px !important; }
+    .cs-wrap .cs-stat-val { font-size: clamp(18px, 5vw, 22px) !important; }
+    .cs-wrap .cs-stat-lbl { font-size: 11px !important; line-height: 1.35 !important; }
+    .cs-wrap .cs-view-btn { justify-content: stretch !important; }
+    .cs-wrap .cs-view-link { width: 100% !important; justify-content: center !important; font-size: 13px !important; padding: 12px 16px !important; }
+    .cs-wrap .cs-card-footer { padding: 16px 20px 20px !important; margin-top: 16px !important; flex-wrap: wrap !important; gap: 12px !important; }
+    .cs-wrap .cs-all-link { font-size: 0.9rem !important; padding: 10px 20px !important; }
+    .cs-controls { gap: 8px !important; margin-left: auto !important; }
+    .cs-dot  { width: 5px !important; height: 5px !important; }
+    .cs-arrow { width: 34px !important; height: 34px !important; }
+    .cs-arrow svg { width: 13px !important; height: 13px !important; }
+  }
+
+  @media screen and (max-width: 390px) {
+    .cs-wrap .cs-card-title { font-size: 18px !important; }
+    .cs-wrap .cs-stat-val   { font-size: 17px !important; }
+    .cs-wrap .cs-card-footer { flex-direction: column !important; align-items: stretch !important; }
+    .cs-wrap .cs-all-link   { justify-content: center !important; }
+    .cs-controls             { justify-content: flex-end !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cs-wrap">
+  <div class="cs-slider">
+    <div class="cs-track" id="csTrack">
+
+      <!-- ── SLIDE 1 — Clearwater Intelligence ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Operations Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Building an autonomous research engine for a data intelligence firm</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0fecd81ce7ab064be023fa_Clearwater%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20s_row71.png" alt="Clearwater Intelligence" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Clearwater Intelligence</div>
+                <div class="cs-meta">North America &nbsp;·&nbsp; 8 weeks &nbsp;·&nbsp; AI Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Analysts were spending 20+ hours a week on manual research across dozens of sources. Classification was inconsistent, the CRM was always behind, and several key sources had no API — making standard automation unworkable.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a scheduled n8n pipeline using Puppeteer and Browser Use to scrape all sources, an OpenAI classification agent to categorise findings, and an automated daily digest that compiles and distributes intelligence every morning.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">100%</div><div class="cs-stat-lbl">Manual research hours eliminated</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">80%+</div><div class="cs-stat-lbl">Reduction in processing time</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/building-an-autonomous-research-engine-for-a-data-intelligence-firm">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots" id="csDots"></div>
+            <button class="cs-arrow" id="csPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow" id="csNext" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 2 — Northfield Media ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Content Operations</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Cutting content production time by 75% for a media publishing team</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb78767f8dbd8976d8949_Cutting%20content%20production%20time%20by%2075%25%20for%20a%20media%20publishing%20team.jpg" alt="Northfield Media" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Northfield Media</div>
+                <div class="cs-meta">Europe &nbsp;·&nbsp; 10 weeks &nbsp;·&nbsp; AI Content Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">The content team was spending most of each week on production with almost no time left for strategy. Brand voice was inconsistent across formats and SEO was being applied after the fact rather than baked in from the start.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a multi-agent n8n pipeline — an SEO Writer, a Claude-powered Humaniser, and an Editor — with brand voice stored in a Pinecone vector database so every agent retrieves the same style reference every time.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">75%</div><div class="cs-stat-lbl">Reduction in production time</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">30 min</div><div class="cs-stat-lbl">Brief to finished piece</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/cutting-content-production-time-by-75-for-a-media-publishing-team">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 3 — Stockwell Commerce ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Operations Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Automating product form creation for a scaling ecommerce catalogue</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb7870a6c66645eb0cc9d_Automating%20product%20form%20creation%20for%20a%20scaling%20ecommerce%20catalogue.jpg" alt="Stockwell Commerce" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Stockwell Commerce</div>
+                <div class="cs-meta">North America &nbsp;·&nbsp; 6 weeks &nbsp;·&nbsp; Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Every new product required four to six manual actions from the CS team. No error handling — if a step was missed, no one knew until a customer hit a broken link. No reliable way to see which products had forms without checking the sheet manually.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built an n8n workflow triggered by Google Sheets that retrieves the master Typeform template, personalises it via a JavaScript node, creates the new form via the Typeform API, and writes the link back to the tracking sheet — in under 4 seconds.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">4 sec</div><div class="cs-stat-lbl">Per product form created</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">204</div><div class="cs-stat-lbl">Items processed per cycle</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/automating-product-form-creation-for-a-scaling-ecommerce-catalogue">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 4 — Frontline Advisory ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Sales Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Rebuilding the lead response system for a multi-channel sales team</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb78547bc5c6027759a0c_Rebuilding%20the%20lead%20response%20system%20for%20a%20multi-channel%20sales%20team.jpg" alt="Frontline Advisory" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Frontline Advisory</div>
+                <div class="cs-meta">North America &nbsp;·&nbsp; 7 weeks &nbsp;·&nbsp; Sales &amp; Marketing Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">First-contact time was measured in hours. Follow-up sequences were inconsistent — some leads received all five touchpoints, others received one. Contacts were sometimes duplicated and replied leads were still receiving automated messages.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built two n8n workflows — an intake pipeline that fires a personalised SMS within seconds of capture, and a daily nurture sequence with reply detection that halts outreach the moment a lead responds.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">Seconds</div><div class="cs-stat-lbl">Time to first contact</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">5-day</div><div class="cs-stat-lbl">Nurture sequence, automated</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/rebuilding-the-lead-response-system-for-a-multi-channel-sales-team">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 5 — Harmon Advisory ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Customer Support Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Taking manual email triage off the support team's plate entirely</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a141cbf8f34ca7e124767f8_Harmon%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20style_row75.png" alt="Harmon Advisory" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Harmon Advisory</div>
+                <div class="cs-meta">Europe &nbsp;·&nbsp; 9 weeks &nbsp;·&nbsp; AI Support Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Triage was manual and inconsistent. Response time varied based on who was available, not urgency. Internal docs were spread across Google Drive with no time to search. Document updates meant manually re-briefing the support team each time.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a Gmail-triggered pipeline with an OpenAI classifier and a LangChain agent performing semantic search across a Supabase vector database — drafting responses directly in Gmail. A second workflow auto-ingests updated Google Drive documents.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">0</div><div class="cs-stat-lbl">Manual triage steps per email</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">3×</div><div class="cs-stat-lbl">Support volume per team member</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/taking-manual-email-triage-off-the-support-teams-plate">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 6 — Physical Therapy First ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Operations Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Turning one shared front desk into a system that never drops a patient</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f9500ee9300399fbe8938_Physical%20Therapy%20First%20Hero%20Image-CST.avif" alt="Physical Therapy First" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Physical Therapy First</div>
+                <div class="cs-meta">North America &nbsp;·&nbsp; 7 weeks &nbsp;·&nbsp; AI Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Every new patient meant twenty-plus minutes of manual insurance verification and chart setup, done by hand before they walked in. No-shows were running at 18% across all three clinics, with no shared waitlist to fill an empty slot when someone cancelled.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built three connected workflows on top of PromptEMR — one that verifies insurance and pre-builds charts before the visit, one that shares a single waitlist across all three clinics, and one that times review requests to genuinely good outcomes.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">80%</div><div class="cs-stat-lbl">Reduction in admin time per new patient</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">7%</div><div class="cs-stat-lbl">No-shows, down from 18%</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/physical-therapy-first">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 7 — Be London ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Customer Support Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Answering every guest enquiry in minutes, from one small office</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f950156a459fb7cac92cf_Be%20London%20Hero%20-CST.jpg" alt="Be London" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Be London</div>
+                <div class="cs-meta">Europe &nbsp;·&nbsp; 9 weeks &nbsp;·&nbsp; AI Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Enquiries were taking an average of five hours to answer outside office hours, checked by hand against dozens of listings across fifteen neighbourhoods. Bringing a new landlord's property live across every booking channel took two full weeks of manual setup.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a workflow that reads every enquiry for dates, group size, and budget and replies with tailored options in minutes, a pipeline that automates landlord onboarding end to end, and automatic length-of-stay repricing.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">8 min</div><div class="cs-stat-lbl">Average first response time, down from 5 hours</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">31%</div><div class="cs-stat-lbl">More enquiries converting into booked stays</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/be-london">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 8 — Aesthetics Lab ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">Customer Support Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Turning six WhatsApp inboxes into one instant booking system</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f94ff66b97e7cc2b6419c_Aesthetics%20Lab%20Hero%20Image%20-CST.jpg" alt="Aesthetics Lab" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">Aesthetics Lab</div>
+                <div class="cs-meta">South Asia &nbsp;·&nbsp; 8 weeks &nbsp;·&nbsp; AI Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Each of the six branches ran its own WhatsApp number, answered manually, with replies during peak hours taking 25 minutes on average. With more than 15,000 clients on file, there was no consistent way to remind anyone their next session in a package was due.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a workflow that answers pricing and availability questions instantly and books directly into the schedule, automated follow-ups for multi-session packages with one-tap rebooking, and offers matched to each client's real treatment history.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">50 sec</div><div class="cs-stat-lbl">Average WhatsApp response time, down from 25 min</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">86%</div><div class="cs-stat-lbl">Package completion rate, up from 62%</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/aesthetics-lab">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SLIDE 9 — The Fifth Avenue Hotel ── -->
+      <div class="cs-card">
+        <div class="cs-card-inner">
+          <span class="cs-tag">RevOps Automation</span>
+          <div class="cs-title-wrap"><h2 class="cs-card-title">Closing the gap between a guest's inquiry and a signed contract</h2></div>
+          <div class="cs-body">
+            <div class="cs-img-box">
+              <img src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f95019c2371ecb7be9d67_The%20Fifth%20Avenue%20Hotel%20Hero%20-CST.jpg" alt="The Fifth Avenue Hotel" loading="lazy" />
+            </div>
+            <div class="cs-info">
+              <div class="cs-info-top">
+                <div class="cs-client">The Fifth Avenue Hotel</div>
+                <div class="cs-meta">North America &nbsp;·&nbsp; 6 weeks &nbsp;·&nbsp; AI Workflow Automation</div>
+                <span class="cs-label">Challenge</span>
+                <p class="cs-text">Every private event inquiry took an average of four days to turn into a custom proposal, built by hand and checked against a floor plan and a spreadsheet of vendor rates. Thirty-eight percent of inquiries went cold before a proposal ever reached the client's inbox.</p>
+                <span class="cs-label">Solution</span>
+                <p class="cs-text">We built a workflow that drafts a branded proposal with room options, menus, and pricing within the hour, a timed follow-up sequence for undecided leads, and one live pipeline dashboard showing exactly what's booked, pending, and still in play.</p>
+              </div>
+              <div class="cs-info-bottom">
+                <div class="cs-stats">
+                  <div class="cs-stat-box"><div class="cs-stat-val">3 hrs</div><div class="cs-stat-lbl">Proposal turnaround, down from four days</div></div>
+                  <div class="cs-stat-box"><div class="cs-stat-val">22%</div><div class="cs-stat-lbl">More inquiries converting into signed contracts</div></div>
+                </div>
+                <div class="cs-view-btn">
+                  <a class="cs-view-link" href="https://www.withsoch.com/the-fifth-avenue-hotel">View detail <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-card-footer">
+          <a class="cs-all-link" href="https://www.withsoch.com/our-case-studies">View case studies</a>
+          <div class="cs-controls">
+            <div class="cs-dots"></div>
+            <button class="cs-arrow cs-prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="cs-arrow cs-next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cs-track -->
+  </div><!-- /cs-slider -->
+</div><!-- /cs-wrap -->
+
+<script>
+  const track  = document.getElementById('csTrack');
+  const slides = Array.from(track.querySelectorAll('.cs-card'));
+  const total  = slides.length;
+  let current  = 0;
+
+  slides.forEach(slide => {
+    const dotsWrap = slide.querySelector('.cs-dots');
+    if (!dotsWrap) return;
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'cs-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+  });
+
+  slides[0].classList.add('is-active');
+
+  function goTo(n) {
+    slides[current].classList.remove('is-active');
+    current = (n + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides[current].classList.add('is-active');
+    slides.forEach(slide => {
+      slide.querySelectorAll('.cs-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    });
+  }
+
+  document.getElementById('csPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('csNext').addEventListener('click', () => goTo(current + 1));
+  document.querySelectorAll('.cs-prev-btn').forEach(b => b.addEventListener('click', () => goTo(current - 1)));
+  document.querySelectorAll('.cs-next-btn').forEach(b => b.addEventListener('click', () => goTo(current + 1)));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  let startX = 0;
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+</script>
+
+</body>
+</html>
