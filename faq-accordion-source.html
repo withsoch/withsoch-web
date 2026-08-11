@@ -1,0 +1,199 @@
+<style>
+  .faq-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 24px;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #000;
+    color: #f3ffc9;
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .faq-heading {
+    font-size: 52px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: #f3ffc9;
+    text-align: left;
+  }
+
+  .faq-item {
+    background-color: #111;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    font-size: 18px;
+    font-weight: 800;
+    color: #f3ffc9;
+    cursor: pointer;
+    padding: 22px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .faq-question:hover {
+    opacity: 0.75;
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: #f3ffc9;
+    display: flex;
+    align-items: center;
+  }
+
+  .faq-chevron svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .faq-item.open .faq-answer-wrapper {
+    max-height: 400px;
+  }
+
+  .faq-answer {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #f3ffc9;
+    padding: 0 24px 22px 24px;
+    text-align: left;
+  }
+
+  /* Tablet */
+  @media (max-width: 768px) {
+    .faq-wrapper { padding: 20px 32px; }
+    .faq-heading { font-size: 38px; margin-bottom: 36px; }
+    .faq-question { font-size: 17px; }
+    .faq-answer { font-size: 15px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .faq-wrapper { padding: 16px 20px; }
+    .faq-heading { font-size: 28px; margin-bottom: 28px; }
+    .faq-question { font-size: 15px; padding: 18px 16px; }
+    .faq-answer { font-size: 14px; line-height: 1.7; padding: 0 16px 18px 16px; }
+  }
+</style>
+
+<div class="faq-wrapper">
+  <div class="faq-heading">Common Questions</div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What does it actually cost, and how quickly will we see ROI?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">It depends on the engagement. An Automation Audit starts at $1K and gives you a prioritized roadmap within two weeks. An Automation Build starts at $10K and delivers a live, running system within 3-6 weeks. We target high-frequency workflows first, which means most clients recover the investment within their first quarter. Sometimes faster.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How long does implementation take?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">An Automation Audit wraps in 1-2 weeks. A targeted Automation Build takes 3-6 weeks from kick-off to deployment. A full Automation OS engagement runs 8-16 weeks depending on scope. We don't pad timelines. Once the build is agreed on, we move.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What industries do you work with?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">We've worked with teams in SaaS, logistics, professional services, fintech, and e-commerce. The industry matters less than the problem. If your team has repetitive workflows, a backlog of manual tasks, or people doing work that software should be handling, the conversation is worth having.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Do we own the systems you build?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">Yes, fully. We don't lock you into proprietary tools or ongoing retainers just to keep things running. When we hand a system over, we document it, train your team on it, and make sure you can operate it without us. Ownership transfers completely at the end of the engagement.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How do I know if AI is actually a good fit for my business?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">If your team spends a meaningful amount of time on tasks that follow a predictable pattern, there's probably a fit. Data entry, report generation, lead qualification, customer follow-ups, internal routing of information: these are the kinds of tasks that automate well. The free call exists to answer this question directly. We'll tell you honestly if we think the timing isn't right.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How is Soch different from other AI agencies?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">Most AI consultancies deliver decks. We deliver running systems. We stay in the engagement until the automation is live and your team knows how to use it. We work with your existing stack instead of pushing migrations that add cost and delay. And because our team is lean, there's no account management layer between you and the people doing the actual work.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What is the Soch Automation Operating System?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">It's our internal framework for how we audit, design, and deploy automation inside a business. Instead of treating every project as a standalone fix, we look at your full operation and build systems that connect. The goal is a foundation that scales with your team, not something that needs rebuilding six months later because the scope was too narrow.</div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Will AI replace my team?
+      <span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+    <div class="faq-answer-wrapper">
+      <div class="faq-answer">No. AI takes on the work that shouldn't require a person in the first place. What it does is free your team up for the work that does. Every engagement we run is built around making your existing people more effective. If anything, the teams we work with tend to grow after automation because the bottlenecks that were slowing them down are cleared.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(function(question) {
+    question.addEventListener('click', function() {
+      var clickedItem = this.closest('.faq-item');
+      var isOpen = clickedItem.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(item) {
+        item.classList.remove('open');
+      });
+      if (!isOpen) clickedItem.classList.add('open');
+    });
+  });
+</script>

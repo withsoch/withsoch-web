@@ -1,62 +1,133 @@
 "use client";
 // components/VisionMissionAccordion.tsx
 //
-// Presentation-only change from the previous two-block static layout: same
-// VISION/MISSION copy, now collapsible. Vision starts open, Mission closed.
+// Vision/Mission accordion for the About page. Mirrors the exact
+// interaction pattern from the homepage Services section
+// (ServicesGrid.tsx): one row open at a time, +/- toggle, and a paired
+// image panel that crossfades to match whichever row is open. Here the
+// image sits on the left and the accordion on the right.
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { VISION, VISION_TAGS, MISSION } from "@/lib/content";
-import { Icon } from "@/components/Icons";
+import { Icon, type IconName } from "@/components/Icons";
 
-const ROWS = [
-  { key: "vision", label: "Vision", copy: VISION, tags: VISION_TAGS },
-  { key: "mission", label: "Mission", copy: MISSION, tags: undefined },
+const ROWS: {
+  key: string;
+  label: string;
+  icon: IconName;
+  copy: string;
+  tags?: string[];
+  image: string;
+  alt: string;
+}[] = [
+  {
+    key: "vision",
+    label: "Our Vision",
+    icon: "compass",
+    copy: VISION,
+    tags: VISION_TAGS,
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e7570bdd7184b65778dde_Innovation%20idea%20vision.webp",
+    alt: "Innovation and vision — idea taking shape.",
+  },
+  {
+    key: "mission",
+    label: "Our Mission",
+    icon: "target",
+    copy: MISSION,
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e754f6f5d7ec128eb9260_discussed%20about%20th%20numbers%20paper%20work.webp",
+    alt: "Team discussing numbers and paperwork.",
+  },
 ];
 
 export function VisionMissionAccordion() {
-  const [open, setOpen] = useState<string>("vision");
+  const [openKey, setOpenKey] = useState(ROWS[0].key);
+  const activeRow = ROWS.find((row) => row.key === openKey) ?? ROWS[0];
 
   return (
-    <div className="divide-y divide-line">
-      {ROWS.map((row) => {
-        const isOpen = open === row.key;
-        return (
-          <div key={row.key} className="py-6">
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? "" : row.key)}
-              aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 text-left"
+    <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10">
+      <div className="rounded-2xl border border-line bg-mist overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={activeRow.key}
+            src={activeRow.image}
+            alt={activeRow.alt}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="h-full min-h-[22rem] w-full object-cover"
+          />
+        </AnimatePresence>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        {ROWS.map((row) => {
+          const isOpen = row.key === openKey;
+          return (
+            <div
+              key={row.key}
+              className={`rounded-xl border bg-white transition-colors duration-300 ease-in-out ${
+                isOpen ? "border-brand/60" : "border-line hover:border-ink/20 hover:bg-mist/40"
+              }`}
             >
-              <span className="eyebrow w-fit">{row.label}</span>
-              <Icon
-                name={isOpen ? "minus" : "plus"}
-                className="h-5 w-5 shrink-0 text-ink"
-              />
-            </button>
-            {isOpen && row.tags ? (
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-6 items-start">
-                <div>
-                  <p className="text-h3 text-ink-soft max-w-2xl">{row.copy}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {row.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-line bg-mist px-3 py-1 text-sm text-ink-soft"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="aspect-[4/3] w-full rounded-2xl border border-line bg-cream" />
-              </div>
-            ) : (
-              isOpen && <p className="text-h3 text-ink-soft mt-4 max-w-2xl">{row.copy}</p>
-            )}
-          </div>
-        );
-      })}
+              <button
+                type="button"
+                onClick={() => setOpenKey(row.key)}
+                className="flex w-full items-center gap-4 px-6 py-5 text-left"
+                aria-expanded={isOpen}
+              >
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-peach text-brand">
+                  <Icon name={row.icon} className="h-5.5 w-5.5" />
+                </span>
+                <span
+                  className={`text-h3 text-[1.05rem] flex-1 transition-colors duration-300 ease-in-out ${
+                    isOpen ? "text-brand" : "text-ink"
+                  }`}
+                >
+                  {row.label}
+                </span>
+                <Icon
+                  name={isOpen ? "minus" : "plus"}
+                  className={`h-5 w-5 shrink-0 transition-colors duration-300 ease-in-out ${
+                    isOpen ? "text-brand" : "text-muted"
+                  }`}
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <div className="flex flex-col gap-4 px-6 pb-6 pl-[4.25rem]">
+                      <p className="text-slate">{row.copy}</p>
+                      {row.tags && (
+                        <ul className="flex flex-wrap gap-2">
+                          {row.tags.map((tag) => (
+                            <li
+                              key={tag}
+                              className="rounded-full bg-peach px-3.5 py-1.5 text-sm font-medium text-brand"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

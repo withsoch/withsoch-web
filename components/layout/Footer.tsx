@@ -2,61 +2,137 @@
 //
 // Dark footer — bg-charcoal per DESIGN.md §6 dark footer recipe.
 
+import Image from "next/image";
 import Link from "next/link";
-import { NAV, SITE } from "@/lib/content";
+import { SITE, CASE_STUDIES } from "@/lib/content";
+import { Icon, type IconName } from "@/components/Icons";
+import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
-const SOCIALS = [
-  { label: "LinkedIn", href: SITE.social.linkedin },
-  { label: "Facebook", href: SITE.social.facebook },
-  { label: "YouTube", href: SITE.social.youtube },
-  { label: "Instagram", href: SITE.social.instagram },
+const PAGES = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
 ];
+
+const UTILITY = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Contact", href: "/contact" },
+];
+
+const SOCIALS: { label: string; href: string; icon: IconName }[] = [
+  { label: "Facebook", href: SITE.social.facebook, icon: "facebook" },
+  { label: "YouTube", href: SITE.social.youtube, icon: "youtube" },
+  { label: "LinkedIn", href: SITE.social.linkedin, icon: "linkedin" },
+  { label: "Instagram", href: SITE.social.instagram, icon: "instagram" },
+];
+
+const featured = CASE_STUDIES[0];
 
 export function Footer() {
   return (
     <footer className="bg-charcoal text-white/70">
       <div className="container-x py-16 sm:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-          <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_1.2fr]">
+          <div className="flex flex-col gap-4">
             <span className="text-h3 text-white">{SITE.name}</span>
             <p className="max-w-xs text-sm text-white/60">{SITE.tagline}</p>
+            <NewsletterForm />
           </div>
-          <nav className="flex flex-col gap-3">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-white/70 hover:text-white transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex flex-col gap-3 text-sm">
-            <a href={SITE.phoneHref} className="hover:text-white transition-colors">
-              {SITE.phone}
-            </a>
-            <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors">
-              {SITE.email}
-            </a>
-            <span>{SITE.address}</span>
-            <div className="flex gap-4 pt-2">
-              {SOCIALS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-white/70 hover:text-white transition-colors"
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wider text-white">Pages</p>
+            <nav className="flex flex-col gap-3">
+              {PAGES.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-white/60 hover:text-brand-light transition-colors"
                 >
-                  {social.label}
-                </a>
+                  {item.label}
+                </Link>
               ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wider text-white">Utility</p>
+            <nav className="flex flex-col gap-3">
+              {UTILITY.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-white/60 hover:text-brand-light transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wider text-white">Contact on</p>
+            <div className="flex flex-col gap-3 text-sm">
+              <a href={`mailto:${SITE.email}`} className="text-white/60 hover:text-brand-light transition-colors">
+                {SITE.email}
+              </a>
+              <a href={SITE.phoneHref} className="text-white/60 hover:text-brand-light transition-colors">
+                {SITE.phone}
+              </a>
+              <span className="text-white/60">{SITE.address}</span>
             </div>
           </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold uppercase tracking-wider text-white">Featured case study</p>
+            <Link
+              href={featured.href ?? `/case-studies/${featured.slug}`}
+              className="group flex flex-col gap-3 rounded-xl border border-white/10 p-3 transition-colors hover:border-white/30"
+            >
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-white/5">
+                {featured.image && (
+                  <Image
+                    src={featured.image}
+                    alt={featured.company}
+                    fill
+                    className="object-cover"
+                    sizes="240px"
+                  />
+                )}
+              </div>
+              <p className="text-sm font-semibold text-white group-hover:text-brand-light transition-colors">
+                {featured.title}
+              </p>
+            </Link>
+          </div>
         </div>
-        <div className="mt-14 rule-dashed pt-6 text-xs text-white/40">
+
+        <div className="mt-14 flex flex-col items-start gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex gap-3">
+            {SOCIALS.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors hover:border-white/30 hover:text-white"
+              >
+                <Icon name={social.icon} className="h-5 w-5" />
+              </a>
+            ))}
+          </div>
+          <span className="text-h3 text-white">{SITE.name}</span>
+        </div>
+
+        <div className="mt-10 border-t border-white/10 pt-8 text-center">
+          <p className="text-base font-semibold text-white">
+            Soch: More Growth, Less Chaos
+          </p>
+        </div>
+
+        <div className="mt-8 text-center text-xs text-white/40">
           © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </div>
       </div>

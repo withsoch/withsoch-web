@@ -83,7 +83,7 @@ export default function AboutPage() {
                 className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
               >
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
-                  <Icon name={principle.icon} className="h-5.5 w-5.5" />
+                  <Icon name="spark" className="h-5.5 w-5.5" />
                 </span>
                 <h3 className="text-h3">{principle.title}</h3>
                 <p className="text-slate">{principle.description}</p>

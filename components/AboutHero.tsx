@@ -2,9 +2,9 @@
 //
 // About page-specific hero — distinct from the shared PageHero (which stays
 // untouched for Services/Team/Contact). Adds a headline + CTA, a 3-image
-// collage row (bg-mist placeholders per DESIGN.md/IndustriesSlider pattern,
-// swap for real photography once assets are handed over), and an
-// industry-tags footer row. Flat cream background, no gradients/glow.
+// collage row (asymmetric widths, hotlinked photography — same approach as
+// the case study carousel), and an industry-tags footer row. Flat cream
+// background, no gradients/glow.
 
 import { ABOUT_HERO } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
@@ -26,11 +26,26 @@ export function AboutHero() {
           </div>
         </div>
 
-        {/* Collage row — placeholder imagery, real photography TODO */}
-        <div className="mt-12 flex gap-4 sm:gap-6">
-          <div className="aspect-square h-56 shrink-0 rounded-2xl border border-line bg-cream sm:h-64" />
-          <div className="aspect-[16/10] h-56 flex-1 rounded-2xl border border-line bg-cream sm:h-64" />
-          <div className="aspect-[3/4] h-56 shrink-0 rounded-2xl border border-line bg-cream sm:h-64" />
+        {/* Collage row — asymmetric 3-up, real photography (hotlinked) */}
+        <div
+          className="mt-12 grid gap-4 sm:gap-6"
+          style={{ gridTemplateColumns: "0.9fr 1.2fr 0.65fr" }}
+        >
+          <img
+            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e79f2275434728f3dd265_Team%20disscussion.webp"
+            alt="With Soch team collaborating with founders to build clarity and growth."
+            className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
+          />
+          <img
+            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e7967b85d6f317982e567_Team%20sitting%20on%20the%20table.webp"
+            alt="With Soch strategists aligning teams for sustainable business growth."
+            className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
+          />
+          <img
+            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e797d64ddbcf428d8f7fc_White%20board%20matrixs%20disscused%20with%20team.webp"
+            alt="With Soch operators guiding founders through strategy and execution."
+            className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
+          />
         </div>
 
         {/* Industry tags footer row */}

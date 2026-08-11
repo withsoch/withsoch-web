@@ -124,6 +124,90 @@
   .rule-dashed {
     border-top: 1px dashed var(--color-line);
   }
+
+  /* Comparison table (Consulting vs. Implementation vs. Transformation) —
+     structural rules ported from the Webflow source: header row centered +
+     bold, body rows left-aligned, horizontal dividers only (no vertical
+     column borders anywhere), first column bold + wider. Below 768px the
+     table collapses into stacked block "cards" per the source's exact
+     responsive approach. */
+  .comparison-table {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+  .comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    border: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .comparison-table thead th {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.375rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom-width: 2px;
+  }
+  .comparison-table tbody th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    width: 22%;
+    padding: 1.25rem 1.5rem 1.25rem 0;
+  }
+  .comparison-table tbody td {
+    text-align: left;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-slate);
+    padding: 1.25rem 1.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .comparison-table table,
+    .comparison-table thead,
+    .comparison-table tbody,
+    .comparison-table tr,
+    .comparison-table th,
+    .comparison-table td {
+      display: block;
+      width: auto;
+    }
+    .comparison-table thead th {
+      text-align: left;
+      padding: 0 0 0.4rem;
+      border-bottom: none;
+    }
+    .comparison-table thead th:first-child {
+      display: none;
+    }
+    .comparison-table thead tr {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-line);
+      padding-bottom: 0.75rem;
+    }
+    .comparison-table tbody tr {
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-line);
+    }
+    .comparison-table tbody tr:last-child {
+      margin-bottom: 0;
+    }
+    .comparison-table tbody th {
+      border-bottom: none;
+      padding: 0 0 0.5rem;
+    }
+    .comparison-table tbody td {
+      border-bottom: none;
+      padding: 0.5rem 0;
+    }
+  }
 }
 
 @layer utilities {
@@ -180,6 +264,14 @@
     animation: fade-up 0.8s var(--ease-out-soft) 0.15s forwards;
   }
 
+  @keyframes step-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-step-fade {
+    animation: step-fade 0.25s var(--ease-out-soft) forwards;
+  }
+
   @keyframes float-soft {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -192,7 +284,7 @@
     .animate-marquee, .animate-float-a, .animate-float-b, .animate-float-c {
       animation: none;
     }
-    .animate-fade-up, .animate-pop {
+    .animate-fade-up, .animate-pop, .animate-step-fade {
       animation: none;
       opacity: 1;
     }

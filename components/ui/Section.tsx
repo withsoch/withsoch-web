@@ -25,14 +25,22 @@ type SectionHeadingProps = {
   title: string;
   intro?: string;
   align?: "center" | "left";
+  maxWidthClassName?: string;
+  titleClassName?: string;
 };
 
-export function SectionHeading({ title, intro, align = "center" }: SectionHeadingProps) {
+export function SectionHeading({
+  title,
+  intro,
+  align = "center",
+  maxWidthClassName = "max-w-2xl",
+  titleClassName = "text-h2",
+}: SectionHeadingProps) {
   const alignment =
     align === "center" ? "mx-auto text-center items-center" : "text-left items-start";
   return (
-    <div className={`flex max-w-2xl flex-col gap-4 ${alignment}`}>
-      <h2 className="text-h2">{title}</h2>
+    <div className={`flex ${maxWidthClassName} flex-col gap-4 ${alignment}`}>
+      <h2 className={titleClassName}>{title}</h2>
       {intro && <p className="lead">{intro}</p>}
     </div>
   );

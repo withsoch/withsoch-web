@@ -20,29 +20,25 @@ export function ComparisonTable() {
       <SectionHeading
         title="AI Consulting vs. Implementation vs. Transformation"
         intro="Not sure which engagement you need? Here's how they differ and which one fits where you are right now."
+        maxWidthClassName="max-w-4xl"
+        titleClassName="text-h2 lg:text-[2.1rem] lg:leading-[1.15]"
       />
-      <div className="mt-14 overflow-x-auto">
-        <table className="w-full min-w-[720px] border-collapse text-left">
+      <div className="comparison-table mt-14">
+        <table>
           <thead>
-            <tr className="rule-dashed">
-              <th className="py-4 pr-6 text-sm font-semibold text-muted"></th>
+            <tr>
+              <th></th>
               {ENGAGEMENT_TIERS.map((tier) => (
-                <th key={tier.name} className="py-4 px-6 text-h3">
-                  {tier.name}
-                </th>
+                <th key={tier.name}>{tier.name}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {ROWS.map((row) => (
-              <tr key={row.label} className="rule-dashed">
-                <th className="py-5 pr-6 text-sm font-semibold text-muted align-top whitespace-nowrap">
-                  {row.label}
-                </th>
+              <tr key={row.label}>
+                <th>{row.label}</th>
                 {ENGAGEMENT_TIERS.map((tier) => (
-                  <td key={tier.name} className="py-5 px-6 text-slate align-top">
-                    {tier[row.key]}
-                  </td>
+                  <td key={tier.name}>{tier[row.key]}</td>
                 ))}
               </tr>
             ))}

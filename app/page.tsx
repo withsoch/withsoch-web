@@ -6,7 +6,7 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Stats } from "@/components/sections/Stats";
 import { CaseStudiesCarousel } from "@/components/sections/CaseStudiesCarousel";
-import { HowWeWork } from "@/components/sections/HowWeWork";
+import { AutomationOperatingSystem } from "@/components/sections/AutomationOperatingSystem";
 import { ComparisonTable } from "@/components/sections/ComparisonTable";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { AskAI } from "@/components/sections/AskAI";
@@ -39,7 +39,7 @@ export default function Home() {
         <CaseStudiesCarousel />
       </Reveal>
       <Reveal as="section">
-        <HowWeWork />
+        <AutomationOperatingSystem />
       </Reveal>
       <Reveal as="section">
         <ComparisonTable />

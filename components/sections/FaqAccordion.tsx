@@ -12,27 +12,37 @@ export function FaqAccordion() {
 
   return (
     <Section className="bg-mist">
-      <SectionHeading title="Common Questions" />
-      <div className="mt-14 mx-auto max-w-3xl flex flex-col">
+      <SectionHeading title="Common Questions" align="left" />
+      <div className="mt-14 mx-auto flex max-w-3xl flex-col gap-3">
         {FAQS.map((faq, i) => {
           const isOpen = openIndex === i;
           return (
-            <div key={faq.q} className="rule-dashed">
+            <div
+              key={faq.q}
+              className="rounded-xl border border-line bg-white"
+            >
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
                 aria-expanded={isOpen}
               >
-                <span className="text-h3 text-[1.1rem]">{faq.q}</span>
+                <span className="font-semibold text-ink">{faq.q}</span>
                 <Icon
-                  name="arrow"
-                  className={`h-5 w-5 shrink-0 text-muted transition-transform duration-200 ${
-                    isOpen ? "rotate-90" : ""
+                  name="chevron"
+                  className={`h-5 w-5 shrink-0 text-muted transition-transform duration-300 ${
+                    isOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {isOpen && <p className="pb-6 text-slate">{faq.a}</p>}
+              <div
+                className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+              >
+                <div className="overflow-hidden">
+                  <p className="px-6 pb-5 text-slate">{faq.a}</p>
+                </div>
+              </div>
             </div>
           );
         })}
