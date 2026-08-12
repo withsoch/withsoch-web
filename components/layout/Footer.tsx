@@ -36,7 +36,15 @@ export function Footer() {
       <div className="container-x py-16 sm:py-20">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_1.2fr]">
           <div className="flex flex-col gap-4">
-            <span className="text-h3 text-white">{SITE.name}</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logos/soch-logo-removebg-preview.png"
+                alt="Soch"
+                width={173}
+                height={58}
+                className="h-8 w-auto"
+              />
+            </Link>
             <p className="max-w-xs text-sm text-white/60">{SITE.tagline}</p>
             <NewsletterForm />
           </div>
@@ -123,7 +131,13 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <span className="text-h3 text-white">{SITE.name}</span>
+          <Image
+            src="/logos/soch-logo-removebg-preview.png"
+            alt="Soch"
+            width={173}
+            height={58}
+            className="h-8 w-auto"
+          />
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-8 text-center">

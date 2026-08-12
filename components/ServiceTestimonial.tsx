@@ -3,6 +3,7 @@
 // Single-testimonial card for a service detail page, reusing the same
 // figure/blockquote recipe as components/sections/Testimonials.tsx.
 
+import Image from "next/image";
 import type { Service } from "@/lib/content";
 
 const accentBg: Record<string, string> = {
@@ -21,13 +22,23 @@ export function ServiceTestimonial({ testimonial }: ServiceTestimonialProps) {
     <figure className="mx-auto flex max-w-2xl flex-col gap-6 rounded-2xl bg-mist p-8 ring-1 ring-line">
       <blockquote className="lead text-ink">&ldquo;{testimonial.quote}&rdquo;</blockquote>
       <figcaption className="flex items-center gap-3">
-        <span
-          className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold ${
-            accentBg[testimonial.accent] ?? accentBg.brand
-          }`}
-        >
-          {testimonial.initials}
-        </span>
+        {testimonial.image ? (
+          <Image
+            src={testimonial.image}
+            alt={testimonial.name}
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full object-cover"
+          />
+        ) : (
+          <span
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold ${
+              accentBg[testimonial.accent] ?? accentBg.brand
+            }`}
+          >
+            {testimonial.initials}
+          </span>
+        )}
         <span>
           <span className="block font-semibold text-ink">{testimonial.name}</span>
           <span className="block text-sm text-muted">{testimonial.role}</span>

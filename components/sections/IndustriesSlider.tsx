@@ -37,8 +37,8 @@ const INDUSTRIES = [
   },
 ];
 
-const CARD_WIDTH = 320; // px, matches w-80 below
-const CARD_GAP = 20; // px, matches gap-5 below
+const CARD_WIDTH = 384; // px, matches w-96 below
+const CARD_GAP = 24; // px, matches gap-6 below
 
 export function IndustriesSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -74,29 +74,29 @@ export function IndustriesSlider() {
             </button>
           </div>
         </div>
+      </div>
 
-        <div
-          ref={trackRef}
-          className="flex gap-5 overflow-x-auto pb-2 -mx-1 px-1 snap-x snap-mandatory scrollbar-hide"
-        >
-          {INDUSTRIES.map((industry) => (
-            <div
-              key={industry.name}
-              className="relative h-80 w-80 shrink-0 snap-start overflow-hidden rounded-xl"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element -- external CDN photo, no local optimization needed */}
-              <img
-                src={industry.image}
-                alt={industry.name}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-black/45" />
-              <span className="absolute bottom-4 left-5 right-5 text-h3 text-cream">
-                {industry.name}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div
+        ref={trackRef}
+        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-6 overflow-x-auto pb-2 pl-6 pr-6 sm:pl-8 sm:pr-8 lg:pl-10 lg:pr-10 snap-x snap-mandatory scrollbar-hide"
+      >
+        {INDUSTRIES.map((industry) => (
+          <div
+            key={industry.name}
+            className="relative h-96 w-96 shrink-0 snap-start overflow-hidden rounded-xl"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- external CDN photo, no local optimization needed */}
+            <img
+              src={industry.image}
+              alt={industry.name}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-black/45" />
+            <span className="absolute bottom-4 left-5 right-5 text-h3 text-cream">
+              {industry.name}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );

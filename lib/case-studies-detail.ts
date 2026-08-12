@@ -7,6 +7,8 @@
 // Keyed by the same `slug` used in lib/content.ts's CASE_STUDIES array.
 
 export type CaseStudyDetail = {
+  heroImage: string; // hotlinked from the live withsoch.com Webflow CDN
+  overviewImage: string; // hotlinked from the live withsoch.com Webflow CDN
   overview: string[]; // 2 paragraphs
   problem: string; // 1 paragraph (the quote itself lives in CASE_STUDIES)
   framework: { title: string; description: string }[]; // exactly 3 steps
@@ -15,6 +17,10 @@ export type CaseStudyDetail = {
 
 export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   "clearwater-intelligence": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3250fa7ceaf9d84ab735e7_6a0fecd81ce7ab064be023fa_Clearwater%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20s_row71.webp",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3253dd377fd3b1435794e1_Compress-6.webp",
     overview: [
       "Clearwater Intelligence tracks competitor activity, compliance updates, and lead signals across dozens of sources. Their analysts were spending the majority of each week doing this manually — visiting websites, reading documents, pulling data, and classifying findings into internal systems. The process worked when the source count was manageable. It stopped working when the business grew.",
       "They came to Soch with a clear hypothesis: most of what the analysts were doing was pattern-based, and pattern-based work belongs to a system. We agreed, but we started with a process audit before touching any tools. We needed to understand where the research logic actually lived before we could automate any of it.",
@@ -46,6 +52,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "northfield-media": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3251ee44be990d9b679d41_Compressd-4.jpg",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3254d7d3b0df26fd466485_Cutting%202.webp",
     overview: [
       "Northfield Media produces blogs, reports, ebooks, and social content across multiple channels. Their content team was spending most of each week on production — researching, writing, formatting, and distributing — with almost no time left for strategy or distribution. The volume the business needed had outgrown what the team could sustainably produce by hand.",
       "The challenge was not just speed. It was quality and brand consistency. Generic AI output was not good enough. Every piece needed to sound like Northfield, pass editorial standards, and be SEO-ready before a human reviewed it. They also needed flexibility — routine content could run fully automatically, but high-stakes pieces still needed a human checkpoint before publishing. Both had to run from the same system.",
@@ -77,6 +87,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "stockwell-commerce": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a12148314e1a7f4f5fdad31_Stockwell%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20st_row79.png",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a12178523840c5710459329_Stockwell%20%20Intext%20LandscapeEditorial%20photograph%20in%20th_row80.png",
     overview: [
       "Stockwell Commerce runs a large and continuously expanding product catalogue. For every new product, their Customer Service team was manually duplicating a master Typeform template, personalising it for the product, generating the link, and logging it in their tracking sheet. With new products being added constantly, this had become a significant and recurring drain on a team that should have been focused on customers.",
       "The work was entirely mechanical. There were no judgment calls in the process — just template duplication, field replacement, and link logging. Work that should have been owned by a system from the start. They came to Soch to fix it, and we built a pipeline that removed every manual step in the chain.",
@@ -108,6 +122,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "frontline-advisory": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3251ee9f24618c2e890f09_Compressed%20Image-2.jpg",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325a1878c820d461319071_6a140cc7de3ba236f695f36d_Stockwell%20%20Intext%20LandscapeEditorial%20photograph%20in%20th_row83.webp",
     overview: [
       "Frontline Advisory manages inbound leads across multiple lead owners, with new contacts captured in Google Sheets. When a lead arrived, the team handled every step manually — adding the contact to their email platform, composing and sending the first SMS, following up across multiple days, and notifying the right team member. Leads that didn't get immediate attention went cold. Most didn't get immediate attention.",
       "The team was not dropping leads intentionally. The system just wasn't built for the volume or the consistency the process required. There was no automation, no sequence logic, and no mechanism to stop outreach when a lead had already replied. They came to Soch to fix the mechanics so the sales team could focus on conversations that were actually going somewhere.",
@@ -139,6 +157,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "harmon-advisory": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a141cbf8f34ca7e124767f8_Harmon%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20style_row75.png",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a140cc79e8bf0a849aa6e06_Harmon%20%20Intext%20LandscapeEditorial%20photograph%20in%20the%20s_row85.png",
     overview: [
       "Harmon Advisory handles a high volume of inbound support queries through Gmail. Their support team was spending most of the day reading, classifying, and drafting responses manually — the majority of which were variations of questions their internal documentation already answered. The answers existed. Finding them quickly enough was the problem.",
       "The team needed a system that could read incoming emails, understand what was being asked, retrieve the relevant answer from existing documentation, and prepare a draft — without a human doing the first three steps. They also needed the knowledge base to stay current automatically whenever a document was updated. Both problems required different builds. We built both.",
@@ -170,6 +192,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "physical-therapy-first": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f9500ee9300399fbe8938_Physical%20Therapy%20First%20Hero%20Image-CST.avif",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f95001635bdb3e9eb140b_Physical%20Therapy%20First%20Overview-CST.jpg",
     overview: [
       "Physical Therapy First runs three clinics across Baltimore (Roland Park, Clarksville, and Hunt Valley), all staffed by one shared front desk team working by phone, one patient at a time. Every new patient meant twenty minutes of manual insurance verification and chart setup before they'd even walked through the door. No-shows sat at 18% across all three locations, with no shared waitlist to fill an empty slot when someone cancelled. Intake forms were still paper, filled out in the waiting room after check-in, so nothing was in the system until the visit had already started.",
       "They came to Soch needing intake, scheduling, and reputation handled as one connected system instead of three separate manual habits, built on top of PromptEMR, the scheduling system the front desk already used, so there was nothing new for anyone to learn.",
@@ -201,6 +227,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "be-london": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f950156a459fb7cac92cf_Be%20London%20Hero%20-CST.jpg",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f94fe03107154a17a2bec_Be%20London%20Overview%20-CST.avif",
     overview: [
       "Be London manages serviced apartments across fifteen London neighbourhoods, all run out of one small central office. Every guest enquiry, every landlord onboarding, and every pricing update went through that same small team, by hand. Enquiries were taking an average of five hours to answer outside office hours, plenty of time for a guest to book somewhere else, because every request had to be checked manually against dozens of listings, matching dates, group size, and budget one message at a time.",
       "They came to Soch needing guest enquiries, landlord onboarding, and pricing run as one connected system, without losing the five-star feel that set them apart.",
@@ -232,6 +262,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "aesthetics-lab": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f94ff66b97e7cc2b6419c_Aesthetics%20Lab%20Hero%20Image%20-CST.jpg",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f95031635bdb3e9eb18de_Aesthetics%20Lab%20Overview%20-CST.jpg",
     overview: [
       "Aesthetics Lab runs six branches across Lahore, Islamabad, and Faisalabad, and nearly every booking starts on WhatsApp. Each branch ran its own number, answered manually, which meant six separate inboxes doing the same job by hand. During peak hours, replies were taking 25 minutes on average, long enough for a client to book somewhere else, and with more than 15,000 clients on file, there was no consistent way to remind anyone their next session in a package was due.",
       "They came to Soch needing booking, follow-up, and offers run as one connected system, live across all six branch numbers, without changing the numbers clients already had saved.",
@@ -263,6 +297,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
   },
 
   "fifth-avenue-hotel": {
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f95019c2371ecb7be9d67_The%20Fifth%20Avenue%20Hotel%20Hero%20-CST.jpg",
+    overviewImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f9502aed60d6249e2651b_The%20Fifth%20Avenue%20Hotel%20Overview-CST.avif",
     overview: [
       "The Fifth Avenue Hotel is a Michelin Two-Key property in NoMad, and its private events business books weddings, corporate dinners, and celebrations worth tens of thousands of dollars each. Every inquiry took an average of four days to turn into a custom proposal, built by hand in a shared document and checked against a floor plan and a spreadsheet of vendor rates. Thirty-eight percent of inquiries went cold before a proposal ever reached the client's inbox, with no systematic follow-up for undecided leads while other NoMad venues replied faster.",
       "They came to Soch needing event inquiries, proposals, and follow-up run as one connected system, without losing the level of personalization a Michelin Two-Key property is expected to deliver.",

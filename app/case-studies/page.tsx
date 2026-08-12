@@ -1,7 +1,8 @@
 import { CASE_STUDIES } from "@/lib/content";
+import { CASE_STUDY_DETAILS } from "@/lib/case-studies-detail";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
-import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { CaseStudyRowCard } from "@/components/CaseStudyRowCard";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export default function CaseStudiesPage() {
@@ -12,9 +13,13 @@ export default function CaseStudiesPage() {
         sub="Real results from automation-first engagements."
       />
       <Section className="bg-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {CASE_STUDIES.map((study) => (
-            <CaseStudyCard key={study.slug} study={study} />
+            <CaseStudyRowCard
+              key={study.slug}
+              study={study}
+              heroImage={CASE_STUDY_DETAILS[study.slug]?.heroImage}
+            />
           ))}
         </div>
       </Section>

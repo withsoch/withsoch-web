@@ -7,8 +7,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { SITE, SERVICES, CASE_STUDIES, SCHEDULER_URL } from "@/lib/content";
+import { SERVICES, CASE_STUDIES, SCHEDULER_URL } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
 
@@ -20,8 +21,15 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-ink/10">
       <div className="container-x flex items-center justify-between py-5">
-        <Link href="/" className="text-h3 text-ink">
-          {SITE.name}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logos/soch-logo-removebg-preview.png"
+            alt="Soch"
+            width={173}
+            height={58}
+            className="h-8 w-auto"
+            priority
+          />
         </Link>
         <nav className="hidden lg:flex items-center gap-2">
           <Link

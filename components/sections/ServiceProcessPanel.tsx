@@ -34,7 +34,10 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   const [openKey, setOpenKey] = useState<ServiceAccordionItemKey>("whoItsFor");
   const activeKey: ServiceAccordionItemKey = openKey || "whoItsFor";
   const meta = VISUAL_META[activeKey];
-  const visual = { src: `/images/services/${service.slug}/${meta.file}`, alt: meta.alt };
+  const visual = {
+    src: service.accordionImages?.[activeKey] ?? `/images/services/${service.slug}/${meta.file}`,
+    alt: meta.alt,
+  };
 
   return (
     <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">

@@ -38,8 +38,14 @@ export default function AboutPage() {
                 key={member.name}
                 className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-cream"
               >
-                {/* Flat semi-transparent overlay panel — no gradient per DESIGN.md */}
-                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-black/50 px-5 py-5">
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                {/* Dark-to-transparent scrim so name/role/socials stay legible over the photo */}
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-5 pt-16 pb-5">
                   <div>
                     <h3 className="text-h3 font-medium text-cream">{member.name}</h3>
                     <p className="text-sm text-cream/70">{member.role}</p>

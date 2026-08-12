@@ -100,6 +100,7 @@ export type TeamMember = {
   linkedin: string;
   instagram?: string;
   initials: string;
+  photo: string;
   bio?: string;
   isFounder?: boolean;
 };
@@ -111,6 +112,8 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/consult-with-riz/",
     instagram: "https://www.instagram.com/etz.riz/",
     initials: "RM",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e751734d7a4afc68e2e60_Rizwan%20founder.webp",
     isFounder: true,
     bio: "Rizwan helps early-stage founders bring clarity and structure to Operations, Product, and Strategy. With 10+ years of experience working at Wise, Bolt, Motive and Careem across Europe, Africa, and the Middle East, he specializes in building scalable systems that turn early traction into predictable growth.",
   },
@@ -120,6 +123,8 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/umair-shahzad-us/",
     instagram: "https://www.instagram.com/_umairshahzad/",
     initials: "US",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6937fbaad9a85a1ff960a806_Umair%20CO%20Founder.avif",
     isFounder: true,
     bio: "Umair brings 10+ years of hands-on experience building, scaling, and leading high-growth startups — from launching a venture studio in MENAP to mentoring 100+ founders. He specializes in helping early-stage teams find direction, validate what truly matters, and move confidently toward product-market fit. His work has reached 18M+ users, earned multiple \"Startup of the Year\" awards, and been featured across major regional and global publications.",
   },
@@ -128,6 +133,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "MI",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6937fba6e7e7cfffc088a669_Mahad%20CO%20worker.avif",
     bio: "Mahad builds systems that solve real problems, helping early-stage teams turn ideas into structured, scalable products. He brings a rare blend of strategic thinking, operational discipline, and product execution. Mahad has 5+ years of experience building programs, teams, and ventures from the ground up. At Soch, he focuses on transforming ambiguity into clarity and momentum for growing startups.",
   },
   {
@@ -135,6 +142,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "HS",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/691d9cfe8d35f76dbc32b091_Husnain%201-Photoroom.png",
     bio: "Husnain is a business operations analyst and workflow architect across branding, Shopify, Webflow, fulfillment, and 3PL. He specializes in compressing complex processes into instantly actionable systems, blending strategic thinking with operational discipline. Husnain has helped ventures streamline execution and scale efficiently. At Soch, he focuses on transforming ambiguity into clarity, building repeatable frameworks, and driving momentum for startups and growing teams.",
   },
   {
@@ -142,6 +151,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "MJ",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/691d7b7f52d8975dc3e0c39e_Muniba%201.png",
     bio: "Muniba supports founders and teams by bringing structure, consistency, and operational clarity to their day-to-day work. As a Business Operations Associate at Soch, she focuses on improving processes, strengthening execution, and helping early-stage startups run smoother and more efficiently.",
   },
   {
@@ -149,6 +160,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "AT",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69ce3b0bdc7834afe8f2ec82_Ahmad-Jgp.jpg",
     bio: "Ahmad builds automation systems that streamline operations and remove manual inefficiencies for growing teams. He focuses on creating scalable workflows that improve execution, strengthen processes, and help businesses operate with speed and clarity.",
   },
   {
@@ -156,6 +169,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "AA",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69dc898e31964df557b15a83_WhatsApp%20Image%202026-04-13%20at%2011.01.37%20AM.jpeg",
     bio: "Abeeha helps brands communicate with clarity through structured, audience-focused content. She specializes in shaping narratives that simplify complexity, strengthen messaging, and drive meaningful engagement across channels.",
   },
   {
@@ -163,6 +178,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "AQ",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69ce3be7135f4d584e9814be_(Final)%20Amna%20-JGP.jpg",
     bio: "Amna turns ideas into clean, modern, and purposeful visuals that elevate brand identity. She focuses on creating design systems that improve user experience, enhance communication, and bring consistency to fast-moving teams.",
   },
   {
@@ -170,6 +187,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "BA",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69eb54d910ed9ae668b444e1_Bilal%202%20(1).jpg",
     bio: "Bilal brings over a decade of experience as a dynamic leader in technology and product development. He has founded and scaled ventures including Estately.io and Devbeans, specializing in SaaS platforms, IT consulting, and custom software solutions. With a strong background in computer software engineering, Bilal blends strategic vision with hands-on execution to deliver scalable digital products. At Soch, he focuses on driving innovation in property technology and building systems that simplify complex operations for growing businesses.",
   },
   {
@@ -177,6 +196,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "FM",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69eb5597c4131e10ac507b97_Faizan%20Mahmood%20(1).jpg",
     bio: "Faizan is a 4x founder and product strategist who specializes in turning bold ideas into market-ready products within weeks. He has delivered 100+ MVPs across FinTech, SaaS, PropTech, AI/ML, and HealthTech, helping startups secure funding and scale with confidence. With deep expertise in building elite remote engineering teams and full-stack execution, Faizan blends speed with quality to maximize ROI. At Soch, he focuses on guiding startups from concept to clarity, ensuring products are scalable, robust, and positioned for growth.",
   },
   {
@@ -184,6 +205,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "BT",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69eb56117d375e05597fd7ee_Bilal%20Tariq%20(1).jpg",
     bio: "Bilal is a seasoned technology leader with extensive experience in software engineering, IT consulting, and digital transformation. He has contributed to building scalable systems and guiding teams across diverse industries, blending technical depth with strategic execution. With a strong foundation in computer science and years of hands-on leadership, Bilal has helped organizations streamline operations and deliver impactful solutions. At Soch, he focuses on driving product innovation and mentoring teams to achieve clarity, efficiency, and sustainable growth.",
   },
   {
@@ -191,6 +214,8 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "HW",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69eb569fdeabe9088f902860_Hijab%20Waheed%20(1).jpg",
     bio: "Hijab is an Implementation Manager with experience at The World Bank, where she contributes to projects that drive operational efficiency and sustainable development. With a strong academic foundation from the Lahore School of Economics and certifications in analytics from Harvard Business School, she blends data-driven insight with practical execution. Hijab specializes in aligning processes and teams to deliver measurable outcomes. At Soch, she focuses on implementing scalable systems that enhance productivity and support long-term growth.",
   },
   {
@@ -198,6 +223,8 @@ export const TEAM: TeamMember[] = [
     role: "Board Member & Investor",
     linkedin: "",
     initials: "DA",
+    photo:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69eb582098a5db4bbe278119_Dilawar%20Ali%20(1).jpg",
     bio: "Dilawar is a Board Member and Investor at Soch, bringing deep expertise in venture capital, corporate law, and emerging growth companies. He advises entrepreneurs, founders, and investors on financings, M&A, and cross-border transactions, with a focus on technology, SaaS, AI, and digital platforms. With advanced legal training from Dickinson Law and LUMS, Dilawar blends strategic advisory with hands-on execution. At Soch, he contributes to governance, investment strategy, and guiding ventures toward sustainable growth.",
   },
 ];
@@ -272,8 +299,15 @@ export type Service = {
   deliverables: string[];
   outcomes: string[];
   offerings: { icon: IconName; title: string; description: string }[];
-  testimonial?: { quote: string; name: string; role: string; initials: string; accent: string };
+  testimonial?: { quote: string; name: string; role: string; initials: string; accent: string; image?: string };
   ctaOverride?: { heading: string; buttonLabel: string };
+  // Optional real-asset overrides for the hero diagram and the five
+  // accordion panel visuals. When absent, the page falls back to the
+  // public/images/services/{slug}/... placeholder convention.
+  heroImage?: string;
+  accordionImages?: Partial<
+    Record<"whoItsFor" | "commonSymptoms" | "ourApproach" | "deliverables" | "outcomes", string>
+  >;
   // Optional per-service field (not a shared/generic block) — the copy here
   // is written around this service's specific "build/run/scale" framing and
   // doesn't generalize cleanly to the other four services' audiences. Add a
@@ -326,6 +360,20 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Data Extraction and Reporting Agents", description: "Pull data from unstructured sources, structure it, and surface insights on schedule." },
       { icon: "clock", title: "Agent Monitoring and Tuning", description: "Ongoing evaluation, prompt updates, and edge case fixes on retainer. Agents drift when the work changes. We keep yours sharp." },
     ],
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
+    accordionImages: {
+      whoItsFor:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92637e49d11d3daa2d54_founders_ops_teamleads_752x501.png",
+      commonSymptoms:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92628fa7a54a1f7b1a68_chatgpt_vs_business_752x501.png",
+      ourApproach:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c120606235fd0d24b9406_row20_752x501%20(1).png",
+      deliverables:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92638d25adba72989cd8_agent_evals_prompts_752x501.png",
+      outcomes:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dc875b87f35e603a45c6_AI%20Agent%20Development%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row88.png",
+    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -333,6 +381,8 @@ export const SERVICES: Service[] = [
       role: "Founder",
       initials: "K",
       accent: "brand",
+      image:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
     },
   },
   {
@@ -381,6 +431,20 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Automation Monitoring and Maintenance", description: "Ongoing monitoring, error alerting, and proactive fixes on retainer. Automations break when tools update. We make sure yours keep running." },
       { icon: "audit", title: "Automation Strategy and Optimization", description: "Quarterly audits and optimization sprints to keep your automation stack lean, effective, and aligned with business goals. Identify gaps, remove redundancies, and ensure every workflow delivers measurable ROI." },
     ],
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0582c7e82b089a2749eb10_OPS%20%26%20Process%20Hero.png",
+    accordionImages: {
+      whoItsFor:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8d95a543e1903f373cbb_founders_ops_coos_752x501.png",
+      commonSymptoms:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8dc25f859e474fbe4ede_crm_sheets_slack_752x501.png",
+      ourApproach:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8e689ed4247c2e5887b3_process_5steps_horizontal_752x501.png",
+      deliverables:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d99a4edff7cf7d3f7f5e4_trigger_workflow_752x501.png",
+      outcomes:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dcc3c517fb01f8f3952a_Ops%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20editorial_row87.png",
+    },
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -388,6 +452,8 @@ export const SERVICES: Service[] = [
       role: "CEO, Brenna Co.",
       initials: "KM",
       accent: "forest",
+      image:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
     },
     ctaOverride: {
       heading: "Let us audit your workflows and find your first 3 agent use cases.",
@@ -456,7 +522,22 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Support Analytics and Dashboards", description: "What customers ask most, where tickets stall, and what's costing the most time. Direction for product, KB, and staffing." },
       { icon: "spark", title: "CRM and Support Tool Sync", description: "Customer context flowing between support, sales, and product tools. Agents stop asking customers what they just told sales." },
       { icon: "clock", title: "Ongoing Tuning and Maintenance", description: "AI responses kept accurate as products, pricing, and policies change. Models drift. We keep yours grounded." },
+      { icon: "trend", title: "Analytics and Performance Insights", description: "Automated dashboards and conversation analytics that track usage, satisfaction, and conversion. Actionable insights to refine your bots and prove ROI without manual data crunching." },
     ],
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062258081a7175d7c890b3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row23.png",
+    accordionImages: {
+      whoItsFor:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d9395de7ddeee4bbfb569_founders_coos_support_752x501.png",
+      commonSymptoms:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d93aedd397d499ac957e7_tickets_24h_752x501.png",
+      ourApproach:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a071456c539f363b3f69430_Editorial_infographic_row26_752x501.png",
+      deliverables:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a06230824c0527007fef7a2_CS_Deliverables_752x501.png",
+      outcomes:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a143ec78e2f52611ab4eca8_CX%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20abstract%20d_row89.png",
+    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -464,6 +545,8 @@ export const SERVICES: Service[] = [
       role: "Founder",
       initials: "K",
       accent: "brand",
+      image:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
     },
   },
   {
@@ -510,6 +593,20 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Pipeline Attribution and Reporting", description: "Clear dashboards connecting marketing spend and activity to actual pipeline and revenue. No more guessing which campaigns are worth continuing." },
       { icon: "shield", title: "Retargeting and Re-Engagement Automation", description: "Automated sequences that re-engage cold leads, website visitors, and churned customers based on behavioral triggers and time-based rules." },
     ],
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c02d8482a055a918234c3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%201_row60.png",
+    accordionImages: {
+      whoItsFor:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d951efba48b65120f10d1_founders_marketing_growth_752x501.png",
+      commonSymptoms:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d955b55e31040333a88cb_current_state_campaigns_752x501.png",
+      ourApproach:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d957f8c9f67f8c54d5b63_audit_capture_nurture_752x501.png",
+      deliverables:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a07174497a9a10d2762feb9_row33_752x501.png",
+      outcomes:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dd8ac0836e85221455f7_Marketing%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row90.png",
+    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -517,6 +614,8 @@ export const SERVICES: Service[] = [
       role: "Founder",
       initials: "K",
       accent: "brand",
+      image:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
     },
   },
   {
@@ -563,6 +662,20 @@ export const SERVICES: Service[] = [
       { icon: "spark", title: "Marketing-to-Sales Lead Handoff", description: "Clean, automated handoff from marketing nurture to sales outreach. Lead score, activity history, and context all passed through so reps start every conversation informed." },
       { icon: "clock", title: "Onboarding and Playbook Automation", description: "New rep onboarding workflows, tool access provisioning, and playbook documentation so every new hire ramps faster with less management overhead." },
     ],
+    heroImage:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d88d0f9a7c505b4d93988_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row35.png",
+    accordionImages: {
+      whoItsFor:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fe936addfa1dbdadea71_RevOps_Automation_Who_752x501.png",
+      commonSymptoms:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8bdb261d02c91cec3b7e_sales_marketing_cs_752x501.png",
+      ourApproach:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8b0bdb9abee7a201fd99_process_5steps_752x501.png",
+      deliverables:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fee3f9c18ffe72140100_RevOps_Automation_Deliverables_752x501.png",
+      outcomes:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13ddcb431c2637b74b4c8b_RevOps%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20semir_row91.png",
+    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -570,6 +683,8 @@ export const SERVICES: Service[] = [
       role: "Founder",
       initials: "K",
       accent: "brand",
+      image:
+        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
     },
   },
 ];
@@ -714,7 +829,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Head of Intelligence, Clearwater Intelligence",
     initials: "JW",
     accent: "teal",
-    image: "/images/case-studies/clearwater-intelligence.webp", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0fecd81ce7ab064be023fa_Clearwater%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20s_row71.png",
     href: "/case-studies/clearwater-intelligence",
     carouselTag: "Operations Automation",
     challenge:
@@ -748,7 +864,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Head of Content, Northfield Media",
     initials: "SC",
     accent: "leaf",
-    image: "/images/case-studies/northfield-media.webp", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb78767f8dbd8976d8949_Cutting%20content%20production%20time%20by%2075%25%20for%20a%20media%20publishing%20team.jpg",
     href: "/case-studies/northfield-media",
     carouselTag: "Content Operations",
     challenge:
@@ -782,7 +899,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Operations Manager, Stockwell Commerce",
     initials: "RO",
     accent: "teal",
-    image: "/images/case-studies/stockwell-commerce.webp", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb7870a6c66645eb0cc9d_Automating%20product%20form%20creation%20for%20a%20scaling%20ecommerce%20catalogue.jpg",
     href: "/case-studies/stockwell-commerce",
     carouselTag: "Operations Automation",
     challenge:
@@ -816,7 +934,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Sales Director, Frontline Advisory",
     initials: "DP",
     accent: "leaf",
-    image: "/images/case-studies/frontline-advisory.webp", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5fb78547bc5c6027759a0c_Rebuilding%20the%20lead%20response%20system%20for%20a%20multi-channel%20sales%20team.jpg",
     href: "/case-studies/frontline-advisory",
     carouselTag: "Sales Automation",
     challenge:
@@ -850,7 +969,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Head of Customer Operations, Harmon Advisory",
     initials: "TH",
     accent: "teal",
-    image: "/images/case-studies/harmon-advisory.webp", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a141cbf8f34ca7e124767f8_Harmon%20%20Hero%20PortraitEditorial%20photograph%20in%20the%20style_row75.png",
     href: "/case-studies/harmon-advisory",
     carouselTag: "Customer Support Automation",
     challenge:
@@ -884,7 +1004,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Practice Manager, Physical Therapy First",
     initials: "DO",
     accent: "leaf",
-    image: "/images/case-studies/physical-therapy-first.avif", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f9500ee9300399fbe8938_Physical%20Therapy%20First%20Hero%20Image-CST.avif",
     href: "/case-studies/physical-therapy-first",
     carouselTag: "Operations Automation",
     challenge:
@@ -918,7 +1039,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Operations Director, Be London",
     initials: "OB",
     accent: "teal",
-    image: "/images/case-studies/be-london.jpg", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f950156a459fb7cac92cf_Be%20London%20Hero%20-CST.jpg",
     href: "/case-studies/be-london",
     carouselTag: "Customer Support Automation",
     challenge:
@@ -952,7 +1074,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Clinic Operations Director, Aesthetics Lab",
     initials: "AR",
     accent: "leaf",
-    image: "/images/case-studies/aesthetics-lab.jpg", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f94ff66b97e7cc2b6419c_Aesthetics%20Lab%20Hero%20Image%20-CST.jpg",
     href: "/case-studies/aesthetics-lab",
     carouselTag: "Customer Support Automation",
     challenge:
@@ -986,7 +1109,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Director of Events, The Fifth Avenue Hotel",
     initials: "CW",
     accent: "teal",
-    image: "/images/case-studies/fifth-avenue-hotel.jpg", // TODO
+    image:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a5f95019c2371ecb7be9d67_The%20Fifth%20Avenue%20Hotel%20Hero%20-CST.jpg",
     href: "/case-studies/fifth-avenue-hotel",
     carouselTag: "RevOps Automation",
     challenge:

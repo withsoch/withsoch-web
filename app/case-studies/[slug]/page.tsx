@@ -1,9 +1,7 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CASE_STUDIES } from "@/lib/content";
 import { CASE_STUDY_DETAILS } from "@/lib/case-studies-detail";
 import { Section } from "@/components/ui/Section";
-import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export function generateStaticParams() {
@@ -32,26 +30,33 @@ export default async function CaseStudyDetailPage({
 
   return (
     <main className="flex-1">
-      <PageHero eyebrow={study.category} heading={study.title} sub={study.summary} />
+      <section className="border-b border-line bg-mist">
+        <div className="container-x grid grid-cols-1 items-stretch gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
+          <div className="flex flex-col gap-4">
+            <span className="eyebrow w-fit">{study.category}</span>
+            <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">{study.title}</h1>
+            <p className="lead mt-2 max-w-2xl">{study.summary}</p>
 
-      <Section tight className="bg-mist border-b border-line">
-        <nav className="text-sm text-muted">
-          <Link href="/case-studies" className="hover:text-ink">
-            Case Studies
-          </Link>{" "}
-          / <span className="text-ink">{study.company}</span>
-        </nav>
-
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {study.metrics.map((metric) => (
-            <div key={metric.label} className="flex flex-col gap-1">
-              <span className="text-display text-brand">{metric.value}</span>
-              <span className="text-sm text-muted">{metric.label}</span>
+            <div className="mt-6 border-t border-line pt-6 grid grid-cols-3 gap-4">
+              {study.metrics.map((metric) => (
+                <div key={metric.label} className="flex flex-col gap-1">
+                  <span className="text-h3 text-brand">{metric.value}</span>
+                  <span className="text-sm text-muted">{metric.label}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-line pt-8">
+          <img
+            src={detail.heroImage}
+            alt={`${study.company} case study hero`}
+            className="h-full w-full rounded-lg object-cover"
+          />
+        </div>
+      </section>
+
+      <Section tight className="bg-white border-b border-line">
+        <div className="flex flex-wrap gap-x-10 gap-y-4">
           {metaRow.map((item, i) => (
             <div
               key={item.label}
@@ -67,29 +72,40 @@ export default async function CaseStudyDetailPage({
       </Section>
 
       <Section className="bg-white">
-        <div className="mx-auto flex max-w-3xl flex-col gap-6">
-          <h2 className="text-h3">The context behind the work.</h2>
-          {detail.overview.map((paragraph, i) => (
-            <p key={i} className="text-slate">
-              {paragraph}
-            </p>
-          ))}
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+          <div className="flex flex-col gap-6">
+            <span className="eyebrow w-fit">Overview</span>
+            <h2 className="text-h3">The context behind the work.</h2>
+            {detail.overview.map((paragraph, i) => (
+              <p key={i} className="text-slate">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <img
+            src={detail.overviewImage}
+            alt={`${study.company} overview`}
+            className="h-full w-full rounded-lg object-cover"
+          />
         </div>
       </Section>
 
       <Section className="bg-mist">
-        <div className="mx-auto flex max-w-3xl flex-col gap-8">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-10 lg:grid-cols-2">
           <div className="flex flex-col gap-6">
             <h2 className="text-h3">What they came to us with.</h2>
             <p className="text-slate">{detail.problem}</p>
           </div>
-          <blockquote className="border-l-2 border-brand pl-6 font-display text-2xl italic leading-snug text-ink">
-            &ldquo;{study.quote}&rdquo;
-            <footer className="mt-4 text-base not-italic font-sans">
+          <figure className="flex flex-col gap-6 rounded-2xl bg-white p-8 ring-1 ring-line">
+            <span className="font-display text-4xl leading-none text-brand">&ldquo;</span>
+            <blockquote className="font-display text-2xl italic leading-snug text-ink">
+              {study.quote}
+            </blockquote>
+            <figcaption>
               <span className="block font-semibold text-ink">{study.author}</span>
               <span className="block text-sm text-muted">{study.authorRole}</span>
-            </footer>
-          </blockquote>
+            </figcaption>
+          </figure>
         </div>
       </Section>
 
@@ -124,7 +140,7 @@ export default async function CaseStudyDetailPage({
         </div>
       </Section>
 
-      <CtaBand />
+      <CtaBand override={{ buttonHref: "/contact" }} />
     </main>
   );
 }

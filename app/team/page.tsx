@@ -36,17 +36,24 @@ export default function TeamPage() {
 
       <Reveal as="section">
         <Section className="bg-white">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="flex flex-col gap-6">
             {TEAM.map((member) => (
               <div
                 key={member.name}
-                className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
+                className="flex flex-col gap-6 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25 sm:flex-row sm:items-center sm:gap-8"
               >
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-mist text-lg font-semibold text-ink">
-                  {member.initials}
-                </span>
+                <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-xl bg-mist sm:w-56">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
                 <div>
                   <h3 className="text-h3">{member.name}</h3>
+                  <p className="mt-1 text-sm font-medium text-brand-dark">{member.role}</p>
                   <p className="mt-2 text-slate">{member.bio}</p>
                 </div>
               </div>

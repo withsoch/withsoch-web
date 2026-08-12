@@ -7,6 +7,8 @@ import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
+import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
+import { ServicesFaqSection } from "@/components/sections/ServicesFaqSection";
 
 export default function ServicesPage() {
   return (
@@ -19,12 +21,19 @@ export default function ServicesPage() {
 
       <Section className="bg-white">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((service, i) => (
+          {SERVICES.map((service, i) => {
+            const Diagram = SERVICE_DIAGRAMS[service.slug];
+            return (
             <Reveal key={service.slug} delay={i * 0.05}>
               <Link
                 href={`/services/${service.slug}`}
                 className="group flex h-full flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
               >
+                {Diagram && (
+                  <div className="h-28 w-full rounded-lg bg-mist">
+                    <Diagram />
+                  </div>
+                )}
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
                   <Icon name={service.icon} className="h-5.5 w-5.5" />
                 </span>
@@ -45,9 +54,12 @@ export default function ServicesPage() {
                 </span>
               </Link>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </Section>
+
+      <ServicesFaqSection />
 
       <CtaBand />
     </main>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { SERVICES, CTAS } from "@/lib/content";
+import { SERVICES } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -69,15 +69,14 @@ export default async function ServiceDetailPage({
                 </p>
               ))}
               <div className="mt-4">
-                <Button href={CTAS.primary.href} variant="primary" size="lg" arrow>
+                <Button href="/contact" variant="primary" size="lg" arrow>
                   Get started
                 </Button>
               </div>
             </div>
             <div className="rounded-2xl border border-line bg-white p-4">
-              {/* placeholder — real asset pending */}
               <Image
-                src={`/images/services/${service.slug}/hero-diagram.png`}
+                src={service.heroImage ?? `/images/services/${service.slug}/hero-diagram.png`}
                 alt={`${service.title} diagram`}
                 width={640}
                 height={520}
@@ -150,7 +149,7 @@ export default async function ServiceDetailPage({
         </Reveal>
       </Section>
 
-      <CtaBand override={service.ctaOverride} />
+      <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
 
       {service.testimonial && (
         <Section className="bg-white">
