@@ -12,7 +12,8 @@ export default function BlogPage() {
   const featured = posts.find((post) => post.featured) ?? posts[0];
   const rest = posts.filter((post) => post.slug !== featured.slug);
   const secondary = rest[0];
-  const gridPosts = rest.slice(1, 4);
+  // Every remaining post, not just the next three — the grid wraps as the list grows.
+  const gridPosts = rest.slice(1);
 
   return (
     <main className="flex-1">
