@@ -11,19 +11,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ServiceProcessPanel } from "@/components/sections/ServiceProcessPanel";
 import { ServiceTestimonial } from "@/components/ServiceTestimonial";
 import { Button } from "@/components/ui/Button";
+import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
 }
-
-// Cross-link thumbnail placeholders — real assets pending, one per service slug.
-const OTHER_SERVICE_THUMBS: Record<string, string> = {
-  "ai-agent-development": "/images/services/other-services-thumbs/ai-agent-development.png",
-  "operations-process-automation": "/images/services/other-services-thumbs/operations-process-automation.png",
-  "customer-support-automation": "/images/services/other-services-thumbs/customer-support-automation.png",
-  "marketing-automation": "/images/services/other-services-thumbs/marketing-automation.png",
-  "revops-automation": "/images/services/other-services-thumbs/revops-automation.png",
-};
 
 // marketing-automation's third point ("Lead Nurturing") is real, audited
 // content used elsewhere (services grid/pills) — trimmed to 2 tags here only
@@ -129,7 +121,7 @@ export default async function ServiceDetailPage({
         <Reveal>
           <div className="flex flex-col gap-10">
             <div className="mx-auto max-w-2xl text-center flex flex-col gap-4">
-              <h2 className="text-h2">What we can build for you</h2>
+              <h2 className="text-h2">What you get in {service.title}</h2>
             </div>
             <div className={`grid grid-cols-1 sm:grid-cols-2 ${offeringsColsClass} gap-6`}>
               {service.offerings.map((offering) => (
@@ -169,25 +161,22 @@ export default async function ServiceDetailPage({
                   ? other.description[0]
                   : other.description;
                 const tags = other.points.slice(0, CROSS_LINK_TAG_LIMIT[other.slug] ?? other.points.length);
+                const Diagram = SERVICE_DIAGRAMS[other.slug];
                 return (
                   <Link
                     key={other.slug}
                     href={`/services/${other.slug}`}
-                    className="group flex flex-col gap-4 rounded-xl border border-line bg-white overflow-hidden transition-colors hover:border-ink/25"
+                    className="group flex flex-col rounded-xl border border-line bg-white overflow-hidden transition-colors hover:border-ink/25"
                   >
-                    <div className="bg-mist p-4">
-                      {/* placeholder — real asset pending */}
-                      <Image
-                        src={OTHER_SERVICE_THUMBS[other.slug]}
-                        alt={other.title}
-                        width={400}
-                        height={220}
-                        className="h-32 w-full rounded-lg object-cover"
-                      />
+                    <div className="relative flex aspect-[4/3] items-center justify-center bg-mist p-5">
+                      <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+                      <span className="relative w-full max-w-[220px]">
+                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-16 w-16 text-brand" />}
+                      </span>
                     </div>
-                    <div className="flex flex-col gap-3 px-5 pb-5">
+                    <div className="flex flex-col gap-2 px-5 py-4">
                       <span className="text-h3 font-semibold text-ink">{other.title}</span>
-                      <p className="text-sm text-slate">{description}</p>
+                      <p className="text-sm text-slate line-clamp-1">{description}</p>
                       <div className="flex flex-wrap gap-2">
                         {tags.map((tag) => (
                           <span

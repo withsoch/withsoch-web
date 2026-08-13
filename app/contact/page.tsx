@@ -78,7 +78,7 @@ export default function ContactPage() {
                 Grab a slot on our calendar and we&apos;ll walk through where automation could save your team the
                 most time.
               </p>
-              <Button href={SCHEDULER_URL} external variant="primary" size="lg" arrow>
+              <Button href={SCHEDULER_URL} variant="primary" size="lg" arrow>
                 Book a Free Call
               </Button>
             </div>

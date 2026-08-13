@@ -36,10 +36,10 @@ export const SITE = {
   },
 };
 
-// The one env-driven value — keep the fallback card working when unset.
-// Real production value is the team's live Cal.com link, not a placeholder.
-export const SCHEDULER_URL =
-  process.env.NEXT_PUBLIC_SCHEDULER_URL ?? "https://cal.com/consult-with-riz/work";
+// "Book a Free Call" always routes to our internal /contact page — no
+// external scheduler fallback. Matches the fix already applied to case
+// study and service pages.
+export const SCHEDULER_URL = "/contact";
 
 export const CTAS = {
   primary: { label: "Book a Free Call", href: SCHEDULER_URL },
@@ -1142,7 +1142,6 @@ export const CLIENT_LOGOS = [
   { name: "Pitch A Fête", src: "/logos/pitch-a-fete.svg" },
   { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
   { name: "Milkar", src: "/logos/milkar.svg" },
-  { name: "Client (name TBC)", src: "/logos/client-19.svg" }, // TODO: confirm name
 ];
 
 // ---------------------------------------------------------------------------

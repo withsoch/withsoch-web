@@ -94,17 +94,33 @@ export function AutomationOperatingSystem() {
 
           {/* Spotlight panel — one card, content swaps per active step */}
           <div className="relative mt-8 min-h-[280px] overflow-hidden rounded-2xl bg-mist px-8 py-10 sm:px-10 sm:py-12">
-            {/* Decorative watermark numeral — the only absolutely-positioned element, purely cosmetic */}
+            {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
+            <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+
+            {/* Decorative watermark numeral — outline-only so it reads as a layer
+                behind the icon/text instead of a flat competing shape. The only
+                absolutely-positioned element, purely cosmetic. */}
             <span
               key={`watermark-${active}`}
               aria-hidden="true"
-              className="pointer-events-none absolute top-4 right-6 select-none font-display text-[120px] leading-none text-ink opacity-5 animate-step-fade"
+              className="pointer-events-none absolute top-4 right-6 select-none font-display text-[120px] leading-none animate-step-fade"
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "1.5px var(--color-ink)",
+                opacity: 0.14,
+              }}
             >
               {STEPS[active].no}
             </span>
 
             <div key={active} className="relative animate-step-fade">
-              <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-peach">
+              <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-peach">
+                {/* Emphasis ring — same treatment as the hub node in StatsNetworkIllustration */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-2 rounded-full border"
+                  style={{ borderColor: "#ff5c35", opacity: 0.35 }}
+                />
                 <Icon name={STEPS[active].icon} className="h-8 w-8 text-brand" />
               </span>
               <p className="mt-6 max-w-md font-display text-xl leading-relaxed text-ink md:text-2xl">
@@ -117,6 +133,12 @@ export function AutomationOperatingSystem() {
           <div className="mt-6 flex items-center gap-4" role="tablist" aria-label="Process steps">
             {STEPS.map((step, i) => {
               const isActive = i === active;
+              // Lines before the active step are already complete (snap full);
+              // the line right after the active dot fills progressively in
+              // sync with the auto-cycle timer as that step "becomes active"
+              // for the next one; lines further ahead stay empty.
+              const isComplete = i < active;
+              const isFilling = i === active;
               return (
                 <div key={step.no} className="flex flex-1 items-center gap-4 last:flex-initial">
                   <button
@@ -134,7 +156,33 @@ export function AutomationOperatingSystem() {
                   >
                     {i + 1}
                   </button>
-                  {i < STEPS.length - 1 && <div className="h-px flex-1 bg-line" />}
+                  {i < STEPS.length - 1 && (
+                    <div className="relative h-px flex-1 bg-line">
+                      <div
+                        key={`fill-${active}-${i}`}
+                        className="absolute inset-y-0 left-0 bg-brand"
+                        style={{
+                          width: isComplete ? "100%" : "0%",
+                          transition: "none",
+                        }}
+                      />
+                      {isFilling && (
+                        <div
+                          key={`filling-${active}-${i}`}
+                          className="absolute inset-y-0 left-0 bg-brand"
+                          style={{
+                            width: "100%",
+                            transformOrigin: "left",
+                            animation:
+                              !reducedMotion && !paused
+                                ? `progress-fill ${CYCLE_MS}ms linear forwards`
+                                : "none",
+                            transform: reducedMotion || paused ? "scaleX(0)" : undefined,
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}

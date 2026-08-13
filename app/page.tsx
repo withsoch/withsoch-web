@@ -11,6 +11,7 @@ import { ComparisonTable } from "@/components/sections/ComparisonTable";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { AskAI } from "@/components/sections/AskAI";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { BlogTeaser } from "@/components/sections/BlogTeaser";
 import { Reveal } from "@/components/ui/Reveal";
 
 export default function Home() {
@@ -52,6 +53,9 @@ export default function Home() {
       </Reveal>
       <Reveal as="section">
         <FaqAccordion />
+      </Reveal>
+      <Reveal as="section">
+        <BlogTeaser />
       </Reveal>
     </main>
   );

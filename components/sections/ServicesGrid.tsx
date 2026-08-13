@@ -1,24 +1,20 @@
 // components/sections/ServicesGrid.tsx
 //
-// Accordion + paired image panel for the homepage's "Services that turn
+// Accordion + paired diagram panel for the homepage's "Services that turn
 // strategy into results" section. One row open at a time; the right-side
-// panel crossfades to match whichever service is open. Mirrors the
-// accordion/visual-panel pattern established in ServiceAccordion +
-// ServiceProcessPanel for the service detail pages.
-//
-// The right panel is a grid sibling of the left column (grid + stretch), so
-// it always matches the left column's rendered height instead of sizing to
-// its own content. Its contents are a simple centered placeholder for now —
-// real per-service diagrams land in a later round once reference
-// screenshots are provided.
+// panel crossfades to the bespoke SVG diagram (ServiceCardDiagrams.tsx) for
+// whichever service is open. Mirrors the accordion/visual-panel pattern
+// established in VisionMissionAccordion and ServiceProcessPanel.
 
 "use client";
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { SERVICES } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
+import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 
 export function ServicesGrid() {
   const [openSlug, setOpenSlug] = useState(SERVICES[0].slug);
@@ -30,6 +26,11 @@ export function ServicesGrid() {
         title="Services that turn strategy into results"
         intro="Five areas where AI automation replaces manual work with systems that run on their own."
       />
+      <div className="mt-4 flex justify-center">
+        <Link href="/services" className="text-brand font-medium hover:underline">
+          Explore all services
+        </Link>
+      </div>
       <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10">
         <div className="flex flex-col gap-4">
           {SERVICES.map((service) => {
@@ -95,7 +96,8 @@ export function ServicesGrid() {
             );
           })}
         </div>
-        <div className="rounded-2xl border border-line bg-white overflow-hidden">
+        <div className="relative rounded-2xl border border-line bg-white overflow-hidden">
+          <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
           <AnimatePresence mode="wait">
             <motion.div
               key={activeService.slug}
@@ -103,14 +105,15 @@ export function ServicesGrid() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="flex h-full min-h-[26rem] flex-col items-center justify-center gap-4 p-8 text-center"
+              className="relative flex h-full min-h-[26rem] flex-col items-center justify-center gap-4 p-8 text-center"
             >
-              {/* placeholder — real per-service diagram pending */}
-              <span className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-peach text-brand">
-                <Icon name={activeService.icon} className="h-9 w-9" />
+              <span className="w-full max-w-xs sm:max-w-sm">
+                {(() => {
+                  const Diagram = SERVICE_DIAGRAMS[activeService.slug];
+                  return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
+                })()}
               </span>
               <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
-              <span className="text-sm text-muted">Visual coming soon</span>
             </motion.div>
           </AnimatePresence>
         </div>

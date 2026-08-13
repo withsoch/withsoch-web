@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/Icons";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -36,28 +37,51 @@ export default function TeamPage() {
 
       <Reveal as="section">
         <Section className="bg-white">
-          <div className="flex flex-col gap-6">
-            {TEAM.map((member) => (
-              <div
-                key={member.name}
-                className="flex flex-col gap-6 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25 sm:flex-row sm:items-center sm:gap-8"
-              >
-                <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-xl bg-mist sm:w-56">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {TEAM.map((member) => {
+              const socials = [
+                member.linkedin && { href: member.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
+                member.instagram && { href: member.instagram, icon: "instagram" as const, label: "Instagram" },
+              ].filter(Boolean) as { href: string; icon: "linkedin" | "instagram"; label: string }[];
+
+              return (
+                <div
+                  key={member.name}
+                  className="flex flex-col gap-6 rounded-xl border border-line bg-white p-6 transition-colors hover:border-brand sm:flex-row"
+                >
+                  <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-lg bg-white sm:w-56">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-h3 text-ink font-semibold">{member.name}</h3>
+                    <p className="mt-1 text-sm font-medium text-brand-dark">{member.role}</p>
+                    <p className="mt-2 text-slate">{member.bio}</p>
+                    {socials.length > 0 && (
+                      <div className="mt-4 flex gap-3">
+                        {socials.map((social) => (
+                          <a
+                            key={social.label}
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${member.name} on ${social.label}`}
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-mist text-slate transition-colors hover:border-brand hover:text-brand"
+                          >
+                            <Icon name={social.icon} className="h-4 w-4" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-h3">{member.name}</h3>
-                  <p className="mt-1 text-sm font-medium text-brand-dark">{member.role}</p>
-                  <p className="mt-2 text-slate">{member.bio}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Section>
       </Reveal>

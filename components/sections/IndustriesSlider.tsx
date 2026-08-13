@@ -53,8 +53,8 @@ export function IndustriesSlider() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="container-x">
-        <div className="mb-8 flex items-center justify-between gap-4">
-          <h2 className="text-h2 text-ink">Automating growth across industries</h2>
+        <div className="mb-10 flex items-start justify-between gap-4 sm:mb-12">
+          <h2 className="text-h2 text-ink text-left">Automating growth across industries</h2>
           <div className="flex shrink-0 gap-2">
             <button
               type="button"
@@ -78,7 +78,7 @@ export function IndustriesSlider() {
 
       <div
         ref={trackRef}
-        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-6 overflow-x-auto pb-2 pl-6 pr-6 sm:pl-8 sm:pr-8 lg:pl-10 lg:pr-10 snap-x snap-mandatory scrollbar-hide"
+        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-6 overflow-x-auto pb-2 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)] snap-x snap-mandatory scrollbar-hide"
       >
         {INDUSTRIES.map((industry) => (
           <div

@@ -16,19 +16,19 @@ export function Positioning() {
   return (
     <Section className="bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        <h2 className="text-h2 text-ink max-w-md">
+        <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
           AI Automation Consulting and Implementation for Startups
         </h2>
-        <p className="lead max-w-xl">{HERO.sub}</p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
         <img
           src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b6232e8946bee738b_6a0d81a48529c31b17d78093_replicate-prediction-5ahpghne0nrmw0cy87dskem7qg.webp"
           alt="Soch team collaborating"
-          className="w-full h-full min-h-80 rounded-2xl object-cover"
+          className="w-full h-full min-h-[32rem] rounded-2xl object-cover"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-between">
+          <p className="lead max-w-xl">{HERO.sub}</p>
           <ul className="flex flex-col">
             {POINTS.map((point) => (
               <li
@@ -42,7 +42,7 @@ export function Positioning() {
               </li>
             ))}
           </ul>
-          <div className="mt-8">
+          <div>
             <Button href="/about" variant="primary" arrow>
               Inside Our Mission
             </Button>
