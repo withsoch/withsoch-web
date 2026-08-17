@@ -25,16 +25,16 @@ export function Nav() {
           <Image
             src="/logos/soch-logo-removebg-preview.png"
             alt="Soch"
-            width={173}
-            height={58}
-            className="h-10 w-auto"
+            width={220}
+            height={74}
+            className="h-14 w-auto"
             priority
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-2">
           <Link
             href="/"
-            className="rounded-full bg-mist px-4 py-2 text-base font-medium text-ink"
+            className="rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink"
           >
             Home
           </Link>
@@ -136,7 +136,7 @@ export function Nav() {
           </Link>
           <Link
             href="/contact"
-            className="rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink"
+            className="rounded-full bg-mist px-4 py-2 text-base font-medium text-ink"
           >
             Contact
           </Link>

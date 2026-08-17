@@ -14,7 +14,7 @@ const POINTS = [
 
 export function Positioning() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-white !py-28 sm:!py-32 lg:!py-40">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
           AI Automation Consulting and Implementation for Startups
@@ -25,7 +25,7 @@ export function Positioning() {
         <img
           src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b6232e8946bee738b_6a0d81a48529c31b17d78093_replicate-prediction-5ahpghne0nrmw0cy87dskem7qg.webp"
           alt="Soch team collaborating"
-          className="w-full h-full min-h-[32rem] rounded-2xl object-cover"
+          className="w-full h-full min-h-[38rem] lg:min-h-[44rem] rounded-2xl object-cover"
         />
         <div className="flex flex-col justify-between">
           <p className="lead max-w-xl">{HERO.sub}</p>
@@ -33,7 +33,7 @@ export function Positioning() {
             {POINTS.map((point) => (
               <li
                 key={point}
-                className="flex items-start gap-3 py-4 border-b border-line first:pt-0 last:border-b-0"
+                className="flex items-start gap-3 py-6 border-b border-line first:pt-0 last:border-b-0"
               >
                 <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-peach text-brand">
                   <Icon name="check" className="h-3.5 w-3.5" />

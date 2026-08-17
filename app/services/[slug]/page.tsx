@@ -75,14 +75,16 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      <Section tight className="bg-mist border-b border-line">
-        <nav className="text-sm text-muted">
-          <Link href="/services" className="hover:text-ink">
-            Services
-          </Link>{" "}
-          / <span className="text-ink">{service.title}</span>
-        </nav>
-      </Section>
+      <section className="border-b border-line bg-mist">
+        <div className="container-x py-4">
+          <nav className="text-sm text-muted">
+            <Link href="/services" className="hover:text-ink">
+              Services
+            </Link>{" "}
+            / <span className="text-ink">{service.title}</span>
+          </nav>
+        </div>
+      </section>
 
       <Section className="bg-white">
         <Reveal>
@@ -98,7 +100,7 @@ export default async function ServiceDetailPage({
               {service.audienceCards.map((card) => (
                 <div
                   key={card.no}
-                  className="flex flex-col gap-3 rounded-xl border border-line bg-white p-6"
+                  className="flex flex-col gap-3 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
                 >
                   <span className="text-sm font-semibold text-brand">{card.no}</span>
                   <h3 className="font-semibold text-ink">{card.title}</h3>
@@ -119,17 +121,21 @@ export default async function ServiceDetailPage({
             <div className="mx-auto max-w-2xl text-center flex flex-col gap-4">
               <h2 className="text-h2">What you get in {service.title}</h2>
             </div>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 ${offeringsColsClass} gap-6`}>
+            <div
+              className={`grid grid-cols-1 sm:grid-cols-2 ${offeringsColsClass} gap-7 lg:w-[calc(100%+6rem)] lg:-mx-12`}
+            >
               {service.offerings.map((offering) => (
                 <div
                   key={offering.title}
-                  className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6"
+                  className="group flex flex-col gap-4 rounded-2xl border border-line bg-white p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
                 >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
-                    <Icon name={offering.icon} className="h-5.5 w-5.5" />
-                  </span>
-                  <h3 className="font-semibold text-ink">{offering.title}</h3>
-                  <p className="text-sm text-slate">{offering.description}</p>
+                  <div className="flex items-center gap-4">
+                    <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-peach text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+                      <Icon name={offering.icon} className="h-7 w-7" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-ink">{offering.title}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate">{offering.description}</p>
                 </div>
               ))}
             </div>
@@ -164,7 +170,7 @@ export default async function ServiceDetailPage({
                   <Link
                     key={other.slug}
                     href={`/services/${other.slug}`}
-                    className="group flex flex-col h-full rounded-xl border border-line bg-white overflow-hidden transition-colors hover:border-ink/25"
+                    className="group flex flex-col h-full rounded-xl border border-line bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25"
                   >
                     <div className="relative flex aspect-[16/9] items-center justify-center bg-mist p-4">
                       <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />

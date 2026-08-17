@@ -326,9 +326,6 @@ export type Service = {
   // accordion panel visuals. When absent, the page falls back to the
   // public/images/services/{slug}/... placeholder convention.
   heroImage?: string;
-  accordionImages?: Partial<
-    Record<"whoItsFor" | "commonSymptoms" | "ourApproach" | "deliverables" | "outcomes", string>
-  >;
   // Optional per-service field (not a shared/generic block) — the copy here
   // is written around this service's specific "build/run/scale" framing and
   // doesn't generalize cleanly to the other four services' audiences. Add a
@@ -383,18 +380,6 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
-    accordionImages: {
-      whoItsFor:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92637e49d11d3daa2d54_founders_ops_teamleads_752x501.png",
-      commonSymptoms:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92628fa7a54a1f7b1a68_chatgpt_vs_business_752x501.png",
-      ourApproach:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c120606235fd0d24b9406_row20_752x501%20(1).png",
-      deliverables:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92638d25adba72989cd8_agent_evals_prompts_752x501.png",
-      outcomes:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dc875b87f35e603a45c6_AI%20Agent%20Development%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row88.png",
-    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -454,18 +439,6 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0582c7e82b089a2749eb10_OPS%20%26%20Process%20Hero.png",
-    accordionImages: {
-      whoItsFor:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8d95a543e1903f373cbb_founders_ops_coos_752x501.png",
-      commonSymptoms:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8dc25f859e474fbe4ede_crm_sheets_slack_752x501.png",
-      ourApproach:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8e689ed4247c2e5887b3_process_5steps_horizontal_752x501.png",
-      deliverables:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d99a4edff7cf7d3f7f5e4_trigger_workflow_752x501.png",
-      outcomes:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dcc3c517fb01f8f3952a_Ops%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20editorial_row87.png",
-    },
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -547,18 +520,6 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062258081a7175d7c890b3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row23.png",
-    accordionImages: {
-      whoItsFor:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d9395de7ddeee4bbfb569_founders_coos_support_752x501.png",
-      commonSymptoms:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d93aedd397d499ac957e7_tickets_24h_752x501.png",
-      ourApproach:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a071456c539f363b3f69430_Editorial_infographic_row26_752x501.png",
-      deliverables:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a06230824c0527007fef7a2_CS_Deliverables_752x501.png",
-      outcomes:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a143ec78e2f52611ab4eca8_CX%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20abstract%20d_row89.png",
-    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -616,18 +577,6 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c02d8482a055a918234c3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%201_row60.png",
-    accordionImages: {
-      whoItsFor:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d951efba48b65120f10d1_founders_marketing_growth_752x501.png",
-      commonSymptoms:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d955b55e31040333a88cb_current_state_campaigns_752x501.png",
-      ourApproach:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d957f8c9f67f8c54d5b63_audit_capture_nurture_752x501.png",
-      deliverables:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a07174497a9a10d2762feb9_row33_752x501.png",
-      outcomes:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dd8ac0836e85221455f7_Marketing%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row90.png",
-    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
@@ -685,18 +634,6 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d88d0f9a7c505b4d93988_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row35.png",
-    accordionImages: {
-      whoItsFor:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fe936addfa1dbdadea71_RevOps_Automation_Who_752x501.png",
-      commonSymptoms:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8bdb261d02c91cec3b7e_sales_marketing_cs_752x501.png",
-      ourApproach:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8b0bdb9abee7a201fd99_process_5steps_752x501.png",
-      deliverables:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fee3f9c18ffe72140100_RevOps_Automation_Deliverables_752x501.png",
-      outcomes:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13ddcb431c2637b74b4c8b_RevOps%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20semir_row91.png",
-    },
     testimonial: {
       quote:
         "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",

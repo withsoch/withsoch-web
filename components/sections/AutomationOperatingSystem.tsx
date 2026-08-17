@@ -9,7 +9,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { STEPS } from "@/lib/content";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
 
@@ -43,15 +43,18 @@ export function AutomationOperatingSystem() {
     setActive(i);
   }
 
+  const panelId = "automation-os-panel";
+
   return (
-    <Section className="bg-white">
-      <div
-        className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
-      >
+    <section className="bg-white py-20 sm:py-24 lg:py-28">
+      <div className="container-x">
+        <div
+          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-14"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+        >
         {/* LEFT */}
         <div>
           <SectionHeading
@@ -59,7 +62,7 @@ export function AutomationOperatingSystem() {
             intro="A clear, repeatable process for deploying AI automation in your business."
             align="left"
           />
-          <div className="mt-8">
+          <div className="mt-7">
             <Button href="/services" variant="primary" size="lg" arrow>
               Explore our services
             </Button>
@@ -68,69 +71,82 @@ export function AutomationOperatingSystem() {
 
         {/* RIGHT */}
         <div>
-          {/* Pill tabs */}
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Process steps">
-            {STEPS.map((step, i) => {
-              const isActive = i === active;
-              return (
-                <button
-                  key={step.no}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => selectStep(i)}
-                  className={[
-                    "rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
-                    isActive
-                      ? "bg-peach text-brand-dark ring-1 ring-brand/30"
-                      : "bg-white text-muted ring-1 ring-ink/15 hover:ring-ink/30",
-                  ].join(" ")}
-                >
-                  Step {i + 1}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Spotlight panel — one card, content swaps per active step */}
-          <div className="relative mt-8 min-h-[280px] overflow-hidden rounded-2xl bg-mist px-8 py-10 sm:px-10 sm:py-12">
-            {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
-            <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-
-            {/* Decorative watermark numeral — outline-only so it reads as a layer
-                behind the icon/text instead of a flat competing shape. The only
-                absolutely-positioned element, purely cosmetic. */}
-            <span
-              key={`watermark-${active}`}
-              aria-hidden="true"
-              className="pointer-events-none absolute top-4 right-6 select-none font-display text-[120px] leading-none animate-step-fade"
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.5px var(--color-ink)",
-                opacity: 0.14,
-              }}
+          {/* Spotlight panel — pill tabs folded in as a header strip, content swaps below */}
+          <div className="relative overflow-hidden rounded-2xl bg-mist">
+            {/* Pill tabs — the single tablist controlling the panel below */}
+            <div
+              className="relative flex flex-wrap gap-2 border-b border-line px-6 pt-5 pb-4"
+              role="tablist"
+              aria-label="Process steps"
             >
-              {STEPS[active].no}
-            </span>
+              {STEPS.map((step, i) => {
+                const isActive = i === active;
+                return (
+                  <button
+                    key={step.no}
+                    id={`automation-os-tab-${i}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={panelId}
+                    onClick={() => selectStep(i)}
+                    className={[
+                      "rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
+                      isActive
+                        ? "bg-peach text-brand-dark ring-1 ring-brand/30"
+                        : "bg-white text-muted ring-1 ring-ink/15 hover:ring-ink/30",
+                    ].join(" ")}
+                  >
+                    <span className="text-muted">{step.no}</span>
+                    <span className="hidden sm:inline"> · {step.title}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-            <div key={active} className="relative animate-step-fade">
-              <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-peach">
-                {/* Emphasis ring — same treatment as the hub node in StatsNetworkIllustration */}
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-2 rounded-full border"
-                  style={{ borderColor: "#ff5c35", opacity: 0.35 }}
-                />
-                <Icon name={STEPS[active].icon} className="h-8 w-8 text-brand" />
+            <div
+              id={panelId}
+              role="tabpanel"
+              aria-labelledby={`automation-os-tab-${active}`}
+              className="relative px-6 py-7 sm:px-8 sm:py-8"
+            >
+              {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
+              <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+
+              {/* Decorative watermark numeral — outline-only so it reads as a layer
+                  behind the icon/text instead of a flat competing shape. The only
+                  absolutely-positioned element, purely cosmetic. */}
+              <span
+                key={`watermark-${active}`}
+                aria-hidden="true"
+                className="pointer-events-none absolute right-6 bottom-4 select-none font-display text-[92px] leading-none animate-step-fade"
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "1.5px var(--color-ink)",
+                  opacity: 0.14,
+                }}
+              >
+                {STEPS[active].no}
               </span>
-              <p className="mt-6 max-w-md font-display text-xl leading-relaxed text-ink md:text-2xl">
-                {STEPS[active].description}
-              </p>
+
+              <div key={active} className="relative animate-step-fade">
+                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-peach">
+                  {/* Emphasis ring — same treatment as the hub node in StatsNetworkIllustration */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -inset-2 rounded-full border"
+                    style={{ borderColor: "#ff5c35", opacity: 0.35 }}
+                  />
+                  <Icon name={STEPS[active].icon} className="h-7 w-7 text-brand" />
+                </span>
+                <h3 className="text-h3 mt-5 text-ink">{STEPS[active].title}</h3>
+                <p className="lead mt-2.5 max-w-md">{STEPS[active].description}</p>
+              </div>
             </div>
           </div>
 
           {/* Progress row */}
-          <div className="mt-6 flex items-center gap-4" role="tablist" aria-label="Process steps">
+          <div className="mt-5 flex items-center gap-4">
             {STEPS.map((step, i) => {
               const isActive = i === active;
               // Lines before the active step are already complete (snap full);
@@ -143,12 +159,10 @@ export function AutomationOperatingSystem() {
                 <div key={step.no} className="flex flex-1 items-center gap-4 last:flex-initial">
                   <button
                     type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-label={`Step ${i + 1}: ${step.title}`}
+                    aria-label={`Go to step ${i + 1}: ${step.title}`}
                     onClick={() => selectStep(i)}
                     className={[
-                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200",
+                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200",
                       isActive
                         ? "bg-brand text-white"
                         : "text-muted ring-1 ring-ink/20 hover:ring-ink/40",
@@ -159,25 +173,21 @@ export function AutomationOperatingSystem() {
                   {i < STEPS.length - 1 && (
                     <div className="relative h-px flex-1 bg-line">
                       <div
-                        key={`fill-${active}-${i}`}
                         className="absolute inset-y-0 left-0 bg-brand"
                         style={{
                           width: isComplete ? "100%" : "0%",
-                          transition: "none",
                         }}
                       />
                       {isFilling && (
                         <div
                           key={`filling-${active}-${i}`}
-                          className="absolute inset-y-0 left-0 bg-brand"
+                          className="absolute inset-y-0 left-0 origin-left bg-brand"
                           style={{
                             width: "100%",
-                            transformOrigin: "left",
                             animation:
-                              !reducedMotion && !paused
-                                ? `progress-fill ${CYCLE_MS}ms linear forwards`
-                                : "none",
-                            transform: reducedMotion || paused ? "scaleX(0)" : undefined,
+                              !reducedMotion ? `progress-fill ${CYCLE_MS}ms linear forwards` : "none",
+                            animationPlayState: paused ? "paused" : "running",
+                            transform: reducedMotion ? "scaleX(0)" : undefined,
                           }}
                         />
                       )}
@@ -189,6 +199,7 @@ export function AutomationOperatingSystem() {
           </div>
         </div>
       </div>
-    </Section>
+      </div>
+    </section>
   );
 }

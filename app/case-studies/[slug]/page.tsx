@@ -33,7 +33,7 @@ export default async function CaseStudyDetailPage({
     <main className="flex-1">
       <section className="border-b border-line bg-mist">
         <div className="container-x grid grid-cols-1 items-stretch gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col justify-center gap-4">
             <span className="eyebrow w-fit">{study.category}</span>
             <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">{study.title}</h1>
             <p className="lead mt-2 max-w-2xl">{study.summary}</p>
@@ -51,23 +51,25 @@ export default async function CaseStudyDetailPage({
           <img
             src={detail.heroImage}
             alt={`${study.company} case study hero`}
-            className="h-full w-full rounded-lg object-cover"
+            className="aspect-[4/5] w-full rounded-lg object-cover sm:aspect-[16/11] lg:aspect-auto lg:h-full lg:max-h-[680px]"
           />
         </div>
       </section>
 
       <Reveal as="section">
         <Section tight className="bg-white border-b border-line">
-          <div className="mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-8">
             {metaRow.map((item, i) => (
               <div
                 key={item.label}
-                className={`flex flex-col gap-1 pt-4 text-center sm:pt-0 ${
-                  i > 0 ? "rule-dashed sm:border-t-0 sm:border-l sm:pl-10 sm:border-line" : ""
+                className={`flex flex-col gap-1.5 sm:pl-8 ${
+                  i > 0 ? "sm:border-l sm:border-line" : ""
                 }`}
               >
-                <span className="text-sm text-muted">{item.label}</span>
-                <span className="font-semibold text-ink">{item.value}</span>
+                <span className="text-xs font-medium uppercase tracking-wide text-muted">
+                  {item.label}
+                </span>
+                <span className="text-lg font-semibold text-ink">{item.value}</span>
               </div>
             ))}
           </div>
@@ -75,8 +77,8 @@ export default async function CaseStudyDetailPage({
       </Reveal>
 
       <Reveal as="section">
-        <Section className="bg-white">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+        <Section tight className="bg-white">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
             <div className="flex flex-col gap-6">
               <span className="eyebrow w-fit">Overview</span>
               <h2 className="text-h3">The context behind the work.</h2>
@@ -89,16 +91,16 @@ export default async function CaseStudyDetailPage({
             <img
               src={detail.overviewImage}
               alt={`${study.company} overview`}
-              className="h-full w-full rounded-lg object-cover"
+              className="aspect-[4/3] w-full rounded-lg object-cover lg:aspect-auto lg:h-full"
             />
           </div>
         </Section>
       </Reveal>
 
       <Reveal as="section">
-        <Section className="bg-mist">
+        <Section tight className="bg-mist">
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-            <div className="flex h-full flex-col gap-6">
+            <div className="flex h-full flex-col justify-center gap-6">
               <h2 className="text-h3">What they came to us with.</h2>
               <p className="text-slate">{detail.problem}</p>
             </div>
@@ -117,13 +119,16 @@ export default async function CaseStudyDetailPage({
       </Reveal>
 
       <Reveal as="section">
-        <Section className="bg-white">
+        <Section tight className="bg-white">
           <div className="mx-auto flex max-w-5xl flex-col gap-10">
             <h2 className="text-h3">How we solved it.</h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {detail.framework.map((step, i) => (
-                <div key={step.title} className="flex flex-col gap-2 rounded-xl border border-line bg-mist p-6">
-                  <span className="text-sm font-semibold text-brand">
+                <div
+                  key={step.title}
+                  className="group flex flex-col gap-3 rounded-2xl border border-line bg-mist p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-white hover:shadow-lg"
+                >
+                  <span className="text-sm font-semibold text-brand transition-transform duration-300 group-hover:translate-x-1">
                     Step {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-h3">{step.title}</h3>
@@ -136,13 +141,18 @@ export default async function CaseStudyDetailPage({
       </Reveal>
 
       <Reveal as="section">
-        <Section className="bg-mist">
-          <div className="mx-auto flex max-w-3xl flex-col gap-10">
+        <Section tight className="bg-mist">
+          <div className="mx-auto flex max-w-5xl flex-col gap-10">
             <h2 className="text-h3">What shipped.</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               {detail.results.map((result) => (
-                <div key={result.description} className="flex flex-col gap-2">
-                  <span className="text-display text-brand">{result.value}</span>
+                <div
+                  key={result.description}
+                  className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-7"
+                >
+                  <span className="text-[clamp(1.9rem,1.5rem+1.6vw,2.6rem)] font-semibold leading-tight tracking-tight text-brand">
+                    {result.value}
+                  </span>
                   <p className="text-slate">{result.description}</p>
                 </div>
               ))}

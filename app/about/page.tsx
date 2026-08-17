@@ -30,9 +30,9 @@ export default function AboutPage() {
       <AboutHero />
 
       <Reveal as="section">
-        <Section id="team" className="bg-white">
+        <Section id="team" className="bg-white" tight>
           <p className="lead mx-auto max-w-3xl text-center">{FOUNDERS_INTRO_QUOTE}</p>
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 sm:grid-cols-2 gap-10">
             {TEAM.filter((member) => member.isFounder).map((member) => (
               <div
                 key={member.name}

@@ -39,30 +39,30 @@ export function ContactFaq() {
         </p>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_0.85fr] lg:items-start">
-        <div ref={stackRef} className="flex flex-col gap-3">
+      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-8">
+        <div ref={stackRef} className="flex flex-col gap-4">
           {CONTACT_FAQS.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={faq.q}
-                className="rounded-xl border border-line bg-white px-6 py-5 transition-colors hover:border-ink/25"
+                className="rounded-xl border border-line bg-white px-7 py-6 transition-colors hover:border-ink/25"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-baseline gap-3 text-left"
+                  className="flex w-full items-baseline gap-4 text-left"
                   aria-expanded={isOpen}
                 >
                   <span className="shrink-0 text-muted">{String(i + 1).padStart(2, "0")}.</span>
-                  <span className="font-semibold text-ink">{faq.q}</span>
+                  <span className="text-lg font-semibold text-ink">{faq.q}</span>
                 </button>
                 <div
                   className="grid transition-[grid-template-rows] duration-300 ease-in-out"
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <p className="mt-3 pl-7 text-slate">{faq.a}</p>
+                    <p className="mt-3 pl-8 text-slate">{faq.a}</p>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ export function ContactFaq() {
         </div>
 
         <div
-          className="min-h-[280px] overflow-hidden rounded-2xl transition-[height] duration-300 ease-in-out lg:min-h-0"
+          className="min-h-[420px] overflow-hidden rounded-2xl transition-[height] duration-300 ease-in-out lg:min-h-0"
           style={stackHeight ? { height: stackHeight } : undefined}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}

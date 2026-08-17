@@ -22,13 +22,13 @@ export function LogoMarquee() {
         {logos.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}
-            className="flex h-32 w-64 shrink-0 items-center justify-center rounded-xl border border-line bg-white px-10 py-6"
+            className="flex h-36 w-36 shrink-0 items-center justify-center rounded-xl border border-line bg-white p-6"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo.src}
               alt={logo.name.replace(" (name TBC)", "")}
-              className="h-12 w-auto max-w-full object-contain"
+              className="h-10 w-auto max-w-full object-contain"
             />
           </div>
         ))}

@@ -52,7 +52,7 @@ export default function ContactPage() {
 
           <Reveal>
             <div
-              className="mx-auto mt-10 max-w-3xl rounded-xl border border-line bg-mist"
+              className="mx-auto mt-10 max-w-2xl rounded-xl border border-line bg-mist"
               style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}
             >
               <iframe

@@ -52,27 +52,25 @@ export function IndustriesSlider() {
 
   return (
     <section className="bg-white py-16 sm:py-20">
-      <div className="container-x">
-        <div className="mb-10 flex items-start justify-between gap-4 sm:mb-12">
-          <h2 className="text-h2 text-ink text-left">Automating growth across industries</h2>
-          <div className="flex shrink-0 gap-2">
-            <button
-              type="button"
-              onClick={() => scrollByCard(-1)}
-              aria-label="Scroll industries left"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink/45"
-            >
-              <Icon name="chevron" className="h-4 w-4 rotate-90" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByCard(1)}
-              aria-label="Scroll industries right"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink/45"
-            >
-              <Icon name="chevron" className="h-4 w-4 -rotate-90" />
-            </button>
-          </div>
+      <div className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] mb-10 flex items-start justify-between gap-4 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:mb-12 sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)]">
+        <h2 className="text-h2 text-ink text-left">Automating growth across industries</h2>
+        <div className="flex shrink-0 gap-2">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Scroll industries left"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink/45"
+          >
+            <Icon name="chevron" className="h-4 w-4 rotate-90" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Scroll industries right"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink/45"
+          >
+            <Icon name="chevron" className="h-4 w-4 -rotate-90" />
+          </button>
         </div>
       </div>
 
@@ -83,13 +81,13 @@ export function IndustriesSlider() {
         {INDUSTRIES.map((industry) => (
           <div
             key={industry.name}
-            className="relative h-96 w-96 shrink-0 snap-start overflow-hidden rounded-xl"
+            className="group relative h-96 w-96 shrink-0 snap-start overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- external CDN photo, no local optimization needed */}
             <img
               src={industry.image}
               alt={industry.name}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             <div className="absolute inset-x-0 bottom-0 h-1/4 bg-black/45" />
             <span className="absolute bottom-4 left-5 right-5 text-h3 text-cream">

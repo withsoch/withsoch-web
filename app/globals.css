@@ -358,8 +358,30 @@
   .animate-float-b { animation: float-soft 7s ease-in-out 0.6s infinite; }
   .animate-float-c { animation: float-soft 5.5s ease-in-out 1s infinite; }
 
+  /* Slow-drifting node/pulse motion for the AboutStats automation panel. */
+  @keyframes drift-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(6%, -8%) scale(1.08); }
+  }
+  @keyframes drift-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-8%, 6%) scale(1.05); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+  @keyframes dash-flow {
+    to { stroke-dashoffset: -24; }
+  }
+  .animate-drift-a { animation: drift-a 10s ease-in-out infinite; }
+  .animate-drift-b { animation: drift-b 12s ease-in-out infinite; }
+  .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+  .animate-dash-flow { animation: dash-flow 1.6s linear infinite; }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-marquee, .animate-float-a, .animate-float-b, .animate-float-c {
+    .animate-marquee, .animate-float-a, .animate-float-b, .animate-float-c,
+    .animate-drift-a, .animate-drift-b, .animate-pulse-dot, .animate-dash-flow {
       animation: none;
     }
     .animate-fade-up, .animate-pop, .animate-step-fade {

@@ -15,6 +15,7 @@ import { SERVICES } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
+import { DiagramFrame } from "@/components/ui/DiagramFrame";
 
 export function ServicesGrid() {
   // openSlug: which row is expanded (null = all collapsed). activeSlug: which
@@ -40,7 +41,7 @@ export function ServicesGrid() {
         />
         <Link
           href="/services"
-          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/35"
+          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-base font-semibold text-ink transition-colors hover:border-ink/35"
         >
           See all services
         </Link>
@@ -111,19 +112,7 @@ export function ServicesGrid() {
           })}
         </div>
         <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3">
-          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-white">
-            <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-            {/* corner-bracket frame, matching reference layout */}
-            <span aria-hidden="true" className="absolute left-4 top-4 h-4 w-4 border-l-2 border-t-2 border-ink/30" />
-            <span aria-hidden="true" className="absolute right-4 top-4 h-4 w-4 border-r-2 border-t-2 border-ink/30" />
-            <span aria-hidden="true" className="absolute bottom-4 left-4 h-4 w-4 border-b-2 border-l-2 border-ink/30" />
-            <span aria-hidden="true" className="absolute bottom-4 right-4 h-4 w-4 border-b-2 border-r-2 border-ink/30" />
-
-            {/* top strip: category / service label — mirrors the bottom caption strip */}
-            <div className="relative z-10 px-8 pt-6 text-left text-xs font-semibold uppercase tracking-wide text-muted">
-              Service / {activeService.title}
-            </div>
-
+          <DiagramFrame eyebrow={`Service / ${activeService.title}`} caption={activeService.hook}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeService.slug}
@@ -131,7 +120,7 @@ export function ServicesGrid() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="relative z-10 flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center"
+                className="flex w-full flex-col items-center justify-center gap-4"
               >
                 <span className="w-full max-w-xs sm:max-w-sm">
                   {(() => {
@@ -142,10 +131,7 @@ export function ServicesGrid() {
                 <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
               </motion.div>
             </AnimatePresence>
-
-            {/* bottom strip: hook line — equal weight/position to the top strip */}
-            <div className="relative z-10 px-8 pb-6 text-center text-xs text-muted">{activeService.hook}</div>
-          </div>
+          </DiagramFrame>
         </div>
       </div>
     </Section>
