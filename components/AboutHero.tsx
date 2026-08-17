@@ -32,17 +32,17 @@ export function AboutHero() {
           style={{ gridTemplateColumns: "0.9fr 1.2fr 0.65fr" }}
         >
           <img
-            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e79f2275434728f3dd265_Team%20disscussion.webp"
+            src="/images/about/team-discussion.webp"
             alt="With Soch team collaborating with founders to build clarity and growth."
             className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
           />
           <img
-            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e7967b85d6f317982e567_Team%20sitting%20on%20the%20table.webp"
+            src="/images/about/team-table.webp"
             alt="With Soch strategists aligning teams for sustainable business growth."
             className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
           />
           <img
-            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e797d64ddbcf428d8f7fc_White%20board%20matrixs%20disscused%20with%20team.webp"
+            src="/images/about/whiteboard-matrix.webp"
             alt="With Soch operators guiding founders through strategy and execution."
             className="h-56 w-full rounded-xl border border-line object-cover sm:h-64"
           />

@@ -27,7 +27,10 @@ export type IconName =
   | "facebook"
   | "youtube"
   | "plus"
-  | "minus";
+  | "minus"
+  | "mail"
+  | "phone"
+  | "pin";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -138,6 +141,21 @@ const PATHS: Record<IconName, ReactElement> = {
     </>
   ),
   minus: <path d="M5 12h14" />,
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M4 6.5l8 6.5 8-6.5" />
+    </>
+  ),
+  phone: (
+    <path d="M5.5 4h3l1.4 4.4-2 1.6a12.3 12.3 0 005.6 5.6l1.6-2 4.4 1.4v3a1.5 1.5 0 01-1.6 1.5A16 16 0 014 5.6 1.5 1.5 0 015.5 4z" />
+  ),
+  pin: (
+    <>
+      <path d="M12 21s-6.5-5.6-6.5-10.8A6.5 6.5 0 0112 3.7a6.5 6.5 0 016.5 6.5C18.5 15.4 12 21 12 21z" />
+      <circle cx="12" cy="10.2" r="2.2" />
+    </>
+  ),
 };
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {

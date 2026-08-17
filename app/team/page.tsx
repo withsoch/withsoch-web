@@ -19,7 +19,7 @@ export default function TeamPage() {
     <main className="flex-1">
       <section className="border-b border-line bg-mist">
         <div className="container-x py-16 sm:py-20 lg:py-24">
-          <div className="max-w-3xl flex flex-col gap-4">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
             <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
               Meet Our Team
             </h1>

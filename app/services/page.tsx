@@ -17,6 +17,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         heading="Services that turn strategy into results"
         sub="Five areas where AI automation replaces manual work with systems that run on their own."
+        align="center"
       />
 
       <Section className="bg-white">
@@ -59,9 +60,13 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <ServicesFaqSection />
+      <Reveal as="section">
+        <ServicesFaqSection />
+      </Reveal>
 
-      <CtaBand />
+      <Reveal as="section">
+        <CtaBand />
+      </Reveal>
     </main>
   );
 }

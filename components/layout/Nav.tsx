@@ -27,7 +27,7 @@ export function Nav() {
             alt="Soch"
             width={173}
             height={58}
-            className="h-8 w-auto"
+            className="h-10 w-auto"
             priority
           />
         </Link>
@@ -108,7 +108,7 @@ export function Nav() {
                         </Link>
                       </li>
                       <li>
-                        <Link href="/privacy" className="text-sm text-ink hover:text-brand">
+                        <Link href="/privacy-policy" className="text-sm text-ink hover:text-brand">
                           Privacy Policy
                         </Link>
                       </li>

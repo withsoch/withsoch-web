@@ -22,8 +22,8 @@ type ServiceAccordionProps = {
   // Controlled mode is opt-in — pages that also render a state-driven visual
   // panel (e.g. the operations service) lift this state up; every other page
   // falls back to the internal default below.
-  openKey?: ServiceAccordionItemKey;
-  onOpenKeyChange?: (key: ServiceAccordionItemKey) => void;
+  openKey?: ServiceAccordionItemKey | null;
+  onOpenKeyChange?: (key: ServiceAccordionItemKey | null) => void;
 };
 
 export function ServiceAccordion({
@@ -31,8 +31,14 @@ export function ServiceAccordion({
   openKey: openKeyProp,
   onOpenKeyChange,
 }: ServiceAccordionProps) {
-  const [internalOpenKey, setInternalOpenKey] = useState<ServiceAccordionItemKey>("whoItsFor");
-  const openKey = openKeyProp ?? internalOpenKey;
+  const [internalOpenKey, setInternalOpenKey] = useState<ServiceAccordionItemKey | null>(
+    "whoItsFor"
+  );
+  // openKeyProp is only ever undefined when the parent isn't controlling this
+  // component at all — `null` is a deliberate "everything collapsed" state
+  // and must be respected, so we can't use `??` here (it would fall through
+  // to internalOpenKey on every close).
+  const openKey = onOpenKeyChange ? openKeyProp ?? null : internalOpenKey;
   const setOpenKey = onOpenKeyChange ?? setInternalOpenKey;
   const items: { key: ServiceAccordionItemKey; title: string; content: React.ReactNode }[] = [
     {
@@ -112,7 +118,7 @@ export function ServiceAccordion({
           >
             <button
               type="button"
-              onClick={() => setOpenKey(isOpen ? ("" as ServiceAccordionItemKey) : item.key)}
+              onClick={() => setOpenKey(isOpen ? null : item.key)}
               className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
               aria-expanded={isOpen}
             >

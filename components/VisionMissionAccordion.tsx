@@ -27,8 +27,7 @@ const ROWS: {
     icon: "compass",
     copy: VISION,
     tags: VISION_TAGS,
-    image:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e7570bdd7184b65778dde_Innovation%20idea%20vision.webp",
+    image: "/images/about/vision.webp",
     alt: "Innovation and vision — idea taking shape.",
   },
   {
@@ -36,8 +35,7 @@ const ROWS: {
     label: "Our Mission",
     icon: "target",
     copy: MISSION,
-    image:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e754f6f5d7ec128eb9260_discussed%20about%20th%20numbers%20paper%20work.webp",
+    image: "/images/about/mission.webp",
     alt: "Team discussing numbers and paperwork.",
   },
 ];
@@ -48,7 +46,7 @@ export function VisionMissionAccordion() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10">
-      <div className="rounded-2xl border border-line bg-mist overflow-hidden">
+      <div className="rounded-2xl border border-line bg-mist overflow-hidden aspect-[3/2]">
         <AnimatePresence mode="wait">
           <motion.img
             key={activeRow.key}
@@ -58,7 +56,7 @@ export function VisionMissionAccordion() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="h-full min-h-[22rem] w-full object-cover"
+            className="h-full w-full object-cover"
           />
         </AnimatePresence>
       </div>

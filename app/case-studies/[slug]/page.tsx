@@ -3,6 +3,7 @@ import { CASE_STUDIES } from "@/lib/content";
 import { CASE_STUDY_DETAILS } from "@/lib/case-studies-detail";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -55,92 +56,104 @@ export default async function CaseStudyDetailPage({
         </div>
       </section>
 
-      <Section tight className="bg-white border-b border-line">
-        <div className="flex flex-wrap gap-x-10 gap-y-4">
-          {metaRow.map((item, i) => (
-            <div
-              key={item.label}
-              className={`flex flex-col gap-1 pt-4 sm:pt-0 ${
-                i > 0 ? "rule-dashed sm:border-t-0 sm:border-l sm:pl-10 sm:border-line" : ""
-              }`}
-            >
-              <span className="text-sm text-muted">{item.label}</span>
-              <span className="font-semibold text-ink">{item.value}</span>
+      <Reveal as="section">
+        <Section tight className="bg-white border-b border-line">
+          <div className="mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4">
+            {metaRow.map((item, i) => (
+              <div
+                key={item.label}
+                className={`flex flex-col gap-1 pt-4 text-center sm:pt-0 ${
+                  i > 0 ? "rule-dashed sm:border-t-0 sm:border-l sm:pl-10 sm:border-line" : ""
+                }`}
+              >
+                <span className="text-sm text-muted">{item.label}</span>
+                <span className="font-semibold text-ink">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </Section>
+      </Reveal>
+
+      <Reveal as="section">
+        <Section className="bg-white">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+            <div className="flex flex-col gap-6">
+              <span className="eyebrow w-fit">Overview</span>
+              <h2 className="text-h3">The context behind the work.</h2>
+              {detail.overview.map((paragraph, i) => (
+                <p key={i} className="text-slate">
+                  {paragraph}
+                </p>
+              ))}
             </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="bg-white">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
-            <span className="eyebrow w-fit">Overview</span>
-            <h2 className="text-h3">The context behind the work.</h2>
-            {detail.overview.map((paragraph, i) => (
-              <p key={i} className="text-slate">
-                {paragraph}
-              </p>
-            ))}
+            <img
+              src={detail.overviewImage}
+              alt={`${study.company} overview`}
+              className="h-full w-full rounded-lg object-cover"
+            />
           </div>
-          <img
-            src={detail.overviewImage}
-            alt={`${study.company} overview`}
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </div>
-      </Section>
+        </Section>
+      </Reveal>
 
-      <Section className="bg-mist">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
-            <h2 className="text-h3">What they came to us with.</h2>
-            <p className="text-slate">{detail.problem}</p>
+      <Reveal as="section">
+        <Section className="bg-mist">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+            <div className="flex h-full flex-col gap-6">
+              <h2 className="text-h3">What they came to us with.</h2>
+              <p className="text-slate">{detail.problem}</p>
+            </div>
+            <figure className="flex h-full flex-col justify-between gap-6 rounded-2xl bg-white p-8 ring-1 ring-line">
+              <span className="font-display text-4xl leading-none text-brand">&ldquo;</span>
+              <blockquote className="font-display text-2xl italic leading-snug text-ink">
+                {study.quote}
+              </blockquote>
+              <figcaption>
+                <span className="block font-semibold text-ink">{study.author}</span>
+                <span className="block text-sm text-muted">{study.authorRole}</span>
+              </figcaption>
+            </figure>
           </div>
-          <figure className="flex flex-col gap-6 rounded-2xl bg-white p-8 ring-1 ring-line">
-            <span className="font-display text-4xl leading-none text-brand">&ldquo;</span>
-            <blockquote className="font-display text-2xl italic leading-snug text-ink">
-              {study.quote}
-            </blockquote>
-            <figcaption>
-              <span className="block font-semibold text-ink">{study.author}</span>
-              <span className="block text-sm text-muted">{study.authorRole}</span>
-            </figcaption>
-          </figure>
-        </div>
-      </Section>
+        </Section>
+      </Reveal>
 
-      <Section className="bg-white">
-        <div className="mx-auto flex max-w-3xl flex-col gap-10">
-          <h2 className="text-h3">How we solved it.</h2>
-          <div className="flex flex-col gap-10">
-            {detail.framework.map((step, i) => (
-              <div key={step.title} className="flex flex-col gap-2">
-                <span className="text-sm font-semibold text-brand">
-                  Step {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-h3">{step.title}</h3>
-                <p className="text-slate">{step.description}</p>
-              </div>
-            ))}
+      <Reveal as="section">
+        <Section className="bg-white">
+          <div className="mx-auto flex max-w-5xl flex-col gap-10">
+            <h2 className="text-h3">How we solved it.</h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {detail.framework.map((step, i) => (
+                <div key={step.title} className="flex flex-col gap-2 rounded-xl border border-line bg-mist p-6">
+                  <span className="text-sm font-semibold text-brand">
+                    Step {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-h3">{step.title}</h3>
+                  <p className="text-slate">{step.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </Reveal>
 
-      <Section className="bg-mist">
-        <div className="mx-auto flex max-w-3xl flex-col gap-10">
-          <h2 className="text-h3">What shipped.</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {detail.results.map((result) => (
-              <div key={result.description} className="flex flex-col gap-2">
-                <span className="text-display text-brand">{result.value}</span>
-                <p className="text-slate">{result.description}</p>
-              </div>
-            ))}
+      <Reveal as="section">
+        <Section className="bg-mist">
+          <div className="mx-auto flex max-w-3xl flex-col gap-10">
+            <h2 className="text-h3">What shipped.</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {detail.results.map((result) => (
+                <div key={result.description} className="flex flex-col gap-2">
+                  <span className="text-display text-brand">{result.value}</span>
+                  <p className="text-slate">{result.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </Reveal>
 
-      <CtaBand override={{ buttonHref: "/contact" }} />
+      <Reveal as="section">
+        <CtaBand override={{ buttonHref: "/contact" }} />
+      </Reveal>
     </main>
   );
 }

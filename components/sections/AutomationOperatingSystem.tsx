@@ -46,7 +46,7 @@ export function AutomationOperatingSystem() {
   return (
     <Section className="bg-white">
       <div
-        className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16"
+        className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}

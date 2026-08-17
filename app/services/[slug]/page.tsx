@@ -20,10 +20,6 @@ export function generateStaticParams() {
 // marketing-automation's third point ("Lead Nurturing") is real, audited
 // content used elsewhere (services grid/pills) — trimmed to 2 tags here only
 // because a garbled third tag on the reference layout couldn't be confirmed.
-const CROSS_LINK_TAG_LIMIT: Record<string, number> = {
-  "marketing-automation": 2,
-};
-
 export default async function ServiceDetailPage({
   params,
 }: {
@@ -91,7 +87,7 @@ export default async function ServiceDetailPage({
       <Section className="bg-white">
         <Reveal>
           <div className="flex flex-col gap-10">
-            <h2 className="text-h2 mx-auto max-w-3xl text-center">{service.hook}</h2>
+            <h2 className="text-h2 max-w-3xl">{service.hook}</h2>
             <ServiceProcessPanel service={service} />
           </div>
         </Reveal>
@@ -141,7 +137,9 @@ export default async function ServiceDetailPage({
         </Reveal>
       </Section>
 
-      <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
+      <Reveal as="section">
+        <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
+      </Reveal>
 
       {service.testimonial && (
         <Section className="bg-white">
@@ -155,45 +153,51 @@ export default async function ServiceDetailPage({
         <Reveal>
           <div className="flex flex-col gap-8">
             <h2 className="text-h3">Explore our other services</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
               {otherServices.map((other) => {
                 const description = Array.isArray(other.description)
                   ? other.description[0]
                   : other.description;
-                const tags = other.points.slice(0, CROSS_LINK_TAG_LIMIT[other.slug] ?? other.points.length);
+                const tags = other.points;
                 const Diagram = SERVICE_DIAGRAMS[other.slug];
                 return (
                   <Link
                     key={other.slug}
                     href={`/services/${other.slug}`}
-                    className="group flex flex-col rounded-xl border border-line bg-white overflow-hidden transition-colors hover:border-ink/25"
+                    className="group flex flex-col h-full rounded-xl border border-line bg-white overflow-hidden transition-colors hover:border-ink/25"
                   >
-                    <div className="relative flex aspect-[4/3] items-center justify-center bg-mist p-5">
+                    <div className="relative flex aspect-[16/9] items-center justify-center bg-mist p-4">
                       <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-                      <span className="relative w-full max-w-[220px]">
-                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-16 w-16 text-brand" />}
+                      <span className="relative w-full max-w-[180px]">
+                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-12 w-12 text-brand" />}
                       </span>
                     </div>
-                    <div className="flex flex-col gap-2 px-5 py-4">
+                    <div className="flex flex-1 flex-col gap-2 px-5 py-4">
                       <span className="text-h3 font-semibold text-ink">{other.title}</span>
-                      <p className="text-sm text-slate line-clamp-1">{description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-peach px-2.5 py-1 text-xs font-semibold text-brand"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      <div className="flex flex-1 flex-col gap-2">
+                        <p className="text-sm text-slate line-clamp-3">{description}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full bg-peach px-2.5 py-1 text-xs font-semibold text-brand"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
-                        Learn more
-                        <Icon
-                          name="arrow"
-                          className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-brand-dark"
-                        />
-                      </span>
+                      <div className="mt-auto pt-1">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          size="md"
+                          arrow
+                          className="pointer-events-none"
+                        >
+                          Learn more
+                        </Button>
+                      </div>
                     </div>
                   </Link>
                 );

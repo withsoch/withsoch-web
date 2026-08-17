@@ -12,7 +12,7 @@ export function FaqAccordion() {
 
   return (
     <Section className="bg-mist">
-      <SectionHeading title="Common Questions" align="left" />
+      <SectionHeading title="Common Questions" align="center" />
       <div className="mt-14 mx-auto flex max-w-3xl flex-col gap-3">
         {FAQS.map((faq, i) => {
           const isOpen = openIndex === i;

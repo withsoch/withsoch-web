@@ -58,7 +58,7 @@ const LINKS = [
 export function AskAI() {
   return (
     <Section tight className="bg-white">
-      <div className="mx-auto flex max-w-3xl flex-col items-center rounded-2xl border border-line bg-cream px-6 py-14 text-center sm:px-12 sm:py-16">
+      <div className="mx-auto flex max-w-6xl flex-col items-center rounded-2xl border border-line bg-cream px-6 py-14 text-center sm:px-12 sm:py-16">
         <span className="eyebrow">Don&rsquo;t take our word for it</span>
         <h2 className="text-h2 mt-4">Ask AI about Soch</h2>
         <p className="lead mt-4 max-w-xl">

@@ -17,7 +17,7 @@ const PAGES = [
 ];
 
 const UTILITY = [
-  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -33,8 +33,8 @@ const featured = CASE_STUDIES[0];
 export function Footer() {
   return (
     <footer className="bg-charcoal text-white/70">
-      <div className="container-x py-16 sm:py-20">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_1.2fr]">
+      <div className="container-x py-10 sm:py-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_1.2fr]">
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center">
               <Image
@@ -116,7 +116,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col items-start gap-6 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex gap-3">
             {SOCIALS.map((social) => (
               <a
@@ -140,13 +140,13 @@ export function Footer() {
           />
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-8 text-center">
+        <div className="mt-6 border-t border-white/10 pt-6 text-center">
           <p className="text-base font-semibold text-white">
             Soch: More Growth, Less Chaos
           </p>
         </div>
 
-        <div className="mt-8 text-center text-xs text-white/40">
+        <div className="mt-4 text-center text-xs text-white/40">
           © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </div>
       </div>

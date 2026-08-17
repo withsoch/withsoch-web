@@ -58,6 +58,29 @@ export const ABOUT_CTA_BAND = {
   buttonHref: SCHEDULER_URL,
 };
 
+// About page's overview/stats section — distinct from the homepage Stats
+// (different metrics; see AboutStats component). Do not merge with STATS.
+export const ABOUT_STATS = [
+  {
+    value: "42%",
+    label: "Cut stockouts by 42% and freed up EUR 180k in working capital within 12 weeks.",
+  },
+  {
+    value: "2.1×",
+    label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
+  },
+  {
+    value: "€180k",
+    label: "AI-powered client outputs delivered through direct Claude API integration since early 2026.",
+  },
+];
+
+export const ABOUT_STATS_BOTTOM = {
+  title: "It's time to build with AI, not just talk about it.",
+  sub: "Book your free discovery call.",
+  href: SCHEDULER_URL,
+};
+
 export const NAV = [
   { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
@@ -112,8 +135,7 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/consult-with-riz/",
     instagram: "https://www.instagram.com/etz.riz/",
     initials: "RM",
-    photo:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/694e751734d7a4afc68e2e60_Rizwan%20founder.webp",
+    photo: "/images/about/rizwan-founder.webp",
     isFounder: true,
     bio: "Rizwan helps early-stage founders bring clarity and structure to Operations, Product, and Strategy. With 10+ years of experience working at Wise, Bolt, Motive and Careem across Europe, Africa, and the Middle East, he specializes in building scalable systems that turn early traction into predictable growth.",
   },
@@ -123,8 +145,7 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/umair-shahzad-us/",
     instagram: "https://www.instagram.com/_umairshahzad/",
     initials: "US",
-    photo:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6937fbaad9a85a1ff960a806_Umair%20CO%20Founder.avif",
+    photo: "/images/about/umair-cofounder.webp",
     isFounder: true,
     bio: "Umair brings 10+ years of hands-on experience building, scaling, and leading high-growth startups — from launching a venture studio in MENAP to mentoring 100+ founders. He specializes in helping early-stage teams find direction, validate what truly matters, and move confidently toward product-market fit. His work has reached 18M+ users, earned multiple \"Startup of the Year\" awards, and been featured across major regional and global publications.",
   },
@@ -1139,9 +1160,10 @@ export const CLIENT_LOGOS = [
   { name: "Cycle Together", src: "/logos/cycle-together.svg" },
   { name: "Kuunda", src: "/logos/kuunda.svg" },
   { name: "Ncon", src: "/logos/ncon.svg" },
-  { name: "Pitch A Fête", src: "/logos/pitch-a-fete.svg" },
+  { name: "A brand who worked with us", src: "/logos/pitch-a-fete.svg" },
   { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
   { name: "Milkar", src: "/logos/milkar.svg" },
+  { name: "A brand who worked with us", src: "/logos/client-19.svg" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -1236,17 +1258,13 @@ export const FAQS: Faq[] = [
   },
 ];
 
-/* LEGACY / UNRECONCILED — currently live on the Contact page only.
-   Describes a different engagement model (embedded consulting partner,
-   weekly working sessions, 2–4 week discovery sprints). Confirm with
-   Rizwan/Husnain whether this should be retired, merged, or kept as a
-   Contact-page-specific set before the rebuild ships.
-
-export const CONTACT_FAQS_LEGACY: Faq[] = [
+// Contact page's FAQ set — a different engagement model (embedded consulting
+// partner, weekly working sessions, 2–4 week discovery sprints) than the
+// Services FAQS above, so it stays a distinct, separate export.
+export const CONTACT_FAQS: Faq[] = [
   { q: "Who is Soch a good fit for?", a: "We work with early-stage tech founders, typically Pre-Seed to Series A, with small, lean teams. You don't need everything figured out; you just need a real problem, some traction, and the willingness to build structure around it." },
   { q: "How do you work with founders day-to-day?", a: "We embed as part of your team, not just as advisors. That usually means weekly working sessions, async check-ins, and hands-on execution across ops, product, and growth, so decisions actually turn into shipped work." },
   { q: "What does a typical engagement look like?", a: "Most clients start with a 2–4 week discovery sprint to map problems, define priorities, and set up the first systems. From there, we usually move into a 3–6 month operating partnership focused on clear outcomes: cleaner ops, sharper product direction, and more predictable growth." },
   { q: "How do you measure success?", a: "We agree on success metrics upfront, things like activation, retention, cycle time, or revenue milestones. Then we track them with simple weekly scorecards, so you can see exactly what's improving and why." },
   { q: "How soon will we see results?", a: "Most clients see meaningful changes within 4–6 weeks: clearer roadmaps, faster execution, and fewer fires. The bigger wins (growth, efficiency, retention) compound over the next 3–6 months as the new systems bed in." },
 ];
-*/

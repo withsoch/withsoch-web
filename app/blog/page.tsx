@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
 import { BlogCardLarge, BlogCardSmall } from "@/components/BlogCard";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { Reveal } from "@/components/ui/Reveal";
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -20,24 +21,35 @@ export default function BlogPage() {
       <PageHero
         heading="Our Blogs"
         sub="Ideas, playbooks, and field notes from building AI automation systems."
+        align="center"
       />
 
       <Section className="bg-white">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <BlogCardLarge post={featured} />
-          {secondary && <BlogCardLarge post={secondary} />}
+          <Reveal>
+            <BlogCardLarge post={featured} />
+          </Reveal>
+          {secondary && (
+            <Reveal delay={0.08}>
+              <BlogCardLarge post={secondary} />
+            </Reveal>
+          )}
         </div>
 
         {gridPosts.length > 0 && (
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {gridPosts.map((post) => (
-              <BlogCardSmall key={post.slug} post={post} />
+            {gridPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={(i % 3) * 0.08}>
+                <BlogCardSmall post={post} />
+              </Reveal>
             ))}
           </div>
         )}
       </Section>
 
-      <CtaBand />
+      <Reveal as="section">
+        <CtaBand />
+      </Reveal>
     </main>
   );
 }

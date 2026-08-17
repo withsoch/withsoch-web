@@ -17,42 +17,56 @@ import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 
 export function ServicesGrid() {
-  const [openSlug, setOpenSlug] = useState(SERVICES[0].slug);
-  const activeService = SERVICES.find((service) => service.slug === openSlug) ?? SERVICES[0];
+  // openSlug: which row is expanded (null = all collapsed). activeSlug: which
+  // diagram the right panel shows — it stays on the last-opened service even
+  // after that row is collapsed again, so the panel never goes blank.
+  const [openSlug, setOpenSlug] = useState<string | null>(SERVICES[0].slug);
+  const [activeSlug, setActiveSlug] = useState(SERVICES[0].slug);
+  const activeService = SERVICES.find((service) => service.slug === activeSlug) ?? SERVICES[0];
+
+  function toggleService(slug: string) {
+    setOpenSlug((prev) => (prev === slug ? null : slug));
+    setActiveSlug(slug);
+  }
 
   return (
     <Section className="bg-mist">
-      <SectionHeading
-        title="Services that turn strategy into results"
-        intro="Five areas where AI automation replaces manual work with systems that run on their own."
-      />
-      <div className="mt-4 flex justify-center">
-        <Link href="/services" className="text-brand font-medium hover:underline">
-          Explore all services
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <SectionHeading
+          align="left"
+          maxWidthClassName="max-w-xl"
+          title="Services that turn strategy into results"
+          intro="Five areas where AI automation replaces manual work with systems that run on their own."
+        />
+        <Link
+          href="/services"
+          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/35"
+        >
+          See all services
         </Link>
       </div>
-      <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10">
-        <div className="flex flex-col gap-4">
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8 items-stretch">
+        <div className="flex h-full flex-col gap-3">
           {SERVICES.map((service) => {
             const isOpen = service.slug === openSlug;
             return (
               <div
                 key={service.slug}
-                className={`rounded-xl border bg-white transition-colors duration-300 ease-in-out ${
+                className={`rounded-[28px] border bg-white transition-colors duration-300 ease-in-out ${
                   isOpen ? "border-brand/60" : "border-line hover:border-ink/20 hover:bg-mist/40"
                 }`}
               >
                 <button
                   type="button"
-                  onClick={() => setOpenSlug(service.slug)}
-                  className="flex w-full items-center gap-4 px-6 py-5 text-left"
+                  onClick={() => toggleService(service.slug)}
+                  className="flex w-full items-center gap-4 px-6 py-4.5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-peach text-brand">
-                    <Icon name={service.icon} className="h-5.5 w-5.5" />
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-peach text-brand">
+                    <Icon name={service.icon} className="h-5 w-5" />
                   </span>
                   <span
-                    className={`text-h3 text-[1.05rem] flex-1 transition-colors duration-300 ease-in-out ${
+                    className={`text-h3 text-[1.02rem] flex-1 transition-colors duration-300 ease-in-out ${
                       isOpen ? "text-brand" : "text-ink"
                     }`}
                   >
@@ -76,7 +90,7 @@ export function ServicesGrid() {
                       transition={{ duration: 0.28, ease: "easeInOut" }}
                       style={{ overflow: "hidden" }}
                     >
-                      <div className="flex flex-col gap-4 px-6 pb-6 pl-[4.25rem]">
+                      <div className="flex flex-col gap-4 px-6 pb-5 pl-[4rem]">
                         <p className="text-slate">{service.description}</p>
                         <ul className="flex flex-wrap gap-2">
                           {service.points.map((point) => (
@@ -96,26 +110,42 @@ export function ServicesGrid() {
             );
           })}
         </div>
-        <div className="relative rounded-2xl border border-line bg-white overflow-hidden">
-          <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeService.slug}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="relative flex h-full min-h-[26rem] flex-col items-center justify-center gap-4 p-8 text-center"
-            >
-              <span className="w-full max-w-xs sm:max-w-sm">
-                {(() => {
-                  const Diagram = SERVICE_DIAGRAMS[activeService.slug];
-                  return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
-                })()}
-              </span>
-              <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
-            </motion.div>
-          </AnimatePresence>
+        <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3">
+          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-white">
+            <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+            {/* corner-bracket frame, matching reference layout */}
+            <span aria-hidden="true" className="absolute left-4 top-4 h-4 w-4 border-l-2 border-t-2 border-ink/30" />
+            <span aria-hidden="true" className="absolute right-4 top-4 h-4 w-4 border-r-2 border-t-2 border-ink/30" />
+            <span aria-hidden="true" className="absolute bottom-4 left-4 h-4 w-4 border-b-2 border-l-2 border-ink/30" />
+            <span aria-hidden="true" className="absolute bottom-4 right-4 h-4 w-4 border-b-2 border-r-2 border-ink/30" />
+
+            {/* top strip: category / service label — mirrors the bottom caption strip */}
+            <div className="relative z-10 px-8 pt-6 text-left text-xs font-semibold uppercase tracking-wide text-muted">
+              Service / {activeService.title}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeService.slug}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="relative z-10 flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center"
+              >
+                <span className="w-full max-w-xs sm:max-w-sm">
+                  {(() => {
+                    const Diagram = SERVICE_DIAGRAMS[activeService.slug];
+                    return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
+                  })()}
+                </span>
+                <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* bottom strip: hook line — equal weight/position to the top strip */}
+            <div className="relative z-10 px-8 pb-6 text-center text-xs text-muted">{activeService.hook}</div>
+          </div>
         </div>
       </div>
     </Section>

@@ -12,7 +12,6 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { CASE_STUDIES } from "@/lib/content";
-import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
 
@@ -45,9 +44,9 @@ export function CaseStudiesCarousel() {
   }
 
   return (
-    <Section className="bg-white">
+    <section className="bg-white py-20 sm:py-24 lg:py-32">
       <div
-        className="overflow-hidden rounded-3xl border border-line focus:outline-none"
+        className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden border-y border-line px-6 focus:outline-none lg:px-10"
         tabIndex={0}
         onKeyDown={onKeyDown}
         onTouchStart={onTouchStart}
@@ -187,6 +186,6 @@ export function CaseStudiesCarousel() {
           ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

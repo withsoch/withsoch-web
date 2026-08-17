@@ -14,7 +14,7 @@ import { AboutHero } from "@/components/AboutHero";
 import { VisionMissionAccordion } from "@/components/VisionMissionAccordion";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
-import { Stats } from "@/components/sections/Stats";
+import { AboutStats } from "@/components/sections/AboutStats";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
@@ -110,12 +110,14 @@ export default function AboutPage() {
       </Reveal>
 
       <Reveal as="section">
-        <Stats showHeading={false} />
+        <AboutStats />
       </Reveal>
 
-      <CtaBand
-        override={{ heading: ABOUT_CTA_BAND.heading, buttonLabel: ABOUT_CTA_BAND.buttonLabel }}
-      />
+      <Reveal as="section">
+        <CtaBand
+          override={{ heading: ABOUT_CTA_BAND.heading, buttonLabel: ABOUT_CTA_BAND.buttonLabel }}
+        />
+      </Reveal>
     </main>
   );
 }
