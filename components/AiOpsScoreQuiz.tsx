@@ -8,7 +8,7 @@
 
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CTAS } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
@@ -86,7 +86,6 @@ export function AiOpsScoreQuiz() {
   const [answers, setAnswers] = useState<(number | null)[]>(
     new Array(QUIZ_QUESTIONS.length).fill(null),
   );
-  const [pregateStep, setPregateStep] = useState(0);
   const [pregateAnswers, setPregateAnswers] = useState<(number | null)[]>(
     new Array(PRE_GATE_QUESTIONS.length).fill(null),
   );
@@ -113,30 +112,22 @@ export function AiOpsScoreQuiz() {
     if (current > 0) setCurrent(current - 1);
   }
 
-  function selectPregateAnswer(i: number) {
+  function selectPregateAnswer(step: number, i: number) {
     const next = [...pregateAnswers];
-    next[pregateStep] = i;
+    next[step] = i;
     setPregateAnswers(next);
   }
 
   function pregateNext() {
-    if (pregateStep === PRE_GATE_QUESTIONS.length - 1) {
-      setStage("results");
-    } else {
-      setPregateStep(pregateStep + 1);
-    }
+    setStage("results");
   }
 
   function pregateBack() {
-    if (pregateStep > 0) {
-      setPregateStep(pregateStep - 1);
-    } else {
-      setStage("quiz");
-    }
+    setStage("quiz");
   }
 
   if (stage === "pregate") {
-    const pq = PRE_GATE_QUESTIONS[pregateStep];
+    const allAnswered = pregateAnswers.every((a) => a !== null);
     return (
       <div className="bg-mist py-20 sm:py-24">
         <div className="container-x">
@@ -145,36 +136,43 @@ export function AiOpsScoreQuiz() {
             <h1 className="text-h2 mt-4">{QUIZ_COPY.preGate.heading}</h1>
             <p className="lead mt-2">{QUIZ_COPY.preGate.subcopy}</p>
 
-            <div className="mt-8 rounded-2xl border border-line bg-white p-6 sm:p-8">
-              <p className="text-h3 text-ink">{pq.question}</p>
-              <div className="mt-6 flex flex-col gap-3">
-                {pq.options.map((option, i) => {
-                  const selected = pregateAnswers[pregateStep] === i;
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => selectPregateAnswer(i)}
-                      className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-colors ${
-                        selected
-                          ? "border-ink/45 bg-mist"
-                          : "border-line bg-white hover:border-ink/25"
-                      }`}
-                    >
-                      <span
-                        className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 ${
-                          selected ? "border-brand bg-brand" : "border-line"
-                        }`}
-                      >
-                        {selected && (
-                          <Icon name="check" className="h-2.5 w-2.5 text-white" strokeWidth={3} />
-                        )}
-                      </span>
-                      <span className="text-[0.95rem] text-slate">{option}</span>
-                    </button>
-                  );
-                })}
-              </div>
+            <div className="mt-8 flex flex-col gap-6">
+              {PRE_GATE_QUESTIONS.map((pq, step) => (
+                <div
+                  key={pq.id}
+                  className="rounded-2xl border border-line bg-white p-6 sm:p-8"
+                >
+                  <p className="text-h3 text-ink">{pq.question}</p>
+                  <div className="mt-6 flex flex-col gap-3">
+                    {pq.options.map((option, i) => {
+                      const selected = pregateAnswers[step] === i;
+                      return (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => selectPregateAnswer(step, i)}
+                          className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-colors ${
+                            selected
+                              ? "border-ink/45 bg-mist"
+                              : "border-line bg-white hover:border-ink/25"
+                          }`}
+                        >
+                          <span
+                            className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 ${
+                              selected ? "border-brand bg-brand" : "border-line"
+                            }`}
+                          >
+                            {selected && (
+                              <Icon name="check" className="h-2.5 w-2.5 text-white" strokeWidth={3} />
+                            )}
+                          </span>
+                          <span className="text-[0.95rem] text-slate">{option}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="mt-6 flex items-center justify-between">
@@ -185,11 +183,7 @@ export function AiOpsScoreQuiz() {
               >
                 {QUIZ_COPY.preGate.backButton}
               </button>
-              <Button
-                type="button"
-                onClick={pregateNext}
-                disabled={pregateAnswers[pregateStep] === null}
-              >
+              <Button type="button" onClick={pregateNext} disabled={!allAnswered}>
                 {QUIZ_COPY.preGate.nextButton}
               </Button>
             </div>
@@ -298,6 +292,56 @@ function EmailGate({
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // The plain `<iframe src="https://cal.com/...">` this used to be gets
+  // refused by Cal.com's frame-ancestors policy on the raw booking page
+  // (shows as a blank/broken frame). Cal.com's own inline-embed script
+  // talks to app.cal.com instead, which is built to be framed, so load
+  // that script + init the widget once the success screen is showing.
+  useEffect(() => {
+    if (!submitted) return;
+    const calLink = QUIZ_CAL_BOOKING_URL.replace(/^https?:\/\/cal\.com\//, "");
+
+    (function (C: any, A: string, L: string) {
+      let p = function (a: any, ar: any) {
+        a.q.push(ar);
+      };
+      let d = C.document;
+      C.Cal =
+        C.Cal ||
+        function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api: any = function () {
+              p(api, arguments);
+            };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    (window as any).Cal("init", "quiz", { origin: "https://cal.com" });
+    (window as any).Cal.ns.quiz("inline", {
+      elementOrSelector: "#cal-inline-quiz",
+      calLink,
+      layout: "month_view",
+    });
+  }, [submitted]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSending(true);
@@ -332,12 +376,18 @@ function EmailGate({
         <p className="lead mt-2 max-w-xl mx-auto">{QUIZ_COPY.success.message(name || "there")}</p>
         <p className="mt-6 text-sm font-medium text-muted">{QUIZ_COPY.success.calBookingLine}</p>
         <div className="mt-4 overflow-hidden rounded-xl border border-line">
-          <iframe
-            src={QUIZ_CAL_BOOKING_URL}
-            title="Book a call"
-            className="h-[600px] w-full"
-          />
+          <div id="cal-inline-quiz" className="h-[600px] w-full" />
         </div>
+        <p className="mt-3 text-sm">
+          <a
+            href={QUIZ_CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-brand underline underline-offset-2"
+          >
+            Calendar not loading? Open the booking page in a new tab.
+          </a>
+        </p>
       </div>
     );
   }

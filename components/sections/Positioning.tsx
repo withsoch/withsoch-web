@@ -14,14 +14,14 @@ const POINTS = [
 
 export function Positioning() {
   return (
-    <Section className="bg-white !py-28 sm:!py-32 lg:!py-40">
+    <Section className="bg-white !py-14 sm:!py-16 lg:!py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
           AI Automation Consulting and Implementation for Startups
         </h2>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-stretch">
         <img
           src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b6232e8946bee738b_6a0d81a48529c31b17d78093_replicate-prediction-5ahpghne0nrmw0cy87dskem7qg.webp"
           alt="Soch team collaborating"

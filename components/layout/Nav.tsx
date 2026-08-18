@@ -27,7 +27,7 @@ export function Nav() {
             alt="Soch"
             width={220}
             height={74}
-            className="h-14 w-auto"
+            className="h-10 w-auto"
             priority
           />
         </Link>
@@ -59,9 +59,12 @@ export function Nav() {
               <div className="absolute left-1/2 top-full w-[760px] -translate-x-1/2 pt-3">
                 <div className="flex gap-8 rounded-xl border border-line bg-white p-8 shadow-lift">
                   <div className="w-44 shrink-0">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted after:mt-1 after:block after:h-0.5 after:w-6 after:bg-brand">
+                    <Link
+                      href="/services"
+                      className="text-xs font-semibold uppercase tracking-wide text-muted transition-colors after:mt-1 after:block after:h-0.5 after:w-6 after:bg-brand hover:text-brand"
+                    >
                       Services
-                    </p>
+                    </Link>
                     <ul className="mt-4 space-y-3">
                       {SERVICES.map((service) => (
                         <li key={service.slug}>
@@ -118,8 +121,22 @@ export function Nav() {
                   <div className="w-px shrink-0 self-stretch bg-line" />
 
                   <div className="w-56 shrink-0">
-                    <div className="aspect-[16/10] w-full rounded-lg bg-mist" />
-                    <p className="mt-3 text-sm font-bold text-ink">{featured.title}</p>
+                    <Link href={`/case-studies/${featured.slug}`} className="group block">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-mist">
+                        {featured.image && (
+                          <Image
+                            src={featured.image}
+                            alt={featured.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="224px"
+                          />
+                        )}
+                      </div>
+                      <p className="mt-3 text-sm font-bold text-ink group-hover:text-brand">
+                        {featured.title}
+                      </p>
+                    </Link>
                     <Button href={SCHEDULER_URL} variant="primary" size="md" className="mt-4 w-full">
                       Book a free call
                     </Button>

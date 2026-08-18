@@ -51,7 +51,7 @@ export function ServicesFaqSection() {
         align="left"
         maxWidthClassName="max-w-2xl"
       />
-      <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:items-stretch">
         <div className="flex flex-col gap-3">
           {SERVICES_FAQS.map((faq, i) => {
             const isOpen = openIndex === i;
@@ -87,7 +87,7 @@ export function ServicesFaqSection() {
           })}
         </div>
 
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-line bg-mist lg:sticky lg:top-24">
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-line bg-mist lg:aspect-auto lg:h-full lg:sticky lg:top-24">
           <Image
             src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69282aa85fe2558709b774fc_pexels-yankrukov-8867262.jpg"
             alt="Customer service team working at computers"

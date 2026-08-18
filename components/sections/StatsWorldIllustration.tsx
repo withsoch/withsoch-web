@@ -1,10 +1,11 @@
 // components/sections/StatsWorldIllustration.tsx
 //
-// Dark-theme "connected world" illustration for the Stats section, matching
-// the real withsoch.com reference: two low-poly landmass meshes (olive lines
-// + dots) floating on a black field, with a scatter of faint square dust and
-// a few hollow "signal" rings drifting between them. No card frame, no dot
-// grid — the black section background *is* the backdrop.
+// Dark-theme "connected world" illustration for the Stats section: two
+// low-poly landmass meshes in the white opacity ramp (DESIGN.md §4) floating
+// on the forest-green section background, with a scatter of faint square
+// dust and a few brand-orange "signal" rings drifting between them — the
+// site's single flat accent, used sparingly. No card frame, no dot grid —
+// the section background *is* the backdrop.
 
 "use client";
 
@@ -97,14 +98,14 @@ function Mesh({ mesh, keyPrefix }: { mesh: ReturnType<typeof buildMesh>; keyPref
             y1={from.y}
             x2={to.x}
             y2={to.y}
-            stroke="#6f6f4a"
-            strokeOpacity={0.55}
+            stroke="#ffffff"
+            strokeOpacity={0.22}
             strokeWidth={1}
           />
         );
       })}
       {mesh.nodes.map((n) => (
-        <circle key={`${keyPrefix}-node-${n.id}`} cx={n.x} cy={n.y} r={n.r} fill="#8a8a5c" opacity={0.85} />
+        <circle key={`${keyPrefix}-node-${n.id}`} cx={n.x} cy={n.y} r={n.r} fill="#ffffff" opacity={0.55} />
       ))}
     </>
   );
@@ -126,7 +127,7 @@ export function StatsWorldIllustration() {
       >
         {/* faint square dust */}
         {DUST.map((d, i) => (
-          <rect key={`dust-${i}`} x={d.x} y={d.y} width={3} height={3} fill="#4a4a38" opacity={0.5} />
+          <rect key={`dust-${i}`} x={d.x} y={d.y} width={3} height={3} fill="#ffffff" opacity={0.28} />
         ))}
 
         <motion.g
@@ -152,7 +153,7 @@ export function StatsWorldIllustration() {
               cy={ring.y}
               r={3}
               fill="none"
-              stroke="#e9e4d6"
+              stroke="#ff5c35"
               strokeWidth={1}
               initial={{ opacity: 0.6, scale: 0.6 }}
               animate={{ opacity: 0, scale: 2.2 }}

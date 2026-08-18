@@ -337,7 +337,7 @@ export function HeroNetworkDiagram() {
         ctx!.lineTo(x + w * 0.05, y + h * 0.32);
         ctx!.stroke();
       } else if (type === 6) {
-        const coreR = isMobile ? 20 : 28;
+        const coreR = isMobile ? 24 : 38;
         ctx!.save();
         ctx!.fillStyle = `rgba(${BRAND},${a})`;
         ctx!.beginPath();
@@ -573,7 +573,7 @@ export function HeroNetworkDiagram() {
           isOut = n.side === "out";
         const flash = isCore ? Math.max(n.activation, aiFlash) : n.activation;
         const ia = Math.min(1, (isCore ? 0.85 : isOut ? 0.64 : 0.56) + (isCore ? Math.max(n.activation, aiFlash) * 0.18 : n.activation * 0.3));
-        const sz = isCore ? (isMobile ? 11 : 16) : isMobile ? 7 : 10;
+        const sz = isCore ? (isMobile ? 13 : 20) : isMobile ? 7 : 10;
         drawIcon(n.icon, nx, ny, sz, ia, flash);
         if (isOut) {
           const bx = nx + sz * 0.72,

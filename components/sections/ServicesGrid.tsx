@@ -9,12 +9,14 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { SERVICES } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
+import { SERVICE_HOME_IMAGES } from "@/components/sections/ServiceTabImages";
 import { DiagramFrame } from "@/components/ui/DiagramFrame";
 
 export function ServicesGrid() {
@@ -24,6 +26,7 @@ export function ServicesGrid() {
   const [openSlug, setOpenSlug] = useState<string | null>(SERVICES[0].slug);
   const [activeSlug, setActiveSlug] = useState(SERVICES[0].slug);
   const activeService = SERVICES.find((service) => service.slug === activeSlug) ?? SERVICES[0];
+  const homeImage = SERVICE_HOME_IMAGES[activeService.slug];
 
   function toggleService(slug: string) {
     setOpenSlug((prev) => (prev === slug ? null : slug));
@@ -112,24 +115,50 @@ export function ServicesGrid() {
           })}
         </div>
         <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3">
-          <DiagramFrame eyebrow={`Service / ${activeService.title}`} caption={activeService.hook}>
+          <DiagramFrame
+            eyebrow={homeImage ? undefined : `Service / ${activeService.title}`}
+            caption={homeImage ? undefined : activeService.hook}
+            bleed={!!homeImage}
+          >
             <AnimatePresence mode="wait">
-              <motion.div
-                key={activeService.slug}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="flex w-full flex-col items-center justify-center gap-4"
-              >
-                <span className="w-full max-w-xs sm:max-w-sm">
-                  {(() => {
-                    const Diagram = SERVICE_DIAGRAMS[activeService.slug];
-                    return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
-                  })()}
-                </span>
-                <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
-              </motion.div>
+              {homeImage ? (
+                // Full-bleed real diagram/photo from the live withsoch.com
+                // build — object-contain so it never crops, cream fill
+                // behind it for any letterboxing.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream"
+                >
+                  <Image
+                    src={homeImage}
+                    alt={`${activeService.title} — ${activeService.hook}`}
+                    fill
+                    sizes="(min-width: 1024px) 620px, 90vw"
+                    className="object-contain"
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="flex w-full flex-col items-center justify-center gap-4"
+                >
+                  <span className="w-full max-w-xs sm:max-w-sm">
+                    {(() => {
+                      const Diagram = SERVICE_DIAGRAMS[activeService.slug];
+                      return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
+                    })()}
+                  </span>
+                  <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
+                </motion.div>
+              )}
             </AnimatePresence>
           </DiagramFrame>
         </div>

@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/Icons";
+import { TeamCard } from "@/components/team/TeamCard";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -17,9 +17,17 @@ export const metadata: Metadata = {
 export default function TeamPage() {
   return (
     <main className="flex-1">
-      <section className="border-b border-line bg-mist">
-        <div className="container-x py-16 sm:py-20 lg:py-24">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+      <section className="relative overflow-hidden border-b border-line bg-mist">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 right-[-10%] h-80 w-80 rounded-full bg-brand/10 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 left-[-10%] h-96 w-96 rounded-full bg-forest/10 blur-3xl"
+        />
+        <div className="container-x relative py-16 sm:py-20 lg:py-24">
+          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
             <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
               Meet Our Team
             </h1>
@@ -31,60 +39,32 @@ export default function TeamPage() {
               confident decisions, and build momentum that lasts, no theory, just practical
               solutions.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <Reveal as="section">
-        <Section className="bg-white">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {TEAM.map((member) => {
-              const socials = [
-                member.linkedin && { href: member.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
-                member.instagram && { href: member.instagram, icon: "instagram" as const, label: "Instagram" },
-              ].filter(Boolean) as { href: string; icon: "linkedin" | "instagram"; label: string }[];
+      <Section className="bg-white">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {TEAM.map((member, index) => {
+            const socials = [
+              member.linkedin && { href: member.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
+              member.instagram && { href: member.instagram, icon: "instagram" as const, label: "Instagram" },
+            ].filter(Boolean) as { href: string; icon: "linkedin" | "instagram"; label: string }[];
 
-              return (
-                <div
-                  key={member.name}
-                  className="flex flex-col gap-6 rounded-xl border border-line bg-white p-6 transition-colors hover:border-brand sm:flex-row"
-                >
-                  <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-lg bg-white sm:w-56">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover object-top"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-h3 text-ink font-semibold">{member.name}</h3>
-                    <p className="mt-1 text-sm font-medium text-brand-dark">{member.role}</p>
-                    <p className="mt-2 text-slate">{member.bio}</p>
-                    {socials.length > 0 && (
-                      <div className="mt-4 flex gap-3">
-                        {socials.map((social) => (
-                          <a
-                            key={social.label}
-                            href={social.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${member.name} on ${social.label}`}
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-mist text-slate transition-colors hover:border-brand hover:text-brand"
-                          >
-                            <Icon name={social.icon} className="h-4 w-4" />
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Section>
-      </Reveal>
+            return (
+              <TeamCard
+                key={member.name}
+                name={member.name}
+                role={member.role}
+                bio={member.bio}
+                photo={member.photo}
+                socials={socials}
+                index={index}
+              />
+            );
+          })}
+        </div>
+      </Section>
 
       <Reveal as="section">
         <ServicesGrid />

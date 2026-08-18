@@ -12,6 +12,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import type { Service } from "@/lib/content";
 import {
@@ -21,6 +22,7 @@ import {
 import { DiagramFrame } from "@/components/ui/DiagramFrame";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
+import { SERVICE_TAB_IMAGES } from "@/components/sections/ServiceTabImages";
 
 const CAPTIONS: Record<ServiceAccordionItemKey, string> = {
   whoItsFor: "The teams and roles this service is built around.",
@@ -43,6 +45,12 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   const activeKey = openKey ?? lastKey;
   const caption = CAPTIONS[activeKey];
   const Diagram = SERVICE_DIAGRAMS[service.slug];
+  // Real per-tab imagery (from the live withsoch.com build) takes priority
+  // over the generic SVG diagram when a service defines one for this key.
+  const tabImage = SERVICE_TAB_IMAGES[service.slug]?.[activeKey];
+  // Decided once per service (not per active tab) so the columns don't
+  // jump width when switching between accordion rows.
+  const hasTabImages = Boolean(SERVICE_TAB_IMAGES[service.slug]);
 
   const handleOpenKeyChange = (key: ServiceAccordionItemKey | null) => {
     setOpenKey(key);
@@ -50,24 +58,62 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+    <div
+      className={`grid grid-cols-1 items-stretch gap-8 lg:gap-10 ${
+        // The source photography is landscape (752x501) — give the visual
+        // panel more of the row's width on services that use real images
+        // so object-contain has less letterboxing to fit it without
+        // cropping any content.
+        hasTabImages ? "lg:grid-cols-[0.85fr_1.15fr]" : "lg:grid-cols-[1.05fr_0.95fr]"
+      }`}
+    >
       <ServiceAccordion service={service} openKey={openKey} onOpenKeyChange={handleOpenKeyChange} />
-      <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
-        <DiagramFrame eyebrow={`Service / ${service.title}`} caption={caption}>
+      <div className="relative h-full min-h-[480px] sm:min-h-[560px] w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+        <DiagramFrame
+          eyebrow={tabImage ? undefined : `Service / ${service.title}`}
+          caption={tabImage ? undefined : caption}
+          bleed={!!tabImage}
+        >
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeKey}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="flex w-full flex-col items-center justify-center gap-4"
-            >
-              <span className="w-full max-w-xs sm:max-w-sm">
-                {Diagram ? <Diagram /> : <Icon name={service.icon} className="h-16 w-16 text-brand" />}
-              </span>
-              <span className="text-h3 text-[1.05rem] text-ink">{service.title}</span>
-            </motion.div>
+            {tabImage ? (
+              // Full-bleed real photography — fills the entire card edge to
+              // edge, no eyebrow/caption strip and no white padding around
+              // it, so the image itself is the whole panel.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full w-full bg-cream"
+              >
+                <Image
+                  src={tabImage}
+                  alt={`${service.title} — ${caption}`}
+                  fill
+                  sizes="(min-width: 1024px) 720px, 90vw"
+                  // object-contain — the source photos are landscape and
+                  // vary slightly in crop; contain guarantees every tab
+                  // renders its full image with nothing sliced off, at the
+                  // cost of a little letterboxing instead of a hard crop.
+                  className="object-contain"
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="flex w-full flex-1 flex-col items-center justify-center gap-4"
+              >
+                <span className="w-full max-w-xs sm:max-w-sm">
+                  {Diagram ? <Diagram /> : <Icon name={service.icon} className="h-16 w-16 text-brand" />}
+                </span>
+                <span className="text-h3 text-[1.05rem] text-ink">{service.title}</span>
+              </motion.div>
+            )}
           </AnimatePresence>
         </DiagramFrame>
       </div>
