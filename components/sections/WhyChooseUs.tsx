@@ -9,17 +9,17 @@ import { Icon, type IconName } from "@/components/Icons";
 
 const FEATURES: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "check",
+    icon: "pinwheel",
     title: "Automation that actually runs",
     description: "We build systems that work in the real world, with proper error handling, documentation, and monitoring from day one.",
   },
   {
-    icon: "compass",
+    icon: "clover",
     title: "Your stack, your rules",
     description: "We work with the tools you already have. No forced migrations, no rip-and-replace, no unnecessary complexity.",
   },
   {
-    icon: "spark",
+    icon: "burst",
     title: "We build, we don't just advise",
     description: "Strategy only matters when it ships. We stay in the engagement until the system is live and running.",
   },
@@ -34,14 +34,14 @@ export function WhyChooseUs() {
         title="What makes us the right automation partner"
         intro="We don't just identify automation opportunities. We build them, deploy them, and make sure they run."
       />
-      <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4">
         {FEATURES.map((feature) => (
           <div
             key={feature.title}
-            className="flex flex-col gap-4 rounded-2xl bg-mist p-7 ring-1 ring-line"
+            className="flex flex-col gap-3 rounded-2xl bg-mist px-6 py-5 ring-1 ring-line"
           >
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
-              <Icon name={feature.icon} className="h-5.5 w-5.5" />
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-peach text-brand">
+              <Icon name={feature.icon} className="h-5 w-5" />
             </span>
             <h3 className="text-h3">{feature.title}</h3>
             <p className="text-slate">{feature.description}</p>

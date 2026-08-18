@@ -37,8 +37,8 @@ const INDUSTRIES = [
   },
 ];
 
-const CARD_WIDTH = 384; // px, matches w-96 below
-const CARD_GAP = 24; // px, matches gap-6 below
+const CARD_WIDTH = 420; // px, matches w-[420px] below
+const CARD_GAP = 20; // px, matches gap-5 below
 
 export function IndustriesSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -76,12 +76,12 @@ export function IndustriesSlider() {
 
       <div
         ref={trackRef}
-        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-6 overflow-x-auto pb-2 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)] snap-x snap-mandatory scrollbar-hide"
+        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-5 overflow-x-auto pb-2 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)] snap-x snap-mandatory scrollbar-hide"
       >
         {INDUSTRIES.map((industry) => (
           <div
             key={industry.name}
-            className="group relative h-96 w-96 shrink-0 snap-start overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
+            className="group relative h-[380px] w-[420px] shrink-0 snap-start overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- external CDN photo, no local optimization needed */}
             <img
@@ -89,8 +89,8 @@ export function IndustriesSlider() {
               alt={industry.name}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
-            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-black/45" />
-            <span className="absolute bottom-4 left-5 right-5 text-h3 text-cream">
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <span className="absolute bottom-5 left-5 right-5 text-xl font-medium leading-snug text-cream">
               {industry.name}
             </span>
           </div>

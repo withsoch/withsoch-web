@@ -2,7 +2,7 @@
 
 This document is the **portable design language** behind Soch Catalyst
 (`sochcatalystweb`). Its purpose is to let any new site in the Soch ecosystem
-reproduce this look and feel — *"HubSpot brand language: editorial serif
+reproduce this look and feel — *"HubSpot brand language: Wix Madefor Text
 headlines · warm cream · flat orange · forest CTA"* — without re-deriving it each
 time.
 
@@ -30,24 +30,24 @@ points back to.
 | Rendering | **Server components by default.** Add `"use client"` only for interactivity/hooks (reveals, carousels, modals, scroll listeners) |
 
 Fonts are loaded once in `app/layout.tsx` via `next/font/google` and exposed as
-CSS variables that `@theme` maps to `--font-sans` / `--font-display`:
+a single CSS variable that `@theme` maps to **both** `--font-sans` and
+`--font-display`:
 
 ```tsx
-import { Inter, Fraunces } from "next/font/google";
+import { Wix_Madefor_Text } from "next/font/google";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
-
-// Editorial serif for headlines — the HubSpot brand voice.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Single site-wide font — matches the real withsoch.com Webflow build.
+// 500 for headings, 400 for body; 600/700 kept for existing font-semibold /
+// font-bold usage elsewhere.
+const wixMadeforText = Wix_Madefor_Text({
+  variable: "--font-wix-madefor-text",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 // on <html>:
-<html className={`${inter.variable} ${fraunces.variable} h-full antialiased`}>
+<html className={`${wixMadeforText.variable} h-full antialiased`}>
   <body className="min-h-full flex flex-col overflow-x-hidden bg-white">…</body>
 </html>
 ```
@@ -91,9 +91,10 @@ Paste this `@theme` block verbatim at the top of `app/globals.css` (right after
   --color-leaf: #1f8a66;
   --color-linkedin: #0a66c2;
 
-  /* Fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  /* Fonts — single family site-wide: Wix Madefor Text, weight 500 for
+     headings, 400 for body. */
+  --font-sans: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
 
   /* Shadows - subtle, HubSpot uses borders not big shadows */
   --shadow-soft: 0 1px 2px rgba(20, 30, 25, 0.04);
@@ -132,8 +133,8 @@ Paste this `@theme` block verbatim at the top of `app/globals.css` (right after
 
 ## 3. Typography
 
-Two families, wired in §1: **Fraunces** (editorial serif) for display,
-**Inter** (sans) for body/UI. All `h1–h4` default to the serif automatically.
+One family, wired in §1: **Wix Madefor Text** — weight 500 for headings,
+weight 400 for body/UI. All `h1–h4` default to weight 500 automatically.
 
 Add this to `app/globals.css` after the `@theme` block:
 
@@ -150,7 +151,7 @@ Add this to `app/globals.css` after the `@theme` block:
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     color: var(--color-ink);
-    font-weight: 540;              /* signature variable-font weight */
+    font-weight: 500;
     letter-spacing: -0.012em;
     line-height: 1.08;
     text-wrap: balance;
@@ -172,15 +173,15 @@ of raw Tailwind text sizes:
 @layer components {
   .text-display {
     font-size: clamp(2.7rem, 1.5rem + 4.4vw, 4.7rem);
-    line-height: 1.02; letter-spacing: -0.018em; font-weight: 540;
+    line-height: 1.02; letter-spacing: -0.018em; font-weight: 500;
   }
   .text-h2 {
     font-size: clamp(2.05rem, 1.4rem + 2.3vw, 3.3rem);
-    line-height: 1.06; letter-spacing: -0.014em; font-weight: 540;
+    line-height: 1.06; letter-spacing: -0.014em; font-weight: 500;
   }
   .text-h3 {
     font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.7rem);
-    line-height: 1.16; font-weight: 560;
+    line-height: 1.16; font-weight: 500;
   }
   .lead {
     font-size: clamp(1.075rem, 1rem + 0.4vw, 1.28rem);
@@ -189,8 +190,8 @@ of raw Tailwind text sizes:
 }
 ```
 
-Signature moves: **weight `540`** on display headings (not 500/600), tight
-negative tracking, and `text-wrap: balance`. Headlines routinely carry **one word
+Signature moves: **weight `500`** on display headings, tight negative
+tracking, and `text-wrap: balance`. Headlines routinely carry **one word
 or phrase in italic brand orange** for emphasis:
 
 ```tsx
@@ -561,8 +562,8 @@ people who can say yes."*
 2. In `app/globals.css`: `@import "tailwindcss";` then paste the **§2 `@theme`
    block**, the **§3 base + typography** layers, `.container-x` (§5), `.eyebrow` /
    `.rule-dashed` (§6), and the **§8 animation utilities**.
-3. In `app/layout.tsx`: load **Inter** + **Fraunces** exactly as §1, apply the
-   variables on `<html>`, set the metadata shell (title template `"%s · <Site>"`).
+3. In `app/layout.tsx`: load **Wix Madefor Text** exactly as §1, apply the
+   variable on `<html>`, set the metadata shell (title template `"%s · <Site>"`).
 4. Port the primitives: `components/ui/Button.tsx`, `Section.tsx`, `Reveal.tsx`,
    and `components/Icons.tsx` (extend `IconName` for new glyphs).
 5. Create `lib/content.ts` following the **§9** shape — all copy + config there.
@@ -572,6 +573,6 @@ people who can say yes."*
 7. Verify: `npm run lint` **and** `npm run build` both pass.
 
 Swap the brand palette only when a sibling brand truly differs — the *structure*
-(serif+sans pairing, flat single accent, warm surfaces, borders-over-shadows,
+(single-family type system, flat single accent, warm surfaces, borders-over-shadows,
 dividers-not-boxes, reveal rhythm) is what makes it read as part of the Soch
 ecosystem.

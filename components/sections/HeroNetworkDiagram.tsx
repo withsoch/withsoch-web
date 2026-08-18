@@ -162,8 +162,9 @@ export function HeroNetworkDiagram() {
     function px(x: number) {
       return x * W;
     }
+    const TOP_OFFSET = 18; // shifts the whole diagram down so top nodes/icons aren't clipped
     function py(y: number) {
-      return y * H;
+      return TOP_OFFSET + y * (H - TOP_OFFSET);
     }
 
     const INK = "28,43,38";

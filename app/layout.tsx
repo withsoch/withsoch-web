@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Wix_Madefor_Text } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/content";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Single site-wide font — matches the real withsoch.com Webflow build.
+// 400/500 cover body/heading weight; 600/700 cover existing font-semibold /
+// font-bold usage (Button, Nav, comparison table, etc.) that used to ride on
+// Inter's weights.
+const wixMadeforText = Wix_Madefor_Text({
+  variable: "--font-wix-madefor-text",
   subsets: ["latin"],
-  display: "swap",
-});
-
-// Editorial serif for headlines — the HubSpot brand voice.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -36,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${wixMadeforText.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white">
         <Nav />

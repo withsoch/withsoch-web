@@ -46,7 +46,7 @@ export function AutomationOperatingSystem() {
   const panelId = "automation-os-panel";
 
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-28">
+    <section className="bg-white py-8 sm:py-10 lg:py-12">
       <div className="container-x">
         <div
           className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-14"
@@ -71,11 +71,64 @@ export function AutomationOperatingSystem() {
 
         {/* RIGHT */}
         <div>
-          {/* Spotlight panel — pill tabs folded in as a header strip, content swaps below */}
-          <div className="relative overflow-hidden rounded-2xl bg-mist">
-            {/* Pill tabs — the single tablist controlling the panel below */}
+          {/* Below sm the cascading cards don't have room to breathe — fall
+              back to a simple stacked list of the same tab-driven content. */}
+          <div className="flex flex-col gap-3 sm:hidden" role="tablist" aria-label="Process steps">
+            {STEPS.map((step, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={step.no}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => selectStep(i)}
+                  className={[
+                    "flex items-start gap-3 rounded-xl border p-4 text-left transition-colors duration-200",
+                    isActive ? "border-line bg-white" : "border-line/70 bg-mist",
+                  ].join(" ")}
+                >
+                  <span
+                    className={[
+                      "relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full",
+                      isActive ? "bg-peach" : "bg-white",
+                    ].join(" ")}
+                  >
+                    <Icon name={step.icon} className={`h-4.5 w-4.5 ${isActive ? "text-brand" : "text-muted"}`} />
+                  </span>
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-muted">
+                      {step.no} · {step.title}
+                    </span>
+                    <p className={`mt-1 text-sm leading-snug ${isActive ? "text-ink" : "text-muted"}`}>
+                      {step.description}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Spotlight panel — pill tabs float over a cascading trio of step
+              cards, wired to a diagonal "growth" wedge along the base. */}
+          <div className="relative isolate hidden h-[500px] overflow-hidden rounded-2xl border border-line bg-mist sm:block lg:h-[560px]">
+            {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
+            <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+
+            {/* Diagonal growth wedge along the base */}
             <div
-              className="relative flex flex-wrap gap-2 border-b border-line px-6 pt-5 pb-4"
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-1/2"
+              style={{
+                clipPath: "polygon(0% 100%, 100% 0%, 100% 100%)",
+                background:
+                  "linear-gradient(115deg, rgba(255,92,53,0.16), rgba(255,92,53,0.03) 55%)",
+              }}
+            />
+
+            {/* Pill tabs — the single tablist driving which card is emphasized */}
+            <div
+              className="absolute left-6 top-5 z-10 flex flex-wrap gap-2 sm:left-8 sm:top-6"
               role="tablist"
               aria-label="Process steps"
             >
@@ -104,98 +157,61 @@ export function AutomationOperatingSystem() {
               })}
             </div>
 
-            <div
-              id={panelId}
-              role="tabpanel"
-              aria-labelledby={`automation-os-tab-${active}`}
-              className="relative px-6 py-7 sm:px-8 sm:py-8"
-            >
-              {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
-              <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-
-              {/* Decorative watermark numeral — outline-only so it reads as a layer
-                  behind the icon/text instead of a flat competing shape. The only
-                  absolutely-positioned element, purely cosmetic. */}
-              <span
-                key={`watermark-${active}`}
-                aria-hidden="true"
-                className="pointer-events-none absolute right-6 bottom-4 select-none font-display text-[92px] leading-none animate-step-fade"
-                style={{
-                  color: "transparent",
-                  WebkitTextStroke: "1.5px var(--color-ink)",
-                  opacity: 0.14,
-                }}
-              >
-                {STEPS[active].no}
-              </span>
-
-              <div key={active} className="relative animate-step-fade">
-                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-peach">
-                  {/* Emphasis ring — same treatment as the hub node in StatsNetworkIllustration */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -inset-2 rounded-full border"
-                    style={{ borderColor: "#ff5c35", opacity: 0.35 }}
-                  />
-                  <Icon name={STEPS[active].icon} className="h-7 w-7 text-brand" />
-                </span>
-                <h3 className="text-h3 mt-5 text-ink">{STEPS[active].title}</h3>
-                <p className="lead mt-2.5 max-w-md">{STEPS[active].description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Progress row */}
-          <div className="mt-5 flex items-center gap-4">
-            {STEPS.map((step, i) => {
-              const isActive = i === active;
-              // Lines before the active step are already complete (snap full);
-              // the line right after the active dot fills progressively in
-              // sync with the auto-cycle timer as that step "becomes active"
-              // for the next one; lines further ahead stay empty.
-              const isComplete = i < active;
-              const isFilling = i === active;
-              return (
-                <div key={step.no} className="flex flex-1 items-center gap-4 last:flex-initial">
-                  <button
-                    type="button"
-                    aria-label={`Go to step ${i + 1}: ${step.title}`}
-                    onClick={() => selectStep(i)}
-                    className={[
-                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200",
-                      isActive
-                        ? "bg-brand text-white"
-                        : "text-muted ring-1 ring-ink/20 hover:ring-ink/40",
-                    ].join(" ")}
-                  >
-                    {i + 1}
-                  </button>
-                  {i < STEPS.length - 1 && (
-                    <div className="relative h-px flex-1 bg-line">
-                      <div
-                        className="absolute inset-y-0 left-0 bg-brand"
-                        style={{
-                          width: isComplete ? "100%" : "0%",
-                        }}
-                      />
-                      {isFilling && (
-                        <div
-                          key={`filling-${active}-${i}`}
-                          className="absolute inset-y-0 left-0 origin-left bg-brand"
-                          style={{
-                            width: "100%",
-                            animation:
-                              !reducedMotion ? `progress-fill ${CYCLE_MS}ms linear forwards` : "none",
-                            animationPlayState: paused ? "paused" : "running",
-                            transform: reducedMotion ? "scaleX(0)" : undefined,
-                          }}
+            <div id={panelId} role="tabpanel" aria-labelledby={`automation-os-tab-${active}`}>
+              {STEPS.map((step, i) => {
+                const isActive = i === active;
+                // Cascade the cards diagonally, rising toward the top-right —
+                // each step sits higher and further right than the last, with
+                // enough stride between them that none overlap.
+                const bottomPct = 8 + i * 24;
+                const leftPct = 4 + i * 32;
+                return (
+                  <div key={step.no} aria-hidden={!isActive}>
+                    {/* Dashed connector down to the wedge baseline */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute w-px border-l border-dashed transition-colors duration-300"
+                      style={{
+                        left: `${leftPct + 8}%`,
+                        bottom: 0,
+                        height: `${bottomPct}%`,
+                        borderColor: isActive ? "rgba(255,92,53,0.45)" : "rgba(28,43,38,0.12)",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => selectStep(i)}
+                      className={[
+                        "absolute w-[28%] min-w-[12rem] max-w-[16rem] rounded-xl border p-5 text-left transition-all duration-300",
+                        isActive
+                          ? "z-10 border-line bg-white opacity-100 shadow-[0_8px_24px_rgba(16,49,41,0.08)]"
+                          : "border-line/70 bg-white/60 opacity-70 hover:opacity-90",
+                      ].join(" ")}
+                      style={{ left: `${leftPct}%`, bottom: `${bottomPct}%` }}
+                    >
+                      <span
+                        className={[
+                          "relative inline-flex h-11 w-11 items-center justify-center rounded-full",
+                          isActive ? "bg-peach" : "bg-mist",
+                        ].join(" ")}
+                      >
+                        <Icon
+                          name={step.icon}
+                          className={`h-5 w-5 ${isActive ? "text-brand" : "text-muted"}`}
                         />
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                      </span>
+                      <p
+                        className={`mt-3 text-base leading-relaxed ${
+                          isActive ? "font-semibold text-ink" : "text-muted"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

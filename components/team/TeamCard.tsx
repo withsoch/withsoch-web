@@ -48,7 +48,6 @@ export function TeamCard({ name, role, bio, photo, socials, index }: TeamCardPro
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-h3 text-ink font-semibold">{name}</h3>
-        <span className="mt-1 h-0.5 w-8 rounded-full bg-brand" />
         <p className="mt-3 line-clamp-5 text-sm leading-relaxed text-slate">{bio}</p>
 
         {socials.length > 0 && (

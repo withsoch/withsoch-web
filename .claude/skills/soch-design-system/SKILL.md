@@ -2,17 +2,18 @@
 name: soch-design-system
 description: >-
   Soch ecosystem design system — the HubSpot-style brand language behind Soch
-  Catalyst (Fraunces serif headlines, Inter body, flat #ff5c35 orange, warm cream
-  surfaces, forest-green CTA, borders over shadows). Use when creating a new Soch
-  marketing site, scaffolding one from scratch, restyling or building a page to
-  match Soch Catalyst, or applying Soch branding, tokens, typography, buttons, or
-  section layouts. Covers Tailwind v4 @theme tokens, the fluid type scale,
-  component recipes, motion, the content model, and page composition rhythm.
+  Catalyst (Wix Madefor Text — weight 500 headings, weight 400 body — flat
+  #ff5c35 orange, warm cream surfaces, forest-green CTA, borders over shadows).
+  Use when creating a new Soch marketing site, scaffolding one from scratch,
+  restyling or building a page to match Soch Catalyst, or applying Soch
+  branding, tokens, typography, buttons, or section layouts. Covers Tailwind
+  v4 @theme tokens, the fluid type scale, component recipes, motion, the
+  content model, and page composition rhythm.
 ---
 
 # Soch Ecosystem Design System
 
-Reproduce the Soch look — *"editorial serif headlines · warm cream · flat orange ·
+Reproduce the Soch look — *"Wix Madefor Text headlines · warm cream · flat orange ·
 forest CTA"* — on any site in the ecosystem. This is the fast path; the exhaustive
 reference (every recipe, the footer/header/testimonial patterns, the full content
 schema) is **`DESIGN.md`** at the repo root — read it when you need more than the
@@ -31,9 +32,9 @@ essentials below.
 ## Stack
 
 Next.js 16 (App Router) · React 19 · TypeScript · Tailwind v4 (CSS-first) ·
-`motion/react`. `@/` alias = repo root. Fonts via `next/font/google`: **Inter**
-(`--font-inter`, sans) + **Fraunces** (`--font-fraunces`, serif, weights 400/500/600,
-normal+italic), variables applied on `<html>`.
+`motion/react`. `@/` alias = repo root. Fonts via `next/font/google`: **Wix
+Madefor Text** (`--font-wix-madefor-text`, weights 400/500/600/700 — 500 for
+headings, 400 for body), variable applied on `<html>`.
 
 ## Tokens — paste verbatim into `app/globals.css`
 
@@ -63,9 +64,9 @@ normal+italic), variables applied on `<html>`.
   --color-teal: #1f7a8c;
   --color-leaf: #1f8a66;
   --color-linkedin: #0a66c2;
-  /* Fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  /* Fonts — single family: Wix Madefor Text */
+  --font-sans: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
   /* Shadows - subtle; borders preferred over big shadows */
   --shadow-soft: 0 1px 2px rgba(20, 30, 25, 0.04);
   --shadow-card: 0 6px 22px -12px rgba(20, 30, 25, 0.18);
@@ -74,12 +75,12 @@ normal+italic), variables applied on `<html>`.
 }
 ```
 
-Body is white `#ffffff`; warm tones are for **sections**. `h1–h4` default to the
-serif at **font-weight 540**, tracking `-0.012em`, `text-wrap: balance`. Fluid type
+Body is white `#ffffff`; warm tones are for **sections**. `h1–h4` default to
+**font-weight 500**, tracking `-0.012em`, `text-wrap: balance`. Fluid type
 classes (in `@layer components`): `.text-display`
-`clamp(2.7rem,1.5rem+4.4vw,4.7rem)`/540, `.text-h2`
-`clamp(2.05rem,1.4rem+2.3vw,3.3rem)`/540, `.text-h3`
-`clamp(1.35rem,1.15rem+0.7vw,1.7rem)`/560, `.lead`
+`clamp(2.7rem,1.5rem+4.4vw,4.7rem)`/500, `.text-h2`
+`clamp(2.05rem,1.4rem+2.3vw,3.3rem)`/500, `.text-h3`
+`clamp(1.35rem,1.15rem+0.7vw,1.7rem)`/500, `.lead`
 `clamp(1.075rem,1rem+0.4vw,1.28rem)` in `text-slate`. Headlines put one word in
 `italic text-brand`.
 
@@ -162,8 +163,8 @@ metrics as value+label outcomes.
    config file**) + `motion`; set `@/` alias.
 2. `app/globals.css`: `@import "tailwindcss";` → paste `@theme` → add base +
    typography + `.container-x` + `.eyebrow`/`.rule-dashed` + animation utilities.
-3. `app/layout.tsx`: load Inter + Fraunces, apply vars on `<html>`, set metadata
-   (title template `"%s · <Site>"`).
+3. `app/layout.tsx`: load Wix Madefor Text, apply the variable on `<html>`, set
+   metadata (title template `"%s · <Site>"`).
 4. Port `components/ui/{Button,Section,Reveal}.tsx` + `components/Icons.tsx`.
 5. Create `lib/content.ts` (all copy/config).
 6. Compose sections in the page rhythm; asymmetric grids, hairline dividers,

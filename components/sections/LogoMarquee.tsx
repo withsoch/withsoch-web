@@ -10,15 +10,15 @@ export function LogoMarquee() {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
   return (
-    <section className="bg-mist py-16 sm:py-20 overflow-hidden">
-      <div className="container-x flex flex-col items-center text-center gap-3 mb-10">
+    <section className="bg-mist py-8 sm:py-10 overflow-hidden">
+      <div className="container-x flex flex-col items-center text-center gap-3 mb-6">
         <h2 className="text-h2">Trusted by fast-moving startups</h2>
         <p className="lead max-w-xl">
           We embed into your team and deploy automation systems that run while your people stay
           focused on growth
         </p>
       </div>
-      <div className="flex w-max animate-marquee gap-10">
+      <div className="flex w-max animate-marquee gap-4">
         {logos.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}

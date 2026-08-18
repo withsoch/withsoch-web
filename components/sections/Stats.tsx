@@ -7,30 +7,34 @@
 
 import { STATS, STATS_HEADING, STATS_INTRO } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
-import { StatsWorldIllustration } from "@/components/sections/StatsWorldIllustration";
 
 export function Stats({ showHeading = true }: { showHeading?: boolean }) {
   return (
-    <Section className="bg-forest">
+    <Section className="bg-mist" tight>
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="hidden lg:block">
-          <StatsWorldIllustration />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a843f763c15c5c7d8347a60_statistics-image.png"
+            alt=""
+            className="w-full max-w-2xl"
+          />
         </div>
 
         <div className="flex flex-col items-start text-left">
           {showHeading && (
             <>
-              <p className="lead max-w-md text-white/75">{STATS_INTRO}</p>
-              <h2 className="text-h2 mt-4 max-w-md text-white">{STATS_HEADING}</h2>
+              <p className="lead max-w-md text-slate">{STATS_INTRO}</p>
+              <h2 className="text-h2 mt-4 max-w-md text-ink">{STATS_HEADING}</h2>
             </>
           )}
 
           <div className="mt-10 grid grid-cols-2 gap-8 sm:gap-10">
             {STATS.map((stat) => (
               <div key={stat.label} className="flex flex-col gap-3">
-                <span className="text-display text-brand-light">{stat.value}</span>
-                <div className="border-t border-white/10 pt-3">
-                  <p className="text-white/70">{stat.label}</p>
+                <span className="text-display text-brand">{stat.value}</span>
+                <div className="border-t border-line pt-3">
+                  <p className="text-slate">{stat.label}</p>
                 </div>
               </div>
             ))}

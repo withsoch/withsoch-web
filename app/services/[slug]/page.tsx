@@ -118,24 +118,27 @@ export default async function ServiceDetailPage({
       <Section className="bg-mist">
         <Reveal>
           <div className="flex flex-col gap-10">
-            <div className="mx-auto max-w-2xl text-center flex flex-col gap-4">
-              <h2 className="text-h2">What you get in {service.title}</h2>
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center lg:w-[calc(100%+10rem)] lg:-mx-20">
+              <h2 className="text-h2 max-w-2xl">What you get in {service.title}</h2>
+              <Button href="/contact" variant="secondary" size="lg" className="shrink-0">
+                Get Started
+              </Button>
             </div>
             <div
-              className={`grid grid-cols-1 sm:grid-cols-2 ${offeringsColsClass} gap-7 lg:w-[calc(100%+6rem)] lg:-mx-12`}
+              className={`grid grid-cols-1 sm:grid-cols-2 ${offeringsColsClass} gap-7 lg:w-[calc(100%+10rem)] lg:-mx-20`}
             >
               {service.offerings.map((offering) => (
                 <div
                   key={offering.title}
-                  className="group flex flex-col gap-4 rounded-2xl border border-line bg-white p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
+                  className="group flex h-full flex-col gap-4 rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-start gap-4">
                     <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-peach text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
                       <Icon name={offering.icon} className="h-7 w-7" />
                     </span>
-                    <h3 className="text-lg font-semibold text-ink">{offering.title}</h3>
+                    <h3 className="pt-2 text-lg font-semibold leading-snug text-ink">{offering.title}</h3>
                   </div>
-                  <p className="text-sm leading-relaxed text-slate">{offering.description}</p>
+                  <p className="flex-1 text-sm leading-relaxed text-slate">{offering.description}</p>
                 </div>
               ))}
             </div>

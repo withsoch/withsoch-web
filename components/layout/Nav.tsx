@@ -9,6 +9,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SERVICES, CASE_STUDIES, SCHEDULER_URL } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
@@ -17,6 +18,14 @@ const featured = CASE_STUDIES[0];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinkClass = (href: string) => {
+    const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return `rounded-full px-4 py-2 text-base font-medium transition-colors ${
+      active ? "bg-mist text-ink" : "text-ink/70 hover:text-ink"
+    }`;
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-ink/10">
@@ -32,10 +41,7 @@ export function Nav() {
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-2">
-          <Link
-            href="/"
-            className="rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink"
-          >
+          <Link href="/" className={navLinkClass("/")}>
             Home
           </Link>
           <div
@@ -145,16 +151,10 @@ export function Nav() {
               </div>
             )}
           </div>
-          <Link
-            href="/about"
-            className="rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink"
-          >
+          <Link href="/about" className={navLinkClass("/about")}>
             About
           </Link>
-          <Link
-            href="/contact"
-            className="rounded-full bg-mist px-4 py-2 text-base font-medium text-ink"
-          >
+          <Link href="/contact" className={navLinkClass("/contact")}>
             Contact
           </Link>
         </nav>

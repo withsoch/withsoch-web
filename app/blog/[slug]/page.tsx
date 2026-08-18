@@ -56,6 +56,7 @@ export default async function BlogDetailPage({
         eyebrow={post.category}
         heading={post.title}
         sub={formatPostDate(post.date)}
+        align="center"
       />
 
       <Reveal as="section">

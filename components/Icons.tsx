@@ -30,7 +30,10 @@ export type IconName =
   | "minus"
   | "mail"
   | "phone"
-  | "pin";
+  | "pin"
+  | "pinwheel"
+  | "clover"
+  | "burst";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -154,6 +157,54 @@ const PATHS: Record<IconName, ReactElement> = {
     <>
       <path d="M12 21s-6.5-5.6-6.5-10.8A6.5 6.5 0 0112 3.7a6.5 6.5 0 016.5 6.5C18.5 15.4 12 21 12 21z" />
       <circle cx="12" cy="10.2" r="2.2" />
+    </>
+  ),
+  // Four curved swirling petals, like a pinwheel.
+  pinwheel: (
+    <>
+      <path
+        d="M12 12C12 8.2 9 5.2 5.2 5.2c0 3.8 3 6.8 6.8 6.8z"
+        fill="currentColor"
+        stroke="none"
+      />
+      <path
+        d="M12 12C15.8 12 18.8 9 18.8 5.2 15 5.2 12 8.2 12 12z"
+        fill="currentColor"
+        stroke="none"
+      />
+      <path
+        d="M12 12c0 3.8 3 6.8 6.8 6.8 0-3.8-3-6.8-6.8-6.8z"
+        fill="currentColor"
+        stroke="none"
+      />
+      <path
+        d="M12 12c-3.8 0-6.8 3-6.8 6.8 3.8 0 6.8-3 6.8-6.8z"
+        fill="currentColor"
+        stroke="none"
+      />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  // Four rounded petals forming a clover, plus thin radiating lines.
+  clover: (
+    <>
+      <path d="M4 12h4M16 12h4M12 4v4M12 16v4" />
+      <path d="M6.5 6.5l2.6 2.6M14.9 14.9l2.6 2.6M17.5 6.5l-2.6 2.6M9.1 14.9l-2.6 2.6" />
+      <ellipse cx="12" cy="9" rx="2.1" ry="3" fill="currentColor" stroke="none" />
+      <ellipse cx="12" cy="15" rx="2.1" ry="3" fill="currentColor" stroke="none" />
+      <ellipse cx="9" cy="12" rx="3" ry="2.1" fill="currentColor" stroke="none" />
+      <ellipse cx="15" cy="12" rx="3" ry="2.1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  // Spiky starburst with thin radiating lines, like a sparkler.
+  burst: (
+    <>
+      <path d="M12 2v5M12 17v5M2 12h5M17 12h5M4.6 4.6l3.5 3.5M15.9 15.9l3.5 3.5M19.4 4.6l-3.5 3.5M8.1 15.9l-3.5 3.5" />
+      <path
+        d="M12 8.6c0 1.9 1.5 3.4 3.4 3.4-1.9 0-3.4 1.5-3.4 3.4 0-1.9-1.5-3.4-3.4-3.4 1.9 0 3.4-1.5 3.4-3.4z"
+        fill="currentColor"
+        stroke="none"
+      />
     </>
   ),
 };

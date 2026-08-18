@@ -42,7 +42,7 @@ export function Footer() {
                 alt="Soch"
                 width={173}
                 height={58}
-                className="h-11 w-auto"
+                className="h-16 w-auto"
               />
             </Link>
             <p className="max-w-xs text-sm text-white/60">{SITE.tagline}</p>
@@ -136,7 +136,7 @@ export function Footer() {
             alt="Soch"
             width={173}
             height={58}
-            className="h-8 w-auto"
+            className="h-11 w-auto"
           />
         </div>
 
