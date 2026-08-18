@@ -1,13 +1,14 @@
 // app/services/page.tsx
 
 import Link from "next/link";
+import Image from "next/image";
 import { SERVICES } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
-import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
+import { SERVICE_LIST_IMAGES } from "@/components/sections/ServiceTabImages";
 import { ServicesFaqSection } from "@/components/sections/ServicesFaqSection";
 
 export default function ServicesPage() {
@@ -23,16 +24,22 @@ export default function ServicesPage() {
       <Section className="bg-white">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, i) => {
-            const Diagram = SERVICE_DIAGRAMS[service.slug];
+            const heroImage = SERVICE_LIST_IMAGES[service.slug];
             return (
             <Reveal key={service.slug} delay={i * 0.05}>
               <Link
                 href={`/services/${service.slug}`}
                 className="group flex h-full flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
               >
-                {Diagram && (
-                  <div className="h-28 w-full rounded-lg bg-mist">
-                    <Diagram />
+                {heroImage && (
+                  <div className="relative aspect-[5/4] w-full overflow-hidden rounded-lg bg-mist">
+                    <Image
+                      src={heroImage}
+                      alt={`${service.title} hero`}
+                      fill
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+                      className="object-contain"
+                    />
                   </div>
                 )}
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">

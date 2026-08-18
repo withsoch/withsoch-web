@@ -51,10 +51,7 @@ export default function ContactPage() {
           </div>
 
           <Reveal>
-            <div
-              className="mx-auto mt-10 max-w-2xl rounded-xl border border-line bg-mist"
-              style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}
-            >
+            <div style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}>
               <iframe
                 src="https://cal.com/consult-with-riz/sochwork"
                 style={{
@@ -62,6 +59,7 @@ export default function ContactPage() {
                   height: "900px",
                   border: "3",
                   borderRadius: "20px",
+                  background: "#000",
                 }}
                 loading="lazy"
                 allowFullScreen

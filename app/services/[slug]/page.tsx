@@ -159,7 +159,7 @@ export default async function ServiceDetailPage({
         <Reveal>
           <div className="flex flex-col gap-8">
             <h2 className="text-h3">Explore our other services</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
               {otherServices.map((other) => {
                 const description = Array.isArray(other.description)
                   ? other.description[0]
@@ -172,18 +172,20 @@ export default async function ServiceDetailPage({
                     href={`/services/${other.slug}`}
                     className="group flex flex-col h-full rounded-xl border border-line bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25"
                   >
-                    <div className="relative flex aspect-[16/9] items-center justify-center bg-mist p-4">
+                    <div className="relative flex aspect-[21/9] items-center justify-center bg-mist p-4">
                       <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-                      <span className="relative w-full max-w-[180px]">
-                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-12 w-12 text-brand" />}
+                      <span className="relative w-full max-w-[160px]">
+                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-10 w-10 text-brand" />}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col gap-2 px-5 py-4">
-                      <span className="text-h3 font-semibold text-ink">{other.title}</span>
+                      <span className="text-lg font-serif font-semibold leading-snug text-ink">
+                        {other.title}
+                      </span>
                       <div className="flex flex-1 flex-col gap-2">
-                        <p className="text-sm text-slate line-clamp-3">{description}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {tags.map((tag) => (
+                        <p className="text-sm text-slate line-clamp-2">{description}</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {tags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
                               className="rounded-full bg-peach px-2.5 py-1 text-xs font-semibold text-brand"

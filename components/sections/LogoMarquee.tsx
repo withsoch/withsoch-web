@@ -18,17 +18,17 @@ export function LogoMarquee() {
           focused on growth
         </p>
       </div>
-      <div className="flex w-max animate-marquee gap-8">
+      <div className="flex w-max animate-marquee gap-10">
         {logos.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}
-            className="flex h-36 w-36 shrink-0 items-center justify-center rounded-xl border border-line bg-white p-6"
+            className="flex h-48 w-56 shrink-0 items-center justify-center rounded-xl border border-line bg-white p-8"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo.src}
               alt={logo.name.replace(" (name TBC)", "")}
-              className="h-10 w-auto max-w-full object-contain"
+              className="h-14 w-auto max-w-full object-contain"
             />
           </div>
         ))}

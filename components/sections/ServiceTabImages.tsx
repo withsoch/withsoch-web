@@ -89,3 +89,18 @@ export const SERVICE_HOME_IMAGES: Record<string, string> = {
   "revops-automation":
     "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9bfe39ba7248c944a2_Opreation%20Image.webp",
 };
+
+// /services index grid — each card's hero thumbnail, matching the dedicated
+// service page's hero image on the live withsoch.com Webflow build (services.html).
+export const SERVICE_LIST_IMAGES: Record<string, string> = {
+  "operations-process-automation":
+    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d98616284ec6506baf178_manual_vs_automated_ops2_752x501.png",
+  "ai-agent-development":
+    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a061ecee3ce032231342dd3_AI_Agent_Hero_752x501.png",
+  "customer-support-automation":
+    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062229fb4e00093fc0f5fe_CS_Hero_752x501.png",
+  "marketing-automation":
+    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c413388a0bb22111d1bbf_Update-4.png",
+  "revops-automation":
+    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c0acb5aa3b5ca1c0a7c38_row35_final_752x501%20(2).png",
+};
