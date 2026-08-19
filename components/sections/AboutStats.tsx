@@ -7,6 +7,7 @@
 import { ABOUT_STATS, ABOUT_STATS_BOTTOM } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
+import { AutomationLottie } from "@/components/sections/AutomationLottie";
 import Link from "next/link";
 
 // Small looping "automation" motif — nodes pulsing and a signal travelling
@@ -25,40 +26,7 @@ function AutomationAnimation() {
         aria-hidden="true"
       />
 
-      <svg
-        viewBox="0 0 320 320"
-        className="absolute inset-0 h-full w-full"
-        aria-hidden="true"
-      >
-        <g stroke="#e7e2d7" strokeWidth="1.5" fill="none">
-          <path d="M64 96 L160 160 L256 96" />
-          <path d="M64 224 L160 160 L256 224" />
-          <path d="M160 160 L160 40" />
-        </g>
-        <g stroke="#ff5c35" strokeWidth="2" fill="none" strokeLinecap="round">
-          <path
-            className="animate-dash-flow"
-            d="M64 96 L160 160 L256 96"
-            strokeDasharray="6 10"
-          />
-          <path
-            className="animate-dash-flow"
-            d="M160 160 L160 40"
-            strokeDasharray="6 10"
-          />
-        </g>
-        {[
-          [64, 96],
-          [256, 96],
-          [64, 224],
-          [256, 224],
-          [160, 40],
-        ].map(([cx, cy]) => (
-          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="4" fill="#1c2b26" fillOpacity="0.3" />
-        ))}
-        <circle cx={160} cy={160} r="10" fill="#ff5c35" className="animate-pulse-dot" />
-        <circle cx={160} cy={160} r="5" fill="#ffffff" />
-      </svg>
+      <AutomationLottie />
     </div>
   );
 }
@@ -73,24 +41,63 @@ function WorkflowNodes() {
       className="h-6 w-20 shrink-0"
       aria-hidden="true"
     >
-      <path
-        d="M10 14 L44 14 M52 14 L86 14"
-        stroke="#e7e2d7"
-        strokeWidth="1.5"
-        fill="none"
-      />
-      <path
-        d="M10 14 L86 14"
-        stroke="#ff5c35"
-        strokeWidth="1.5"
-        strokeDasharray="4 7"
-        className="animate-dash-flow"
-        fill="none"
-      />
+      {/* Static wiring: trigger -> engine -> done */}
+      <path d="M10 14 L86 14" stroke="#e7e2d7" strokeWidth="1.5" fill="none" />
+
+      {/* Trigger node — where the task starts */}
       <rect x="4" y="8" width="12" height="12" rx="3.5" fill="#fff" stroke="#e7e2d7" strokeWidth="1.5" />
-      <rect x="80" y="8" width="12" height="12" rx="3.5" fill="#fff" stroke="#e7e2d7" strokeWidth="1.5" />
-      <rect x="42" y="8" width="12" height="12" rx="3.5" fill="#ffe8dd" stroke="#ff5c35" strokeWidth="1.5" />
-      <circle cx="48" cy="14" r="2" fill="#ff5c35" className="animate-pulse-dot" />
+
+      {/* Engine node — lights up while it "runs" the automation, with a
+          small spinning ring standing in for active processing */}
+      <rect
+        x="42"
+        y="8"
+        width="12"
+        height="12"
+        rx="3.5"
+        strokeWidth="1.5"
+        className="animate-engine-active"
+        style={{ transformOrigin: "48px 14px" }}
+      />
+      <path
+        d="M48 11 a3 3 0 1 1 -2.6 1.5"
+        stroke="#ff5c35"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        fill="none"
+        className="animate-engine-spin"
+      />
+
+      {/* Done node — flashes and checks off once the automation completes */}
+      <rect
+        x="80"
+        y="8"
+        width="12"
+        height="12"
+        rx="3.5"
+        strokeWidth="1.5"
+        className="animate-node-complete"
+        style={{ transformOrigin: "86px 14px" }}
+      />
+      <path
+        d="M83.2 14 L85.2 16 L88.8 12"
+        stroke="#ff5c35"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        className="animate-check-reveal"
+      />
+
+      {/* Signal relaying from node to node */}
+      <circle
+        cx="10"
+        cy="14"
+        r="2.6"
+        fill="#ff5c35"
+        className="animate-relay-travel"
+        style={{ transformOrigin: "10px 14px" }}
+      />
     </svg>
   );
 }

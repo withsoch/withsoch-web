@@ -3,9 +3,9 @@
 // Homepage "From our blogs" section — the 3 most recent posts, reusing the
 // same BlogCardSmall styling as the /blog page grid.
 
-import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { BlogCardSmall } from "@/components/BlogCard";
+import { Button } from "@/components/ui/Button";
 
 export function BlogTeaser() {
   const posts = getAllPosts().slice(0, 3);
@@ -29,13 +29,9 @@ export function BlogTeaser() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <Link
-            href="/blog"
-            className="group inline-flex items-center gap-2 font-semibold text-brand hover:text-brand-dark"
-          >
+          <Button href="/blog" variant="secondary" size="lg" arrow>
             Explore all blogs
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

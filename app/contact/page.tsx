@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
 import { ContactFaq } from "@/components/sections/ContactFaq";
-import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
 
@@ -51,12 +50,21 @@ export default function ContactPage() {
           </div>
 
           <Reveal>
-            <div style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}>
+            <div
+              style={{
+                width: "100%",
+                maxWidth: "780px",
+                overflow: "hidden",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "3rem",
+              }}
+            >
               <iframe
                 src="https://cal.com/consult-with-riz/sochwork"
                 style={{
                   width: "100%",
-                  height: "900px",
+                  height: "940px",
                   border: "3",
                   borderRadius: "20px",
                   background: "#000",
@@ -76,10 +84,10 @@ export default function ContactPage() {
             {CONTACT_ITEMS.map((item) => (
               <div
                 key={item.label}
-                className="rounded-xl border border-line bg-mist p-6 transition-colors hover:border-ink/25"
+                className="flex min-h-[168px] flex-col justify-center gap-4 rounded-3xl border border-line bg-mist p-7 transition-colors hover:border-ink/25"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand ring-1 ring-line">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand ring-1 ring-line">
                     <Icon name={item.icon} className="h-4.5 w-4.5" />
                   </span>
                   <h2 className="text-h3 !text-[1.05rem]">{item.label}</h2>
@@ -87,12 +95,12 @@ export default function ContactPage() {
                 {item.href ? (
                   <a
                     href={item.href}
-                    className="mt-3 block text-slate transition-colors hover:text-brand"
+                    className="block text-slate transition-colors hover:text-brand"
                   >
                     {item.value}
                   </a>
                 ) : (
-                  <p className="mt-3 text-slate">{item.value}</p>
+                  <p className="text-slate">{item.value}</p>
                 )}
               </div>
             ))}
@@ -102,10 +110,6 @@ export default function ContactPage() {
 
       <Reveal as="section">
         <ContactFaq />
-      </Reveal>
-
-      <Reveal as="section">
-        <CtaBand />
       </Reveal>
     </main>
   );

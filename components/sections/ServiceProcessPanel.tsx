@@ -68,7 +68,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
       }`}
     >
       <ServiceAccordion service={service} openKey={openKey} onOpenKeyChange={handleOpenKeyChange} />
-      <div className="relative h-full min-h-[480px] sm:min-h-[560px] w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+      <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
         <DiagramFrame
           eyebrow={tabImage ? undefined : `Service / ${service.title}`}
           caption={tabImage ? undefined : caption}

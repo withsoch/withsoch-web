@@ -81,20 +81,32 @@ export default function AboutPage() {
 
       <Reveal as="section">
         <Section className="bg-mist">
-          <SectionHeading title={PRINCIPLES_HEADING} intro={PRINCIPLES_INTRO} />
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PRINCIPLES.map((principle) => (
-              <div
-                key={principle.title}
-                className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
-              >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
-                  <Icon name="spark" className="h-5.5 w-5.5" />
-                </span>
-                <h3 className="text-h3">{principle.title}</h3>
-                <p className="text-slate">{principle.description}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:gap-16">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <SectionHeading title={PRINCIPLES_HEADING} intro={PRINCIPLES_INTRO} align="left" />
+            </div>
+            <div className="flex flex-col gap-3">
+              {PRINCIPLES.map((principle, index) => (
+                <div
+                  key={principle.title}
+                  className="group flex items-start gap-5 rounded-2xl border border-line bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-card sm:gap-6 sm:p-7"
+                >
+                  <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-peach transition-colors duration-200 group-hover:bg-brand">
+                    <Icon
+                      name={principle.icon}
+                      className="h-5 w-5 text-brand transition-colors duration-200 group-hover:text-white"
+                    />
+                    <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-line bg-white text-[0.7rem] font-semibold text-muted">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </span>
+                  <div className="pt-0.5">
+                    <h3 className="text-h3">{principle.title}</h3>
+                    <p className="mt-1.5 text-slate">{principle.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </Section>
       </Reveal>

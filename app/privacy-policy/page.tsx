@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="flex-1">
       <div className="bg-mist py-16 sm:py-20">
-        <div className="container-x">
+        <div className="container-x text-center">
           <h1 className="text-display">Privacy Policy</h1>
         </div>
       </div>

@@ -327,11 +327,13 @@ export const QUIZ_COPY = {
 // Source `const WEBHOOK_URL = 'https://sochconsulting.app.n8n.cloud/webhook/webflow-form';`
 export const WEBHOOK_URL = "https://sochconsulting.app.n8n.cloud/webhook/webflow-form";
 
-// Source result-screen Cal.com embed: `src="https://cal.com/consult-with-riz/work"`.
+// Source result-screen Cal.com embed: `src="https://cal.com/consult-with-riz/sochwork"`
+// (matches the working link used on app/contact/page.tsx — the `work` slug
+// used here previously 404'd on Cal.com).
 // NOTE: lib/content.ts already defines `SCHEDULER_URL = "/contact"` as a
 // deliberate, prior decision — "Book a Free Call" routes internally with no
 // external scheduler fallback (see lib/content.ts:39-42). Per that decision,
 // this file does NOT redefine a conflicting `SCHEDULER_URL`. The Cal.com
 // link is exposed under its own name, scoped to the quiz's post-submit
 // booking embed only — it should not be wired into the site-wide CTA.
-export const QUIZ_CAL_BOOKING_URL = "https://cal.com/consult-with-riz/work";
+export const QUIZ_CAL_BOOKING_URL = "https://cal.com/consult-with-riz/sochwork";

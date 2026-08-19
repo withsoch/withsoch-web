@@ -93,7 +93,7 @@ export function ServiceAccordion({
       title: "Deliverables",
       icon: "audit",
       content: (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <ul className="flex flex-col gap-3">
           {service.deliverables.map((item) => (
             <li key={item} className="flex items-start gap-2.5 text-slate">
               <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
@@ -110,7 +110,8 @@ export function ServiceAccordion({
       content: (
         <ul className="flex flex-col gap-3">
           {service.outcomes.map((outcome) => (
-            <li key={outcome} className="flex items-start gap-3 border-l-2 border-brand pl-4 text-slate">
+            <li key={outcome} className="flex items-start gap-3 text-slate">
+              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
               {outcome}
             </li>
           ))}

@@ -11,7 +11,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { CTAS } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/Icons";
+import { Reveal } from "@/components/ui/Reveal";
+import { Icon, type IconName } from "@/components/Icons";
 import {
   PRE_GATE_QUESTIONS,
   QUIZ_QUESTIONS,
@@ -27,6 +28,12 @@ import {
 } from "@/lib/ai-ops-quiz-content";
 
 const PILLAR_ORDER: Pillar[] = ["ops_readiness", "automation", "team_efficiency"];
+
+const PILLAR_ICONS: Record<Pillar, IconName> = {
+  ops_readiness: "shield",
+  automation: "spark",
+  team_efficiency: "profile",
+};
 
 type Stage = "quiz" | "pregate" | "results";
 
@@ -417,7 +424,7 @@ function EmailGate({
           autoComplete={QUIZ_COPY.emailGate.fields.name.autocomplete}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm sm:w-1/3"
+          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-ink/45 sm:w-1/3"
         />
         <input
           type="email"
@@ -426,7 +433,7 @@ function EmailGate({
           autoComplete={QUIZ_COPY.emailGate.fields.email.autocomplete}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm sm:flex-1"
+          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-ink/45 sm:flex-1"
         />
         <Button type="submit" disabled={sending}>
           {sending ? QUIZ_COPY.emailGate.submitButtonSending : QUIZ_COPY.emailGate.submitButton}
@@ -453,10 +460,8 @@ function ResultsScreen({
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-col items-start justify-between gap-4 border-b border-line pb-6 sm:flex-row sm:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand">
-                {QUIZ_COPY.results.eyebrow}
-              </p>
-              <p className="mt-1 text-sm font-medium text-muted">
+              <p className="eyebrow inline-flex">{QUIZ_COPY.results.eyebrow}</p>
+              <p className="mt-2 text-sm font-medium text-muted">
                 {QUIZ_COPY.results.reportDatePrefix}
               </p>
             </div>
@@ -468,105 +473,127 @@ function ResultsScreen({
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted">
-                {QUIZ_COPY.results.overallScoreLabel}
-              </p>
-              <div className="mt-1 flex items-baseline gap-1">
-                <span className="text-display text-ink">{overall}</span>
-                <span className="text-lg text-muted">{QUIZ_COPY.results.scoreDenominator}</span>
+          <Reveal>
+            <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted">
+                  {QUIZ_COPY.results.overallScoreLabel}
+                </p>
+                <div className="mt-1 flex items-baseline gap-1">
+                  <span className="text-display text-ink">{overall}</span>
+                  <span className="text-lg text-muted">{QUIZ_COPY.results.scoreDenominator}</span>
+                </div>
+                <div className="mt-4 flex gap-1">
+                  {Array.from({ length: 10 }).map((_, i) => {
+                    const segStyle = pillarStyle(i * 10 + 5);
+                    const segColors = {
+                      success: "bg-leaf",
+                      danger: "bg-brand-deep",
+                      neutral: "bg-brand",
+                    } as const;
+                    return (
+                      <span
+                        key={i}
+                        className={`h-3 flex-1 rounded-full ${
+                          i < activeSegs ? segColors[segStyle] : "bg-line"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="mt-1 flex justify-between text-xs text-muted">
+                  {QUIZ_COPY.results.segLabels.map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </div>
+                <div className="mt-6 border-t border-line pt-6">
+                  <p className="text-h3 text-ink">{tier.headline}</p>
+                </div>
               </div>
-              <div className="mt-3 flex gap-1">
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`h-1 flex-1 rounded-full ${i < activeSegs ? "bg-brand" : "bg-line"}`}
-                  />
-                ))}
-              </div>
-              <div className="mt-1 flex justify-between text-xs text-muted">
-                {QUIZ_COPY.results.segLabels.map((label) => (
-                  <span key={label}>{label}</span>
-                ))}
-              </div>
-              <div className="mt-6 border-t border-line pt-6">
-                <p className="text-h3 text-ink">{tier.headline}</p>
-              </div>
-            </div>
 
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted">
-                {QUIZ_COPY.results.pillarsEyebrow}
-              </p>
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {PILLAR_ORDER.map((pillar) => {
-                  const score = pillarScores[pillar];
-                  const style = pillarStyle(score);
-                  const colors = {
-                    success: "text-leaf",
-                    danger: "text-brand-dark",
-                    neutral: "text-ink",
-                  } as const;
-                  const bars = {
-                    success: "bg-leaf",
-                    danger: "bg-brand",
-                    neutral: "bg-ink-soft",
-                  } as const;
-                  return (
-                    <div
-                      key={pillar}
-                      className="flex flex-col gap-2 rounded-xl border border-line bg-white p-4"
-                    >
-                      <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-                        {PILLAR_LABELS[pillar]}
-                      </p>
-                      <p className={`text-3xl font-light ${colors[style]}`}>{score}%</p>
-                      <div className="h-1 rounded-full bg-line">
-                        <div
-                          className={`h-full rounded-full ${bars[style]}`}
-                          style={{ width: `${score}%` }}
-                        />
-                      </div>
-                      <p className={`text-xs ${colors[style]}`}>{pillarStatus(score)}</p>
-                    </div>
-                  );
-                })}
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted">
+                  {QUIZ_COPY.results.pillarsEyebrow}
+                </p>
+                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  {PILLAR_ORDER.map((pillar, i) => {
+                    const score = pillarScores[pillar];
+                    const style = pillarStyle(score);
+                    const colors = {
+                      success: "text-leaf",
+                      danger: "text-brand-dark",
+                      neutral: "text-ink",
+                    } as const;
+                    const bars = {
+                      success: "bg-leaf",
+                      danger: "bg-brand-dark",
+                      neutral: "bg-brand",
+                    } as const;
+                    const iconWash = {
+                      success: "bg-leaf/10 text-leaf",
+                      danger: "bg-peach text-brand-dark",
+                      neutral: "bg-mist text-ink-soft",
+                    } as const;
+                    return (
+                      <Reveal key={pillar} delay={i * 0.08}>
+                        <div className="flex h-full flex-col gap-3 rounded-xl border border-line bg-white p-4">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${iconWash[style]}`}
+                            >
+                              <Icon name={PILLAR_ICONS[pillar]} className="h-4 w-4" />
+                            </span>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                              {PILLAR_LABELS[pillar]}
+                            </p>
+                          </div>
+                          <p className={`text-3xl font-light ${colors[style]}`}>{score}%</p>
+                          <div className="h-2.5 rounded-full bg-line">
+                            <div
+                              className={`h-full rounded-full ${bars[style]}`}
+                              style={{ width: `${score}%` }}
+                            />
+                          </div>
+                          <p className={`text-xs ${colors[style]}`}>{pillarStatus(score)}</p>
+                        </div>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+                <p className="mt-5 border-t border-line pt-5 text-sm leading-relaxed text-slate">
+                  {tier.summary}
+                </p>
               </div>
-              <p className="mt-5 border-t border-line pt-5 text-sm leading-relaxed text-slate">
-                {tier.summary}
-              </p>
             </div>
-          </div>
+          </Reveal>
 
           <div className="mt-10 grid grid-cols-1 gap-3 border-t border-line pt-8 sm:grid-cols-3">
             {actions.map((action, i) => (
-              <div
-                key={action.label}
-                className="flex items-center gap-4 rounded-xl border border-line bg-white p-4"
-              >
-                <span className="text-2xl font-bold text-brand">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-                    {action.slot}
-                  </p>
-                  <p className="text-sm font-medium text-ink">{action.label}</p>
+              <Reveal key={action.label} delay={i * 0.08}>
+                <div className="flex h-full items-center gap-4 rounded-xl border border-line bg-white p-4">
+                  <span className="text-2xl font-bold text-brand">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                      {action.slot}
+                    </p>
+                    <p className="text-sm font-medium text-ink">{action.label}</p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           <EmailGate result={result} pregateValues={pregateValues} />
 
-          <div className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-10 text-center">
-            <h2 className="text-h3 text-ink">Want help acting on this?</h2>
-            <p className="lead max-w-xl">
+          <div className="mt-12 flex flex-col items-center gap-4 rounded-2xl bg-forest px-6 py-14 text-center sm:px-10">
+            <h2 className="text-h2 text-white">Want help acting on this?</h2>
+            <p className="lead max-w-xl text-white/75">
               Book a free call and we&rsquo;ll walk through your results and show you where
               automation creates the most leverage in your business.
             </p>
-            <Button href={CTAS.primary.href} size="lg" arrow>
+            <Button href={CTAS.primary.href} variant="light" size="lg" arrow>
               {CTAS.primary.label}
             </Button>
           </div>

@@ -19,7 +19,10 @@ export function AutomationOperatingSystem() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [fillPct, setFillPct] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -43,20 +46,40 @@ export function AutomationOperatingSystem() {
     setActive(i);
   }
 
+  // The growth wedge's leading edge should stop exactly at the active
+  // card's right edge — not a naive (active / total) percentage, since the
+  // cards are clamped between min-w-[12rem] and max-w-[16rem] and don't
+  // actually occupy their nominal 28% share at every viewport width.
+  useEffect(() => {
+    function measure() {
+      const panel = panelRef.current;
+      const card = cardRefs.current[active];
+      if (!panel || !card) return;
+      const panelRect = panel.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      if (panelRect.width === 0) return;
+      const pct = ((cardRect.right - panelRect.left) / panelRect.width) * 100;
+      setFillPct(pct);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [active]);
+
   const panelId = "automation-os-panel";
 
   return (
-    <section className="bg-white py-8 sm:py-10 lg:py-12">
-      <div className="container-x">
+    <section className="bg-white pb-8 pt-0 sm:pb-10 lg:pb-12">
+      <div className="mx-auto w-full max-w-[96rem] px-6 lg:px-10">
         <div
-          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-14"
+          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
         >
         {/* LEFT */}
-        <div>
+        <div className="lg:pl-2 xl:pl-4">
           <SectionHeading
             title="The Soch Automation Operating System"
             intro="A clear, repeatable process for deploying AI automation in your business."
@@ -111,18 +134,29 @@ export function AutomationOperatingSystem() {
 
           {/* Spotlight panel — pill tabs float over a cascading trio of step
               cards, wired to a diagonal "growth" wedge along the base. */}
-          <div className="relative isolate hidden h-[500px] overflow-hidden rounded-2xl border border-line bg-mist sm:block lg:h-[560px]">
+          <div
+            ref={panelRef}
+            className="relative isolate hidden h-[460px] overflow-hidden rounded-2xl border border-line bg-mist sm:block lg:h-[500px]"
+          >
             {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
             <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
 
-            {/* Diagonal growth wedge along the base */}
+            {/* Diagonal growth wedge along the base — the unfilled triangle is
+                the full step count, the brand-filled triangle scales its
+                width to (active step / total steps), animating as a progress
+                indicator rather than a static decoration. */}
             <div
               aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-1/2"
+              className="absolute inset-x-0 bottom-0 h-1/2 bg-line"
+              style={{ clipPath: "polygon(0% 100%, 100% 0%, 100% 100%)" }}
+            />
+            <div
+              aria-hidden="true"
+              className="absolute bottom-0 left-0 h-1/2 bg-brand transition-[width] duration-500"
               style={{
+                width: `${fillPct}%`,
                 clipPath: "polygon(0% 100%, 100% 0%, 100% 100%)",
-                background:
-                  "linear-gradient(115deg, rgba(255,92,53,0.16), rgba(255,92,53,0.03) 55%)",
+                transitionTimingFunction: "var(--ease-out-soft)",
               }}
             />
 
@@ -179,13 +213,16 @@ export function AutomationOperatingSystem() {
                       }}
                     />
                     <button
+                      ref={(el) => {
+                        cardRefs.current[i] = el;
+                      }}
                       type="button"
                       onClick={() => selectStep(i)}
                       className={[
-                        "absolute w-[28%] min-w-[12rem] max-w-[16rem] rounded-xl border p-5 text-left transition-all duration-300",
+                        "absolute z-10 w-[28%] min-w-[12rem] max-w-[16rem] rounded-xl border p-5 text-left transition-all duration-300",
                         isActive
-                          ? "z-10 border-line bg-white opacity-100 shadow-[0_8px_24px_rgba(16,49,41,0.08)]"
-                          : "border-line/70 bg-white/60 opacity-70 hover:opacity-90",
+                          ? "border-line bg-white opacity-100 shadow-[0_8px_24px_rgba(16,49,41,0.08)]"
+                          : "border-line/70 bg-white opacity-90 hover:opacity-100",
                       ].join(" ")}
                       style={{ left: `${leftPct}%`, bottom: `${bottomPct}%` }}
                     >

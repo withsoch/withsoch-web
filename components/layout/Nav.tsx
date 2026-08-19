@@ -6,7 +6,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,7 +18,20 @@ const featured = CASE_STUDIES[0];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpen(false), 200);
+  };
 
   const navLinkClass = (href: string) => {
     const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -36,7 +49,7 @@ export function Nav() {
             alt="Soch"
             width={220}
             height={74}
-            className="h-10 w-auto"
+            className="h-12 w-auto"
             priority
           />
         </Link>
@@ -46,8 +59,11 @@ export function Nav() {
           </Link>
           <div
             className="relative"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
+            onMouseEnter={() => {
+              cancelClose();
+              setOpen(true);
+            }}
+            onMouseLeave={scheduleClose}
           >
             <button
               type="button"
@@ -62,21 +78,21 @@ export function Nav() {
             </button>
 
             {open && (
-              <div className="absolute left-1/2 top-full w-[760px] -translate-x-1/2 pt-3">
-                <div className="flex gap-8 rounded-xl border border-line bg-white p-8 shadow-lift">
-                  <div className="w-44 shrink-0">
+              <div className="fixed left-1/2 top-[84px] w-[860px] -translate-x-1/2">
+                <div className="flex gap-10 rounded-xl border border-line bg-white p-7 shadow-lift">
+                  <div className="w-52 shrink-0">
                     <Link
                       href="/services"
-                      className="text-xs font-semibold uppercase tracking-wide text-muted transition-colors after:mt-1 after:block after:h-0.5 after:w-6 after:bg-brand hover:text-brand"
+                      className="text-lg font-medium text-ink underline decoration-ink/40 underline-offset-4 transition-colors hover:text-brand"
                     >
                       Services
                     </Link>
-                    <ul className="mt-4 space-y-3">
+                    <ul className="mt-4 space-y-2.5">
                       {SERVICES.map((service) => (
                         <li key={service.slug}>
                           <Link
                             href={`/services/${service.slug}`}
-                            className="text-sm text-ink hover:text-brand"
+                            className="text-base text-ink hover:text-brand"
                           >
                             {service.title}
                           </Link>
@@ -85,39 +101,35 @@ export function Nav() {
                     </ul>
                   </div>
 
-                  <div className="w-44 shrink-0">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted after:mt-1 after:block after:h-0.5 after:w-6 after:bg-brand">
-                      Resources
-                    </p>
-                    <ul className="mt-4 space-y-3">
+                  <div className="w-52 shrink-0">
+                    <p className="text-lg font-medium text-ink">Resources</p>
+                    <ul className="mt-4 space-y-2.5">
                       <li>
-                        <Link href="/team" className="text-sm text-ink hover:text-brand">
+                        <Link href="/team" className="text-base text-ink hover:text-brand">
                           Our Team
                         </Link>
                       </li>
                       <li>
-                        <Link href="/blog" className="text-sm text-ink hover:text-brand">
+                        <Link href="/blog" className="text-base text-ink hover:text-brand">
                           Blog
                         </Link>
                       </li>
                       <li>
-                        <Link href="/case-studies" className="text-sm text-ink hover:text-brand">
+                        <Link href="/case-studies" className="text-base text-ink hover:text-brand">
                           Case Studies
                         </Link>
                       </li>
                     </ul>
 
-                    <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-muted after:mt-1 after:block after:h-0.5 after:w-6 after:bg-brand">
-                      Support
-                    </p>
-                    <ul className="mt-4 space-y-3">
+                    <p className="mt-5 text-lg font-medium text-muted">Support</p>
+                    <ul className="mt-4 space-y-2.5">
                       <li>
-                        <Link href="/contact" className="text-sm text-ink hover:text-brand">
+                        <Link href="/contact" className="text-base text-ink hover:text-brand">
                           Contact
                         </Link>
                       </li>
                       <li>
-                        <Link href="/privacy-policy" className="text-sm text-ink hover:text-brand">
+                        <Link href="/privacy-policy" className="text-base text-ink hover:text-brand">
                           Privacy Policy
                         </Link>
                       </li>
@@ -126,24 +138,24 @@ export function Nav() {
 
                   <div className="w-px shrink-0 self-stretch bg-line" />
 
-                  <div className="w-56 shrink-0">
+                  <div className="w-64 shrink-0">
                     <Link href={`/case-studies/${featured.slug}`} className="group block">
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-mist">
+                      <div className="relative aspect-[16/11] w-full overflow-hidden rounded-lg bg-mist">
                         {featured.image && (
                           <Image
                             src={featured.image}
                             alt={featured.title}
                             fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="224px"
+                            className="object-contain transition-transform duration-300 group-hover:scale-105"
+                            sizes="256px"
                           />
                         )}
                       </div>
-                      <p className="mt-3 text-sm font-bold text-ink group-hover:text-brand">
+                      <p className="mt-3 text-base font-bold text-ink group-hover:text-brand">
                         {featured.title}
                       </p>
                     </Link>
-                    <Button href={SCHEDULER_URL} variant="primary" size="md" className="mt-4 w-full">
+                    <Button href={SCHEDULER_URL} variant="primary" size="md" className="mt-3 w-full">
                       Book a free call
                     </Button>
                   </div>

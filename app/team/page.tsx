@@ -7,7 +7,6 @@ import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { TeamCard } from "@/components/team/TeamCard";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Meet Our Team",
@@ -68,11 +67,7 @@ export default function TeamPage() {
 
       <Reveal as="section">
         <ServicesGrid />
-        <div className="container-x -mt-10 pb-20 sm:pb-24 lg:pb-32 text-center">
-          <Link href="/services" className="text-brand font-medium hover:underline">
-            Explore all services
-          </Link>
-        </div>
+        <div className="container-x -mt-10 pb-8 sm:pb-10 lg:pb-12" />
       </Reveal>
 
       <Reveal as="section">

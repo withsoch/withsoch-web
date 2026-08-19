@@ -92,19 +92,19 @@ export function CaseStudiesCarousel() {
                         <div className="mb-1 text-[1.05rem] font-semibold text-ink max-[820px]:text-[0.95rem]">
                           {study.company}
                         </div>
-                        <div className="mb-4 inline-block w-fit rounded-full border border-line bg-white px-3 py-0.5 text-xs text-muted max-[820px]:mb-3.5 max-[820px]:text-[0.7rem]">
+                        <div className="mb-4 inline-block w-fit rounded-full border border-line bg-white px-3 py-0.5 text-xs text-muted max-[820px]:mb-3.5 max-[820px]:text-[0.8rem]">
                           {study.region} &nbsp;·&nbsp; {study.duration}{" "}
                           &nbsp;·&nbsp; {study.service}
                         </div>
 
-                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.7rem]">
+                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.8rem]">
                           Challenge
                         </span>
                         <p className="mb-4 text-[0.95rem] leading-relaxed text-slate max-[820px]:mb-3 max-[820px]:text-[0.82rem]">
                           {study.challenge}
                         </p>
 
-                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.7rem]">
+                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.8rem]">
                           Solution
                         </span>
                         <p className="text-[0.95rem] leading-relaxed text-slate max-[820px]:text-[0.82rem]">
@@ -122,7 +122,7 @@ export function CaseStudiesCarousel() {
                               <div className="text-[clamp(20px,2.2vw,26px)] font-bold leading-none tracking-tight text-brand max-[820px]:text-[clamp(18px,5vw,22px)] max-[390px]:text-[17px]">
                                 {stat.value}
                               </div>
-                              <div className="text-sm leading-snug text-slate max-[820px]:text-[0.7rem]">
+                              <div className="text-sm leading-snug text-slate max-[820px]:text-[0.8rem]">
                                 {stat.label}
                               </div>
                             </div>

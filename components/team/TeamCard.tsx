@@ -31,19 +31,21 @@ export function TeamCard({ name, role, bio, photo, socials, index }: TeamCardPro
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_1px_2px_rgba(16,49,41,0.04)]"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-mist">
+      <div className="group relative aspect-[3/4] w-full overflow-hidden bg-mist">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photo}
           alt={name}
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover object-top"
+          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
-        {/* role badge */}
-        <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-brand-dark backdrop-blur-sm">
-          {role}
-        </span>
+        {/* role badge — only shown for non-generic roles (e.g. founders) */}
+        {role.toLowerCase() !== "team" && (
+          <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-brand-dark backdrop-blur-sm">
+            {role}
+          </span>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-6">

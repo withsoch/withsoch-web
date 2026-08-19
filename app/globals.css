@@ -30,8 +30,20 @@
 
   /* Fonts — single family site-wide (matches withsoch.com's Webflow build):
      Wix Madefor Text, weight 500 for headings, 400 for body. */
-  --font-sans: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-wix-madefor-text), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-wix-madefor-text), system-ui, sans-serif;
+  --font-display: var(--font-wix-madefor-text), system-ui, sans-serif;
+
+  /* Type scale — ported 1:1 from withsoch.com's Webflow font tokens. */
+  --text-base: 16px;
+  --text-base--line-height: 22.4px;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-md: 16px;
+  --text-lg: 17px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 22px;
+  --text-4xl: 24px;
 
   /* Shadows - subtle, borders preferred over big shadows */
   --shadow-soft: 0 1px 2px rgba(20, 30, 25, 0.04);
@@ -50,6 +62,9 @@
     background: #ffffff;
     color: var(--color-slate);
     font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--text-base--line-height);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -375,14 +390,58 @@
   @keyframes dash-flow {
     to { stroke-dashoffset: -24; }
   }
+  /* WorkflowNodes "task automation" motif: a signal relays trigger -> engine
+     -> done. The middle node spins like a running process while it holds the
+     signal, then the end node flashes and checks off once work completes. */
+  @keyframes relay-travel {
+    0% { transform: translateX(0); opacity: 0; }
+    5% { opacity: 1; }
+    28% { transform: translateX(38px); opacity: 1; }
+    34% { transform: translateX(38px); opacity: 0; }
+    50% { transform: translateX(38px); opacity: 0; }
+    56% { transform: translateX(38px); opacity: 1; }
+    78% { transform: translateX(76px); opacity: 1; }
+    84% { transform: translateX(76px); opacity: 0; }
+    100% { transform: translateX(76px); opacity: 0; }
+  }
+  @keyframes engine-active {
+    0%, 24% { fill: #fff; stroke: #e7e2d7; }
+    30%, 52% { fill: #ffe8dd; stroke: #ff5c35; }
+    58%, 100% { fill: #fff; stroke: #e7e2d7; }
+  }
+  @keyframes engine-spin {
+    0%, 24% { transform: rotate(0deg); opacity: 0.35; }
+    30% { opacity: 1; }
+    58% { transform: rotate(280deg); opacity: 1; }
+    64%, 100% { transform: rotate(280deg); opacity: 0.35; }
+  }
+  @keyframes node-complete {
+    0%, 76% { transform: scale(1); fill: #fff; stroke: #e7e2d7; }
+    84% { transform: scale(1.2); fill: #ffe8dd; stroke: #ff5c35; }
+    96% { transform: scale(1); fill: #ffe8dd; stroke: #ff5c35; }
+    100% { transform: scale(1); fill: #fff; stroke: #e7e2d7; }
+  }
+  @keyframes check-reveal {
+    0%, 78% { opacity: 0; transform: scale(0.6); }
+    86% { opacity: 1; transform: scale(1.1); }
+    94% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.6); }
+  }
   .animate-drift-a { animation: drift-a 10s ease-in-out infinite; }
   .animate-drift-b { animation: drift-b 12s ease-in-out infinite; }
   .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
   .animate-dash-flow { animation: dash-flow 1.6s linear infinite; }
+  .animate-relay-travel { animation: relay-travel 3.4s ease-in-out infinite; transform-box: fill-box; }
+  .animate-engine-active { animation: engine-active 3.4s ease-in-out infinite; }
+  .animate-engine-spin { animation: engine-spin 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .animate-node-complete { animation: node-complete 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .animate-check-reveal { animation: check-reveal 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee, .animate-float-a, .animate-float-b, .animate-float-c,
-    .animate-drift-a, .animate-drift-b, .animate-pulse-dot, .animate-dash-flow {
+    .animate-drift-a, .animate-drift-b, .animate-pulse-dot, .animate-dash-flow,
+    .animate-relay-travel, .animate-engine-active, .animate-engine-spin,
+    .animate-node-complete, .animate-check-reveal {
       animation: none;
     }
     .animate-fade-up, .animate-pop, .animate-step-fade {

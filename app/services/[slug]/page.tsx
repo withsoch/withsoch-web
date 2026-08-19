@@ -11,7 +11,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ServiceProcessPanel } from "@/components/sections/ServiceProcessPanel";
 import { ServiceTestimonial } from "@/components/ServiceTestimonial";
 import { Button } from "@/components/ui/Button";
-import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -32,19 +31,19 @@ export default async function ServiceDetailPage({
     notFound();
   }
 
-  const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
+  const otherServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
   const descriptionParagraphs = Array.isArray(service.description)
     ? service.description
     : [service.description];
-  // Standard template across all 5 services — offerings count determines
-  // grid columns: 9 items (operations) uses 3 columns, 8 items uses 4.
-  const offeringsColsClass =
-    service.offerings.length === 8 ? "lg:grid-cols-4" : "lg:grid-cols-3";
+  // Standard template across all 5 services — always 3 columns so every
+  // service page's offering cards share the same width and height
+  // (matching operations-process-automation, the 9-item reference layout).
+  const offeringsColsClass = "lg:grid-cols-3";
 
   return (
     <main className="flex-1">
       <section className="border-b border-line bg-mist">
-        <div className="container-x py-16 sm:py-20 lg:py-24">
+        <div className="container-x pt-16 pb-8 sm:pt-20 sm:pb-10 lg:pt-24 lg:pb-12">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="flex flex-col gap-4">
               <span className="eyebrow w-fit">Services</span>
@@ -72,17 +71,6 @@ export default async function ServiceDetailPage({
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-line bg-mist">
-        <div className="container-x py-4">
-          <nav className="text-sm text-muted">
-            <Link href="/services" className="hover:text-ink">
-              Services
-            </Link>{" "}
-            / <span className="text-ink">{service.title}</span>
-          </nav>
         </div>
       </section>
 
@@ -130,7 +118,7 @@ export default async function ServiceDetailPage({
               {service.offerings.map((offering) => (
                 <div
                   key={offering.title}
-                  className="group flex h-full flex-col gap-4 rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
+                  className="group flex h-full min-h-[200px] flex-col gap-3 rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
                 >
                   <div className="flex items-start gap-4">
                     <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-peach text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
@@ -151,35 +139,36 @@ export default async function ServiceDetailPage({
       </Reveal>
 
       {service.testimonial && (
-        <Section className="bg-white">
+        <Section className="bg-white" tight>
           <Reveal>
             <ServiceTestimonial testimonial={service.testimonial} />
           </Reveal>
         </Section>
       )}
 
-      <Section className="bg-mist">
+      <Section className="bg-mist" tight>
         <Reveal>
           <div className="flex flex-col gap-8">
             <h2 className="text-h3">Explore our other services</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
               {otherServices.map((other) => {
                 const description = Array.isArray(other.description)
                   ? other.description[0]
                   : other.description;
                 const tags = other.points;
-                const Diagram = SERVICE_DIAGRAMS[other.slug];
                 return (
                   <Link
                     key={other.slug}
                     href={`/services/${other.slug}`}
-                    className="group flex flex-col h-full rounded-xl border border-line bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25"
+                    className="group flex flex-col h-full rounded-3xl border border-line bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25"
                   >
-                    <div className="relative flex aspect-[21/9] items-center justify-center bg-mist p-4">
-                      <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
-                      <span className="relative w-full max-w-[160px]">
-                        {Diagram ? <Diagram /> : <Icon name={other.icon} className="h-10 w-10 text-brand" />}
-                      </span>
+                    <div className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden bg-mist p-5">
+                      <Image
+                        src={other.heroImage ?? `/images/services/${other.slug}/hero-diagram.png`}
+                        alt={`${other.title} diagram`}
+                        fill
+                        className="object-contain p-2"
+                      />
                     </div>
                     <div className="flex flex-1 flex-col gap-2 px-5 py-4">
                       <span className="text-lg font-serif font-semibold leading-snug text-ink">

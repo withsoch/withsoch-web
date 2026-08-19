@@ -368,18 +368,18 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Document and Contract Review Agents", description: "Risky clauses flagged, key terms extracted, long documents summarized. Legal and ops review what matters." },
       { icon: "trend", title: "Data Extraction and Reporting Agents", description: "Pull data from unstructured sources, structure it, and surface insights on schedule." },
       { icon: "clock", title: "Agent Monitoring and Tuning", description: "Ongoing evaluation, prompt updates, and edge case fixes on retainer. Agents drift when the work changes. We keep yours sharp." },
+      { icon: "spark", title: "Multi-Agent Workflow Orchestration", description: "Multiple agents chained into a single pipeline, each handling one step and passing context to the next. Complex work done end-to-end without a human in the loop." },
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
     testimonial: {
       quote:
-        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-      name: "Kym",
-      role: "Founder",
-      initials: "K",
+        "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
+      name: "Kaitlin Malaspina",
+      role: "CEO, Brenna Co.",
+      initials: "KM",
       accent: "brand",
-      image:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
+      image: "/images/Testimoniol/Katlin.jpg",
     },
   },
   {
@@ -437,8 +437,7 @@ export const SERVICES: Service[] = [
       role: "CEO, Brenna Co.",
       initials: "KM",
       accent: "forest",
-      image:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
+      image: "/images/Testimoniol/Katlin.jpg",
     },
     ctaOverride: {
       heading: "Let us audit your workflows and find your first 3 agent use cases.",
@@ -513,13 +512,12 @@ export const SERVICES: Service[] = [
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062258081a7175d7c890b3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row23.png",
     testimonial: {
       quote:
-        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-      name: "Kym",
-      role: "Founder",
-      initials: "K",
+        "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
+      name: "Kaitlin Malaspina",
+      role: "CEO, Brenna Co.",
+      initials: "KM",
       accent: "brand",
-      image:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
+      image: "/images/Testimoniol/Katlin.jpg",
     },
   },
   {
@@ -565,18 +563,18 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Event and Webinar Automation", description: "Pre-event reminders, post-event follow-ups, and recording distribution all running automatically from a single trigger the moment an event is added." },
       { icon: "trend", title: "Pipeline Attribution and Reporting", description: "Clear dashboards connecting marketing spend and activity to actual pipeline and revenue. No more guessing which campaigns are worth continuing." },
       { icon: "shield", title: "Retargeting and Re-Engagement Automation", description: "Automated sequences that re-engage cold leads, website visitors, and churned customers based on behavioral triggers and time-based rules." },
+      { icon: "audit", title: "Campaign Strategy and Optimization", description: "Ongoing review of what's converting and what isn't, with sequences and segments refined on a regular cadence so spend keeps working harder over time." },
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c02d8482a055a918234c3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%201_row60.png",
     testimonial: {
       quote:
-        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-      name: "Kym",
-      role: "Founder",
-      initials: "K",
+        "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
+      name: "Kaitlin Malaspina",
+      role: "CEO, Brenna Co.",
+      initials: "KM",
       accent: "brand",
-      image:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
+      image: "/images/Testimoniol/Katlin.jpg",
     },
   },
   {
@@ -622,18 +620,18 @@ export const SERVICES: Service[] = [
       { icon: "trend", title: "Pipeline Reporting and Forecasting", description: "Dashboards that give your leadership real-time visibility into pipeline health, deal velocity, and revenue forecast without manual reporting every week." },
       { icon: "spark", title: "Marketing-to-Sales Lead Handoff", description: "Clean, automated handoff from marketing nurture to sales outreach. Lead score, activity history, and context all passed through so reps start every conversation informed." },
       { icon: "clock", title: "Onboarding and Playbook Automation", description: "New rep onboarding workflows, tool access provisioning, and playbook documentation so every new hire ramps faster with less management overhead." },
+      { icon: "chat", title: "RevOps Monitoring and Optimization", description: "Ongoing audits of pipeline hygiene, automation performance, and forecast accuracy on retainer. We catch drift before it costs you a quarter." },
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d88d0f9a7c505b4d93988_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row35.png",
     testimonial: {
       quote:
-        "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-      name: "Kym",
-      role: "Founder",
-      initials: "K",
+        "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
+      name: "Kaitlin Malaspina",
+      role: "CEO, Brenna Co.",
+      initials: "KM",
       accent: "brand",
-      image:
-        "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/68e7ded717d0693d2c34544a_testimonial-image-02.webp",
+      image: "/images/Testimoniol/Katlin.jpg",
     },
   },
 ];
@@ -694,6 +692,7 @@ export type Testimonial = {
   role: string;
   initials: string;
   accent: string;
+  image?: string;
 };
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -712,6 +711,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "CEO, Brenna Co.",
     initials: "KM",
     accent: "forest",
+    image: "/images/Testimoniol/Katlin.jpg",
   },
 ];
 
