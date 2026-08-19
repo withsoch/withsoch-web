@@ -28,12 +28,12 @@
   --color-leaf: #1f8a66;
   --color-linkedin: #0a66c2;
 
-  /* Fonts — single family site-wide (matches withsoch.com's Webflow build):
+  /* Fonts - single family site-wide (matches withsoch.com's Webflow build):
      Wix Madefor Text, weight 500 for headings, 400 for body. */
   --font-sans: var(--font-wix-madefor-text), system-ui, sans-serif;
   --font-display: var(--font-wix-madefor-text), system-ui, sans-serif;
 
-  /* Type scale — ported 1:1 from withsoch.com's Webflow font tokens. */
+  /* Type scale - ported 1:1 from withsoch.com's Webflow font tokens. */
   --text-base: 16px;
   --text-base--line-height: 22.4px;
   --text-xs: 13px;
@@ -141,7 +141,7 @@
     border-top: 1px dashed var(--color-line);
   }
 
-  /* Blog article body — markdown rendered via react-markdown. */
+  /* Blog article body - markdown rendered via react-markdown. */
   .prose-blog {
     display: flex;
     flex-direction: column;
@@ -214,8 +214,7 @@
     border-top: 1px solid var(--color-line);
   }
 
-  /* Comparison table (Consulting vs. Implementation vs. Transformation) —
-     structural rules ported from the Webflow source: header row centered +
+  /* Comparison table (Consulting vs. Implementation vs. Transformation) - structural rules ported from the Webflow source: header row centered +
      bold, body rows left-aligned, horizontal dividers only (no vertical
      column borders anywhere), first column bold + wider. Below 768px the
      table collapses into stacked block "cards" per the source's exact
@@ -322,7 +321,7 @@
     display: none;
   }
 
-  /* Flat dot-grid texture — reuse wherever an open surface needs a subtle
+  /* Flat dot-grid texture - reuse wherever an open surface needs a subtle
      fill (e.g. the hero diagram band) instead of empty cream. No gradient,
      no glow: just repeating 1px ink dots at low opacity. */
   .bg-dot-grid {

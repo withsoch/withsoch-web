@@ -21,7 +21,7 @@ import { DiagramFrame } from "@/components/ui/DiagramFrame";
 
 export function ServicesGrid() {
   // openSlug: which row is expanded (null = all collapsed). activeSlug: which
-  // diagram the right panel shows — it stays on the last-opened service even
+  // diagram the right panel shows - it stays on the last-opened service even
   // after that row is collapsed again, so the panel never goes blank.
   const [openSlug, setOpenSlug] = useState<string | null>(SERVICES[0].slug);
   const [activeSlug, setActiveSlug] = useState(SERVICES[0].slug);
@@ -123,7 +123,7 @@ export function ServicesGrid() {
             <AnimatePresence mode="wait">
               {homeImage ? (
                 // Full-bleed real diagram/photo from the live withsoch.com
-                // build — object-contain so it never crops, cream fill
+                // build - object-contain so it never crops, cream fill
                 // behind it for any letterboxing.
                 <motion.div
                   key={activeService.slug}
@@ -135,7 +135,7 @@ export function ServicesGrid() {
                 >
                   <Image
                     src={homeImage}
-                    alt={`${activeService.title} — ${activeService.hook}`}
+                    alt={`${activeService.title} - ${activeService.hook}`}
                     fill
                     sizes="(min-width: 1024px) 620px, 90vw"
                     className="object-contain"

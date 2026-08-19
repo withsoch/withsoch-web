@@ -1,6 +1,6 @@
 // lib/case-studies-detail.ts
 //
-// Full real narrative content for each case study detail page — Overview,
+// Full real narrative content for each case study detail page - Overview,
 // Problem (+ pull quote, already in CASE_STUDIES but repeated here for
 // page-local convenience), 3-step Framework, and detailed Results.
 // Audited directly from the live withsoch.com detail pages on 2026-07-31.
@@ -22,7 +22,7 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     overviewImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3253dd377fd3b1435794e1_Compress-6.webp",
     overview: [
-      "Clearwater Intelligence tracks competitor activity, compliance updates, and lead signals across dozens of sources. Their analysts were spending the majority of each week doing this manually — visiting websites, reading documents, pulling data, and classifying findings into internal systems. The process worked when the source count was manageable. It stopped working when the business grew.",
+      "Clearwater Intelligence tracks competitor activity, compliance updates, and lead signals across dozens of sources. Their analysts were spending the majority of each week doing this manually - visiting websites, reading documents, pulling data, and classifying findings into internal systems. The process worked when the source count was manageable. It stopped working when the business grew.",
       "They came to Soch with a clear hypothesis: most of what the analysts were doing was pattern-based, and pattern-based work belongs to a system. We agreed, but we started with a process audit before touching any tools. We needed to understand where the research logic actually lived before we could automate any of it.",
     ],
     problem:
@@ -57,8 +57,8 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     overviewImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a3254d7d3b0df26fd466485_Cutting%202.webp",
     overview: [
-      "Northfield Media produces blogs, reports, ebooks, and social content across multiple channels. Their content team was spending most of each week on production — researching, writing, formatting, and distributing — with almost no time left for strategy or distribution. The volume the business needed had outgrown what the team could sustainably produce by hand.",
-      "The challenge was not just speed. It was quality and brand consistency. Generic AI output was not good enough. Every piece needed to sound like Northfield, pass editorial standards, and be SEO-ready before a human reviewed it. They also needed flexibility — routine content could run fully automatically, but high-stakes pieces still needed a human checkpoint before publishing. Both had to run from the same system.",
+      "Northfield Media produces blogs, reports, ebooks, and social content across multiple channels. Their content team was spending most of each week on production - researching, writing, formatting, and distributing - with almost no time left for strategy or distribution. The volume the business needed had outgrown what the team could sustainably produce by hand.",
+      "The challenge was not just speed. It was quality and brand consistency. Generic AI output was not good enough. Every piece needed to sound like Northfield, pass editorial standards, and be SEO-ready before a human reviewed it. They also needed flexibility - routine content could run fully automatically, but high-stakes pieces still needed a human checkpoint before publishing. Both had to run from the same system.",
     ],
     problem:
       "The team was spending full days producing content that still needed significant editing before it could go out. Brand voice was inconsistent across formats and writers. SEO was being applied after the fact rather than baked in from the start. And there was no way to increase output volume without hiring more people.",
@@ -66,12 +66,12 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
       {
         title: "Audit the content operation",
         description:
-          "We mapped the full production process across every content type, documented where quality broke down, and codified the brand voice and editorial standards that made Northfield's content recognisable. This became the foundation for the AI architecture — not just the workflow design, but the memory layer the agents would draw from.",
+          "We mapped the full production process across every content type, documented where quality broke down, and codified the brand voice and editorial standards that made Northfield's content recognisable. This became the foundation for the AI architecture - not just the workflow design, but the memory layer the agents would draw from.",
       },
       {
         title: "Build the multi-agent engine",
         description:
-          "We built a pipeline in n8n orchestrating three AI agents: an SEO Writer pulling real-time search data from SerpAPI, a Humaniser running on Claude to rewrite AI output in natural language, and an Editor for final review. Brand voice is stored in a Pinecone vector database, so every agent retrieves the same style reference every time — regardless of content type or format.",
+          "We built a pipeline in n8n orchestrating three AI agents: an SEO Writer pulling real-time search data from SerpAPI, a Humaniser running on Claude to rewrite AI output in natural language, and an Editor for final review. Brand voice is stored in a Pinecone vector database, so every agent retrieves the same style reference every time - regardless of content type or format.",
       },
       {
         title: "Add the human checkpoint",
@@ -81,7 +81,7 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     ],
     results: [
       { value: "75%", description: "Reduction in production time. The system runs on a schedule with zero human input per cycle." },
-      { value: "4", description: "Formats — web, Slack, Google Docs, and social assets published simultaneously from a single content request." },
+      { value: "4", description: "Formats - web, Slack, Google Docs, and social assets published simultaneously from a single content request." },
       { value: "0", description: "Manual publishing steps. Routine content ships without a human touching it end to end." },
     ],
   },
@@ -93,10 +93,10 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a12178523840c5710459329_Stockwell%20%20Intext%20LandscapeEditorial%20photograph%20in%20th_row80.png",
     overview: [
       "Stockwell Commerce runs a large and continuously expanding product catalogue. For every new product, their Customer Service team was manually duplicating a master Typeform template, personalising it for the product, generating the link, and logging it in their tracking sheet. With new products being added constantly, this had become a significant and recurring drain on a team that should have been focused on customers.",
-      "The work was entirely mechanical. There were no judgment calls in the process — just template duplication, field replacement, and link logging. Work that should have been owned by a system from the start. They came to Soch to fix it, and we built a pipeline that removed every manual step in the chain.",
+      "The work was entirely mechanical. There were no judgment calls in the process - just template duplication, field replacement, and link logging. Work that should have been owned by a system from the start. They came to Soch to fix it, and we built a pipeline that removed every manual step in the chain.",
     ],
     problem:
-      "Every new product required four to six manual actions from the CS team. There was no error handling — if a step was missed, no one knew until a customer hit a broken link. The team had no reliable way to see which products had forms and which did not without manually checking the sheet.",
+      "Every new product required four to six manual actions from the CS team. There was no error handling - if a step was missed, no one knew until a customer hit a broken link. The team had no reliable way to see which products had forms and which did not without manually checking the sheet.",
     framework: [
       {
         title: "Map and document the current process",
@@ -111,7 +111,7 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
       {
         title: "Add logging and error handling",
         description:
-          "We built execution logging with timestamps, per-run success and failure status, and error flagging for any products that could not be processed. The CS team now has a full audit trail and clear visibility into the pipeline's health — without managing any of it manually.",
+          "We built execution logging with timestamps, per-run success and failure status, and error flagging for any products that could not be processed. The CS team now has a full audit trail and clear visibility into the pipeline's health - without managing any of it manually.",
       },
     ],
     results: [
@@ -127,16 +127,16 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     overviewImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325a1878c820d461319071_6a140cc7de3ba236f695f36d_Stockwell%20%20Intext%20LandscapeEditorial%20photograph%20in%20th_row83.webp",
     overview: [
-      "Frontline Advisory manages inbound leads across multiple lead owners, with new contacts captured in Google Sheets. When a lead arrived, the team handled every step manually — adding the contact to their email platform, composing and sending the first SMS, following up across multiple days, and notifying the right team member. Leads that didn't get immediate attention went cold. Most didn't get immediate attention.",
+      "Frontline Advisory manages inbound leads across multiple lead owners, with new contacts captured in Google Sheets. When a lead arrived, the team handled every step manually - adding the contact to their email platform, composing and sending the first SMS, following up across multiple days, and notifying the right team member. Leads that didn't get immediate attention went cold. Most didn't get immediate attention.",
       "The team was not dropping leads intentionally. The system just wasn't built for the volume or the consistency the process required. There was no automation, no sequence logic, and no mechanism to stop outreach when a lead had already replied. They came to Soch to fix the mechanics so the sales team could focus on conversations that were actually going somewhere.",
     ],
     problem:
-      "First-contact time was measured in hours. Follow-up sequences were inconsistent — some leads received all five touchpoints, others received one. There was no deduplication check, so contacts were sometimes being added to the email platform more than once. And leads who had already responded were still receiving automated follow-up messages.",
+      "First-contact time was measured in hours. Follow-up sequences were inconsistent - some leads received all five touchpoints, others received one. There was no deduplication check, so contacts were sometimes being added to the email platform more than once. And leads who had already responded were still receiving automated follow-up messages.",
     framework: [
       {
         title: "Audit the lead flow",
         description:
-          "We mapped every manual touchpoint from the moment a lead landed in the sheet to the final follow-up attempt. We documented the lead owner structure, the sheet architecture, and the decision points where automation would need to handle edge cases — including what to do when a lead had already replied before the sequence completed.",
+          "We mapped every manual touchpoint from the moment a lead landed in the sheet to the final follow-up attempt. We documented the lead owner structure, the sheet architecture, and the decision points where automation would need to handle edge cases - including what to do when a lead had already replied before the sequence completed.",
       },
       {
         title: "Build the intake and outreach workflow",
@@ -151,7 +151,7 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     ],
     results: [
       { value: "6 sec", description: "Average time to first contact. Every new lead receives an SMS before the team has seen the notification." },
-      { value: "100%", description: "Sequence completion rate. Every lead in the active window receives every touchpoint — unless they reply first." },
+      { value: "100%", description: "Sequence completion rate. Every lead in the active window receives every touchpoint - unless they reply first." },
       { value: "Real-time", description: "Lead status visibility. The team sees exactly where every lead sits in the sequence without opening a single sheet manually." },
     ],
   },
@@ -162,26 +162,26 @@ export const CASE_STUDY_DETAILS: Record<string, CaseStudyDetail> = {
     overviewImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a140cc79e8bf0a849aa6e06_Harmon%20%20Intext%20LandscapeEditorial%20photograph%20in%20the%20s_row85.png",
     overview: [
-      "Harmon Advisory handles a high volume of inbound support queries through Gmail. Their support team was spending most of the day reading, classifying, and drafting responses manually — the majority of which were variations of questions their internal documentation already answered. The answers existed. Finding them quickly enough was the problem.",
-      "The team needed a system that could read incoming emails, understand what was being asked, retrieve the relevant answer from existing documentation, and prepare a draft — without a human doing the first three steps. They also needed the knowledge base to stay current automatically whenever a document was updated. Both problems required different builds. We built both.",
+      "Harmon Advisory handles a high volume of inbound support queries through Gmail. Their support team was spending most of the day reading, classifying, and drafting responses manually - the majority of which were variations of questions their internal documentation already answered. The answers existed. Finding them quickly enough was the problem.",
+      "The team needed a system that could read incoming emails, understand what was being asked, retrieve the relevant answer from existing documentation, and prepare a draft - without a human doing the first three steps. They also needed the knowledge base to stay current automatically whenever a document was updated. Both problems required different builds. We built both.",
     ],
     problem:
-      "Triage was manual and inconsistent — different team members categorised the same type of query differently. Response time varied based on who was available, not how urgent the email was. Internal documentation was spread across Google Docs that no one had time to search during a busy support shift. And whenever a document was updated, someone had to manually re-brief whoever was handling support that day.",
+      "Triage was manual and inconsistent - different team members categorised the same type of query differently. Response time varied based on who was available, not how urgent the email was. Internal documentation was spread across Google Docs that no one had time to search during a busy support shift. And whenever a document was updated, someone had to manually re-brief whoever was handling support that day.",
     framework: [
       {
         title: "Map the support operation",
         description:
-          "We documented the full flow from email arrival to response — every triage decision, every knowledge source, and every case where genuine judgment was required versus cases where the answer was clearly in the documentation. This gave us a precise picture of where automation could own the process and where humans needed to stay involved.",
+          "We documented the full flow from email arrival to response - every triage decision, every knowledge source, and every case where genuine judgment was required versus cases where the answer was clearly in the documentation. This gave us a precise picture of where automation could own the process and where humans needed to stay involved.",
       },
       {
         title: "Build the response pipeline",
         description:
-          "We built an n8n workflow triggered by Gmail that extracts clean text from incoming emails and runs it through an OpenAI classifier. Support queries go to a LangChain agent that performs semantic search across a Supabase vector database built from the company's full documentation set. The agent composes a draft response grounded in verified internal knowledge and creates it directly in Gmail — ready for one-click send or a quick edit before it goes out.",
+          "We built an n8n workflow triggered by Gmail that extracts clean text from incoming emails and runs it through an OpenAI classifier. Support queries go to a LangChain agent that performs semantic search across a Supabase vector database built from the company's full documentation set. The agent composes a draft response grounded in verified internal knowledge and creates it directly in Gmail - ready for one-click send or a quick edit before it goes out.",
       },
       {
         title: "Build the knowledge ingestion pipeline",
         description:
-          "A separate workflow monitors Google Drive for file creation and update events. When a document changes, the pipeline re-ingests it — deletes outdated rows, reads the updated content, chunks it, generates embeddings via OpenAI, and inserts them into Supabase. New knowledge is available to the response agent the moment a document is saved in Drive. No manual re-ingestion, no re-briefing.",
+          "A separate workflow monitors Google Drive for file creation and update events. When a document changes, the pipeline re-ingests it - deletes outdated rows, reads the updated content, chunks it, generates embeddings via OpenAI, and inserts them into Supabase. New knowledge is available to the response agent the moment a document is saved in Drive. No manual re-ingestion, no re-briefing.",
       },
     ],
     results: [

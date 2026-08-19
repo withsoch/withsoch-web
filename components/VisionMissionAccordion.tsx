@@ -28,7 +28,7 @@ const ROWS: {
     copy: VISION,
     tags: VISION_TAGS,
     image: "/images/about/vision.webp",
-    alt: "Innovation and vision — idea taking shape.",
+    alt: "Innovation and vision - idea taking shape.",
   },
   {
     key: "mission",

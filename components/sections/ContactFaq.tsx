@@ -1,6 +1,6 @@
 // components/sections/ContactFaq.tsx
 //
-// Contact page's FAQ section — page-specific light variant (numbered
+// Contact page's FAQ section - page-specific light variant (numbered
 // accordion + photo) matching the Webflow reference contact.html. Distinct
 // from the shared light FaqAccordion (different copy, different visual
 // treatment) so it lives here rather than being merged into it.

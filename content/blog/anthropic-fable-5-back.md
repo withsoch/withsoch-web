@@ -42,13 +42,13 @@ Anthropic publicly disagreed, noting that less capable models including Claude O
 
 [Claude Fable 5](https://www.anthropic.com/claude/fable) is Anthropic's first general-release model in its Mythos-class tier, positioned above the Opus line in capability. Both models launched on June 9, 2026, and share the same underlying architecture. The distinction is not raw capability but access policy and safety profile: Fable 5 ships with strong guardrails that limit its advanced cybersecurity and dual-use outputs, while Mythos 5 carries fewer safeguards and went only to a small set of trusted Project Glasswing partners for defensive cybersecurity.
 
-**Model tier** — Claude Fable 5: Mythos-class (guardrailed) · Claude Mythos 5: Mythos-class (full) · Claude Opus 4.8: Opus-class. *withSoch recommended use: Fable 5 for production agentic workflows.*
+**Model tier** - Claude Fable 5: Mythos-class (guardrailed) · Claude Mythos 5: Mythos-class (full) · Claude Opus 4.8: Opus-class. *withSoch recommended use: Fable 5 for production agentic workflows.*
 
-**General availability** — Claude Fable 5: Global (restored July 1) · Claude Mythos 5: Restricted (Project Glasswing partners) · Claude Opus 4.8: Generally available. *withSoch recommended use: Confirm cloud channel before deployment.*
+**General availability** - Claude Fable 5: Global (restored July 1) · Claude Mythos 5: Restricted (Project Glasswing partners) · Claude Opus 4.8: Generally available. *withSoch recommended use: Confirm cloud channel before deployment.*
 
-**Cybersecurity capabilities** — Claude Fable 5: Blocked by default safeguards · Claude Mythos 5: Available to vetted partners · Claude Opus 4.8: Standard. *withSoch recommended use: Use Opus 4.8 as fallback model.*
+**Cybersecurity capabilities** - Claude Fable 5: Blocked by default safeguards · Claude Mythos 5: Available to vetted partners · Claude Opus 4.8: Standard. *withSoch recommended use: Use Opus 4.8 as fallback model.*
 
-**Export control history** — Claude Fable 5: Suspended June 12, restored July 1 · Claude Mythos 5: Suspended June 12, partial restore June 26 · Claude Opus 4.8: Unaffected throughout. *withSoch recommended use: Maintain Opus 4.8 fallback in all pipelines.*
+**Export control history** - Claude Fable 5: Suspended June 12, restored July 1 · Claude Mythos 5: Suspended June 12, partial restore June 26 · Claude Opus 4.8: Unaffected throughout. *withSoch recommended use: Maintain Opus 4.8 fallback in all pipelines.*
 
 Anthropic also launched Claude Sonnet 5 on July 1 as a capable, lower-cost mid-tier option, widening the selection teams can architect against. Throughout the suspension, Opus 4.8 remained unaffected, confirming its role as the reliable fallback for teams that had not pre-built routing logic.
 
@@ -57,7 +57,7 @@ Anthropic also launched Claude Sonnet 5 on July 1 as a capable, lower-cost mid-t
 For teams that had moved Fable 5 into production in the three days between launch and shutdown, the suspension was not an inconvenience but an operational emergency with no contractual remedy. Enterprise clients in finance, healthcare, SaaS, and critical infrastructure found their core intelligence services abruptly disabled, without prior warning or effective recourse.
 
 > "The disruption was not caused by a security incident, an infrastructure outage, or a contractual dispute. It was caused by a government regulatory action that Anthropic itself contested and did not control."
-> — Cloud Security Alliance research note on the Fable 5 enterprise impact, June 2026
+> - Cloud Security Alliance research note on the Fable 5 enterprise impact, June 2026
 
 The hit spanned AWS Bedrock, Google Cloud, Microsoft Foundry, Snowflake, Box, and the direct Claude APIs at once, with no graceful degradation. Agentic pipelines built around Fable 5's reasoning and code analysis could not simply swap models without re-evaluation, forcing fallbacks to Opus 4.8. The capability cliff was real: Opus 4.7 is a clear step down on hard coding tasks.
 

@@ -1,7 +1,7 @@
 // app/privacy-policy/page.tsx
 //
 // Simple prose page. Content ported verbatim from the Webflow export
-// (privacy-policy.html) — no paraphrasing, no invented clauses.
+// (privacy-policy.html) - no paraphrasing, no invented clauses.
 
 import type { Metadata } from "next";
 import { SITE } from "@/lib/content";

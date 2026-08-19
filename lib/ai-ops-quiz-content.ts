@@ -1,7 +1,7 @@
 // lib/ai-ops-quiz-content.ts
 //
-// Single source of truth for the AI Ops Score quiz — questions, options,
-// point values, scoring-tier copy, and email-gate copy — ported verbatim
+// Single source of truth for the AI Ops Score quiz - questions, options,
+// point values, scoring-tier copy, and email-gate copy - ported verbatim
 // from the Webflow export (ai-ops-score.html). Do not invent or paraphrase
 // any copy here; if anything was ambiguous, it's flagged with a
 // `// TODO: verify` comment rather than guessed.
@@ -245,7 +245,7 @@ export const PILLAR_LABELS: Record<Pillar, string> = {
 };
 
 // `pillarActions()` always emits these 3 action lines, sorted worst-pillar
-// (fix first) to best-pillar (leverage) — the labels themselves are fixed,
+// (fix first) to best-pillar (leverage) - the labels themselves are fixed,
 // not derived per-pillar copy.
 export const PILLAR_ACTION_LABELS = {
   automation: "Automate your lead and ops flows",
@@ -258,7 +258,7 @@ export const ACTION_SLOT_LABELS = ["Fix first", "Then improve", "Leverage"] as c
 export const QUIZ_COPY = {
   intro: {
     // source .tag / h1 / .sub in #quiz-section
-    eyebrow: "Soch — Ops Score",
+    eyebrow: "Soch - Ops Score",
     headline: "How ready is your business to scale with AI?",
     subheading: "12 questions. 3 minutes. Free.",
   },
@@ -279,19 +279,19 @@ export const QUIZ_COPY = {
     scoreDenominator: "/100",
     segLabels: ["Start", "Build", "Scale"] as const,
     pillarsEyebrow: "Score by pillar",
-    // pillarStatus(pct, style) — style-keyed status copy shown under each
+    // pillarStatus(pct, style) - style-keyed status copy shown under each
     // pillar bar
     pillarStatus: {
-      success: "↑ Good — your main strength",
-      danger: "↓ Low — priority fix needed",
-      neutral: "↔ Moderate — room to improve",
+      success: "↑ Good - your main strength",
+      danger: "↓ Low - priority fix needed",
+      neutral: "↔ Moderate - room to improve",
     },
   },
   emailGate: {
     // source .gate-block#gate-form
     heading: "Get your full report",
     subcopy:
-      "Enter your email and we'll send you a detailed breakdown of your results — what's holding you back and exactly what to do about it.",
+      "Enter your email and we'll send you a detailed breakdown of your results - what's holding you back and exactly what to do about it.",
     whatsInsideLabel: "What's inside",
     whatsInsideBullets: [
       "Key findings per pillar",
@@ -307,19 +307,19 @@ export const QUIZ_COPY = {
     submitButtonSending: "Sending...",
   },
   success: {
-    // source .gate-block#gate-success — {name} is interpolated per source
+    // source .gate-block#gate-success - {name} is interpolated per source
     // `showSuccess(name)`
     heading: "Report on its way",
-    // TODO: verify — source string reads "arrive exactly after 3 minutes",
+    // TODO: verify - source string reads "arrive exactly after 3 minutes",
     // which is likely a copy typo for "within a few minutes" (matches the
     // JSON-LD/meta description phrasing and the pre-submit default message
     // in #success-msg), but reproduced verbatim here since it's what ships.
     message: (name: string) =>
-      `Check your inbox, ${name} — your personalised Soch Ops Report will arrive exactly after 3 minutes from info@withsoch.com.`,
-    // Default #success-msg text before showSuccess() overwrites it — kept
+      `Check your inbox, ${name} - your personalised Soch Ops Report will arrive exactly after 3 minutes from info@withsoch.com.`,
+    // Default #success-msg text before showSuccess() overwrites it - kept
     // in case it's ever shown pre-interpolation.
     defaultMessage:
-      "Check your inbox — your personalised Soch Ops Report will arrive within a few minutes from info@withsoch.com.",
+      "Check your inbox - your personalised Soch Ops Report will arrive within a few minutes from info@withsoch.com.",
     calBookingLine: "While you're waiting, book a call with Riz now:",
   },
 } as const;
@@ -328,12 +328,12 @@ export const QUIZ_COPY = {
 export const WEBHOOK_URL = "https://sochconsulting.app.n8n.cloud/webhook/webflow-form";
 
 // Source result-screen Cal.com embed: `src="https://cal.com/consult-with-riz/sochwork"`
-// (matches the working link used on app/contact/page.tsx — the `work` slug
+// (matches the working link used on app/contact/page.tsx - the `work` slug
 // used here previously 404'd on Cal.com).
 // NOTE: lib/content.ts already defines `SCHEDULER_URL = "/contact"` as a
-// deliberate, prior decision — "Book a Free Call" routes internally with no
+// deliberate, prior decision - "Book a Free Call" routes internally with no
 // external scheduler fallback (see lib/content.ts:39-42). Per that decision,
 // this file does NOT redefine a conflicting `SCHEDULER_URL`. The Cal.com
 // link is exposed under its own name, scoped to the quiz's post-submit
-// booking embed only — it should not be wired into the site-wide CTA.
+// booking embed only - it should not be wired into the site-wide CTA.
 export const QUIZ_CAL_BOOKING_URL = "https://cal.com/consult-with-riz/sochwork";

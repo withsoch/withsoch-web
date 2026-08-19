@@ -74,8 +74,7 @@ export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
   },
 };
 
-// Homepage "Services that turn strategy into results" panel (ServicesGrid) —
-// one hero diagram per service, not per accordion tab, matching the tab
+// Homepage "Services that turn strategy into results" panel (ServicesGrid) - // one hero diagram per service, not per accordion tab, matching the tab
 // images on the live withsoch.com homepage service-tabs section.
 export const SERVICE_HOME_IMAGES: Record<string, string> = {
   "ai-agent-development":
@@ -90,7 +89,7 @@ export const SERVICE_HOME_IMAGES: Record<string, string> = {
     "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9bfe39ba7248c944a2_Opreation%20Image.webp",
 };
 
-// /services index grid — each card's hero thumbnail, matching the dedicated
+// /services index grid - each card's hero thumbnail, matching the dedicated
 // service page's hero image on the live withsoch.com Webflow build (services.html).
 export const SERVICE_LIST_IMAGES: Record<string, string> = {
   "operations-process-automation":

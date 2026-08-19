@@ -1,6 +1,6 @@
 // components/sections/AboutStats.tsx
 //
-// About page-only overview/stats section — distinct from the homepage
+// About page-only overview/stats section - distinct from the homepage
 // Stats component (different metrics; see ABOUT_STATS in content.ts). Flat
 // cream background, no video/gradient, 3 stat cards + a linked CTA row.
 
@@ -10,13 +10,13 @@ import { Icon } from "@/components/Icons";
 import { AutomationLottie } from "@/components/sections/AutomationLottie";
 import Link from "next/link";
 
-// Small looping "automation" motif — nodes pulsing and a signal travelling
+// Small looping "automation" motif - nodes pulsing and a signal travelling
 // along connecting lines. Pure SVG/CSS, no JS, so it's inert to reduced-motion
 // users via the .animate-* utilities defined in globals.css.
 function AutomationAnimation() {
   return (
     <div className="absolute inset-0 overflow-hidden rounded-2xl border border-line bg-white">
-      {/* Ambient drifting glow, brand-only wash — matches the site's "one flat accent" rule */}
+      {/* Ambient drifting glow, brand-only wash - matches the site's "one flat accent" rule */}
       <div
         className="animate-drift-a absolute -left-1/4 top-0 h-3/4 w-3/4 rounded-full bg-peach blur-3xl"
         aria-hidden="true"
@@ -31,7 +31,7 @@ function AutomationAnimation() {
   );
 }
 
-// Tiny n8n-style workflow strip — two connected nodes with a signal running
+// Tiny n8n-style workflow strip - two connected nodes with a signal running
 // the wire between them. Sits in the corner of each stat card as a quiet
 // automation motif rather than the whole-panel version on the left.
 function WorkflowNodes() {
@@ -44,10 +44,10 @@ function WorkflowNodes() {
       {/* Static wiring: trigger -> engine -> done */}
       <path d="M10 14 L86 14" stroke="#e7e2d7" strokeWidth="1.5" fill="none" />
 
-      {/* Trigger node — where the task starts */}
+      {/* Trigger node - where the task starts */}
       <rect x="4" y="8" width="12" height="12" rx="3.5" fill="#fff" stroke="#e7e2d7" strokeWidth="1.5" />
 
-      {/* Engine node — lights up while it "runs" the automation, with a
+      {/* Engine node - lights up while it "runs" the automation, with a
           small spinning ring standing in for active processing */}
       <rect
         x="42"
@@ -68,7 +68,7 @@ function WorkflowNodes() {
         className="animate-engine-spin"
       />
 
-      {/* Done node — flashes and checks off once the automation completes */}
+      {/* Done node - flashes and checks off once the automation completes */}
       <rect
         x="80"
         y="8"

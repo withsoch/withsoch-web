@@ -1,7 +1,7 @@
 // components/sections/LogoMarquee.tsx
 //
 // Scrolling row of client logos, each in its own light card/chip.
-// Plain <img> (not next/image) — these logos are hotlinked/local static
+// Plain <img> (not next/image) - these logos are hotlinked/local static
 // assets swapped in ad hoc, so we skip Next's image optimizer entirely.
 
 import { CLIENT_LOGOS } from "@/lib/content";

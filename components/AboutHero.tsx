@@ -1,8 +1,8 @@
 // components/AboutHero.tsx
 //
-// About page-specific hero — distinct from the shared PageHero (which stays
+// About page-specific hero - distinct from the shared PageHero (which stays
 // untouched for Services/Team/Contact). Adds a headline + CTA, a 3-image
-// collage row (asymmetric widths, hotlinked photography — same approach as
+// collage row (asymmetric widths, hotlinked photography - same approach as
 // the case study carousel), and an industry-tags footer row. Flat cream
 // background, no gradients/glow.
 
@@ -26,7 +26,7 @@ export function AboutHero() {
           </div>
         </div>
 
-        {/* Collage row — asymmetric 3-up, real photography (hotlinked) */}
+        {/* Collage row - asymmetric 3-up, real photography (hotlinked) */}
         <div
           className="mt-12 grid gap-4 sm:gap-6 lg:w-[calc(100%+6rem)] lg:-mx-12"
           style={{ gridTemplateColumns: "0.9fr 1.2fr 0.65fr" }}

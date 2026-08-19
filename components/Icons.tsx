@@ -1,6 +1,6 @@
 // components/Icons.tsx
 //
-// Bespoke line-icon set — no library, no emoji. Matches DESIGN.md §7:
+// Bespoke line-icon set - no library, no emoji. Matches DESIGN.md §7:
 // 24x24 viewBox, stroke-based, currentColor, strokeWidth 1.6 default,
 // rounded caps/joins. Extend PATHS + IconName together when adding icons.
 

@@ -17,17 +17,17 @@ export function HeroNetworkDiagram() {
       isMobile = false;
 
     const NODES_DESKTOP = [
-      { id: 0, x: 0.1, y: 0.14, side: "in" },
-      { id: 1, x: 0.07, y: 0.24, side: "in" },
+      { id: 0, x: 0.1, y: 0.06, side: "in" },
+      { id: 1, x: 0.07, y: 0.2, side: "in" },
       { id: 2, x: 0.1, y: 0.34, side: "in" },
-      { id: 3, x: 0.07, y: 0.44, side: "in" },
-      { id: 4, x: 0.1, y: 0.54, side: "in" },
-      { id: 5, x: 0.07, y: 0.64, side: "in" },
+      { id: 3, x: 0.07, y: 0.48, side: "in" },
+      { id: 4, x: 0.1, y: 0.62, side: "in" },
+      { id: 5, x: 0.07, y: 0.76, side: "in" },
       { id: 6, x: 0.44, y: 0.34, side: "core" },
-      { id: 7, x: 0.88, y: 0.14, side: "out" },
-      { id: 8, x: 0.88, y: 0.3, side: "out" },
+      { id: 7, x: 0.88, y: 0.06, side: "out" },
+      { id: 8, x: 0.88, y: 0.26, side: "out" },
       { id: 9, x: 0.88, y: 0.46, side: "out" },
-      { id: 10, x: 0.88, y: 0.62, side: "out" },
+      { id: 10, x: 0.88, y: 0.66, side: "out" },
     ];
 
     const NODES_MOBILE = [
@@ -128,16 +128,16 @@ export function HeroNetworkDiagram() {
         ];
       } else {
         channels = [
-          makeChannel(0, 6, 0.22, 0.15, 0.33, 0.22),
-          makeChannel(1, 6, 0.2, 0.25, 0.31, 0.27),
+          makeChannel(0, 6, 0.22, 0.08, 0.33, 0.2),
+          makeChannel(1, 6, 0.2, 0.21, 0.31, 0.25),
           makeChannel(2, 6, 0.22, 0.34, 0.33, 0.34),
-          makeChannel(3, 6, 0.2, 0.44, 0.31, 0.4),
-          makeChannel(4, 6, 0.22, 0.52, 0.33, 0.42),
-          makeChannel(5, 6, 0.2, 0.62, 0.33, 0.46),
-          makeChannel(6, 7, 0.56, 0.3, 0.74, 0.16),
-          makeChannel(6, 8, 0.58, 0.32, 0.76, 0.3),
+          makeChannel(3, 6, 0.2, 0.47, 0.31, 0.42),
+          makeChannel(4, 6, 0.22, 0.58, 0.33, 0.44),
+          makeChannel(5, 6, 0.2, 0.7, 0.33, 0.48),
+          makeChannel(6, 7, 0.56, 0.28, 0.74, 0.08),
+          makeChannel(6, 8, 0.58, 0.32, 0.76, 0.26),
           makeChannel(6, 9, 0.58, 0.36, 0.76, 0.46),
-          makeChannel(6, 10, 0.56, 0.38, 0.74, 0.6),
+          makeChannel(6, 10, 0.56, 0.4, 0.74, 0.64),
         ];
       }
 
@@ -162,7 +162,7 @@ export function HeroNetworkDiagram() {
     function px(x: number) {
       return x * W;
     }
-    const TOP_OFFSET = 18; // shifts the whole diagram down so top nodes/icons aren't clipped
+    const TOP_OFFSET = 38; // shifts the whole diagram down so top nodes/icons aren't clipped
     function py(y: number) {
       return TOP_OFFSET + y * (H - TOP_OFFSET);
     }
@@ -447,7 +447,7 @@ export function HeroNetworkDiagram() {
         cy = py(aiCore.y);
 
       // dampen contrast in the middle vertical band (where the hero text sits),
-      // full width — keeps icons/pulses/AI core untouched, only lines + dust soften
+      // full width - keeps icons/pulses/AI core untouched, only lines + dust soften
       const bandHalf = 0.24;
       function centerDamp(yFrac: number) {
         const d = Math.abs(yFrac - 0.5) / bandHalf;

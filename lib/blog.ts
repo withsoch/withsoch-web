@@ -66,7 +66,7 @@ export function slugifyHeading(text: string): string {
 /**
  * Section headings for the TOC rail, in document order.
  *
- * Normally these are the post's `##` headings — the article's real sections,
+ * Normally these are the post's `##` headings - the article's real sections,
  * and what the old Webflow rail listed. Some posts migrated from Webflow have
  * no h2 at all and set every section as `####`, so we fall back to the
  * shallowest level the post actually uses and those still get a rail.

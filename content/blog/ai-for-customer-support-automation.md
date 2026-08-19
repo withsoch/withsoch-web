@@ -50,7 +50,7 @@ Before an agent opens the ticket, AI has already summarised the history and draf
 When self-service cannot resolve something, it hands off to a human immediately, carrying the full conversation so the customer never repeats themselves. This connects naturally to a broader [automated workflow approach](/blog/ai-workflow-automation-for-revenue-teams).
 
 > "The best AI support does not feel like AI. It feels like a team that answers fast, never makes you repeat yourself, and always lets you reach a human when you need one."
-> — A consistent finding across support automation projects
+> - A consistent finding across support automation projects
 
 ## Keeping the Human Touch
 

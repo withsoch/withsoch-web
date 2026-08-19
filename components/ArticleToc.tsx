@@ -2,7 +2,7 @@
 //
 // "In this article" rail for blog posts. Sticks to the left of the article on
 // lg and up (clearing the sticky nav), and stacks above the article below that.
-// Entries come from the post's own `##` headings — see getHeadings in lib/blog.
+// Entries come from the post's own `##` headings - see getHeadings in lib/blog.
 
 import type { Heading } from "@/lib/blog";
 

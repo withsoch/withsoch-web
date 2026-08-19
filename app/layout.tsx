@@ -5,7 +5,7 @@ import { SITE } from "@/lib/content";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 
-// Single site-wide font — matches the real withsoch.com Webflow build.
+// Single site-wide font - matches the real withsoch.com Webflow build.
 // 400/500 cover body/heading weight; 600/700 cover existing font-semibold /
 // font-bold usage (Button, Nav, comparison table, etc.) that used to ride on
 // Inter's weights.

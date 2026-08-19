@@ -1,6 +1,6 @@
 // components/sections/BlogTeaser.tsx
 //
-// Homepage "From our blogs" section — the 3 most recent posts, reusing the
+// Homepage "From our blogs" section - the 3 most recent posts, reusing the
 // same BlogCardSmall styling as the /blog page grid.
 
 import { getAllPosts } from "@/lib/blog";

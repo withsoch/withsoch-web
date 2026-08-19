@@ -2,7 +2,7 @@
 //
 // Single-testimonial spotlight for a service detail page: large light-weight
 // quote, ringed avatar, and an accent-colored divider/underline instead of a
-// boxed card — distinct from the grid recipe in
+// boxed card - distinct from the grid recipe in
 // components/sections/Testimonials.tsx.
 
 import Image from "next/image";

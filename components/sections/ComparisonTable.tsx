@@ -1,6 +1,6 @@
 // components/sections/ComparisonTable.tsx
 //
-// Real <table>, dashed row dividers — dividers-not-boxes, not nested cards.
+// Real <table>, dashed row dividers - dividers-not-boxes, not nested cards.
 
 import { ENGAGEMENT_TIERS } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";

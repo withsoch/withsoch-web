@@ -40,7 +40,7 @@ export function TeamCard({ name, role, bio, photo, socials, index }: TeamCardPro
           className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
-        {/* role badge — only shown for non-generic roles (e.g. founders) */}
+        {/* role badge - only shown for non-generic roles (e.g. founders) */}
         {role.toLowerCase() !== "team" && (
           <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-brand-dark backdrop-blur-sm">
             {role}

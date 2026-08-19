@@ -11,7 +11,7 @@ const LEAF = "#1f8a66";
 const LINE = "#e7e2d7";
 const MIST = "#f6f2ea";
 
-// AI Agent Development — Inputs -> Agent -> Outputs flow.
+// AI Agent Development - Inputs -> Agent -> Outputs flow.
 export function AgentFlowDiagram() {
   return (
     <svg viewBox="0 0 280 140" className="h-full w-full" role="img" aria-label="Diagram of inputs flowing into an AI agent that produces outputs">
@@ -33,7 +33,7 @@ export function AgentFlowDiagram() {
   );
 }
 
-// Operations and Process Automation — tangled manual lines vs clean automated boxes.
+// Operations and Process Automation - tangled manual lines vs clean automated boxes.
 export function BeforeAfterDiagram() {
   return (
     <svg viewBox="0 0 280 140" className="h-full w-full" role="img" aria-label="Diagram comparing tangled manual workflows to a clean automated sequence">
@@ -60,7 +60,7 @@ export function BeforeAfterDiagram() {
   );
 }
 
-// Customer Support Automation — ticket routing into three branches.
+// Customer Support Automation - ticket routing into three branches.
 export function TicketRoutingDiagram() {
   return (
     <svg viewBox="0 0 280 140" className="h-full w-full" role="img" aria-label="Diagram of a support ticket routing into self-serve, AI draft, and human escalation branches">
@@ -82,7 +82,7 @@ export function TicketRoutingDiagram() {
   );
 }
 
-// Marketing Automation — 4-stage funnel: Attract, Capture, Nurture, Convert.
+// Marketing Automation - 4-stage funnel: Attract, Capture, Nurture, Convert.
 export function FunnelDiagram() {
   const stages = [
     { label: "Attract", y: 8, w: 240, fill: MIST, textFill: INK },
@@ -107,7 +107,7 @@ export function FunnelDiagram() {
   );
 }
 
-// RevOps Automation — Sales / Marketing / Customer Success overlapping at Revenue.
+// RevOps Automation - Sales / Marketing / Customer Success overlapping at Revenue.
 export function OverlappingCirclesDiagram() {
   return (
     <svg viewBox="0 0 280 140" className="h-full w-full" role="img" aria-label="Diagram of sales, marketing, and customer success circles overlapping around a shared revenue center">

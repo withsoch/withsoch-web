@@ -3,9 +3,8 @@
 // Dark-theme "connected world" illustration for the Stats section: two
 // low-poly landmass meshes in the white opacity ramp (DESIGN.md §4) floating
 // on the forest-green section background, with a scatter of faint square
-// dust and a few brand-orange "signal" rings drifting between them — the
-// site's single flat accent, used sparingly. No card frame, no dot grid —
-// the section background *is* the backdrop.
+// dust and a few brand-orange "signal" rings drifting between them - the
+// site's single flat accent, used sparingly. No card frame, no dot grid - // the section background *is* the backdrop.
 
 "use client";
 
@@ -13,7 +12,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 type Node = { id: number; x: number; y: number; r: number };
 
-// Left landmass — a rough Americas-like silhouette.
+// Left landmass - a rough Americas-like silhouette.
 const LEFT_NODES: Node[] = [
   { id: 0, x: 70, y: 40, r: 3.5 },
   { id: 1, x: 110, y: 25, r: 5.5 },
@@ -38,7 +37,7 @@ const LEFT_LINES: [number, number][] = [
   [9, 10], [9, 11], [10, 11], [10, 12], [11, 12], [12, 13],
 ];
 
-// Right landmass — a rough Europe/Africa-like silhouette.
+// Right landmass - a rough Europe/Africa-like silhouette.
 const RIGHT_NODES: Node[] = [
   { id: 0, x: 260, y: 55, r: 3.5 },
   { id: 1, x: 295, y: 35, r: 3.5 },
@@ -65,14 +64,14 @@ const RIGHT_LINES: [number, number][] = [
   [11, 12], [12, 14],
 ];
 
-// Faint dust — square pixels scattered above/between the landmasses.
+// Faint dust - square pixels scattered above/between the landmasses.
 const DUST = [
   { x: 200, y: 30 }, { x: 215, y: 55 }, { x: 190, y: 80 }, { x: 225, y: 100 },
   { x: 205, y: 130 }, { x: 235, y: 150 }, { x: 195, y: 175 }, { x: 220, y: 200 },
   { x: 210, y: 230 }, { x: 240, y: 250 }, { x: 45, y: 25 }, { x: 370, y: 40 },
 ];
 
-// Hollow rings — small "signal" pings drifting near the coastlines.
+// Hollow rings - small "signal" pings drifting near the coastlines.
 const RINGS = [
   { x: 170, y: 60 }, { x: 205, y: 155 }, { x: 190, y: 260 },
 ];

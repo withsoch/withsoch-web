@@ -23,7 +23,7 @@ export type ServiceAccordionItemKey =
 
 type ServiceAccordionProps = {
   service: Service;
-  // Controlled mode is opt-in — pages that also render a state-driven visual
+  // Controlled mode is opt-in - pages that also render a state-driven visual
   // panel (e.g. the operations service) lift this state up; every other page
   // falls back to the internal default below.
   openKey?: ServiceAccordionItemKey | null;
@@ -39,7 +39,7 @@ export function ServiceAccordion({
     "whoItsFor"
   );
   // openKeyProp is only ever undefined when the parent isn't controlling this
-  // component at all — `null` is a deliberate "everything collapsed" state
+  // component at all - `null` is a deliberate "everything collapsed" state
   // and must be respected, so we can't use `??` here (it would fall through
   // to internalOpenKey on every close).
   const openKey = onOpenKeyChange ? openKeyProp ?? null : internalOpenKey;

@@ -1,6 +1,6 @@
 // lib/content.ts
 //
-// Soch ecosystem content model — populated with REAL copy audited from the
+// Soch ecosystem content model - populated with REAL copy audited from the
 // live withsoch.com (Webflow) production site on 2026-07-31.
 //
 // This intentionally deviates from the design system's "keep placeholder
@@ -36,7 +36,7 @@ export const SITE = {
   },
 };
 
-// "Book a Free Call" always routes to our internal /contact page — no
+// "Book a Free Call" always routes to our internal /contact page - no
 // external scheduler fallback. Matches the fix already applied to case
 // study and service pages.
 export const SCHEDULER_URL = "/contact";
@@ -51,14 +51,14 @@ export const CTA_BAND = {
   lead: "Book a free call and we'll show you where automation creates the most leverage in your business.",
 };
 
-// About page's CtaBand override — same component, page-specific copy.
+// About page's CtaBand override - same component, page-specific copy.
 export const ABOUT_CTA_BAND = {
   heading: "Let us audit your workflows and find your first 3 agent use cases.",
   buttonLabel: "Book a free call",
   buttonHref: SCHEDULER_URL,
 };
 
-// About page's overview/stats section — distinct from the homepage Stats
+// About page's overview/stats section - distinct from the homepage Stats
 // (different metrics; see AboutStats component). Do not merge with STATS.
 export const ABOUT_STATS = [
   {
@@ -96,7 +96,7 @@ export const HERO = {
   sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A startups identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
 };
 
-// About page hero. Kept separate from HERO (homepage) — different headline,
+// About page hero. Kept separate from HERO (homepage) - different headline,
 // CTA, and a tag list; see PageHero vs AboutHero component split.
 export const ABOUT_HERO = {
   headline: "AI automation partners for founders who want to move faster.",
@@ -289,7 +289,7 @@ export const VISION_TAGS = [
 export const MISSION =
   "To give early-stage startups access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
 
-// Founders section intro quote (About page only) — see FOUNDERS_INTRO_QUOTE prop
+// Founders section intro quote (About page only) - see FOUNDERS_INTRO_QUOTE prop
 // on the Founders block in app/about/page.tsx.
 export const FOUNDERS_INTRO_QUOTE =
   "We combine AI-native thinking with hands-on operational experience. Every engagement is led by people who have built and scaled businesses themselves, which means we know which systems actually move the needle and which ones just look good in a deck.";
@@ -317,7 +317,7 @@ export type Service = {
   // accordion panel visuals. When absent, the page falls back to the
   // public/images/services/{slug}/... placeholder convention.
   heroImage?: string;
-  // Optional per-service field (not a shared/generic block) — the copy here
+  // Optional per-service field (not a shared/generic block) - the copy here
   // is written around this service's specific "build/run/scale" framing and
   // doesn't generalize cleanly to the other four services' audiences. Add a
   // matching array to another Service entry only when real per-service copy
@@ -670,7 +670,7 @@ export const STEPS: Step[] = [
 export const STATS = [
   {
     value: "42%",
-    label: "Retailer reduced stockouts by 42% after automating inventory tracking — freeing EUR 180k in working capital within 12 weeks.",
+    label: "Retailer reduced stockouts by 42% after automating inventory tracking - freeing EUR 180k in working capital within 12 weeks.",
   },
   {
     value: "2.1×",
@@ -719,15 +719,14 @@ export const TESTIMONIALS: Testimonial[] = [
 // Case studies
 // ---------------------------------------------------------------------------
 //
-// NOTE ON SCOPE: this matches the CaseStudy shape from DESIGN.md §9 — enough
+// NOTE ON SCOPE: this matches the CaseStudy shape from DESIGN.md §9 - enough
 // for homepage cards, the /case-studies index, and service-page cross-links.
 // The full long-form narrative for each detail page (Overview / The Problem /
 // Our Framework 3-steps / Results) is page-specific content per §10 ("copy
 // unique to a single page may live in a page-local array rather than
 // content.ts"). Suggested pattern: lib/case-studies/<slug>.ts per case study,
 // each exporting { overview, problem, framework: Step[], results }. I've
-// written out the Clearwater one in full below as the reference pattern —
-// replicate it for the other 8 using the audited copy from this conversation.
+// written out the Clearwater one in full below as the reference pattern - // replicate it for the other 8 using the audited copy from this conversation.
 
 export type CaseStudy = {
   slug: string;
@@ -747,7 +746,7 @@ export type CaseStudy = {
   accent: string;
   image?: string; // TODO: re-export from Webflow CDN before launch
   href?: string;
-  // Homepage carousel-specific fields — audited verbatim from the Webflow
+  // Homepage carousel-specific fields - audited verbatim from the Webflow
   // "case-studies-carousel-source.html" custom code block (2026-08-10).
   carouselTag?: string;
   challenge?: string;
@@ -783,7 +782,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     href: "/case-studies/clearwater-intelligence",
     carouselTag: "Operations Automation",
     challenge:
-      "Analysts were spending 20+ hours a week on manual research across dozens of sources. Classification was inconsistent, the CRM was always behind, and several key sources had no API — making standard automation unworkable.",
+      "Analysts were spending 20+ hours a week on manual research across dozens of sources. Classification was inconsistent, the CRM was always behind, and several key sources had no API - making standard automation unworkable.",
     solution:
       "We built a scheduled n8n pipeline using Puppeteer and Browser Use to scrape all sources, an OpenAI classification agent to categorise findings, and an automated daily digest that compiles and distributes intelligence every morning.",
     heroStats: [
@@ -820,7 +819,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "The content team was spending most of each week on production with almost no time left for strategy. Brand voice was inconsistent across formats and SEO was being applied after the fact rather than baked in from the start.",
     solution:
-      "We built a multi-agent n8n pipeline — an SEO Writer, a Claude-powered Humaniser, and an Editor — with brand voice stored in a Pinecone vector database so every agent retrieves the same style reference every time.",
+      "We built a multi-agent n8n pipeline - an SEO Writer, a Claude-powered Humaniser, and an Editor - with brand voice stored in a Pinecone vector database so every agent retrieves the same style reference every time.",
     heroStats: [
       { value: "75%", label: "Reduction in production time" },
       { value: "30 min", label: "Brief to finished piece" },
@@ -853,9 +852,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     href: "/case-studies/stockwell-commerce",
     carouselTag: "Operations Automation",
     challenge:
-      "Every new product required four to six manual actions from the CS team. No error handling — if a step was missed, no one knew until a customer hit a broken link. No reliable way to see which products had forms without checking the sheet manually.",
+      "Every new product required four to six manual actions from the CS team. No error handling - if a step was missed, no one knew until a customer hit a broken link. No reliable way to see which products had forms without checking the sheet manually.",
     solution:
-      "We built an n8n workflow triggered by Google Sheets that retrieves the master Typeform template, personalises it via a JavaScript node, creates the new form via the Typeform API, and writes the link back to the tracking sheet — in under 4 seconds.",
+      "We built an n8n workflow triggered by Google Sheets that retrieves the master Typeform template, personalises it via a JavaScript node, creates the new form via the Typeform API, and writes the link back to the tracking sheet - in under 4 seconds.",
     heroStats: [
       { value: "4 sec", label: "Per product form created" },
       { value: "204", label: "Items processed per cycle" },
@@ -888,9 +887,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     href: "/case-studies/frontline-advisory",
     carouselTag: "Sales Automation",
     challenge:
-      "First-contact time was measured in hours. Follow-up sequences were inconsistent — some leads received all five touchpoints, others received one. Contacts were sometimes duplicated and replied leads were still receiving automated messages.",
+      "First-contact time was measured in hours. Follow-up sequences were inconsistent - some leads received all five touchpoints, others received one. Contacts were sometimes duplicated and replied leads were still receiving automated messages.",
     solution:
-      "We built two n8n workflows — an intake pipeline that fires a personalised SMS within seconds of capture, and a daily nurture sequence with reply detection that halts outreach the moment a lead responds.",
+      "We built two n8n workflows - an intake pipeline that fires a personalised SMS within seconds of capture, and a daily nurture sequence with reply detection that halts outreach the moment a lead responds.",
     heroStats: [
       { value: "Seconds", label: "Time to first contact" },
       { value: "5-day", label: "Nurture sequence, automated" },
@@ -925,7 +924,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "Triage was manual and inconsistent. Response time varied based on who was available, not urgency. Internal docs were spread across Google Drive with no time to search. Document updates meant manually re-briefing the support team each time.",
     solution:
-      "We built a Gmail-triggered pipeline with an OpenAI classifier and a LangChain agent performing semantic search across a Supabase vector database — drafting responses directly in Gmail. A second workflow auto-ingests updated Google Drive documents.",
+      "We built a Gmail-triggered pipeline with an OpenAI classifier and a LangChain agent performing semantic search across a Supabase vector database - drafting responses directly in Gmail. A second workflow auto-ingests updated Google Drive documents.",
     heroStats: [
       { value: "0", label: "Manual triage steps per email" },
       { value: "3×", label: "Support volume per team member" },
@@ -960,7 +959,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "Every new patient meant twenty-plus minutes of manual insurance verification and chart setup, done by hand before they walked in. No-shows were running at 18% across all three clinics, with no shared waitlist to fill an empty slot when someone cancelled.",
     solution:
-      "We built three connected workflows on top of PromptEMR — one that verifies insurance and pre-builds charts before the visit, one that shares a single waitlist across all three clinics, and one that times review requests to genuinely good outcomes.",
+      "We built three connected workflows on top of PromptEMR - one that verifies insurance and pre-builds charts before the visit, one that shares a single waitlist across all three clinics, and one that times review requests to genuinely good outcomes.",
     heroStats: [
       { value: "80%", label: "Reduction in admin time per new patient" },
       { value: "7%", label: "No-shows, down from 18%" },
@@ -1145,8 +1144,7 @@ export const ENGAGEMENT_TIERS: EngagementTier[] = [
 // (consistent across both pages on the live site). The Contact page currently
 // runs a DIFFERENT, older "embedded consulting partner" FAQ set (weekly
 // sessions, 2–4 week discovery sprints, retainer language) that doesn't match
-// this pricing model. Flagging for Rizwan/Husnain to confirm before porting —
-// I did not merge or silently pick one. That legacy set is preserved below,
+// this pricing model. Flagging for Rizwan/Husnain to confirm before porting - // I did not merge or silently pick one. That legacy set is preserved below,
 // commented out, in case it's the one that should actually win.
 
 export type Faq = { q: string; a: string };
@@ -1186,7 +1184,7 @@ export const FAQS: Faq[] = [
   },
 ];
 
-// Contact page's FAQ set — a different engagement model (embedded consulting
+// Contact page's FAQ set - a different engagement model (embedded consulting
 // partner, weekly working sessions, 2–4 week discovery sprints) than the
 // Services FAQS above, so it stays a distinct, separate export.
 export const CONTACT_FAQS: Faq[] = [

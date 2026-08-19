@@ -7,7 +7,7 @@
 // diagram/content is passed in.
 
 type DiagramFrameProps = {
-  // Optional — omit both when the content (e.g. a full-bleed photo) should
+  // Optional - omit both when the content (e.g. a full-bleed photo) should
   // carry its own context instead of duplicating it in a text strip.
   eyebrow?: string;
   caption?: string;
@@ -33,7 +33,7 @@ export function DiagramFrame({
       {!bleed && <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />}
 
       {eyebrow && (
-        // top strip: category / service label — mirrors the bottom caption strip
+        // top strip: category / service label - mirrors the bottom caption strip
         <div className="relative z-10 px-6 pt-6 text-left text-xs font-semibold uppercase tracking-wide text-muted">
           {eyebrow}
         </div>
@@ -50,7 +50,7 @@ export function DiagramFrame({
       </div>
 
       {caption && (
-        // bottom strip: caption — equal weight/position to the top strip
+        // bottom strip: caption - equal weight/position to the top strip
         <div className="relative z-10 px-6 pb-6 text-center text-xs text-muted">{caption}</div>
       )}
     </div>

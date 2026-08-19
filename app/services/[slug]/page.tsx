@@ -17,7 +17,7 @@ export function generateStaticParams() {
 }
 
 // marketing-automation's third point ("Lead Nurturing") is real, audited
-// content used elsewhere (services grid/pills) — trimmed to 2 tags here only
+// content used elsewhere (services grid/pills) - trimmed to 2 tags here only
 // because a garbled third tag on the reference layout couldn't be confirmed.
 export default async function ServiceDetailPage({
   params,
@@ -35,7 +35,7 @@ export default async function ServiceDetailPage({
   const descriptionParagraphs = Array.isArray(service.description)
     ? service.description
     : [service.description];
-  // Standard template across all 5 services — always 3 columns so every
+  // Standard template across all 5 services - always 3 columns so every
   // service page's offering cards share the same width and height
   // (matching operations-process-automation, the 9-item reference layout).
   const offeringsColsClass = "lg:grid-cols-3";

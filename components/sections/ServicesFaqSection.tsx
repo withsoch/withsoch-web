@@ -1,8 +1,7 @@
 // components/sections/ServicesFaqSection.tsx
 //
 // Numbered FAQ accordion for /services, paired with a supporting image.
-// Distinct from FaqAccordion.tsx (single-column, unnumbered, used elsewhere) —
-// this variant needs numbered items in a 2-column layout, so it's a small
+// Distinct from FaqAccordion.tsx (single-column, unnumbered, used elsewhere) - // this variant needs numbered items in a 2-column layout, so it's a small
 // adapted sibling rather than a reuse of that component.
 
 "use client";

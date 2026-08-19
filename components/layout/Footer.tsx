@@ -1,6 +1,6 @@
 // components/layout/Footer.tsx
 //
-// Dark footer — bg-charcoal per DESIGN.md §6 dark footer recipe.
+// Dark footer - bg-charcoal per DESIGN.md §6 dark footer recipe.
 
 import Image from "next/image";
 import Link from "next/link";

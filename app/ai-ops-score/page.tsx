@@ -1,7 +1,7 @@
 // app/ai-ops-score/page.tsx
 //
 // Interactive AI Ops Score quiz. Questions, scoring logic, and result-tier
-// copy ported from the Webflow export (ai-ops-score.html) — 12 questions
+// copy ported from the Webflow export (ai-ops-score.html) - 12 questions
 // across 3 pillars (Ops readiness / Automation maturity / Team efficiency),
 // each answer worth 0-3 points, scored as a percentage of the max per pillar.
 

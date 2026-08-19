@@ -6,7 +6,7 @@
 // item is open. State lives here so both halves share a single source of
 // truth. The visual panel reuses the same DiagramFrame (cream/dot-grid,
 // corner brackets, eyebrow + caption strip) and the same per-service SVG
-// diagram as the homepage ServicesGrid panel — only the caption changes
+// diagram as the homepage ServicesGrid panel - only the caption changes
 // per accordion tab.
 
 "use client";
@@ -39,8 +39,7 @@ type ServiceProcessPanelProps = {
 export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   const [openKey, setOpenKey] = useState<ServiceAccordionItemKey | null>("whoItsFor");
   // Keep showing the last-opened section's caption even while every
-  // accordion row is collapsed, instead of snapping back to "whoItsFor" —
-  // closing a row should only close the row, not silently swap the panel.
+  // accordion row is collapsed, instead of snapping back to "whoItsFor" - // closing a row should only close the row, not silently swap the panel.
   const [lastKey, setLastKey] = useState<ServiceAccordionItemKey>("whoItsFor");
   const activeKey = openKey ?? lastKey;
   const caption = CAPTIONS[activeKey];
@@ -60,7 +59,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   return (
     <div
       className={`grid grid-cols-1 items-stretch gap-8 lg:gap-10 ${
-        // The source photography is landscape (752x501) — give the visual
+        // The source photography is landscape (752x501) - give the visual
         // panel more of the row's width on services that use real images
         // so object-contain has less letterboxing to fit it without
         // cropping any content.
@@ -76,7 +75,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
         >
           <AnimatePresence mode="wait">
             {tabImage ? (
-              // Full-bleed real photography — fills the entire card edge to
+              // Full-bleed real photography - fills the entire card edge to
               // edge, no eyebrow/caption strip and no white padding around
               // it, so the image itself is the whole panel.
               <motion.div
@@ -89,10 +88,10 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
               >
                 <Image
                   src={tabImage}
-                  alt={`${service.title} — ${caption}`}
+                  alt={`${service.title} - ${caption}`}
                   fill
                   sizes="(min-width: 1024px) 720px, 90vw"
-                  // object-contain — the source photos are landscape and
+                  // object-contain - the source photos are landscape and
                   // vary slightly in crop; contain guarantees every tab
                   // renders its full image with nothing sliced off, at the
                   // cost of a little letterboxing instead of a hard crop.

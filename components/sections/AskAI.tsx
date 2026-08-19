@@ -1,6 +1,6 @@
 // components/sections/AskAI.tsx
 //
-// "Ask AI about Soch" — ported from ask-ai-source.html. Structure/copy/URLs
+// "Ask AI about Soch" - ported from ask-ai-source.html. Structure/copy/URLs
 // and inline brand SVGs kept as-is; visual treatment swapped to the Soch
 // design system: no glow/gradient, no dark panel, flat white pill buttons.
 
@@ -63,7 +63,7 @@ export function AskAI() {
         <h2 className="text-h2 mt-4">Ask AI about Soch</h2>
         <p className="lead mt-4 max-w-xl">
           Pick your favourite AI and ask what it thinks about us. No filter, no
-          spin — just what the models know.
+          spin - just what the models know.
         </p>
         <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
           {LINKS.map((link) => (

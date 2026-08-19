@@ -31,7 +31,7 @@ The business risk of conflating the two is significant. Firms that run a single 
 What we consistently see across AI upskilling rollouts is a predictable regression curve. Employees finish a course with genuine enthusiasm, attempt to apply new skills, encounter friction in tools or processes their employer has not yet reconfigured, and quietly return to familiar workflows. The course did not fail. The environment around the employee did not change to support what they learned.
 
 > "Training without workflow redesign is professional development for its own sake. Within six weeks, firms that train without changing the underlying tooling typically see skill application rates fall back to near zero."
-> — Observed pattern across AI workforce adoption engagements
+> - Observed pattern across AI workforce adoption engagements
 
 **Pro Tip:** Before selecting a provider, ask a single qualifying question: "What accountability mechanism do you offer for the 90 days after course completion?" If the answer is a satisfaction survey, keep looking.
 
@@ -39,15 +39,15 @@ What we consistently see across AI upskilling rollouts is a predictable regressi
 
 The comparison below covers the criteria that actually move a procurement decision: cost structure, certificate credibility, delivery format, and critically, whether the provider offers any post-training workflow integration support.
 
-**Google AI for Small Businesses** — Cost: Free. Certificate: Google certificate. Format: Self-paced. Workflow integration support: None included. Best fit: Small businesses, early AI fluency.
+**Google AI for Small Businesses** - Cost: Free. Certificate: Google certificate. Format: Self-paced. Workflow integration support: None included. Best fit: Small businesses, early AI fluency.
 
-**Microsoft AI Skills Initiative** — Cost: Free to low cost. Certificate: Microsoft credential. Format: Self-paced + some instructor-led. Workflow integration support: Linked to Microsoft 365 tooling. Best fit: Firms already on Microsoft stack.
+**Microsoft AI Skills Initiative** - Cost: Free to low cost. Certificate: Microsoft credential. Format: Self-paced + some instructor-led. Workflow integration support: Linked to Microsoft 365 tooling. Best fit: Firms already on Microsoft stack.
 
-**Wharton AI for Business (Coursera)** — Cost: Subscription or per-course fee (visit coursera.org for current pricing). Certificate: Wharton/UPenn certificate. Format: Self-paced cohort. Workflow integration support: None included. Best fit: Senior leaders, strategy-level literacy.
+**Wharton AI for Business (Coursera)** - Cost: Subscription or per-course fee (visit coursera.org for current pricing). Certificate: Wharton/UPenn certificate. Format: Self-paced cohort. Workflow integration support: None included. Best fit: Senior leaders, strategy-level literacy.
 
-**Columbia AI for Business** — Cost: Visit Columbia's site for current pricing. Certificate: Columbia University certificate. Format: Online cohort. Workflow integration support: None included. Best fit: Mid-market, executive education.
+**Columbia AI for Business** - Cost: Visit Columbia's site for current pricing. Certificate: Columbia University certificate. Format: Online cohort. Workflow integration support: None included. Best fit: Mid-market, executive education.
 
-**Correlation One** — Cost: Enterprise pricing on request. Certificate: Proprietary credential. Format: Cohort-based, instructor-led. Workflow integration support: Some employer partnership support. Best fit: Enterprise, data and AI roles.
+**Correlation One** - Cost: Enterprise pricing on request. Certificate: Proprietary credential. Format: Cohort-based, instructor-led. Workflow integration support: Some employer partnership support. Best fit: Enterprise, data and AI roles.
 
 For small businesses prioritising speed and recognised credentials, [Google's AI training programme for small businesses](https://grow.google/ai-for-small-businesses/) offers free, accessible content with a credible certificate. For firms that need strategy-level AI literacy at the leadership tier, the [Wharton AI for Business Specialization on Coursera](https://www.coursera.org/specializations/ai-for-business-wharton) carries strong credential weight.
 
@@ -70,19 +70,19 @@ The mistake most procurement teams make here is evaluating providers on curricul
 - **Coaching access:** Is there a mechanism for employees to get help when they hit a specific obstacle in applying AI to their actual job?
 
 > "Ask any shortlisted provider for two case studies where they can show behaviour change data, not just completion rates. If they cannot produce them, that tells you everything about how they define success."
-> — Evaluation framework for AI upskilling procurement
+> - Evaluation framework for AI upskilling procurement
 
 ## AI Training Formats Matched to Firm Size and Maturity
 
 A growth-stage startup and a 2,000-person enterprise face fundamentally different AI training challenges. Applying the same format to both produces poor outcomes for both.
 
-**Early-stage startup (under 20 staff)** — Priority: Speed, cost, immediate application. Recommended format: Self-paced with weekly team practice sessions. Certificate value: High (builds team credibility). Key risk to manage: No dedicated L&D resource to manage rollout.
+**Early-stage startup (under 20 staff)** - Priority: Speed, cost, immediate application. Recommended format: Self-paced with weekly team practice sessions. Certificate value: High (builds team credibility). Key risk to manage: No dedicated L&D resource to manage rollout.
 
-**Growth-stage SME (20-200 staff)** — Priority: Cross-functional literacy, shared vocabulary. Recommended format: Cohort-based with department tracks. Certificate value: Medium (internal signalling matters more). Key risk to manage: Inconsistent adoption across functions.
+**Growth-stage SME (20-200 staff)** - Priority: Cross-functional literacy, shared vocabulary. Recommended format: Cohort-based with department tracks. Certificate value: Medium (internal signalling matters more). Key risk to manage: Inconsistent adoption across functions.
 
-**Mid-market firm (200-1,000 staff)** — Priority: Scalable delivery, manager enablement. Recommended format: Blended — cohort anchor plus self-paced reinforcement. Certificate value: Medium to high. Key risk to manage: Training islands — teams learn in silos.
+**Mid-market firm (200-1,000 staff)** - Priority: Scalable delivery, manager enablement. Recommended format: Blended - cohort anchor plus self-paced reinforcement. Certificate value: Medium to high. Key risk to manage: Training islands - teams learn in silos.
 
-**Enterprise (1,000+ staff)** — Priority: Integration with existing L&D infrastructure. Recommended format: LMS-integrated, role-based tracks. Certificate value: Lower relative priority. Key risk to manage: Procurement cycles slow deployment.
+**Enterprise (1,000+ staff)** - Priority: Integration with existing L&D infrastructure. Recommended format: LMS-integrated, role-based tracks. Certificate value: Lower relative priority. Key risk to manage: Procurement cycles slow deployment.
 
 For small businesses, the best AI training for firms in this category is often the fastest route to a recognised credential combined with a structured internal practice cadence. For mid-market firms building cross-functional AI literacy at scale, cohort delivery with shared projects across departments produces significantly stronger adoption than individual self-paced enrolment.
 
@@ -119,4 +119,4 @@ Track leading indicators in the first 30 days (prompt usage, share of workflows 
 
 ## Conclusion: Train the Workflow, Not Just the Employee
 
-AI training for firms fails at the workflow level, not the course level. Choose providers that align to your actual tools, build in accountability, and pair the rollout with a workflow redesign measured against leading indicators from day one. If the change you expected has not appeared, the gap is structural — AI change management for founders and CEOs can help.
+AI training for firms fails at the workflow level, not the course level. Choose providers that align to your actual tools, build in accountability, and pair the rollout with a workflow redesign measured against leading indicators from day one. If the change you expected has not appeared, the gap is structural - AI change management for founders and CEOs can help.

@@ -18,7 +18,7 @@ export function NewsletterForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm text-white/75">Thanks — you&apos;re subscribed.</p>
+      <p className="text-sm text-white/75">Thanks - you&apos;re subscribed.</p>
     );
   }
 

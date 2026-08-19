@@ -2,7 +2,7 @@
 
 // components/sections/AutomationOperatingSystem.tsx
 //
-// Interactive tabbed / cascading-card rebuild of "How We Work" — restyled
+// Interactive tabbed / cascading-card rebuild of "How We Work" - restyled
 // onto the light Soch design system (flat colors, no gradients/glow). Auto-
 // cycles through the 3 STEPS from lib/content.ts, pauses on hover/focus,
 // respects prefers-reduced-motion.
@@ -47,7 +47,7 @@ export function AutomationOperatingSystem() {
   }
 
   // The growth wedge's leading edge should stop exactly at the active
-  // card's right edge — not a naive (active / total) percentage, since the
+  // card's right edge - not a naive (active / total) percentage, since the
   // cards are clamped between min-w-[12rem] and max-w-[16rem] and don't
   // actually occupy their nominal 28% share at every viewport width.
   useEffect(() => {
@@ -94,7 +94,7 @@ export function AutomationOperatingSystem() {
 
         {/* RIGHT */}
         <div>
-          {/* Below sm the cascading cards don't have room to breathe — fall
+          {/* Below sm the cascading cards don't have room to breathe - fall
               back to a simple stacked list of the same tab-driven content. */}
           <div className="flex flex-col gap-3 sm:hidden" role="tablist" aria-label="Process steps">
             {STEPS.map((step, i) => {
@@ -132,16 +132,16 @@ export function AutomationOperatingSystem() {
             })}
           </div>
 
-          {/* Spotlight panel — pill tabs float over a cascading trio of step
+          {/* Spotlight panel - pill tabs float over a cascading trio of step
               cards, wired to a diagonal "growth" wedge along the base. */}
           <div
             ref={panelRef}
             className="relative isolate hidden h-[460px] overflow-hidden rounded-2xl border border-line bg-mist sm:block lg:h-[500px]"
           >
-            {/* Dot-grid texture — same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
+            {/* Dot-grid texture - same treatment as StatsNetworkIllustration / ServiceCardDiagrams */}
             <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
 
-            {/* Diagonal growth wedge along the base — the unfilled triangle is
+            {/* Diagonal growth wedge along the base - the unfilled triangle is
                 the full step count, the brand-filled triangle scales its
                 width to (active step / total steps), animating as a progress
                 indicator rather than a static decoration. */}
@@ -160,7 +160,7 @@ export function AutomationOperatingSystem() {
               }}
             />
 
-            {/* Pill tabs — the single tablist driving which card is emphasized */}
+            {/* Pill tabs - the single tablist driving which card is emphasized */}
             <div
               className="absolute left-6 top-5 z-10 flex flex-wrap gap-2 sm:left-8 sm:top-6"
               role="tablist"
@@ -194,8 +194,7 @@ export function AutomationOperatingSystem() {
             <div id={panelId} role="tabpanel" aria-labelledby={`automation-os-tab-${active}`}>
               {STEPS.map((step, i) => {
                 const isActive = i === active;
-                // Cascade the cards diagonally, rising toward the top-right —
-                // each step sits higher and further right than the last, with
+                // Cascade the cards diagonally, rising toward the top-right - // each step sits higher and further right than the last, with
                 // enough stride between them that none overlap.
                 const bottomPct = 8 + i * 24;
                 const leftPct = 4 + i * 32;

@@ -2,7 +2,7 @@
 //
 // The interactive engine behind /ai-ops-score. All copy, questions, options,
 // and scoring-tier text live in lib/ai-ops-quiz-content.ts (the single
-// source of truth, ported from the Webflow export) — this file only holds
+// source of truth, ported from the Webflow export) - this file only holds
 // the quiz flow (question → pre-gate → results → email gate → success),
 // the scoring math, and presentation.
 

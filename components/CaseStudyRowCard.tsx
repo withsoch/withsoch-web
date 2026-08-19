@@ -1,10 +1,10 @@
 // components/CaseStudyRowCard.tsx
 //
-// Case-study index card — image left, tag + title + summary + stats right.
+// Case-study index card - image left, tag + title + summary + stats right.
 // Reuses the carouselTag/challenge/heroStats fields already wired on
 // CASE_STUDIES (lib/content.ts) plus the real hero image already audited
 // in CASE_STUDY_DETAILS (lib/case-studies-detail.ts). Light theme card
-// recipe (bg-white, border-line, rounded-xl) — same as every other card
+// recipe (bg-white, border-line, rounded-xl) - same as every other card
 // in the codebase.
 
 import Link from "next/link";

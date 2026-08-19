@@ -7,7 +7,7 @@
 // three node size tiers, an emphasis ring around the hub, gently curved
 // connectors, a couple of looping signal-pulse dots (SMIL animateMotion,
 // paused for prefers-reduced-motion), and a staggered scroll-in reveal via
-// motion/react — matching the Reveal primitive's easing/duration exactly.
+// motion/react - matching the Reveal primitive's easing/duration exactly.
 
 "use client";
 
@@ -65,7 +65,7 @@ const PULSE_LINES = [5, 9, 15];
 
 const NODE_BY_ID = new Map(NODES.map((n) => [n.id, n]));
 
-// Nudge each connector into a shallow bezier curve — alternating sides keeps
+// Nudge each connector into a shallow bezier curve - alternating sides keeps
 // the network feeling organic instead of mechanically bowed one direction.
 function curvedPath(from: { x: number; y: number }, to: { x: number; y: number }, bend: number) {
   const mx = (from.x + to.x) / 2;
