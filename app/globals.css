@@ -256,6 +256,19 @@
     padding: 1.25rem 1.5rem;
   }
 
+  /* Dark variant - homepage dark-section pass. Isolated modifier class so it
+     can be dropped independently of .comparison-table if this section reverts
+     to its light bg-mist treatment. Reuses only the existing white/brand
+     tokens already used on the CTA band/footer. */
+  .comparison-table-dark th,
+  .comparison-table-dark td {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  .comparison-table-dark tbody td {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
   @media (max-width: 767px) {
     .comparison-table table,
     .comparison-table thead,
@@ -286,6 +299,10 @@
     }
     .comparison-table tbody tr:last-child {
       margin-bottom: 0;
+    }
+    .comparison-table-dark thead tr,
+    .comparison-table-dark tbody tr {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
     }
     .comparison-table tbody th {
       border-bottom: none;

@@ -16,14 +16,15 @@ const ROWS: { label: string; key: keyof (typeof ENGAGEMENT_TIERS)[number] }[] = 
 
 export function ComparisonTable() {
   return (
-    <Section className="bg-mist">
+    <Section className="bg-charcoal">
       <SectionHeading
         title="AI Consulting vs. Implementation vs. Transformation"
         intro="Not sure which engagement you need? Here's how they differ and which one fits where you are right now."
         maxWidthClassName="max-w-4xl"
-        titleClassName="text-h2 lg:text-[2.1rem] lg:leading-[1.15]"
+        titleClassName="text-h2 text-white lg:text-[2.1rem] lg:leading-[1.15]"
+        introClassName="text-white/75"
       />
-      <div className="comparison-table mt-14">
+      <div className="comparison-table comparison-table-dark mt-14">
         <table>
           <thead>
             <tr>

@@ -69,7 +69,7 @@ export function AutomationOperatingSystem() {
   const panelId = "automation-os-panel";
 
   return (
-    <section className="bg-white pb-8 pt-0 sm:pb-10 lg:pb-12">
+    <section className="bg-white pb-8 pt-8 sm:pb-10 sm:pt-10 lg:pb-12 lg:pt-12">
       <div className="mx-auto w-full max-w-[96rem] px-6 lg:px-10">
         <div
           className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14"

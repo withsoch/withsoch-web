@@ -44,10 +44,10 @@ export function CaseStudiesCarousel() {
   }
 
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-32">
+    <section className="bg-charcoal py-20 sm:py-24 lg:py-32">
       <div className="mx-auto w-full max-w-[96rem] px-6 lg:px-10">
         <div
-          className="overflow-hidden rounded-2xl border border-line focus:outline-none"
+          className="overflow-hidden rounded-2xl border border-white/10 focus:outline-none"
           tabIndex={0}
           onKeyDown={onKeyDown}
           onTouchStart={onTouchStart}

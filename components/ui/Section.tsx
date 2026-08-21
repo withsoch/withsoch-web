@@ -27,6 +27,9 @@ type SectionHeadingProps = {
   align?: "center" | "left";
   maxWidthClassName?: string;
   titleClassName?: string;
+  // Optional color override appended after "lead" - lets a dark section
+  // recolor the intro paragraph without a new component/prop shape.
+  introClassName?: string;
 };
 
 export function SectionHeading({
@@ -35,13 +38,14 @@ export function SectionHeading({
   align = "center",
   maxWidthClassName = "max-w-2xl",
   titleClassName = "text-h2",
+  introClassName = "",
 }: SectionHeadingProps) {
   const alignment =
     align === "center" ? "mx-auto text-center items-center" : "text-left items-start";
   return (
     <div className={`flex ${maxWidthClassName} flex-col gap-4 ${alignment}`}>
       <h2 className={titleClassName}>{title}</h2>
-      {intro && <p className="lead">{intro}</p>}
+      {intro && <p className={`lead ${introClassName}`}>{intro}</p>}
     </div>
   );
 }

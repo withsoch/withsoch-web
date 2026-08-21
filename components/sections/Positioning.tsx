@@ -25,9 +25,9 @@ const POINTS: { lead: string; rest: string }[] = [
 
 export function Positioning() {
   return (
-    <Section className="bg-white !py-14 sm:!py-16 lg:!py-20">
+    <Section className="bg-charcoal !py-14 sm:!py-16 lg:!py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
+        <h2 className="text-h2 text-white lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
           AI Automation Consulting and Implementation for Startups
         </h2>
       </div>
@@ -39,16 +39,16 @@ export function Positioning() {
           className="w-full h-full min-h-[36rem] lg:min-h-[44rem] rounded-2xl object-cover"
         />
         <div className="flex flex-col justify-between gap-8 h-full">
-          <p className="lead text-slate max-w-xl">{HERO.sub}</p>
+          <p className="lead text-white/75 max-w-xl">{HERO.sub}</p>
           <ul className="flex flex-col">
             {POINTS.map((point) => (
               <li
                 key={point.lead}
-                className="flex items-start gap-3 py-5 border-b border-line first:pt-0 last:border-b-0"
+                className="flex items-start gap-3 py-5 border-b border-white/10 first:pt-0 last:border-b-0"
               >
                 <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                <span className="text-ink-soft">
-                  <strong className="font-semibold text-ink">{point.lead}</strong>{" "}
+                <span className="text-white/80">
+                  <strong className="font-semibold text-white">{point.lead}</strong>{" "}
                   {point.rest}
                 </span>
               </li>

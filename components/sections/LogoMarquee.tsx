@@ -10,10 +10,10 @@ export function LogoMarquee() {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
   return (
-    <section className="bg-mist py-8 sm:py-10 overflow-hidden">
+    <section className="bg-charcoal py-8 sm:py-10 overflow-hidden">
       <div className="container-x flex flex-col items-center text-center gap-3 mb-6">
-        <h2 className="text-h2">Trusted by fast-moving startups</h2>
-        <p className="lead max-w-xl">
+        <h2 className="text-h2 text-white">Trusted by fast-moving startups</h2>
+        <p className="lead text-white/75 max-w-xl">
           We embed into your team and deploy automation systems that run while your people stay
           focused on growth
         </p>
@@ -22,7 +22,7 @@ export function LogoMarquee() {
         {logos.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}
-            className="flex h-36 w-44 shrink-0 items-center justify-center rounded-xl border border-line bg-white p-6"
+            className="flex h-36 w-44 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white p-6"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

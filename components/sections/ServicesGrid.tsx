@@ -34,17 +34,19 @@ export function ServicesGrid() {
   }
 
   return (
-    <Section className="bg-mist">
+    <Section className="bg-charcoal">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <SectionHeading
           align="left"
           maxWidthClassName="max-w-xl"
           title="Services that turn strategy into results"
           intro="Five areas where AI automation replaces manual work with systems that run on their own."
+          titleClassName="text-h2 text-white"
+          introClassName="text-white/75"
         />
         <Link
           href="/services"
-          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-base font-semibold text-ink transition-colors hover:border-ink/35"
+          className="inline-flex shrink-0 items-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-base font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/10"
         >
           See all services
         </Link>
@@ -56,8 +58,8 @@ export function ServicesGrid() {
             return (
               <div
                 key={service.slug}
-                className={`rounded-[28px] border bg-white transition-colors duration-300 ease-in-out ${
-                  isOpen ? "border-brand/60" : "border-line hover:border-ink/20 hover:bg-mist/40"
+                className={`rounded-[28px] border bg-white/5 transition-colors duration-300 ease-in-out ${
+                  isOpen ? "border-brand/60" : "border-white/10 hover:border-white/25 hover:bg-white/10"
                 }`}
               >
                 <button
@@ -66,12 +68,12 @@ export function ServicesGrid() {
                   className="flex w-full items-center gap-4 px-6 py-4.5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-peach text-brand">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-brand-light">
                     <Icon name={service.icon} className="h-5 w-5" />
                   </span>
                   <span
                     className={`text-h3 text-[1.02rem] flex-1 transition-colors duration-300 ease-in-out ${
-                      isOpen ? "text-brand" : "text-ink"
+                      isOpen ? "text-brand-light" : "text-white"
                     }`}
                   >
                     {service.title}
@@ -81,7 +83,7 @@ export function ServicesGrid() {
                     transition={{ duration: 0.25, ease: "easeInOut" }}
                     className="shrink-0"
                   >
-                    <Icon name="arrow" className={`h-5 w-5 ${isOpen ? "text-brand" : "text-muted"}`} />
+                    <Icon name="arrow" className={`h-5 w-5 ${isOpen ? "text-brand-light" : "text-white/50"}`} />
                   </motion.span>
                 </button>
                 <AnimatePresence initial={false}>
@@ -95,12 +97,12 @@ export function ServicesGrid() {
                       style={{ overflow: "hidden" }}
                     >
                       <div className="flex flex-col gap-4 px-6 pb-5 pl-[4rem]">
-                        <p className="text-slate">{service.description}</p>
+                        <p className="text-white/70">{service.description}</p>
                         <ul className="flex flex-wrap gap-2">
                           {service.points.map((point) => (
                             <li
                               key={point}
-                              className="rounded-full bg-peach px-3.5 py-1.5 text-sm font-medium text-brand"
+                              className="rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-medium text-brand-light"
                             >
                               {point}
                             </li>
@@ -114,7 +116,7 @@ export function ServicesGrid() {
             );
           })}
         </div>
-        <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3">
+        <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-white/5 p-3">
           <DiagramFrame
             eyebrow={homeImage ? undefined : `Service / ${activeService.title}`}
             caption={homeImage ? undefined : activeService.hook}
