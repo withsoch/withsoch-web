@@ -2,6 +2,7 @@
 
 import { HERO } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 
 const POINTS: { lead: string; rest: string }[] = [
@@ -25,20 +26,25 @@ const POINTS: { lead: string; rest: string }[] = [
 
 export function Positioning() {
   return (
-    <Section className="bg-white !py-14 sm:!py-16 lg:!py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-none">
+    <Section className="bg-mist" tight>
+      {/* The heading used to sit in a two-column grid whose second cell was
+          empty - it just needs a width constraint. */}
+      <Reveal>
+        <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-3xl">
           AI Automation Consulting and Implementation for Startups
         </h2>
-      </div>
+      </Reveal>
 
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-stretch">
+      {/* items-start, not items-stretch: the photo used to be pinned to a
+          44rem min-height, which stretched the text column to match and left
+          justify-between to open a ~180px hole above the CTA. */}
+      <Reveal className="mt-10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start" delay={0.08}>
         <img
           src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b6232e8946bee738b_6a0d81a48529c31b17d78093_replicate-prediction-5ahpghne0nrmw0cy87dskem7qg.webp"
           alt="Soch team collaborating"
-          className="w-full h-full min-h-[36rem] lg:min-h-[44rem] rounded-2xl object-cover"
+          className="w-full aspect-[4/3] lg:aspect-[5/4] rounded-2xl object-cover"
         />
-        <div className="flex flex-col justify-between gap-8 h-full">
+        <div className="flex flex-col gap-8">
           <p className="lead text-slate max-w-xl">{HERO.sub}</p>
           <ul className="flex flex-col">
             {POINTS.map((point) => (
@@ -60,7 +66,7 @@ export function Positioning() {
             </Button>
           </div>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

@@ -640,7 +640,22 @@ export const SERVICES: Service[] = [
 // Process (homepage "Soch Automation Operating System")
 // ---------------------------------------------------------------------------
 
-export type Step = { no: string; icon: IconName; title: string; description: string };
+export type Step = {
+  no: string;
+  icon: IconName;
+  title: string;
+  description: string;
+  /**
+   * What the client actually walks away with at the end of this phase - two
+   * or three short noun phrases, e.g. ["Workflow map", "Prioritised backlog"].
+   *
+   * Deliberately empty. AutomationOperatingSystem renders this row only when
+   * a step defines it, so the section degrades cleanly while it's unwritten.
+   * These are claims about how Soch works, so they need to come from Rizwan /
+   * Husnain rather than be drafted here.
+   */
+  outputs?: string[];
+};
 
 export const STEPS: Step[] = [
   {
@@ -1087,11 +1102,13 @@ export const CLIENT_LOGOS = [
   { name: "Cycle Together", src: "/logos/cycle-together.svg" },
   { name: "Kuunda", src: "/logos/kuunda.svg" },
   { name: "Ncon", src: "/logos/ncon.svg" },
-  { name: "A brand who worked with us", src: "/logos/pitch-a-fete.svg" },
   { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
   { name: "Milkar", src: "/logos/milkar.svg" },
-  { name: "A brand who worked with us", src: "/logos/client-19.svg" },
 ];
+// Two entries were removed here: pitch-a-fete.svg and client-19.svg both
+// shipped with the literal name "A brand who worked with us", which renders
+// into the marquee's alt text. Re-add them with real names when known - the
+// SVGs are still in public/logos/.
 
 // ---------------------------------------------------------------------------
 // Engagement tiers (homepage comparison table)
@@ -1152,7 +1169,12 @@ export type Faq = { q: string; a: string };
 export const FAQS: Faq[] = [
   {
     q: "What does it actually cost, and how quickly will we see ROI?",
-    a: "It depends on the engagement. An Automation Audit starts at $1K and gives you a prioritized roadmap within two weeks. An Automation Build starts at $10K and delivers a live, running system within 3–6 weeks. We target high-frequency workflows first, which means most clients recover the investment within their first quarter. Sometimes faster.",
+    // NOTE (pricing): this used to say the Build "starts at $10K", which
+    // directly contradicted ENGAGEMENT_TIERS above - the same homepage shows
+    // AI Implementation at $4K-$8K over 4-8 weeks. Aligned to the table's own
+    // figures rather than inventing a third number. If $10K is the real floor,
+    // the table is what needs changing, not this. Confirm with Rizwan/Husnain.
+    a: "It depends on the engagement. An Automation Audit starts at $1K and gives you a prioritized roadmap within two weeks. An Automation Build starts at $4K and delivers a live, running system within 4–8 weeks. We target high-frequency workflows first, which means most clients recover the investment within their first quarter. Sometimes faster.",
   },
   {
     q: "How long does implementation take?",

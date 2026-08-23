@@ -78,7 +78,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Reveal as="section">
         <Section className="bg-white" tight>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {CONTACT_ITEMS.map((item) => (
@@ -106,11 +105,8 @@ export default function ContactPage() {
             ))}
           </div>
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <ContactFaq />
-      </Reveal>
     </main>
   );
 }
