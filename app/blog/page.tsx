@@ -47,7 +47,9 @@ export default function BlogPage() {
         )}
       </Section>
 
+      <Reveal as="section">
         <CtaBand />
+      </Reveal>
     </main>
   );
 }

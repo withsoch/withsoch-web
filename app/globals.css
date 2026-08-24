@@ -51,17 +51,6 @@
   --shadow-lift: 0 22px 48px -22px rgba(20, 30, 25, 0.28);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-
-  /* Vertical rhythm - one fluid scale replacing the ad-hoc py-8..py-32 values
-     that used to be sprinkled across the section components.
-     Tightened from 7.5/5/10rem: at desktop nearly every section used the
-     default, so two adjacent sections put 240px between their contents and
-     the page read as adrift rather than spacious. `loose` is now reserved for
-     the two or three sections that actually earn the extra air. */
-  --space-section: clamp(3.75rem, 2.5rem + 3.6vw, 5.5rem);
-  --space-section-tight: clamp(2.75rem, 2rem + 2.4vw, 4rem);
-  --space-section-loose: clamp(5rem, 3.5rem + 4.6vw, 7.5rem);
-
 }
 
 @layer base {
@@ -151,7 +140,6 @@
   .rule-dashed {
     border-top: 1px dashed var(--color-line);
   }
-
 
   /* Blog article body - markdown rendered via react-markdown. */
   .prose-blog {
@@ -283,11 +271,13 @@
       padding: 0 0 0.4rem;
       border-bottom: none;
     }
-    /* The whole thead is dropped on mobile: once the table is stacked, the
-       column headers no longer sit above the columns they name. Each cell
-       carries its own tier label instead (see td::before below). */
-    .comparison-table thead {
+    .comparison-table thead th:first-child {
       display: none;
+    }
+    .comparison-table thead tr {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-line);
+      padding-bottom: 0.75rem;
     }
     .comparison-table tbody tr {
       margin-bottom: 1.75rem;
@@ -298,29 +288,12 @@
       margin-bottom: 0;
     }
     .comparison-table tbody th {
-      /* width:auto has to be repeated here - the desktop `tbody th {width:22%}`
-         rule is more specific than the blanket `th {width:auto}` above, so it
-         survived the stack and squeezed "Typical ROI" onto two lines. */
-      width: auto;
       border-bottom: none;
-      padding: 0 0 0.75rem;
+      padding: 0 0 0.5rem;
     }
     .comparison-table tbody td {
       border-bottom: none;
-      padding: 0 0 0.75rem;
-    }
-    .comparison-table tbody td:last-child {
-      padding-bottom: 0;
-    }
-    .comparison-table tbody td::before {
-      content: attr(data-tier);
-      display: block;
-      margin-bottom: 0.15rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--color-muted);
+      padding: 0.5rem 0;
     }
   }
 }
@@ -336,18 +309,6 @@
     .container-x {
       padding-inline: 2.5rem;
     }
-  }
-
-  /* Vertical rhythm - see --space-section* in @theme. Section.tsx maps its
-     tight/loose props onto these so every band shares one fluid scale. */
-  .section-y {
-    padding-block: var(--space-section);
-  }
-  .section-y-tight {
-    padding-block: var(--space-section-tight);
-  }
-  .section-y-loose {
-    padding-block: var(--space-section-loose);
   }
 
   /* Hide the native scrollbar on horizontally-scrollable rows (e.g. the
@@ -370,43 +331,12 @@
     opacity: 0.07;
   }
 
-  /* Warm accent ground for a whole section (WhyChooseUs). The only gradient
-     surface on the site - everywhere else stays flat, per the surface rules
-     in app/page.tsx. Three overlaid washes rather than one linear ramp, so the
-     colour drifts diagonally instead of banding.
-     The hot stop is capped at #ffb391 for contrast, not taste. Measured
-     against the darkest point of the wash: ink 8.5:1, ink-soft 6.3:1,
-     brand-deep 3.0:1. At the #ff9f76 this started as, brand-deep - which
-     carries the section's icons and its one italic accent word - fell to
-     2.6:1 and failed even the 3:1 large-text/graphics floor. Darkening this
-     stop again means re-checking those three numbers. */
-  .bg-warm-wash {
-    background:
-      radial-gradient(118% 128% at 88% 10%, #ffb391 0%, rgba(255, 179, 145, 0) 56%),
-      radial-gradient(88% 108% at 6% 96%, #ffd6d0 0%, rgba(255, 214, 208, 0) 62%),
-      linear-gradient(142deg, #fde7e4 0%, #ffe6d8 54%, #ffd8c4 100%);
-  }
-
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
   .animate-marquee {
     animation: marquee 42s linear infinite;
-  }
-
-  /* Soft cut-off at both ends of a full-bleed marquee, so logos dissolve into
-     the surface instead of being sliced by the viewport edge. Percentages are
-     of the strip's own width, so the fade stays proportional on mobile. */
-  .marquee-fade {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      #000 7%,
-      #000 93%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
   }
 
   @keyframes fade-up {
