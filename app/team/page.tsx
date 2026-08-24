@@ -65,12 +65,9 @@ export default function TeamPage() {
         </div>
       </Section>
 
-      <Reveal as="section">
         <ServicesGrid />
         <div className="container-x -mt-10 pb-8 sm:pb-10 lg:pb-12" />
-      </Reveal>
 
-      <Reveal as="section">
         <Section className="bg-forest">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
             <h2 className="text-h2 text-white">
@@ -81,7 +78,6 @@ export default function TeamPage() {
             </Button>
           </div>
         </Section>
-      </Reveal>
     </main>
   );
 }

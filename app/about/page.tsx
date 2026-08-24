@@ -16,7 +16,6 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { AboutStats } from "@/components/sections/AboutStats";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
 
 export const metadata: Metadata = {
@@ -29,7 +28,6 @@ export default function AboutPage() {
     <main className="flex-1">
       <AboutHero />
 
-      <Reveal as="section">
         <Section id="team" className="bg-white" tight>
           <p className="lead mx-auto max-w-3xl text-center">{FOUNDERS_INTRO_QUOTE}</p>
           <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 sm:grid-cols-2 gap-10">
@@ -77,9 +75,7 @@ export default function AboutPage() {
             ))}
           </div>
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <Section className="bg-mist">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:gap-16">
             <div className="lg:sticky lg:top-28 lg:self-start">
@@ -109,27 +105,18 @@ export default function AboutPage() {
             </div>
           </div>
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <Section className="bg-white">
           <VisionMissionAccordion />
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <LogoMarquee />
-      </Reveal>
 
-      <Reveal as="section">
         <AboutStats />
-      </Reveal>
 
-      <Reveal as="section">
         <CtaBand
           override={{ heading: ABOUT_CTA_BAND.heading, buttonLabel: ABOUT_CTA_BAND.buttonLabel }}
         />
-      </Reveal>
     </main>
   );
 }

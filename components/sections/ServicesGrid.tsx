@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { SERVICES } from "@/lib/content";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 import { SERVICE_HOME_IMAGES } from "@/components/sections/ServiceTabImages";
@@ -34,8 +35,8 @@ export function ServicesGrid() {
   }
 
   return (
-    <Section className="bg-mist">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <Section className="bg-white">
+      <Reveal className="flex flex-wrap items-center justify-between gap-4">
         <SectionHeading
           align="left"
           maxWidthClassName="max-w-xl"
@@ -44,20 +45,25 @@ export function ServicesGrid() {
         />
         <Link
           href="/services"
-          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-base font-semibold text-ink transition-colors hover:border-ink/35"
+          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-base font-semibold text-ink shadow-soft transition-colors hover:border-brand hover:text-brand"
         >
           See all services
         </Link>
-      </div>
-      <div className="mt-12 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8 items-stretch">
-        <div className="flex h-full flex-col gap-3">
+      </Reveal>
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8 items-start">
+        <div className="flex flex-col gap-3">
           {SERVICES.map((service) => {
             const isOpen = service.slug === openSlug;
             return (
               <div
                 key={service.slug}
-                className={`rounded-[28px] border bg-white transition-colors duration-300 ease-in-out ${
-                  isOpen ? "border-brand/60" : "border-line hover:border-ink/20 hover:bg-mist/40"
+                // White rows on a white surface, so the separation is carried
+                // by a hairline plus shadow-soft rather than by a tint. Open
+                // row takes the brand border - the section's one loud accent.
+                className={`rounded-[28px] border bg-white transition-all duration-300 ease-in-out ${
+                  isOpen
+                    ? "border-brand/60 shadow-card"
+                    : "border-line shadow-soft hover:border-brand/30 hover:shadow-card"
                 }`}
               >
                 <button
@@ -114,7 +120,12 @@ export function ServicesGrid() {
             );
           })}
         </div>
-        <div className="relative h-full min-h-[420px] sm:min-h-[460px] rounded-[28px] bg-peach/50 p-3">
+        {/* No bg-peach/50 wrapper here: DiagramFrame already supplies its own
+            white bordered surface, and peach-on-cream-on-mist was three warm
+            neutrals stacked. The panel is sticky and unsized rather than
+            stretched to the accordion's height, which is what used to leave
+            ~200px of empty peach above and below the diagram. */}
+        <div className="relative aspect-[4/3] lg:sticky lg:top-28">
           <DiagramFrame
             eyebrow={homeImage ? undefined : `Service / ${activeService.title}`}
             caption={homeImage ? undefined : activeService.hook}
