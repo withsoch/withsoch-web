@@ -14,7 +14,6 @@ import { useRef, useState } from "react";
 import { CASE_STUDIES } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
-import { BareSection } from "@/components/ui/Section";
 
 const SWIPE_THRESHOLD = 50;
 
@@ -45,10 +44,7 @@ export function CaseStudiesCarousel() {
   }
 
   return (
-    // No `divider`: this now follows the forest Stats band, and a warm
-    // border-line hairline sitting directly under forest reads as a stray
-    // light stripe. The surface change is the separation.
-    <BareSection className="bg-mist">
+    <section className="bg-white py-20 sm:py-24 lg:py-32">
       <div className="mx-auto w-full max-w-[96rem] px-6 lg:px-10">
         <div
           className="overflow-hidden rounded-2xl border border-line focus:outline-none"
@@ -213,6 +209,6 @@ export function CaseStudiesCarousel() {
           </div>
         </div>
       </div>
-    </BareSection>
+    </section>
   );
 }

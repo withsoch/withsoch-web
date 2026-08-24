@@ -1,18 +1,10 @@
 // components/sections/AskAI.tsx
 //
-// "Ask AI about Soch" - ported from ask-ai-source.html. Copy and URLs kept
-// as-is; the visual treatment is ours.
-//
-// Surface: bg-ink, deliberately. This card went white -> cream and cream
-// (#fbf8f2) on mist (#f6f2ea) is a ~2% lightness step, so it dissolved into
-// the section behind it. A near-black card is the clearest way to make it read
-// as its own object. Ink rather than forest or charcoal on purpose: the two
-// dark *bands* on this page (Stats, CtaBand) are both forest, and this should
-// read as a card sitting on the page, not a third band. The section behind it
-// is plain white - see the note on the Section below.
+// "Ask AI about Soch" - ported from ask-ai-source.html. Structure/copy/URLs
+// and inline brand SVGs kept as-is; visual treatment swapped to the Soch
+// design system: no glow/gradient, no dark panel, flat white pill buttons.
 
 import { Section } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 
 const QUERY =
   "What do you know about Soch, the AI automation agency at withsoch.com?";
@@ -34,18 +26,18 @@ const LINKS = [
   {
     label: "Ask Perplexity",
     href: `https://www.perplexity.ai/?q=${ENCODED_QUERY}`,
-    // Perplexity's actual mark: a centred vertical stem with two mirrored
-    // open rectangles. The previous glyph here was an invented six-point
-    // star/grid that was not Perplexity's logo at all.
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
-          d="M12 4.2 5.4 9.1V4.9M12 4.2l6.6 4.9V4.9M12 4.2v15.6M12 19.8l-6.6-4.9v4.2M12 19.8l6.6-4.9v4.2M4.2 9.1h15.6v5.8H4.2z"
+          d="M12 2L8.5 7H4l3.25 3.5L4 14h4.5L12 19l3.5-5H20l-3.25-3.5L20 7h-4.5L12 2z"
           stroke="currentColor"
           strokeWidth="1.5"
-          strokeLinecap="round"
           strokeLinejoin="round"
+          fill="none"
         />
+        <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="4" y1="14" x2="20" y2="14" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
   },
@@ -64,56 +56,30 @@ const LINKS = [
 ];
 
 export function AskAI() {
-  // White with a hairline on top, not its own tinted band. The section used to
-  // carry bg-mist, which put a cream slab behind a card that already provides
-  // all the contrast this needs - two competing surface changes at one
-  // boundary. The rule is the boundary now.
-  //
-  // No negative top margin on the card. It used to lift (-mt-20) so it
-  // straddled the zone edge, but with the edge drawn as a hairline the lift
-  // put the rule level with the card's own top - it read as a line running out
-  // of the card's sides rather than as the section's top edge. The card sits
-  // below the rule, cleanly.
-  //
-  // Two columns rather than a centred stack: the old shape was ~400px of
-  // white with three small pills adrift in the middle of it.
   return (
-    <Section className="bg-white" tight divider>
-      <Reveal className="relative z-10 mx-auto max-w-6xl overflow-hidden rounded-2xl bg-ink px-6 py-12 shadow-lift sm:px-12 sm:py-14">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <div className="flex flex-col items-start">
-            <h2 className="text-h2 text-white">Ask AI about Soch</h2>
-            <p className="lead mt-4 max-w-md text-white/60">
-              Pick your favourite AI and ask what it thinks about us. No filter, no
-              spin - just what the models know.
-            </p>
-          </div>
-
-          {/* Full-width stacked rows rather than a wrapped row of pills: three
-              short buttons floating in a wide column left the right half of
-              the card empty. */}
-          <div className="flex flex-col gap-3">
-            {LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3.5 rounded-xl border border-white/15 px-5 py-4 text-[0.95rem] font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/[0.06]"
-              >
-                <span className="h-5 w-5 shrink-0">{link.icon}</span>
-                {link.label}
-                <span
-                  aria-hidden="true"
-                  className="ml-auto text-white/40 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-brand-light"
-                >
-                  &rarr;
-                </span>
-              </a>
-            ))}
-          </div>
+    <Section tight className="bg-white">
+      <div className="mx-auto flex max-w-6xl flex-col items-center rounded-2xl border border-line bg-cream px-6 py-14 text-center sm:px-12 sm:py-16">
+        <span className="eyebrow">Don&rsquo;t take our word for it</span>
+        <h2 className="text-h2 mt-4">Ask AI about Soch</h2>
+        <p className="lead mt-4 max-w-xl">
+          Pick your favourite AI and ask what it thinks about us. No filter, no
+          spin - just what the models know.
+        </p>
+        <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+          {LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-line bg-white px-6 py-3 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-mist sm:w-auto"
+            >
+              <span className="h-5 w-5 shrink-0 text-ink">{link.icon}</span>
+              {link.label}
+            </a>
+          ))}
         </div>
-      </Reveal>
+      </div>
     </Section>
   );
 }

@@ -74,9 +74,13 @@ export default function ServicesPage() {
         </div>
       </Section>
 
+      <Reveal as="section">
         <ServicesFaqSection />
+      </Reveal>
 
+      <Reveal as="section">
         <CtaBand />
+      </Reveal>
     </main>
   );
 }

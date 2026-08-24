@@ -8,8 +8,6 @@
 
 import { useRef } from "react";
 import { Icon } from "@/components/Icons";
-import { BareSection } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 
 const INDUSTRIES = [
   {
@@ -53,8 +51,8 @@ export function IndustriesSlider() {
   }
 
   return (
-    <BareSection className="bg-mist" tight divider>
-      <Reveal className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] mb-10 flex items-start justify-between gap-4 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:mb-12 sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)]">
+    <section className="bg-white py-16 sm:py-20">
+      <div className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] mb-10 flex items-start justify-between gap-4 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:mb-12 sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)]">
         <h2 className="text-h2 text-ink text-left">Automating growth across industries</h2>
         <div className="flex shrink-0 gap-2">
           <button
@@ -74,7 +72,7 @@ export function IndustriesSlider() {
             <Icon name="chevron" className="h-4 w-4 -rotate-90" />
           </button>
         </div>
-      </Reveal>
+      </div>
 
       <div
         ref={trackRef}
@@ -98,6 +96,6 @@ export function IndustriesSlider() {
           </div>
         ))}
       </div>
-    </BareSection>
+    </section>
   );
 }

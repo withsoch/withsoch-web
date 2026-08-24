@@ -3,11 +3,10 @@
 import { HERO } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { HeroNetworkDiagram } from "@/components/sections/HeroNetworkDiagram";
-import { BareSection } from "@/components/ui/Section";
 
 export function Hero() {
   return (
-    <BareSection bare className="bg-mist relative overflow-hidden pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14">
+    <section className="relative bg-mist pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14 overflow-hidden">
       <div className="container-x relative h-[240px] sm:h-[280px] lg:h-[340px] rounded-2xl overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
         <HeroNetworkDiagram />
@@ -29,6 +28,6 @@ export function Hero() {
           Explore our services
         </Button>
       </div>
-    </BareSection>
+    </section>
   );
 }

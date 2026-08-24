@@ -134,7 +134,9 @@ export default async function ServiceDetailPage({
         </Reveal>
       </Section>
 
+      <Reveal as="section">
         <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
+      </Reveal>
 
       {service.testimonial && (
         <Section className="bg-white" tight>

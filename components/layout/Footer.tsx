@@ -32,10 +32,7 @@ const featured = CASE_STUDIES[0];
 
 export function Footer() {
   return (
-    // border-t: forest #103129 -> charcoal #171814 is too small a value step
-    // for the edge to read on its own, so the CtaBand above bleeds into the
-    // footer without a hairline.
-    <footer className="border-t border-white/10 bg-charcoal text-white/70">
+    <footer className="bg-charcoal text-white/70">
       <div className="container-x py-8 sm:py-10">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr_1.2fr]">
           <div className="flex flex-col gap-4">

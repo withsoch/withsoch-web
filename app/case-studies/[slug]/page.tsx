@@ -3,6 +3,7 @@ import { CASE_STUDIES } from "@/lib/content";
 import { CASE_STUDY_DETAILS } from "@/lib/case-studies-detail";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -55,6 +56,7 @@ export default async function CaseStudyDetailPage({
         </div>
       </section>
 
+      <Reveal as="section">
         <Section tight className="bg-white border-b border-line">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-8">
             {metaRow.map((item, i) => (
@@ -72,7 +74,9 @@ export default async function CaseStudyDetailPage({
             ))}
           </div>
         </Section>
+      </Reveal>
 
+      <Reveal as="section">
         <Section tight className="bg-white">
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
             <div className="flex flex-col gap-6">
@@ -91,7 +95,9 @@ export default async function CaseStudyDetailPage({
             />
           </div>
         </Section>
+      </Reveal>
 
+      <Reveal as="section">
         <Section tight className="bg-mist">
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
             <div className="flex h-full flex-col justify-center gap-6">
@@ -110,7 +116,9 @@ export default async function CaseStudyDetailPage({
             </figure>
           </div>
         </Section>
+      </Reveal>
 
+      <Reveal as="section">
         <Section tight className="bg-white">
           <div className="mx-auto flex max-w-5xl flex-col gap-10">
             <h2 className="text-h3">How we solved it.</h2>
@@ -130,7 +138,9 @@ export default async function CaseStudyDetailPage({
             </div>
           </div>
         </Section>
+      </Reveal>
 
+      <Reveal as="section">
         <Section tight className="bg-mist">
           <div className="mx-auto flex max-w-5xl flex-col gap-10">
             <h2 className="text-h3">What shipped.</h2>
@@ -149,8 +159,11 @@ export default async function CaseStudyDetailPage({
             </div>
           </div>
         </Section>
+      </Reveal>
 
+      <Reveal as="section">
         <CtaBand override={{ buttonHref: "/contact" }} />
+      </Reveal>
     </main>
   );
 }
