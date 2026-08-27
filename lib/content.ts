@@ -464,8 +464,7 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Automation Monitoring and Maintenance", description: "Ongoing monitoring, error alerting, and proactive fixes on retainer. Automations break when tools update. We make sure yours keep running." },
       { icon: "audit", title: "Automation Strategy and Optimization", description: "Quarterly audits and optimization sprints to keep your automation stack lean, effective, and aligned with business goals. Identify gaps, remove redundancies, and ensure every workflow delivers measurable ROI." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0582c7e82b089a2749eb10_OPS%20%26%20Process%20Hero.png",
+    heroImage: "/Services/hero_operations_process_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
