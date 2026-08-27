@@ -4,8 +4,6 @@ import "./globals.css";
 import { SITE } from "@/lib/content";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
-import { PageLoader } from "@/components/layout/PageLoader";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 // Single site-wide font - matches the real withsoch.com Webflow build.
 // 400/500 cover body/heading weight; 600/700 cover existing font-semibold /
@@ -37,8 +35,6 @@ export default function RootLayout({
       className={`${wixMadeforText.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white">
-        <PageLoader />
-        <SmoothScroll />
         <Nav />
         {children}
         <Footer />

@@ -84,7 +84,11 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                // No solid background here - DiagramFrame's dot-grid needs to
+                // show through wherever object-contain letterboxes the image
+                // (our tab exports run wide/short, e.g. 3400x900), so a flat
+                // fill would just paint over that backdrop and look empty.
+                className="relative h-full w-full"
               >
                 <Image
                   src={tabImage}
