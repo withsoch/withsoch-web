@@ -33,7 +33,11 @@ export type IconName =
   | "pin"
   | "pinwheel"
   | "clover"
-  | "burst";
+  | "burst"
+  | "database"
+  | "document"
+  | "wrench"
+  | "diagonal-arrow";
 
 const PATHS: Record<IconName, ReactElement> = {
   profile: (
@@ -205,6 +209,29 @@ const PATHS: Record<IconName, ReactElement> = {
         fill="currentColor"
         stroke="none"
       />
+    </>
+  ),
+  database: (
+    <>
+      <ellipse cx="12" cy="6" rx="7" ry="2.8" />
+      <path d="M5 6v12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6" />
+      <path d="M19 12c0 1.5-3.1 2.8-7 2.8s-7-1.3-7-2.8" />
+    </>
+  ),
+  document: (
+    <>
+      <path d="M7 3.5h7l3.5 3.5V20a1 1 0 01-1 1H7a1 1 0 01-1-1V4.5a1 1 0 011-1z" />
+      <path d="M14 3.5V7h3.5" />
+      <path d="M8.5 13h7M8.5 16.5h7" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.7 6.3a4 4 0 00-5.3 4.9L4 16.6l2.4 2.4 5.4-5.4a4 4 0 004.9-5.3l-2.5 2.5-2.4-2.4 2.9-2.5z" />
+  ),
+  "diagonal-arrow": (
+    <>
+      <path d="M7 17L17 7" />
+      <path d="M9 7h8v8" />
     </>
   ),
 };

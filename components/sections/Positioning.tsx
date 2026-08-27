@@ -35,31 +35,33 @@ export function Positioning() {
         </h2>
       </Reveal>
 
-      {/* items-start, not items-stretch: the photo used to be pinned to a
-          44rem min-height, which stretched the text column to match and left
-          justify-between to open a ~180px hole above the CTA. */}
-      <Reveal className="mt-10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start" delay={0.08}>
+      {/* items-stretch so the text column matches the photo's rendered
+          height, then justify-between on that column pins the CTA to the
+          photo's bottom edge instead of trailing below it. */}
+      <Reveal className="mt-10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-stretch" delay={0.08}>
         <img
           src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b6232e8946bee738b_6a0d81a48529c31b17d78093_replicate-prediction-5ahpghne0nrmw0cy87dskem7qg.webp"
           alt="Soch team collaborating"
           className="w-full aspect-[4/3] lg:aspect-[5/4] rounded-2xl object-cover"
         />
-        <div className="flex flex-col gap-8">
-          <p className="lead text-slate max-w-xl">{HERO.sub}</p>
-          <ul className="flex flex-col">
-            {POINTS.map((point) => (
-              <li
-                key={point.lead}
-                className="flex items-start gap-3 py-5 border-b border-line first:pt-0 last:border-b-0"
-              >
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                <span className="text-ink-soft">
-                  <strong className="font-semibold text-ink">{point.lead}</strong>{" "}
-                  {point.rest}
-                </span>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col justify-between gap-8">
+          <div className="flex flex-col gap-8">
+            <p className="lead text-slate max-w-xl">{HERO.sub}</p>
+            <ul className="flex flex-col">
+              {POINTS.map((point) => (
+                <li
+                  key={point.lead}
+                  className="flex items-start gap-3 py-5 border-b border-line first:pt-0 last:border-b-0"
+                >
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                  <span className="text-ink-soft">
+                    <strong className="font-semibold text-ink">{point.lead}</strong>{" "}
+                    {point.rest}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div>
             <Button href="/about" variant="primary" arrow>
               Inside Our Mission

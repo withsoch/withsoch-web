@@ -11,6 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ServiceProcessPanel } from "@/components/sections/ServiceProcessPanel";
 import { ServiceTestimonial } from "@/components/ServiceTestimonial";
 import { Button } from "@/components/ui/Button";
+import { ServiceFlowDiagram } from "@/components/sections/ServiceFlowDiagram";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -61,15 +62,19 @@ export default async function ServiceDetailPage({
                 </Button>
               </div>
             </div>
-            <div className="rounded-2xl border border-line bg-white p-4">
-              <Image
-                src={service.heroImage ?? `/images/services/${service.slug}/hero-diagram.png`}
-                alt={`${service.title} diagram`}
-                width={640}
-                height={520}
-                className="h-auto w-full rounded-xl"
-              />
-            </div>
+            {service.flowDiagram ? (
+              <ServiceFlowDiagram data={service.flowDiagram} />
+            ) : (
+              <div className="rounded-2xl border border-line bg-white p-4">
+                <Image
+                  src={service.heroImage ?? `/images/services/${service.slug}/hero-diagram.png`}
+                  alt={`${service.title} diagram`}
+                  width={640}
+                  height={520}
+                  className="h-auto w-full rounded-xl"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -103,7 +108,7 @@ export default async function ServiceDetailPage({
         )}
       </Section>
 
-      <Section className="bg-mist">
+      <Section className="bg-white" divider>
         <Reveal>
           <div className="flex flex-col gap-10">
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center lg:w-[calc(100%+10rem)] lg:-mx-20">
@@ -118,7 +123,7 @@ export default async function ServiceDetailPage({
               {service.offerings.map((offering) => (
                 <div
                   key={offering.title}
-                  className="group flex h-full min-h-[200px] flex-col gap-3 rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
+                  className="group flex h-full min-h-[200px] flex-col gap-3 rounded-2xl border border-line bg-white p-5 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-card"
                 >
                   <div className="flex items-start gap-4">
                     <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-peach text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
@@ -134,8 +139,6 @@ export default async function ServiceDetailPage({
         </Reveal>
       </Section>
 
-        <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
-
       {service.testimonial && (
         <Section className="bg-white" tight>
           <Reveal>
@@ -144,7 +147,9 @@ export default async function ServiceDetailPage({
         </Section>
       )}
 
-      <Section className="bg-mist" tight>
+        <CtaBand override={{ ...service.ctaOverride, buttonHref: "/contact" }} />
+
+      <Section className="bg-white" tight divider>
         <Reveal>
           <div className="flex flex-col gap-8">
             <h2 className="text-h3">Explore our other services</h2>
@@ -158,7 +163,7 @@ export default async function ServiceDetailPage({
                   <Link
                     key={other.slug}
                     href={`/services/${other.slug}`}
-                    className="group flex flex-col h-full rounded-3xl border border-line bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25"
+                    className="group flex flex-col h-full rounded-3xl border border-line bg-white shadow-soft overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25 hover:shadow-card"
                   >
                     <div className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden bg-mist p-5">
                       <Image

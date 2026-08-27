@@ -506,6 +506,16 @@
   .animate-node-complete { animation: node-complete 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
   .animate-check-reveal { animation: check-reveal 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 
+  /* Intro page-loader (components/layout/PageLoader.tsx). */
+  @keyframes loader-pulse {
+    0%, 100% { opacity: 0.55; transform: rotate(45deg) scale(0.92); }
+    50% { opacity: 1; transform: rotate(45deg) scale(1); }
+  }
+  @keyframes loader-fill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee, .animate-float-a, .animate-float-b, .animate-float-c,
     .animate-drift-a, .animate-drift-b, .animate-pulse-dot, .animate-dash-flow,

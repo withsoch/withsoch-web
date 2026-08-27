@@ -317,6 +317,16 @@ export type Service = {
   // accordion panel visuals. When absent, the page falls back to the
   // public/images/services/{slug}/... placeholder convention.
   heroImage?: string;
+  // Optional hero-side flow illustration (top row of chips -> connected
+  // core row -> bottom row of chips), rendered by ServiceFlowDiagram. The
+  // 3-row structure, frame, and color roles are fixed by the component;
+  // only labels/icons/counts here are per-service data. Leave undefined to
+  // fall back to the heroImage placeholder.
+  flowDiagram?: {
+    topRow: { label: string; items: { label: string; icon: IconName }[] };
+    core: { label: string; nodes: { label: string; icon: IconName }[] };
+    bottomRow: { label: string; items: { label: string; icon: IconName }[] };
+  };
   // Optional per-service field (not a shared/generic block) - the copy here
   // is written around this service's specific "build/run/scale" framing and
   // doesn't generalize cleanly to the other four services' audiences. Add a
@@ -372,6 +382,32 @@ export const SERVICES: Service[] = [
     ],
     heroImage:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
+    flowDiagram: {
+      topRow: {
+        label: "Inputs",
+        items: [
+          { label: "Email", icon: "mail" },
+          { label: "CRM", icon: "database" },
+          { label: "Docs", icon: "document" },
+        ],
+      },
+      core: {
+        label: "Agent",
+        nodes: [
+          { label: "reason", icon: "spark" },
+          { label: "tools", icon: "wrench" },
+          { label: "memory", icon: "database" },
+        ],
+      },
+      bottomRow: {
+        label: "Outputs",
+        items: [
+          { label: "Draft", icon: "pen" },
+          { label: "Task", icon: "check" },
+          { label: "Escalate", icon: "diagonal-arrow" },
+        ],
+      },
+    },
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -685,11 +721,25 @@ export const STEPS: Step[] = [
 export const STATS = [
   {
     value: "42%",
-    label: "Retailer reduced stockouts by 42% after automating inventory tracking - freeing EUR 180k in working capital within 12 weeks.",
+    tag: "Retail · inventory automation",
+    label: "Retailer reduced stockouts by 42% after automating inventory tracking.",
+    // Two concrete numbers pulled out of the label above, shown as their own
+    // footer row on the card. This is the part that actually persuades - a
+    // dollar figure and a timeframe are legible at a glance, unlike a
+    // decorative sparkline that carries no real data.
+    metrics: [
+      { value: "€180k", label: "working capital freed" },
+      { value: "12 wks", label: "time to result" },
+    ],
   },
   {
     value: "2.1×",
-    label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
+    tag: "SaaS · onboarding automation",
+    label: "SaaS startup doubled activation rates after automating their onboarding flow.",
+    metrics: [
+      { value: "2", label: "product cycles" },
+      { value: "2.1×", label: "activation rate" },
+    ],
   },
 ];
 
@@ -718,6 +768,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Founder",
     initials: "K",
     accent: "brand",
+    image: "/images/Testimoniol/kym.webp",
   },
   {
     quote:
@@ -1095,15 +1146,55 @@ export const CASE_STUDIES: CaseStudy[] = [
 // Names below are read from image alt text on the live site; two logos had
 // no descriptive alt text and need confirming with Rizwan.
 
+export const CLIENT_LOGOS_HEADING = "Trusted by fast-moving businesses";
+export const CLIENT_LOGOS_INTRO =
+  "Founders and operations leaders across industries chose us to run their automation and AI operations.";
+
+// Per-logo hover gradient for MarqueeLogoScroller (components/ui/), built
+// from this project's own --color-* tokens (app/globals.css) rather than
+// arbitrary hex, so the hover state stays on-brand instead of introducing a
+// new ad hoc palette.
 export const CLIENT_LOGOS = [
-  { name: "Shaping Wealth", src: "/logos/shaping-wealth.svg" },
-  { name: "Khudi Venture", src: "/logos/khudi-venture.svg" },
-  { name: "Byzantine", src: "/logos/byzantine.svg" },
-  { name: "Cycle Together", src: "/logos/cycle-together.svg" },
-  { name: "Kuunda", src: "/logos/kuunda.svg" },
-  { name: "Ncon", src: "/logos/ncon.svg" },
-  { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
-  { name: "Milkar", src: "/logos/milkar.svg" },
+  {
+    name: "Shaping Wealth",
+    src: "/logos/shaping-wealth.svg",
+    gradient: { from: "#ff7a59", via: "#ff5c35", to: "#c9350f" }, // brand-light -> brand -> brand-deep
+  },
+  {
+    name: "Khudi Venture",
+    src: "/logos/khudi-venture.svg",
+    gradient: { from: "#2f9e77", via: "#1f8a66", to: "#103129" }, // leaf -> forest
+  },
+  {
+    name: "Byzantine",
+    src: "/logos/byzantine.svg",
+    gradient: { from: "#3d92a3", via: "#1f7a8c", to: "#103129" }, // teal -> forest
+  },
+  {
+    name: "Cycle Together",
+    src: "/logos/cycle-together.svg",
+    gradient: { from: "#ff7a59", via: "#e8431b", to: "#c9350f" }, // brand-light -> brand-dark -> brand-deep
+  },
+  {
+    name: "Kuunda",
+    src: "/logos/kuunda.svg",
+    gradient: { from: "#2f9e77", via: "#1f7a8c", to: "#103129" }, // leaf -> teal -> forest
+  },
+  {
+    name: "Ncon",
+    src: "/logos/ncon.svg",
+    gradient: { from: "#ff7a59", via: "#ff5c35", to: "#103129" }, // brand -> forest
+  },
+  {
+    name: "Dil Ka Rishta",
+    src: "/logos/dil-ka-rishta.svg",
+    gradient: { from: "#ffe8dd", via: "#ff7a59", to: "#c9350f" }, // peach -> brand-light -> brand-deep
+  },
+  {
+    name: "Milkar",
+    src: "/logos/milkar.svg",
+    gradient: { from: "#1f8a66", via: "#1f7a8c", to: "#103129" }, // leaf -> teal -> forest
+  },
 ];
 // Two entries were removed here: pitch-a-fete.svg and client-19.svg both
 // shipped with the literal name "A brand who worked with us", which renders

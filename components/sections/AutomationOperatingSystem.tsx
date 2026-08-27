@@ -37,9 +37,14 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/Icons";
 
 // Plot geometry, in viewBox percent. BASE is the axis the area fill closes to
-// and the droplines hang from; the gridlines are spaced to land on it.
+// and the droplines hang from.
+//
+// No horizontal gridlines: a value-axis grid with no numbers on it is exactly
+// what makes this read as a real analytics chart rather than the process
+// illustration it is. The only reference lines left are the vertical
+// droplines, and those tie to an actual thing - the phase each node belongs
+// to - so they read as structure, not measurement.
 const BASE = 88;
-const GRIDLINES = [25, 46, 67, BASE];
 
 // One node per step. Keep in sync with CURVE below - these are the on-curve
 // coordinates, and the markers are placed from them.
@@ -188,19 +193,6 @@ export function AutomationOperatingSystem() {
               </linearGradient>
             </defs>
 
-            {GRIDLINES.map((y) => (
-              <line
-                key={y}
-                x1="0"
-                x2="100"
-                y1={y}
-                y2={y}
-                stroke="var(--color-line)"
-                strokeWidth="1"
-                vectorEffect="non-scaling-stroke"
-              />
-            ))}
-
             {POINTS.map((point) => (
               <line
                 key={point.x}
@@ -322,14 +314,20 @@ export function AutomationOperatingSystem() {
                     </span>
                   </>
                 ) : (
+                  // Icon, not a number: the plot already has droplines tying
+                  // each node to a phase band, so a numeral here just repeats
+                  // the flag above it. The icon instead makes each node
+                  // recognisable as *that step* at a glance, the same signal
+                  // the icon gives in the column below - which is what reads
+                  // as "process diagram" instead of "chart data point".
                   <span
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border bg-white text-[0.8rem] font-medium tabular-nums shadow-soft ring-4 ring-white transition-all duration-300 ${
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border bg-white shadow-soft ring-4 ring-white transition-all duration-300 ${
                       isActive
                         ? "scale-110 border-brand text-brand shadow-card"
                         : "border-line text-ink"
                     }`}
                   >
-                    {step?.no}
+                    {step && <Icon name={step.icon} className="h-4 w-4" strokeWidth={1.8} />}
                   </span>
                 )}
               </motion.span>

@@ -18,15 +18,25 @@
 // behind them either; the mark alone is enough on a coloured ground.
 //
 // The quote panel is white - the only flat surface here, so proof reads as a
-// change of voice rather than a fourth column. It used to sit over a photo
-// behind an opaque bg-mist/85 scrim, which rendered as a smudge, and its
-// avatar was a hardcoded Webflow stock portrait attached to a real named
-// person. TESTIMONIALS[0] carries `initials`, so the chip uses those.
+// change of voice rather than a fourth column. Quote/attribution sit left,
+// a portrait frame sits right - same split and same image-or-initials
+// fallback as Testimonials.tsx, so a testimonial with no `image` degrades
+// identically wherever it's rendered.
 
+import Image from "next/image";
 import { TESTIMONIALS } from "@/lib/content";
 import { Section } from "@/components/ui/Section";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Icon, type IconName } from "@/components/Icons";
+
+// Same accent->fallback-fill mapping as Testimonials.tsx, so a testimonial
+// with no `image` degrades the same way everywhere it's rendered.
+const accentBg: Record<string, string> = {
+  brand: "bg-brand text-white",
+  forest: "bg-forest text-white",
+  teal: "bg-teal text-white",
+  leaf: "bg-leaf text-white",
+};
 
 const FEATURES: { icon: IconName; title: string; description: string }[] = [
   {
@@ -50,7 +60,7 @@ export function WhyChooseUs() {
   const testimonial = TESTIMONIALS[0];
 
   return (
-    <Section className="bg-warm-wash" loose>
+    <Section className="bg-warm-wash" tight>
       <Reveal>
         <h2 className="text-h2 max-w-3xl">
           What makes us the right automation <span className="italic text-brand-deep">partner</span>
@@ -63,32 +73,65 @@ export function WhyChooseUs() {
 
       <RevealGroup
         as="ul"
-        className="mt-12 grid grid-cols-1 gap-10 border-t border-ink/12 pt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-14"
+        className="mt-12 grid grid-cols-1 divide-y divide-ink/12 border-t border-ink/12 pt-0 sm:grid-cols-2 sm:divide-y-0 sm:border-t-0 lg:grid-cols-3"
         stagger={0.08}
       >
-        {FEATURES.map((feature) => (
-          <RevealItem as="li" key={feature.title}>
-            <Icon name={feature.icon} className="h-6 w-6 text-brand-deep" strokeWidth={1.8} />
-            <h3 className="text-h3 mt-5">{feature.title}</h3>
+        {FEATURES.map((feature, i) => (
+          <RevealItem
+            as="li"
+            key={feature.title}
+            className={`py-8 sm:py-0 sm:pt-0 ${
+              i === 0 ? "" : "sm:border-l sm:border-ink/12 sm:pl-8 lg:pl-10"
+            } ${i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}`}
+          >
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-soft">
+              <Icon
+                name={feature.icon}
+                className="h-6 w-6 text-brand-deep"
+                strokeWidth={1.8}
+              />
+            </span>
+            <h3 className="text-h3 mt-4">
+              {feature.title}
+            </h3>
             <p className="mt-2.5 max-w-sm text-[0.95rem] text-ink-soft">{feature.description}</p>
           </RevealItem>
         ))}
       </RevealGroup>
 
       <Reveal className="mt-14 lg:mt-16" delay={0.06}>
-        <figure className="rounded-2xl bg-white p-8 sm:p-12">
-          <blockquote className="max-w-4xl text-[clamp(1.05rem,0.95rem+0.5vw,1.35rem)] leading-[1.55] text-ink">
-            &ldquo;{testimonial.quote}&rdquo;
-          </blockquote>
-          <figcaption className="mt-7 flex items-center gap-3.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-peach text-sm font-semibold text-brand-dark">
-              {testimonial.initials}
-            </span>
-            <span>
-              <span className="block font-semibold text-ink">{testimonial.name}</span>
-              <span className="block text-sm text-muted">{testimonial.role}</span>
-            </span>
-          </figcaption>
+        <figure className="group grid grid-cols-1 items-center gap-6 overflow-hidden rounded-2xl bg-white p-6 shadow-soft transition-shadow duration-300 hover:shadow-card sm:grid-cols-[1.6fr_0.4fr] sm:gap-8 sm:p-8">
+          <div className="flex flex-col gap-5">
+            <blockquote className="lead max-w-none text-ink">
+              {testimonial.quote}
+            </blockquote>
+            <div className="flex flex-col gap-2">
+              <span className="h-px w-8 bg-ink/12" aria-hidden="true" />
+              <cite className="not-italic">
+                <span className="block font-semibold text-ink">{testimonial.name}</span>
+                <span className="block text-sm text-muted">{testimonial.role}</span>
+              </cite>
+            </div>
+          </div>
+          <div className="relative mx-auto h-52 w-40 shrink-0 overflow-hidden rounded-3xl sm:h-64 sm:w-48">
+            {testimonial.image ? (
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                fill
+                sizes="(min-width: 640px) 12rem, 10rem"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            ) : (
+              <span
+                className={`flex h-full w-full items-center justify-center text-3xl font-semibold transition-transform duration-300 group-hover:scale-105 ${
+                  accentBg[testimonial.accent] ?? accentBg.brand
+                }`}
+              >
+                {testimonial.initials || testimonial.name.charAt(0)}
+              </span>
+            )}
+          </div>
         </figure>
       </Reveal>
     </Section>
