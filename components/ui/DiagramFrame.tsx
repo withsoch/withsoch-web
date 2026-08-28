@@ -30,12 +30,7 @@ export function DiagramFrame({
     <div
       className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-white ${className}`}
     >
-      {/* Dot-grid backdrop stays visible even in bleed mode: our tab images
-          are wide/short design exports (e.g. 3400x900) that don't fill a
-          tall panel via object-contain, so any letterboxed gap above/below
-          the image needs to read as the same branded canvas, not a blank
-          white box. */}
-      <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
+      {!bleed && <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />}
       {!bleed && (
         <>
           {/* corner-bracket frame, matching reference layout */}

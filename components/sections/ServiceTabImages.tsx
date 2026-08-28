@@ -25,11 +25,11 @@ export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dc875b87f35e603a45c6_AI%20Agent%20Development%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row88.png",
   },
   "operations-process-automation": {
-    whoItsFor: "/Services/ops_01_who_its_for.png",
-    commonSymptoms: "/Services/ops_02_common_symptoms.png",
-    ourApproach: "/Services/ops_03_our_approach.png",
-    deliverables: "/Services/ops_04_deliverables.png",
-    outcomes: "/Services/ops_05_outcomes.png",
+    whoItsFor: "/Services/operations-process-automation/ops_01_who_its_for.png",
+    commonSymptoms: "/Services/operations-process-automation/ops_02_common_symptoms.png",
+    ourApproach: "/Services/operations-process-automation/ops_03_our_approach.png",
+    deliverables: "/Services/operations-process-automation/ops_04_deliverables.png",
+    outcomes: "/Services/operations-process-automation/ops_05_outcomes.png",
   },
   "customer-support-automation": {
     whoItsFor:

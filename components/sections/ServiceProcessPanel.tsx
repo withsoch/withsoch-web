@@ -67,42 +67,39 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
       }`}
     >
       <ServiceAccordion service={service} openKey={openKey} onOpenKeyChange={handleOpenKeyChange} />
-      <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
-        <DiagramFrame
-          eyebrow={tabImage ? undefined : `Service / ${service.title}`}
-          caption={tabImage ? undefined : caption}
-          bleed={!!tabImage}
-        >
+      {tabImage ? (
+        // One border only: the peach ring, with padding so the image sits
+        // inset from the edge instead of glued to it. No second white
+        // DiagramFrame border on top - that was the triple-border stack.
+        // The image keeps its own smaller rounded corners inside the peach
+        // padding, cropped edge-to-edge within that inner box via
+        // object-cover.
+        <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+        <div className="relative h-full w-full overflow-hidden rounded-2xl">
           <AnimatePresence mode="wait">
-            {tabImage ? (
-              // Full-bleed real photography - fills the entire card edge to
-              // edge, no eyebrow/caption strip and no white padding around
-              // it, so the image itself is the whole panel.
-              <motion.div
-                key={activeKey}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                // No solid background here - DiagramFrame's dot-grid needs to
-                // show through wherever object-contain letterboxes the image
-                // (our tab exports run wide/short, e.g. 3400x900), so a flat
-                // fill would just paint over that backdrop and look empty.
-                className="relative h-full w-full"
-              >
-                <Image
-                  src={tabImage}
-                  alt={`${service.title} - ${caption}`}
-                  fill
-                  sizes="(min-width: 1024px) 720px, 90vw"
-                  // object-contain - the source photos are landscape and
-                  // vary slightly in crop; contain guarantees every tab
-                  // renders its full image with nothing sliced off, at the
-                  // cost of a little letterboxing instead of a hard crop.
-                  className="object-contain"
-                />
-              </motion.div>
-            ) : (
+            <motion.div
+              key={activeKey}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative h-full w-full"
+            >
+              <Image
+                src={tabImage}
+                alt={`${service.title} - ${caption}`}
+                fill
+                sizes="(min-width: 1024px) 720px, 90vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        </div>
+      ) : (
+        <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+          <DiagramFrame eyebrow={`Service / ${service.title}`} caption={caption}>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={activeKey}
                 initial={{ opacity: 0 }}
@@ -116,10 +113,10 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 </span>
                 <span className="text-h3 text-[1.05rem] text-ink">{service.title}</span>
               </motion.div>
-            )}
-          </AnimatePresence>
-        </DiagramFrame>
-      </div>
+            </AnimatePresence>
+          </DiagramFrame>
+        </div>
+      )}
     </div>
   );
 }
