@@ -25,11 +25,16 @@ export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dc875b87f35e603a45c6_AI%20Agent%20Development%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row88.png",
   },
   "operations-process-automation": {
-    whoItsFor: "/Services/operations-process-automation/ops_01_who_its_for.png",
-    commonSymptoms: "/Services/operations-process-automation/ops_02_common_symptoms.png",
-    ourApproach: "/Services/operations-process-automation/ops_03_our_approach.png",
-    deliverables: "/Services/operations-process-automation/ops_04_deliverables.png",
-    outcomes: "/Services/operations-process-automation/ops_05_outcomes.png",
+    whoItsFor:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8d95a543e1903f373cbb_founders_ops_coos_752x501.png",
+    commonSymptoms:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8dc25f859e474fbe4ede_crm_sheets_slack_752x501.png",
+    ourApproach:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8e689ed4247c2e5887b3_process_5steps_horizontal_752x501.png",
+    deliverables:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d99a4edff7cf7d3f7f5e4_trigger_workflow_752x501.png",
+    outcomes:
+      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dcc3c517fb01f8f3952a_Ops%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20editorial_row87.png",
   },
   "customer-support-automation": {
     whoItsFor:
