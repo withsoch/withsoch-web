@@ -71,31 +71,31 @@ export default async function ServiceDetailPage({
             {service.slug === "ai-agent-development" ? (
               // Proof-of-concept coded replacement for the baked hero PNG -
               // scoped to this one service only. See AgentDevHero.tsx.
-              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
+              <div className={`${getHeroAspectRatio(service.slug)} w-full`}>
                 <AgentDevHero />
               </div>
             ) : service.slug === "operations-process-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See OpsHero.tsx.
-              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
+              <div className={`${getHeroAspectRatio(service.slug)} w-full`}>
                 <OpsHero />
               </div>
             ) : service.slug === "customer-support-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See SupportHero.tsx.
-              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
+              <div className={`${getHeroAspectRatio(service.slug)} w-full`}>
                 <SupportHero />
               </div>
             ) : service.slug === "marketing-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See MarketingHero.tsx.
-              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
+              <div className={`${getHeroAspectRatio(service.slug)} w-full`}>
                 <MarketingHero />
               </div>
             ) : service.slug === "revops-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See RevOpsHero.tsx.
-              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
+              <div className={`${getHeroAspectRatio(service.slug)} w-full`}>
                 <RevOpsHero />
               </div>
             ) : service.flowDiagram && !service.heroImage ? (
