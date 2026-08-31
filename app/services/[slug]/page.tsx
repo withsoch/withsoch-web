@@ -70,31 +70,31 @@ export default async function ServiceDetailPage({
             {service.slug === "ai-agent-development" ? (
               // Proof-of-concept coded replacement for the baked hero PNG -
               // scoped to this one service only. See AgentDevHero.tsx.
-              <div className="aspect-square w-full rounded-2xl border border-line bg-white p-4">
+              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
                 <AgentDevHero />
               </div>
             ) : service.slug === "operations-process-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See OpsHero.tsx.
-              <div className="aspect-[16/9] w-full rounded-2xl border border-line bg-white p-4">
+              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
                 <OpsHero />
               </div>
             ) : service.slug === "customer-support-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See SupportHero.tsx.
-              <div className="aspect-[780/630] w-full rounded-2xl border border-line bg-white p-4">
+              <div className="aspect-[780/630] w-full rounded-2xl border border-line bg-white">
                 <SupportHero />
               </div>
             ) : service.slug === "marketing-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See MarketingHero.tsx.
-              <div className="aspect-[800/700] w-full rounded-2xl border border-line bg-white p-4">
+              <div className="aspect-[800/700] w-full rounded-2xl border border-line bg-white">
                 <MarketingHero />
               </div>
             ) : service.slug === "revops-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See RevOpsHero.tsx.
-              <div className="aspect-square w-full rounded-2xl border border-line bg-white p-4">
+              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
                 <RevOpsHero />
               </div>
             ) : service.flowDiagram && !service.heroImage ? (
@@ -200,7 +200,7 @@ export default async function ServiceDetailPage({
                     href={`/services/${other.slug}`}
                     className="group flex flex-col h-full rounded-3xl border border-line bg-white shadow-soft overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25 hover:shadow-card"
                   >
-                    <div className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden bg-mist p-5">
+                    <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-mist p-5">
                       <Image
                         src={other.heroImage ?? `/images/services/${other.slug}/hero-diagram.png`}
                         alt={`${other.title} diagram`}

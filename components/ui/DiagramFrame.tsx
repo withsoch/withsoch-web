@@ -51,8 +51,8 @@ export function DiagramFrame({
       <div
         className={
           bleed
-            ? "relative z-0 flex flex-1"
-            : "relative z-10 flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center"
+            ? "relative z-0 flex min-h-0 min-w-0 flex-1"
+            : "relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-6 text-center"
         }
       >
         {children}

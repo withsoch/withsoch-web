@@ -380,8 +380,7 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Agent Monitoring and Tuning", description: "Ongoing evaluation, prompt updates, and edge case fixes on retainer. Agents drift when the work changes. We keep yours sharp." },
       { icon: "spark", title: "Multi-Agent Workflow Orchestration", description: "Multiple agents chained into a single pipeline, each handling one step and passing context to the next. Complex work done end-to-end without a human in the loop." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
+    heroImage: "/images/services/hero_ai_agent_development.png",
     flowDiagram: {
       topRow: {
         label: "Inputs",
@@ -464,8 +463,7 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Automation Monitoring and Maintenance", description: "Ongoing monitoring, error alerting, and proactive fixes on retainer. Automations break when tools update. We make sure yours keep running." },
       { icon: "audit", title: "Automation Strategy and Optimization", description: "Quarterly audits and optimization sprints to keep your automation stack lean, effective, and aligned with business goals. Identify gaps, remove redundancies, and ensure every workflow delivers measurable ROI." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0582c7e82b089a2749eb10_OPS%20%26%20Process%20Hero.png",
+    heroImage: "/images/services/hero_operations_process_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -544,8 +542,7 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Ongoing Tuning and Maintenance", description: "AI responses kept accurate as products, pricing, and policies change. Models drift. We keep yours grounded." },
       { icon: "trend", title: "Analytics and Performance Insights", description: "Automated dashboards and conversation analytics that track usage, satisfaction, and conversion. Actionable insights to refine your bots and prove ROI without manual data crunching." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062258081a7175d7c890b3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row23.png",
+    heroImage: "/images/services/hero_customer_support_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -601,8 +598,7 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Retargeting and Re-Engagement Automation", description: "Automated sequences that re-engage cold leads, website visitors, and churned customers based on behavioral triggers and time-based rules." },
       { icon: "audit", title: "Campaign Strategy and Optimization", description: "Ongoing review of what's converting and what isn't, with sequences and segments refined on a regular cadence so spend keeps working harder over time." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c02d8482a055a918234c3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%201_row60.png",
+    heroImage: "/images/services/hero_marketing_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
@@ -658,8 +654,7 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Onboarding and Playbook Automation", description: "New rep onboarding workflows, tool access provisioning, and playbook documentation so every new hire ramps faster with less management overhead." },
       { icon: "chat", title: "RevOps Monitoring and Optimization", description: "Ongoing audits of pipeline hygiene, automation performance, and forecast accuracy on retainer. We catch drift before it costs you a quarter." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d88d0f9a7c505b4d93988_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row35.png",
+    heroImage: "/images/services/hero_revops_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",

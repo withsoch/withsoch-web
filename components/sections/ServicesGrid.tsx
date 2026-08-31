@@ -129,7 +129,7 @@ export function ServicesGrid() {
             neutrals stacked. The panel is sticky and unsized rather than
             stretched to the accordion's height, which is what used to leave
             ~200px of empty peach above and below the diagram. */}
-        <div className="relative aspect-[4/3] lg:sticky lg:top-28">
+        <div className="relative aspect-square lg:sticky lg:top-28">
           <DiagramFrame
             eyebrow={
               homeImage ||
@@ -170,7 +170,7 @@ export function ServicesGrid() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="relative h-full w-full bg-cream p-4"
+                  className="relative h-full w-full min-h-0 min-w-0 bg-cream p-4"
                 >
                   <AgentDevHero />
                 </motion.div>
@@ -183,7 +183,7 @@ export function ServicesGrid() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="relative h-full w-full bg-cream p-4"
+                  className="relative h-full w-full min-h-0 min-w-0 bg-cream p-4"
                 >
                   <OpsHero />
                 </motion.div>
@@ -196,7 +196,7 @@ export function ServicesGrid() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="relative h-full w-full bg-cream p-4"
+                  className="relative h-full w-full min-h-0 min-w-0 bg-cream p-4"
                 >
                   <SupportHero />
                 </motion.div>
@@ -209,7 +209,7 @@ export function ServicesGrid() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="relative h-full w-full bg-cream p-4"
+                  className="relative h-full w-full min-h-0 min-w-0 bg-cream p-4"
                 >
                   <MarketingHero />
                 </motion.div>
@@ -222,7 +222,7 @@ export function ServicesGrid() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="relative h-full w-full bg-cream p-4"
+                  className="relative h-full w-full min-h-0 min-w-0 bg-cream p-4"
                 >
                   <RevOpsHero />
                 </motion.div>

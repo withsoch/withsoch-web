@@ -13,28 +13,18 @@ export type ServiceTabImageSet = Partial<Record<ServiceAccordionItemKey, string>
 
 export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
   "ai-agent-development": {
-    whoItsFor:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92637e49d11d3daa2d54_founders_ops_teamleads_752x501.png",
-    commonSymptoms:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92628fa7a54a1f7b1a68_chatgpt_vs_business_752x501.png",
-    ourApproach:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c120606235fd0d24b9406_row20_752x501%20(1).png",
-    deliverables:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d92638d25adba72989cd8_agent_evals_prompts_752x501.png",
-    outcomes:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dc875b87f35e603a45c6_AI%20Agent%20Development%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row88.png",
+    whoItsFor: "/images/services/AI%20Agent/01_who_its_for.png",
+    commonSymptoms: "/images/services/AI%20Agent/02_common_symptoms.png",
+    ourApproach: "/images/services/AI%20Agent/03_our_approach.png",
+    deliverables: "/images/services/AI%20Agent/04_deliverables.png",
+    outcomes: "/images/services/AI%20Agent/05_outcomes.png",
   },
   "operations-process-automation": {
-    whoItsFor:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8d95a543e1903f373cbb_founders_ops_coos_752x501.png",
-    commonSymptoms:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8dc25f859e474fbe4ede_crm_sheets_slack_752x501.png",
-    ourApproach:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8e689ed4247c2e5887b3_process_5steps_horizontal_752x501.png",
-    deliverables:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d99a4edff7cf7d3f7f5e4_trigger_workflow_752x501.png",
-    outcomes:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dcc3c517fb01f8f3952a_Ops%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20editorial_row87.png",
+    whoItsFor: "/images/services/ops-process/ops_01_who_its_for.png",
+    commonSymptoms: "/images/services/ops-process/ops_02_common_symptoms.png",
+    ourApproach: "/images/services/ops-process/ops_03_our_approach.png",
+    deliverables: "/images/services/ops-process/ops_04_deliverables.png",
+    outcomes: "/images/services/ops-process/ops_05_outcomes.png",
   },
   "customer-support-automation": {
     whoItsFor:
@@ -49,57 +39,23 @@ export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a143ec78e2f52611ab4eca8_CX%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20abstract%20d_row89.png",
   },
   "marketing-automation": {
-    whoItsFor:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d951efba48b65120f10d1_founders_marketing_growth_752x501.png",
-    commonSymptoms:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d955b55e31040333a88cb_current_state_campaigns_752x501.png",
-    ourApproach:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d957f8c9f67f8c54d5b63_audit_capture_nurture_752x501.png",
-    deliverables:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a07174497a9a10d2762feb9_row33_752x501.png",
-    outcomes:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13dd8ac0836e85221455f7_Marketing%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20sem_row90.png",
+    whoItsFor: "/images/services/Markeeting%20Service/marketing_01_who_its_for.png",
+    commonSymptoms: "/images/services/Markeeting%20Service/marketing_02_common_symptoms.png",
+    ourApproach: "/images/services/Markeeting%20Service/marketing_03_our_approach.png",
+    deliverables: "/images/services/Markeeting%20Service/marketing_04_deliverables.png",
+    outcomes: "/images/services/Markeeting%20Service/marketing_05_outcomes.png",
   },
   "revops-automation": {
-    whoItsFor:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fe936addfa1dbdadea71_RevOps_Automation_Who_752x501.png",
-    commonSymptoms:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8bdb261d02c91cec3b7e_sales_marketing_cs_752x501.png",
-    ourApproach:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8b0bdb9abee7a201fd99_process_5steps_752x501.png",
-    deliverables:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a09fee3f9c18ffe72140100_RevOps_Automation_Deliverables_752x501.png",
-    outcomes:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a13ddcb431c2637b74b4c8b_RevOps%20Automation%20outcomes%20visual%20for%20Soch%20A%20flat%202D%20semir_row91.png",
+    whoItsFor: "/images/services/REV%20Ops/revops_01_who_its_for.png",
+    commonSymptoms: "/images/services/REV%20Ops/revops_02_common_symptoms.png",
+    ourApproach: "/images/services/REV%20Ops/revops_03_our_approach.png",
+    deliverables: "/images/services/REV%20Ops/revops_04_deliverables.png",
+    outcomes: "/images/services/REV%20Ops/revops_05_outcomes_forecast.png",
   },
 };
 
-// Homepage "Services that turn strategy into results" panel (ServicesGrid) - // one hero diagram per service, not per accordion tab, matching the tab
-// images on the live withsoch.com homepage service-tabs section.
-export const SERVICE_HOME_IMAGES: Record<string, string> = {
-  "ai-agent-development":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a143f711ee2a9648dbaa0ff_Editorial%20diagram%20on%20a%20light%20cream%20F5EFE0%20inset%20card%20panel_row93.png",
-  "operations-process-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9b7c898564a72f5ce2_6a143fb9d94095983d9fc6c4_Editorial%20diagram%20on%20a%20light%20cream%20F5EFE0%20inset%20card%20panel_row92.webp",
-  "customer-support-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9aa9828abcd957df03_Service.webp",
-  "marketing-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9a5eae1aeab3eefa02_6a14401e79d6068092a97202_Editorial%20diagram%20on%20a%20light%20cream%20F5EFE0%20inset%20card%20panel_row95.webp",
-  "revops-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a325b9bfe39ba7248c944a2_Opreation%20Image.webp",
-};
-
-// /services index grid - each card's hero thumbnail, matching the dedicated
-// service page's hero image on the live withsoch.com Webflow build (services.html).
-export const SERVICE_LIST_IMAGES: Record<string, string> = {
-  "operations-process-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d98616284ec6506baf178_manual_vs_automated_ops2_752x501.png",
-  "ai-agent-development":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a061ecee3ce032231342dd3_AI_Agent_Hero_752x501.png",
-  "customer-support-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062229fb4e00093fc0f5fe_CS_Hero_752x501.png",
-  "marketing-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c413388a0bb22111d1bbf_Update-4.png",
-  "revops-automation":
-    "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c0acb5aa3b5ca1c0a7c38_row35_final_752x501%20(2).png",
-};
+// NOTE: the homepage ServicesGrid panel, the /services index grid thumbnails,
+// and the service detail page's "Explore our other services" cards all now
+// read `service.heroImage` directly (lib/content.ts) instead of a separate
+// per-surface image map, so every one of those surfaces shows the same
+// canonical hero image per service.
