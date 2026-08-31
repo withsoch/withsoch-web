@@ -14,13 +14,7 @@ import { OpsHero } from "@/components/diagrams/OpsHero";
 import { SupportHero } from "@/components/diagrams/SupportHero";
 import { MarketingHero } from "@/components/diagrams/MarketingHero";
 import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
-
-// One shared aspect ratio for every thumbnail box, so every card's heading
-// starts at the same height regardless of which diagram it holds. (Per-
-// diagram aspect ratios were tried, but that made card heights diverge and
-// threw the headings/tags out of alignment across the row.) Square matches
-// the AgentDev/RevOps heroes exactly and keeps every card the same shape.
-const HERO_ASPECT = "aspect-square";
+import { getHeroAspectRatio } from "@/lib/heroAspectRatio";
 
 export default function ServicesPage() {
   return (
@@ -40,6 +34,7 @@ export default function ServicesPage() {
               ? service.description[0]
               : service.description;
             const cardCopy = `${service.hook} ${firstDescription.split(". ")[0]}.`;
+            const heroAspect = getHeroAspectRatio(service.slug) ?? "aspect-square";
             return (
             <Reveal key={service.slug} delay={i * 0.05} className="h-full">
               <Link
@@ -49,31 +44,31 @@ export default function ServicesPage() {
                 {service.slug === "ai-agent-development" ? (
                   // Proof-of-concept coded replacement for the baked hero PNG -
                   // scoped to this one service only. See AgentDevHero.tsx.
-                  <div className={`relative ${HERO_ASPECT} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
                     <AgentDevHero />
                   </div>
                 ) : service.slug === "operations-process-automation" ? (
                   // Coded replacement for the baked hero PNG - scoped to
                   // this one service only. See OpsHero.tsx.
-                  <div className={`relative ${HERO_ASPECT} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
                     <OpsHero />
                   </div>
                 ) : service.slug === "customer-support-automation" ? (
                   // Coded replacement for the baked hero PNG - scoped to
                   // this one service only. See SupportHero.tsx.
-                  <div className={`relative ${HERO_ASPECT} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
                     <SupportHero />
                   </div>
                 ) : service.slug === "marketing-automation" ? (
                   // Coded replacement for the baked hero PNG - scoped to
                   // this one service only. See MarketingHero.tsx.
-                  <div className={`relative ${HERO_ASPECT} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
                     <MarketingHero />
                   </div>
                 ) : service.slug === "revops-automation" ? (
                   // Coded replacement for the baked hero PNG - scoped to
                   // this one service only. See RevOpsHero.tsx.
-                  <div className={`relative ${HERO_ASPECT} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
                     <RevOpsHero />
                   </div>
                 ) : (

@@ -20,7 +20,9 @@ export const SERVICE_TAB_IMAGES: Record<string, ServiceTabImageSet> = {
     outcomes: "/images/services/AI%20Agent/05_outcomes.png",
   },
   "operations-process-automation": {
-    whoItsFor: "/images/services/ops-process/ops_01_who_its_for.png",
+    // whoItsFor intentionally omitted - this tab renders WhoItsForCards
+    // (service.audienceCards) via the showAudienceCards branch in
+    // ServiceProcessPanel.tsx instead of an exported PNG.
     commonSymptoms: "/images/services/ops-process/ops_02_common_symptoms.png",
     ourApproach: "/images/services/ops-process/ops_03_our_approach.png",
     deliverables: "/images/services/ops-process/ops_04_deliverables.png",

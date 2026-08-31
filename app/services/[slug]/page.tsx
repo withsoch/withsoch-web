@@ -17,6 +17,7 @@ import { OpsHero } from "@/components/diagrams/OpsHero";
 import { SupportHero } from "@/components/diagrams/SupportHero";
 import { MarketingHero } from "@/components/diagrams/MarketingHero";
 import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
+import { getHeroAspectRatio } from "@/lib/heroAspectRatio";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -70,31 +71,31 @@ export default async function ServiceDetailPage({
             {service.slug === "ai-agent-development" ? (
               // Proof-of-concept coded replacement for the baked hero PNG -
               // scoped to this one service only. See AgentDevHero.tsx.
-              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
+              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
                 <AgentDevHero />
               </div>
             ) : service.slug === "operations-process-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See OpsHero.tsx.
-              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
+              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
                 <OpsHero />
               </div>
             ) : service.slug === "customer-support-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See SupportHero.tsx.
-              <div className="aspect-[780/630] w-full rounded-2xl border border-line bg-white">
+              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
                 <SupportHero />
               </div>
             ) : service.slug === "marketing-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See MarketingHero.tsx.
-              <div className="aspect-[800/700] w-full rounded-2xl border border-line bg-white">
+              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
                 <MarketingHero />
               </div>
             ) : service.slug === "revops-automation" ? (
               // Coded replacement for the baked hero PNG - scoped to this
               // one service only. See RevOpsHero.tsx.
-              <div className="aspect-square w-full rounded-2xl border border-line bg-white">
+              <div className={`${getHeroAspectRatio(service.slug)} w-full rounded-2xl border border-line bg-white`}>
                 <RevOpsHero />
               </div>
             ) : service.flowDiagram && !service.heroImage ? (
@@ -200,14 +201,36 @@ export default async function ServiceDetailPage({
                     href={`/services/${other.slug}`}
                     className="group flex flex-col h-full rounded-3xl border border-line bg-white shadow-soft overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-ink/25 hover:shadow-card"
                   >
-                    <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-mist p-5">
-                      <Image
-                        src={other.heroImage ?? `/images/services/${other.slug}/hero-diagram.png`}
-                        alt={`${other.title} diagram`}
-                        fill
-                        className="object-contain p-2"
-                      />
-                    </div>
+                    {other.slug === "ai-agent-development" ? (
+                      <div className={`${getHeroAspectRatio(other.slug)} w-full overflow-hidden bg-white`}>
+                        <AgentDevHero />
+                      </div>
+                    ) : other.slug === "operations-process-automation" ? (
+                      <div className={`${getHeroAspectRatio(other.slug)} w-full overflow-hidden bg-white`}>
+                        <OpsHero />
+                      </div>
+                    ) : other.slug === "customer-support-automation" ? (
+                      <div className={`${getHeroAspectRatio(other.slug)} w-full overflow-hidden bg-white`}>
+                        <SupportHero />
+                      </div>
+                    ) : other.slug === "marketing-automation" ? (
+                      <div className={`${getHeroAspectRatio(other.slug)} w-full overflow-hidden bg-white`}>
+                        <MarketingHero />
+                      </div>
+                    ) : other.slug === "revops-automation" ? (
+                      <div className={`${getHeroAspectRatio(other.slug)} w-full overflow-hidden bg-white`}>
+                        <RevOpsHero />
+                      </div>
+                    ) : (
+                      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-mist p-5">
+                        <Image
+                          src={other.heroImage ?? `/images/services/${other.slug}/hero-diagram.png`}
+                          alt={`${other.title} diagram`}
+                          fill
+                          className="object-contain p-2"
+                        />
+                      </div>
+                    )}
                     <div className="flex flex-1 flex-col gap-2 px-5 py-4">
                       <span className="text-lg font-serif font-semibold leading-snug text-ink">
                         {other.title}

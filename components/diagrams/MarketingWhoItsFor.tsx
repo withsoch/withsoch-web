@@ -62,8 +62,7 @@ export function MarketingWhoItsFor({
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 752 501"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 752 501"      xmlns="http://www.w3.org/2000/svg"
       className={className}
       role="img"
       aria-label={`Who it's for: ${roles.join(", ")}. ${sentenceLines.join(" ")}`}

@@ -30,7 +30,11 @@ export function DiagramFrame({
     <div
       className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-white ${className}`}
     >
-      {!bleed && <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />}
+      {/* Dot-grid ground sits behind children in both modes - in bleed mode
+          this is what shows through if a child's own aspect ratio doesn't
+          exactly fill the panel, instead of a flat cream seam. */}
+      {bleed && <div className="absolute inset-0 bg-cream" aria-hidden="true" />}
+      <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
       {!bleed && (
         <>
           {/* corner-bracket frame, matching reference layout */}
@@ -51,7 +55,7 @@ export function DiagramFrame({
       <div
         className={
           bleed
-            ? "relative z-0 flex min-h-0 min-w-0 flex-1"
+            ? "relative z-10 flex min-h-0 min-w-0 flex-1"
             : "relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-6 text-center"
         }
       >

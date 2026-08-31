@@ -34,8 +34,7 @@ export function SupportOutcomes({
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 752 501"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 752 501"      xmlns="http://www.w3.org/2000/svg"
       className={className}
       role="img"
       aria-label={`Outcomes: before - ${beforeLabel}. after - ${afterDeflectLabel}, ${afterResolveLabel}. ${o1}. ${o2}. ${o3}.`}

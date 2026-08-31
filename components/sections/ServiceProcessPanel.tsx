@@ -29,6 +29,7 @@ import { AgentDevCommonSymptoms } from "@/components/diagrams/AgentDevCommonSymp
 import { AgentDevOurApproach } from "@/components/diagrams/AgentDevOurApproach";
 import { AgentDevDeliverables } from "@/components/diagrams/AgentDevDeliverables";
 import { AgentDevOutcomes } from "@/components/diagrams/AgentDevOutcomes";
+import { OpsWhoItsFor } from "@/components/diagrams/OpsWhoItsFor";
 import { OpsCommonSymptoms } from "@/components/diagrams/OpsCommonSymptoms";
 import { OpsOurApproach } from "@/components/diagrams/OpsOurApproach";
 import { OpsDeliverables } from "@/components/diagrams/OpsDeliverables";
@@ -60,11 +61,12 @@ const AGENT_DEV_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentT
   outcomes: AgentDevOutcomes,
 };
 
-// Coded replacements for Operations & Process Automation's tab PNGs -
-// "whoItsFor" is intentionally omitted here: that tab already renders via
-// WhoItsForCards (service.audienceCards), which matches the approved
-// reference visual, so no duplicate component was created for it.
-const OPS_TAB_COMPONENTS: Partial<Record<ServiceAccordionItemKey, React.ComponentType>> = {
+// Coded replacements for Operations & Process Automation's 5 tab PNGs -
+// "whoItsFor" now renders the on-theme OpsWhoItsFor (solid coral/orange
+// cards matching the rest of Operations' diagrams) instead of the white-card
+// WhoItsForCards treatment, which didn't match.
+const OPS_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: OpsWhoItsFor,
   commonSymptoms: OpsCommonSymptoms,
   ourApproach: OpsOurApproach,
   deliverables: OpsDeliverables,
@@ -104,6 +106,22 @@ const REVOPS_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType
   deliverables: RevOpsDeliverables,
   outcomes: RevOpsOutcomes,
 };
+
+// Real aspect ratio of each coded SVG diagram's viewBox. Almost all of them
+// are 752x501, but AgentDevOurApproach uses a taller 752x560 canvas - rather
+// than forcing every diagram into a fixed-height/752:501 container (which
+// letterboxes the taller ones with empty space above/below), the wrapper
+// below reads each active component's ratio from this map so the panel's
+// own aspect-ratio always matches what the SVG is actually drawing.
+const DIAGRAM_ASPECT_RATIO = new Map<React.ComponentType, number>([
+  [AgentDevOurApproach, 752 / 560],
+]);
+const DEFAULT_DIAGRAM_ASPECT_RATIO = 752 / 501;
+
+// Diagrams that are real HTML/CSS (not a fixed-viewBox SVG) - their height
+// should follow their own content instead of being locked to the 752:501
+// SVG aspect ratio, which would clip or stretch a card grid that wraps text.
+const NATURAL_HEIGHT_DIAGRAMS = new Set<React.ComponentType>([]);
 
 const CAPTIONS: Record<ServiceAccordionItemKey, string> = {
   whoItsFor: "The teams and roles this service is built around.",
@@ -153,11 +171,32 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   // Decided once per service (not per active tab) so the columns don't
   // jump width when switching between accordion rows.
   const hasTabImages = Boolean(SERVICE_TAB_IMAGES[service.slug]);
+  // Whichever coded SVG diagram is actually rendering for this tab (if any) -
+  // used below to size the panel to that diagram's real aspect ratio instead
+  // of letterboxing it inside a height forced to match the accordion.
+  const codedTab = AgentDevTab || OpsTab || SupportTab || MarketingTab || RevOpsTab;
   // Coded "who it's for" visual (real audience-card data, not an exported
   // image) takes priority over the generic tab photo for services that
-  // define audienceCards - currently just Operations & Process Automation.
+  // define audienceCards but don't already have a coded tab component for
+  // this key (WhoItsForCards is a fallback, not an override - Operations
+  // now renders OpsWhoItsFor via OPS_TAB_COMPONENTS instead, so codedTab
+  // must win here or bleed below stays wrongly false and DiagramFrame's
+  // px-6 padding stacks on top of the diagram's own internal inset).
   const showAudienceCards =
-    activeKey === "whoItsFor" && !!service.audienceCards?.length && !tabImage;
+    activeKey === "whoItsFor" && !!service.audienceCards?.length && !tabImage && !codedTab;
+  const activeDiagramComponent = !showAudienceCards && codedTab;
+  const isNaturalHeightDiagram = Boolean(activeDiagramComponent && NATURAL_HEIGHT_DIAGRAMS.has(activeDiagramComponent));
+  const diagramAspectRatio =
+    activeDiagramComponent && !isNaturalHeightDiagram
+      ? DIAGRAM_ASPECT_RATIO.get(activeDiagramComponent) ?? DEFAULT_DIAGRAM_ASPECT_RATIO
+      : undefined;
+  // WhoItsForCards (Operations' "Who it's for" tab) is real card content,
+  // not an SVG with a fixed viewBox - it has no aspect ratio to size to, but
+  // it has the same root cause as the diagram tabs: h-full + items-stretch
+  // forces it to match the accordion's height, leaving empty space above/
+  // below its 3 BUILD/RUN/SCALE cards. It just needs self-start so it sizes
+  // to its own natural content height instead.
+  const sizeToOwnContent = Boolean(diagramAspectRatio) || showAudienceCards || isNaturalHeightDiagram;
 
   const handleOpenKeyChange = (key: ServiceAccordionItemKey | null) => {
     setOpenKey(key);
@@ -175,11 +214,21 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
       }`}
     >
       <ServiceAccordion service={service} openKey={openKey} onOpenKeyChange={handleOpenKeyChange} />
-      <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+      <div
+        className={`relative w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24 ${
+          // Coded-diagram tabs and WhoItsForCards size themselves to their
+          // own natural content (self-start so the grid row's items-stretch
+          // doesn't force a mismatched height back on); every other branch
+          // (tab photos, generic icon) keeps stretching to fill the row
+          // like before.
+          sizeToOwnContent ? "self-start" : "h-full"
+        }`}
+        style={diagramAspectRatio ? { aspectRatio: diagramAspectRatio } : undefined}
+      >
         <DiagramFrame
-          eyebrow={(tabImage || AgentDevTab || OpsTab || SupportTab || MarketingTab || RevOpsTab) && !showAudienceCards ? undefined : `Service / ${service.title}`}
-          caption={(tabImage || AgentDevTab || OpsTab || SupportTab || MarketingTab || RevOpsTab) && !showAudienceCards ? undefined : caption}
-          bleed={!!(tabImage || AgentDevTab || OpsTab || SupportTab || MarketingTab || RevOpsTab) && !showAudienceCards}
+          eyebrow={showAudienceCards || tabImage || codedTab ? undefined : `Service / ${service.title}`}
+          caption={showAudienceCards || tabImage || codedTab ? undefined : caption}
+          bleed={!!(tabImage || codedTab)}
         >
           <AnimatePresence mode="wait">
             {AgentDevTab ? (
@@ -192,7 +241,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                className="relative h-full w-full"
               >
                 <AgentDevTab />
               </motion.div>
@@ -206,7 +255,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                className={isNaturalHeightDiagram ? "relative w-full" : "relative h-full w-full"}
               >
                 <OpsTab />
               </motion.div>
@@ -219,7 +268,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                className="relative h-full w-full"
               >
                 <SupportTab />
               </motion.div>
@@ -233,7 +282,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                className="relative h-full w-full"
               >
                 <MarketingTab />
               </motion.div>
@@ -247,7 +296,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-full w-full bg-cream"
+                className="relative h-full w-full"
               >
                 <RevOpsTab />
               </motion.div>

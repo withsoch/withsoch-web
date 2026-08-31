@@ -23,6 +23,7 @@ import { OpsHero } from "@/components/diagrams/OpsHero";
 import { SupportHero } from "@/components/diagrams/SupportHero";
 import { MarketingHero } from "@/components/diagrams/MarketingHero";
 import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
+import { getHeroAspectRatio } from "@/lib/heroAspectRatio";
 
 export function ServicesGrid() {
   // openSlug: which row is expanded (null = all collapsed). activeSlug: which
@@ -129,7 +130,7 @@ export function ServicesGrid() {
             neutrals stacked. The panel is sticky and unsized rather than
             stretched to the accordion's height, which is what used to leave
             ~200px of empty peach above and below the diagram. */}
-        <div className="relative aspect-square lg:sticky lg:top-28">
+        <div className={`relative ${getHeroAspectRatio(activeService.slug) ?? "aspect-square"} lg:sticky lg:top-28`}>
           <DiagramFrame
             eyebrow={
               homeImage ||

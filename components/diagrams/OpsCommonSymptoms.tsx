@@ -33,8 +33,7 @@ export function OpsCommonSymptoms({
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 752 501"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 752 501"      xmlns="http://www.w3.org/2000/svg"
       className={className}
       role="img"
       aria-label={`Common symptoms: ${col1.titleLines.join(" ")} - ${col1.subtitleLines.join(" ")}. ${col2.titleLines.join(" ")} - ${col2Lines.join(" ")}. ${col3.titleLines.join(" ")} - ${col3.subtitleLines.join(" ")}.`}
