@@ -12,6 +12,11 @@ import { ServiceProcessPanel } from "@/components/sections/ServiceProcessPanel";
 import { ServiceTestimonial } from "@/components/ServiceTestimonial";
 import { Button } from "@/components/ui/Button";
 import { ServiceFlowDiagram } from "@/components/sections/ServiceFlowDiagram";
+import { AgentDevHero } from "@/components/diagrams/AgentDevHero";
+import { OpsHero } from "@/components/diagrams/OpsHero";
+import { SupportHero } from "@/components/diagrams/SupportHero";
+import { MarketingHero } from "@/components/diagrams/MarketingHero";
+import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -62,7 +67,37 @@ export default async function ServiceDetailPage({
                 </Button>
               </div>
             </div>
-            {service.flowDiagram ? (
+            {service.slug === "ai-agent-development" ? (
+              // Proof-of-concept coded replacement for the baked hero PNG -
+              // scoped to this one service only. See AgentDevHero.tsx.
+              <div className="aspect-square w-full rounded-2xl border border-line bg-white p-4">
+                <AgentDevHero />
+              </div>
+            ) : service.slug === "operations-process-automation" ? (
+              // Coded replacement for the baked hero PNG - scoped to this
+              // one service only. See OpsHero.tsx.
+              <div className="aspect-[16/9] w-full rounded-2xl border border-line bg-white p-4">
+                <OpsHero />
+              </div>
+            ) : service.slug === "customer-support-automation" ? (
+              // Coded replacement for the baked hero PNG - scoped to this
+              // one service only. See SupportHero.tsx.
+              <div className="aspect-[780/630] w-full rounded-2xl border border-line bg-white p-4">
+                <SupportHero />
+              </div>
+            ) : service.slug === "marketing-automation" ? (
+              // Coded replacement for the baked hero PNG - scoped to this
+              // one service only. See MarketingHero.tsx.
+              <div className="aspect-[800/700] w-full rounded-2xl border border-line bg-white p-4">
+                <MarketingHero />
+              </div>
+            ) : service.slug === "revops-automation" ? (
+              // Coded replacement for the baked hero PNG - scoped to this
+              // one service only. See RevOpsHero.tsx.
+              <div className="aspect-square w-full rounded-2xl border border-line bg-white p-4">
+                <RevOpsHero />
+              </div>
+            ) : service.flowDiagram && !service.heroImage ? (
               <ServiceFlowDiagram data={service.flowDiagram} />
             ) : (
               <div className="rounded-2xl border border-line bg-white p-4">

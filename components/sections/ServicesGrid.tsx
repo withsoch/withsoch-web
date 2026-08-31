@@ -17,8 +17,12 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
-import { SERVICE_HOME_IMAGES } from "@/components/sections/ServiceTabImages";
 import { DiagramFrame } from "@/components/ui/DiagramFrame";
+import { AgentDevHero } from "@/components/diagrams/AgentDevHero";
+import { OpsHero } from "@/components/diagrams/OpsHero";
+import { SupportHero } from "@/components/diagrams/SupportHero";
+import { MarketingHero } from "@/components/diagrams/MarketingHero";
+import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
 
 export function ServicesGrid() {
   // openSlug: which row is expanded (null = all collapsed). activeSlug: which
@@ -27,7 +31,7 @@ export function ServicesGrid() {
   const [openSlug, setOpenSlug] = useState<string | null>(SERVICES[0].slug);
   const [activeSlug, setActiveSlug] = useState(SERVICES[0].slug);
   const activeService = SERVICES.find((service) => service.slug === activeSlug) ?? SERVICES[0];
-  const homeImage = SERVICE_HOME_IMAGES[activeService.slug];
+  const homeImage = activeService.heroImage;
 
   function toggleService(slug: string) {
     setOpenSlug((prev) => (prev === slug ? null : slug));
@@ -127,12 +131,102 @@ export function ServicesGrid() {
             ~200px of empty peach above and below the diagram. */}
         <div className="relative aspect-[4/3] lg:sticky lg:top-28">
           <DiagramFrame
-            eyebrow={homeImage ? undefined : `Service / ${activeService.title}`}
-            caption={homeImage ? undefined : activeService.hook}
-            bleed={!!homeImage}
+            eyebrow={
+              homeImage ||
+              activeService.slug === "ai-agent-development" ||
+              activeService.slug === "operations-process-automation" ||
+              activeService.slug === "customer-support-automation" ||
+              activeService.slug === "marketing-automation" ||
+              activeService.slug === "revops-automation"
+                ? undefined
+                : `Service / ${activeService.title}`
+            }
+            caption={
+              homeImage ||
+              activeService.slug === "ai-agent-development" ||
+              activeService.slug === "operations-process-automation" ||
+              activeService.slug === "customer-support-automation" ||
+              activeService.slug === "marketing-automation" ||
+              activeService.slug === "revops-automation"
+                ? undefined
+                : activeService.hook
+            }
+            bleed={
+              !!homeImage ||
+              activeService.slug === "ai-agent-development" ||
+              activeService.slug === "operations-process-automation" ||
+              activeService.slug === "customer-support-automation" ||
+              activeService.slug === "marketing-automation" ||
+              activeService.slug === "revops-automation"
+            }
           >
             <AnimatePresence mode="wait">
-              {homeImage ? (
+              {activeService.slug === "ai-agent-development" ? (
+                // Proof-of-concept coded replacement for the baked hero PNG -
+                // scoped to this one service only. See AgentDevHero.tsx.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream p-4"
+                >
+                  <AgentDevHero />
+                </motion.div>
+              ) : activeService.slug === "operations-process-automation" ? (
+                // Coded replacement for the baked hero PNG - scoped to
+                // this one service only. See OpsHero.tsx.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream p-4"
+                >
+                  <OpsHero />
+                </motion.div>
+              ) : activeService.slug === "customer-support-automation" ? (
+                // Coded replacement for the baked hero PNG - scoped to
+                // this one service only. See SupportHero.tsx.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream p-4"
+                >
+                  <SupportHero />
+                </motion.div>
+              ) : activeService.slug === "marketing-automation" ? (
+                // Coded replacement for the baked hero PNG - scoped to
+                // this one service only. See MarketingHero.tsx.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream p-4"
+                >
+                  <MarketingHero />
+                </motion.div>
+              ) : activeService.slug === "revops-automation" ? (
+                // Coded replacement for the baked hero PNG - scoped to
+                // this one service only. See RevOpsHero.tsx.
+                <motion.div
+                  key={activeService.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="relative h-full w-full bg-cream p-4"
+                >
+                  <RevOpsHero />
+                </motion.div>
+              ) : homeImage ? (
                 // Full-bleed real diagram/photo from the live withsoch.com
                 // build - object-contain so it never crops, cream fill
                 // behind it for any letterboxing.
