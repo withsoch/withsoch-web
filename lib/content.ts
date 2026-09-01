@@ -21,9 +21,9 @@ import type { IconName } from "@/components/Icons";
 
 export const SITE = {
   name: "Soch",
-  tagline: "AI automation partners for startups that are ready to move faster.",
+  tagline: "AI automation partners for businesses that are ready to move faster.",
   metaDescription:
-    "AI automation partners for startups. We build and deploy automation systems across operations, products, and outreach for pre-seed to Series A companies.",
+    "AI automation partners for businesses. We build and deploy automation systems across operations, products, and outreach for pre-seed to Series A companies.",
   email: "info@withsoch.com",
   phone: "+372 5389 0745",
   phoneHref: "tel:+37253890745",
@@ -90,10 +90,10 @@ export const NAV = [
 ];
 
 export const HERO = {
-  eyebrow: "AI Automation Agency for Startups",
-  headline: "AI automation partners for startups that are ready to",
+  eyebrow: "AI Automation Agency for Businesses",
+  headline: "AI automation partners for businesses that are ready to",
   headlineEmphasis: "move faster.",
-  sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A startups identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
+  sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A businesses identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
 };
 
 // About page hero. Kept separate from HERO (homepage) - different headline,

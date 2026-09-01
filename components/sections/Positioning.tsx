@@ -31,7 +31,7 @@ export function Positioning() {
           empty - it just needs a width constraint. */}
       <Reveal>
         <h2 className="text-h2 text-ink lg:text-[2.3rem] lg:leading-[1.2] max-w-3xl">
-          AI Automation Consulting and Implementation for Startups
+          AI Automation Consulting and Implementation for Businesses
         </h2>
       </Reveal>
 
