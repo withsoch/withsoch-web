@@ -232,7 +232,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     name: "Dilawar Ali",
-    role: "Board Member & Investor",
+    role: "Team",
     linkedin: "",
     initials: "DA",
     photo:
