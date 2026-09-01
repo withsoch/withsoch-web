@@ -23,6 +23,105 @@ import { DiagramFrame } from "@/components/ui/DiagramFrame";
 import { Icon } from "@/components/Icons";
 import { SERVICE_DIAGRAMS } from "@/components/sections/ServiceCardDiagrams";
 import { SERVICE_TAB_IMAGES } from "@/components/sections/ServiceTabImages";
+import { WhoItsForCards } from "@/components/sections/WhoItsForCards";
+import { AgentDevWhoItsFor } from "@/components/diagrams/AgentDevWhoItsFor";
+import { AgentDevCommonSymptoms } from "@/components/diagrams/AgentDevCommonSymptoms";
+import { AgentDevOurApproach } from "@/components/diagrams/AgentDevOurApproach";
+import { AgentDevDeliverables } from "@/components/diagrams/AgentDevDeliverables";
+import { AgentDevOutcomes } from "@/components/diagrams/AgentDevOutcomes";
+import { OpsWhoItsFor } from "@/components/diagrams/OpsWhoItsFor";
+import { OpsCommonSymptoms } from "@/components/diagrams/OpsCommonSymptoms";
+import { OpsOurApproach } from "@/components/diagrams/OpsOurApproach";
+import { OpsDeliverables } from "@/components/diagrams/OpsDeliverables";
+import { OpsOutcomes } from "@/components/diagrams/OpsOutcomes";
+import { SupportWhoItsFor } from "@/components/diagrams/SupportWhoItsFor";
+import { SupportCommonSymptoms } from "@/components/diagrams/SupportCommonSymptoms";
+import { SupportOurApproach } from "@/components/diagrams/SupportOurApproach";
+import { SupportDeliverables } from "@/components/diagrams/SupportDeliverables";
+import { SupportOutcomes } from "@/components/diagrams/SupportOutcomes";
+import { MarketingWhoItsFor } from "@/components/diagrams/MarketingWhoItsFor";
+import { MarketingCommonSymptoms } from "@/components/diagrams/MarketingCommonSymptoms";
+import { MarketingOurApproach } from "@/components/diagrams/MarketingOurApproach";
+import { MarketingDeliverables } from "@/components/diagrams/MarketingDeliverables";
+import { MarketingOutcomes } from "@/components/diagrams/MarketingOutcomes";
+import { RevOpsWhoItsFor } from "@/components/diagrams/RevOpsWhoItsFor";
+import { RevOpsCommonSymptoms } from "@/components/diagrams/RevOpsCommonSymptoms";
+import { RevOpsOurApproach } from "@/components/diagrams/RevOpsOurApproach";
+import { RevOpsDeliverables } from "@/components/diagrams/RevOpsDeliverables";
+import { RevOpsOutcomes } from "@/components/diagrams/RevOpsOutcomes";
+
+// Coded replacements for AI Agent Development's 5 tab PNGs only - scoped by
+// slug + accordion key, exactly like AgentDevHero's hero swap. Every other
+// service keeps rendering its tabImage PNG unchanged.
+const AGENT_DEV_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: AgentDevWhoItsFor,
+  commonSymptoms: AgentDevCommonSymptoms,
+  ourApproach: AgentDevOurApproach,
+  deliverables: AgentDevDeliverables,
+  outcomes: AgentDevOutcomes,
+};
+
+// Coded replacements for Operations & Process Automation's 5 tab PNGs -
+// "whoItsFor" now renders the on-theme OpsWhoItsFor (solid coral/orange
+// cards matching the rest of Operations' diagrams) instead of the white-card
+// WhoItsForCards treatment, which didn't match.
+const OPS_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: OpsWhoItsFor,
+  commonSymptoms: OpsCommonSymptoms,
+  ourApproach: OpsOurApproach,
+  deliverables: OpsDeliverables,
+  outcomes: OpsOutcomes,
+};
+
+// Coded replacements for Customer Support Automation's 5 tab PNGs - unlike
+// Operations, this service's "whoItsFor" reference is a diverging-lines
+// chart (not the BUILD/RUN/SCALE card style), so all 5 tabs get a new
+// component here rather than falling back to WhoItsForCards.
+const SUPPORT_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: SupportWhoItsFor,
+  commonSymptoms: SupportCommonSymptoms,
+  ourApproach: SupportOurApproach,
+  deliverables: SupportDeliverables,
+  outcomes: SupportOutcomes,
+};
+
+// Coded per-tab visual for Marketing Automation's 5 tabs - same scoping
+// pattern as AgentDevTab/OpsTab/SupportTab above.
+const MARKETING_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: MarketingWhoItsFor,
+  commonSymptoms: MarketingCommonSymptoms,
+  ourApproach: MarketingOurApproach,
+  deliverables: MarketingDeliverables,
+  outcomes: MarketingOutcomes,
+};
+
+// Coded per-tab visual for RevOps Automation's 5 tabs - same scoping
+// pattern as AgentDevTab/OpsTab/SupportTab/MarketingTab above. This is the
+// last of the 5 services, completing the coded-visual rollout across the
+// whole services set.
+const REVOPS_TAB_COMPONENTS: Record<ServiceAccordionItemKey, React.ComponentType> = {
+  whoItsFor: RevOpsWhoItsFor,
+  commonSymptoms: RevOpsCommonSymptoms,
+  ourApproach: RevOpsOurApproach,
+  deliverables: RevOpsDeliverables,
+  outcomes: RevOpsOutcomes,
+};
+
+// Real aspect ratio of each coded SVG diagram's viewBox. Almost all of them
+// are 752x501, but AgentDevOurApproach uses a taller 752x560 canvas - rather
+// than forcing every diagram into a fixed-height/752:501 container (which
+// letterboxes the taller ones with empty space above/below), the wrapper
+// below reads each active component's ratio from this map so the panel's
+// own aspect-ratio always matches what the SVG is actually drawing.
+const DIAGRAM_ASPECT_RATIO = new Map<React.ComponentType, number>([
+  [AgentDevOurApproach, 752 / 560],
+]);
+const DEFAULT_DIAGRAM_ASPECT_RATIO = 752 / 501;
+
+// Diagrams that are real HTML/CSS (not a fixed-viewBox SVG) - their height
+// should follow their own content instead of being locked to the 752:501
+// SVG aspect ratio, which would clip or stretch a card grid that wraps text.
+const NATURAL_HEIGHT_DIAGRAMS = new Set<React.ComponentType>([]);
 
 const CAPTIONS: Record<ServiceAccordionItemKey, string> = {
   whoItsFor: "The teams and roles this service is built around.",
@@ -47,9 +146,57 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
   // Real per-tab imagery (from the live withsoch.com build) takes priority
   // over the generic SVG diagram when a service defines one for this key.
   const tabImage = SERVICE_TAB_IMAGES[service.slug]?.[activeKey];
+  // Coded per-tab visual, proof-of-concept for ai-agent-development only -
+  // takes priority over the tabImage PNG for this one service's 5 tabs.
+  const AgentDevTab =
+    service.slug === "ai-agent-development" ? AGENT_DEV_TAB_COMPONENTS[activeKey] : undefined;
+  // Coded replacements for Operations & Process Automation's 4 remaining
+  // tab PNGs (commonSymptoms/ourApproach/deliverables/outcomes) - same
+  // scoping pattern as AgentDevTab above. "whoItsFor" isn't in
+  // OPS_TAB_COMPONENTS, so it falls through to showAudienceCards below.
+  const OpsTab =
+    service.slug === "operations-process-automation" ? OPS_TAB_COMPONENTS[activeKey] : undefined;
+  // Coded per-tab visual for Customer Support Automation's 5 tabs - same
+  // scoping pattern as AgentDevTab/OpsTab above.
+  const SupportTab =
+    service.slug === "customer-support-automation" ? SUPPORT_TAB_COMPONENTS[activeKey] : undefined;
+  // Coded per-tab visual for Marketing Automation's 5 tabs - same scoping
+  // pattern as AgentDevTab/OpsTab/SupportTab above.
+  const MarketingTab =
+    service.slug === "marketing-automation" ? MARKETING_TAB_COMPONENTS[activeKey] : undefined;
+  // Coded per-tab visual for RevOps Automation's 5 tabs - same scoping
+  // pattern as AgentDevTab/OpsTab/SupportTab/MarketingTab above.
+  const RevOpsTab =
+    service.slug === "revops-automation" ? REVOPS_TAB_COMPONENTS[activeKey] : undefined;
   // Decided once per service (not per active tab) so the columns don't
   // jump width when switching between accordion rows.
   const hasTabImages = Boolean(SERVICE_TAB_IMAGES[service.slug]);
+  // Whichever coded SVG diagram is actually rendering for this tab (if any) -
+  // used below to size the panel to that diagram's real aspect ratio instead
+  // of letterboxing it inside a height forced to match the accordion.
+  const codedTab = AgentDevTab || OpsTab || SupportTab || MarketingTab || RevOpsTab;
+  // Coded "who it's for" visual (real audience-card data, not an exported
+  // image) takes priority over the generic tab photo for services that
+  // define audienceCards but don't already have a coded tab component for
+  // this key (WhoItsForCards is a fallback, not an override - Operations
+  // now renders OpsWhoItsFor via OPS_TAB_COMPONENTS instead, so codedTab
+  // must win here or bleed below stays wrongly false and DiagramFrame's
+  // px-6 padding stacks on top of the diagram's own internal inset).
+  const showAudienceCards =
+    activeKey === "whoItsFor" && !!service.audienceCards?.length && !tabImage && !codedTab;
+  const activeDiagramComponent = !showAudienceCards && codedTab;
+  const isNaturalHeightDiagram = Boolean(activeDiagramComponent && NATURAL_HEIGHT_DIAGRAMS.has(activeDiagramComponent));
+  const diagramAspectRatio =
+    activeDiagramComponent && !isNaturalHeightDiagram
+      ? DIAGRAM_ASPECT_RATIO.get(activeDiagramComponent) ?? DEFAULT_DIAGRAM_ASPECT_RATIO
+      : undefined;
+  // WhoItsForCards (Operations' "Who it's for" tab) is real card content,
+  // not an SVG with a fixed viewBox - it has no aspect ratio to size to, but
+  // it has the same root cause as the diagram tabs: h-full + items-stretch
+  // forces it to match the accordion's height, leaving empty space above/
+  // below its 3 BUILD/RUN/SCALE cards. It just needs self-start so it sizes
+  // to its own natural content height instead.
+  const sizeToOwnContent = Boolean(diagramAspectRatio) || showAudienceCards || isNaturalHeightDiagram;
 
   const handleOpenKeyChange = (key: ServiceAccordionItemKey | null) => {
     setOpenKey(key);
@@ -67,14 +214,107 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
       }`}
     >
       <ServiceAccordion service={service} openKey={openKey} onOpenKeyChange={handleOpenKeyChange} />
-      <div className="relative h-full w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24">
+      <div
+        className={`relative w-full rounded-[28px] bg-peach/50 p-3 lg:sticky lg:top-24 ${
+          // Coded-diagram tabs and WhoItsForCards size themselves to their
+          // own natural content (self-start so the grid row's items-stretch
+          // doesn't force a mismatched height back on); every other branch
+          // (tab photos, generic icon) keeps stretching to fill the row
+          // like before.
+          sizeToOwnContent ? "self-start" : "h-full"
+        }`}
+        style={diagramAspectRatio ? { aspectRatio: diagramAspectRatio } : undefined}
+      >
         <DiagramFrame
-          eyebrow={tabImage ? undefined : `Service / ${service.title}`}
-          caption={tabImage ? undefined : caption}
-          bleed={!!tabImage}
+          eyebrow={showAudienceCards || tabImage || codedTab ? undefined : `Service / ${service.title}`}
+          caption={showAudienceCards || tabImage || codedTab ? undefined : caption}
+          bleed={!!(tabImage || codedTab)}
         >
           <AnimatePresence mode="wait">
-            {tabImage ? (
+            {AgentDevTab ? (
+              // Coded per-tab visual, proof-of-concept for
+              // ai-agent-development only - full-bleed like the tabImage
+              // PNG branch below, edge to edge with no eyebrow/caption strip.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full w-full"
+              >
+                <AgentDevTab />
+              </motion.div>
+            ) : OpsTab ? (
+              // Coded per-tab visual for Operations & Process Automation's
+              // 4 non-audience tabs - same full-bleed treatment as
+              // AgentDevTab above.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className={isNaturalHeightDiagram ? "relative w-full" : "relative h-full w-full"}
+              >
+                <OpsTab />
+              </motion.div>
+            ) : SupportTab ? (
+              // Coded per-tab visual for Customer Support Automation's 5
+              // tabs - same full-bleed treatment as AgentDevTab/OpsTab above.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full w-full"
+              >
+                <SupportTab />
+              </motion.div>
+            ) : MarketingTab ? (
+              // Coded per-tab visual for Marketing Automation's 5 tabs -
+              // same full-bleed treatment as AgentDevTab/OpsTab/SupportTab
+              // above.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full w-full"
+              >
+                <MarketingTab />
+              </motion.div>
+            ) : RevOpsTab ? (
+              // Coded per-tab visual for RevOps Automation's 5 tabs - same
+              // full-bleed treatment as AgentDevTab/OpsTab/SupportTab/
+              // MarketingTab above.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full w-full"
+              >
+                <RevOpsTab />
+              </motion.div>
+            ) : showAudienceCards ? (
+              // Coded audience-card visual, real content from
+              // service.audienceCards - not full-bleed, sits in the same
+              // padded/eyebrow/caption frame as the generic diagram fallback.
+              <motion.div
+                key={activeKey}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="flex w-full flex-1 flex-col justify-center"
+              >
+                <WhoItsForCards cards={service.audienceCards!} />
+              </motion.div>
+            ) : tabImage ? (
               // Full-bleed real photography - fills the entire card edge to
               // edge, no eyebrow/caption strip and no white padding around
               // it, so the image itself is the whole panel.

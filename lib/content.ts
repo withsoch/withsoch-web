@@ -21,9 +21,9 @@ import type { IconName } from "@/components/Icons";
 
 export const SITE = {
   name: "Soch",
-  tagline: "AI automation partners for startups that are ready to move faster.",
+  tagline: "AI automation partners for businesses that are ready to move faster.",
   metaDescription:
-    "AI automation partners for startups. We build and deploy automation systems across operations, products, and outreach for pre-seed to Series A companies.",
+    "AI automation partners for businesses. We build and deploy automation systems across operations, products, and outreach for pre-seed to Series A companies.",
   email: "info@withsoch.com",
   phone: "+372 5389 0745",
   phoneHref: "tel:+37253890745",
@@ -67,7 +67,7 @@ export const ABOUT_STATS = [
   },
   {
     value: "2.1×",
-    label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
+    label: "SaaS business doubled activation rates after automating their onboarding flow in two product cycles.",
   },
   {
     value: "€180k",
@@ -90,21 +90,21 @@ export const NAV = [
 ];
 
 export const HERO = {
-  eyebrow: "AI Automation Agency for Startups",
-  headline: "AI automation partners for startups that are ready to",
+  eyebrow: "AI Automation Agency for Businesses",
+  headline: "AI automation partners for businesses that are ready to",
   headlineEmphasis: "move faster.",
-  sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A startups identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
+  sub: "Most early-stage teams are doing manually what AI can do in seconds. We help pre-seed to Series A businesses identify where automation creates real leverage, then build and deploy those systems across their operations, products, and outreach.",
 };
 
 // About page hero. Kept separate from HERO (homepage) - different headline,
 // CTA, and a tag list; see PageHero vs AboutHero component split.
 export const ABOUT_HERO = {
   headline: "AI automation partners for founders who want to move faster.",
-  sub: "We help early-stage startups build AI automation systems that remove manual work, speed up operations, and free their teams to focus on what actually drives growth.",
+  sub: "We help early-stage businesses build AI automation systems that remove manual work, speed up operations, and free their teams to focus on what actually drives growth.",
   ctaLabel: "Let's Get You Moving",
   ctaHref: SCHEDULER_URL,
   tags: [
-    "Startups",
+    "Businesses",
     "Pre-seed to Series A",
     "Technology and SaaS",
     "Professional and B2B Services",
@@ -232,7 +232,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     name: "Dilawar Ali",
-    role: "Board Member & Investor",
+    role: "Team",
     linkedin: "",
     initials: "DA",
     photo:
@@ -276,18 +276,18 @@ export const PRINCIPLES_INTRO =
   "Our work is grounded in clear thinking and disciplined execution. These principles keep us focused, practical, and accountable in every engagement.";
 
 export const VISION =
-  "To become the most trusted AI automation partner for startups globally, helping founders replace manual work with intelligent systems that compound over time.";
+  "To become the most trusted AI automation partner for businesses globally, helping founders replace manual work with intelligent systems that compound over time.";
 
 export const VISION_TAGS = [
   "AI-Native",
-  "Startup-First",
+  "Business-First",
   "Operator-Led",
   "Client-Driven",
   "Built to Scale",
 ];
 
 export const MISSION =
-  "To give early-stage startups access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
+  "To give early-stage businesses access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
 
 // Founders section intro quote (About page only) - see FOUNDERS_INTRO_QUOTE prop
 // on the Founders block in app/about/page.tsx.
@@ -317,6 +317,16 @@ export type Service = {
   // accordion panel visuals. When absent, the page falls back to the
   // public/images/services/{slug}/... placeholder convention.
   heroImage?: string;
+  // Optional hero-side flow illustration (top row of chips -> connected
+  // core row -> bottom row of chips), rendered by ServiceFlowDiagram. The
+  // 3-row structure, frame, and color roles are fixed by the component;
+  // only labels/icons/counts here are per-service data. Leave undefined to
+  // fall back to the heroImage placeholder.
+  flowDiagram?: {
+    topRow: { label: string; items: { label: string; icon: IconName }[] };
+    core: { label: string; nodes: { label: string; icon: IconName }[] };
+    bottomRow: { label: string; items: { label: string; icon: IconName }[] };
+  };
   // Optional per-service field (not a shared/generic block) - the copy here
   // is written around this service's specific "build/run/scale" framing and
   // doesn't generalize cleanly to the other four services' audiences. Add a
@@ -332,7 +342,7 @@ export const SERVICES: Service[] = [
     title: "AI Agent Development",
     hook: "Put AI to work on the tasks eating your team's hours.",
     description:
-      "We design, build, and deploy custom AI agents for startups whose teams spend hours each week on research, document review, data extraction, and drafting. We pick the right model, ground it in your data, and integrate it into the tools you already use.",
+      "We design, build, and deploy custom AI agents for businesses whose teams spend hours each week on research, document review, data extraction, and drafting. We pick the right model, ground it in your data, and integrate it into the tools you already use.",
     points: ["Custom AI Agents", "LLM Integration", "Task Automation"],
     whoItsFor:
       "Founders, ops leads, and team leads at 10 to 150-person companies whose teams are spending hours on cognitive work that an AI agent could handle reliably.",
@@ -370,16 +380,41 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Agent Monitoring and Tuning", description: "Ongoing evaluation, prompt updates, and edge case fixes on retainer. Agents drift when the work changes. We keep yours sharp." },
       { icon: "spark", title: "Multi-Agent Workflow Orchestration", description: "Multiple agents chained into a single pipeline, each handling one step and passing context to the next. Complex work done end-to-end without a human in the loop." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d8337eeaba6a46883f358_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row17.png",
+    heroImage: "/images/services/hero_ai_agent_development.png",
+    flowDiagram: {
+      topRow: {
+        label: "Inputs",
+        items: [
+          { label: "Email", icon: "mail" },
+          { label: "CRM", icon: "database" },
+          { label: "Docs", icon: "document" },
+        ],
+      },
+      core: {
+        label: "Agent",
+        nodes: [
+          { label: "reason", icon: "spark" },
+          { label: "tools", icon: "wrench" },
+          { label: "memory", icon: "database" },
+        ],
+      },
+      bottomRow: {
+        label: "Outputs",
+        items: [
+          { label: "Draft", icon: "pen" },
+          { label: "Task", icon: "check" },
+          { label: "Escalate", icon: "diagonal-arrow" },
+        ],
+      },
+    },
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -388,7 +423,7 @@ export const SERVICES: Service[] = [
     title: "Operations and Process Automation",
     hook: "Stop doing manually what AI can do in seconds.",
     description: [
-      "We design, build, and maintain custom automation systems for startups and SMBs losing time, money, and accuracy to manual operations.",
+      "We design, build, and maintain custom automation systems for businesses and SMBs losing time, money, and accuracy to manual operations.",
       "We don't just wire tools together. We map the workflow first, redesign it, and then build an automation that runs reliably at scale.",
     ],
     points: ["Process Design", "System Integration", "Workflow Efficiency"],
@@ -428,16 +463,15 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Automation Monitoring and Maintenance", description: "Ongoing monitoring, error alerting, and proactive fixes on retainer. Automations break when tools update. We make sure yours keep running." },
       { icon: "audit", title: "Automation Strategy and Optimization", description: "Quarterly audits and optimization sprints to keep your automation stack lean, effective, and aligned with business goals. Identify gaps, remove redundancies, and ensure every workflow delivers measurable ROI." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0582c7e82b089a2749eb10_OPS%20%26%20Process%20Hero.png",
+    heroImage: "/images/services/hero_operations_process_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "forest",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
     ctaOverride: {
       heading: "Let us audit your workflows and find your first 3 agent use cases.",
@@ -508,16 +542,15 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Ongoing Tuning and Maintenance", description: "AI responses kept accurate as products, pricing, and policies change. Models drift. We keep yours grounded." },
       { icon: "trend", title: "Analytics and Performance Insights", description: "Automated dashboards and conversation analytics that track usage, satisfaction, and conversion. Actionable insights to refine your bots and prove ROI without manual data crunching." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a062258081a7175d7c890b3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row23.png",
+    heroImage: "/images/services/hero_customer_support_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -526,7 +559,7 @@ export const SERVICES: Service[] = [
     title: "Marketing Automation",
     hook: "More pipeline. Less manual work.",
     description:
-      "We build AI-powered marketing automation systems for startups that want consistent pipeline without the manual effort behind it. From automated email sequences and content generation to lead scoring and campaign orchestration, we set up the systems that keep your marketing running even when your team is focused elsewhere.",
+      "We build AI-powered marketing automation systems for businesses that want consistent pipeline without the manual effort behind it. From automated email sequences and content generation to lead scoring and campaign orchestration, we set up the systems that keep your marketing running even when your team is focused elsewhere.",
     points: ["Campaign Workflows", "Content Scheduling", "Lead Nurturing"],
     whoItsFor:
       "Founders, marketing leads, and growth managers running lean teams without the bandwidth to execute consistently week after week.",
@@ -565,16 +598,15 @@ export const SERVICES: Service[] = [
       { icon: "shield", title: "Retargeting and Re-Engagement Automation", description: "Automated sequences that re-engage cold leads, website visitors, and churned customers based on behavioral triggers and time-based rules." },
       { icon: "audit", title: "Campaign Strategy and Optimization", description: "Ongoing review of what's converting and what isn't, with sequences and segments refined on a regular cadence so spend keeps working harder over time." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0c02d8482a055a918234c3_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%201_row60.png",
+    heroImage: "/images/services/hero_marketing_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -586,7 +618,7 @@ export const SERVICES: Service[] = [
       "We build revenue operations systems that align your sales, marketing, and customer success teams around clean data, clear pipeline visibility, and automated workflows. No more manual CRM updates, scattered handoffs, or forecasts built on spreadsheets nobody actually trusts.",
     points: ["Pipeline Automation", "CRM Integration", "Revenue Reporting"],
     whoItsFor:
-      "Revenue leaders, founders, and sales managers at scaling startups where GTM teams are working hard but not in sync. Best for companies where CRM hygiene is poor and nobody fully trusts the forecast.",
+      "Revenue leaders, founders, and sales managers at scaling businesses where GTM teams are working hard but not in sync. Best for companies where CRM hygiene is poor and nobody fully trusts the forecast.",
     commonSymptoms: [
       "CRM incomplete; reps not logging activity consistently",
       "Sales and marketing not aligned on lead definitions",
@@ -622,16 +654,15 @@ export const SERVICES: Service[] = [
       { icon: "clock", title: "Onboarding and Playbook Automation", description: "New rep onboarding workflows, tool access provisioning, and playbook documentation so every new hire ramps faster with less management overhead." },
       { icon: "chat", title: "RevOps Monitoring and Optimization", description: "Ongoing audits of pipeline hygiene, automation performance, and forecast accuracy on retainer. We catch drift before it costs you a quarter." },
     ],
-    heroImage:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a0d88d0f9a7c505b4d93988_Editorial%20infographic%20on%20warm%20cream%20F5EFE0%20background%2016_row35.png",
+    heroImage: "/images/services/hero_revops_automation.png",
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
 ];
@@ -640,7 +671,22 @@ export const SERVICES: Service[] = [
 // Process (homepage "Soch Automation Operating System")
 // ---------------------------------------------------------------------------
 
-export type Step = { no: string; icon: IconName; title: string; description: string };
+export type Step = {
+  no: string;
+  icon: IconName;
+  title: string;
+  description: string;
+  /**
+   * What the client actually walks away with at the end of this phase - two
+   * or three short noun phrases, e.g. ["Workflow map", "Prioritised backlog"].
+   *
+   * Deliberately empty. AutomationOperatingSystem renders this row only when
+   * a step defines it, so the section degrades cleanly while it's unwritten.
+   * These are claims about how Soch works, so they need to come from Rizwan /
+   * Husnain rather than be drafted here.
+   */
+  outputs?: string[];
+};
 
 export const STEPS: Step[] = [
   {
@@ -670,17 +716,31 @@ export const STEPS: Step[] = [
 export const STATS = [
   {
     value: "42%",
-    label: "Retailer reduced stockouts by 42% after automating inventory tracking - freeing EUR 180k in working capital within 12 weeks.",
+    tag: "Retail · inventory automation",
+    label: "Retailer reduced stockouts by 42% after automating inventory tracking.",
+    // Two concrete numbers pulled out of the label above, shown as their own
+    // footer row on the card. This is the part that actually persuades - a
+    // dollar figure and a timeframe are legible at a glance, unlike a
+    // decorative sparkline that carries no real data.
+    metrics: [
+      { value: "€180k", label: "working capital freed" },
+      { value: "12 wks", label: "time to result" },
+    ],
   },
   {
     value: "2.1×",
-    label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
+    tag: "SaaS · onboarding automation",
+    label: "SaaS business doubled activation rates after automating their onboarding flow.",
+    metrics: [
+      { value: "2", label: "product cycles" },
+      { value: "2.1×", label: "activation rate" },
+    ],
   },
 ];
 
 export const STATS_HEADING = "Real results from automation-first engagements";
 export const STATS_INTRO =
-  "Our clients see measurable progress, faster decisions, steadier operations, and sharper products. Here's a glimpse of the outcomes we've delivered for SMBs and startups across sectors.";
+  "Our clients see measurable progress, faster decisions, steadier operations, and sharper products. Here's a glimpse of the outcomes we've delivered for SMBs and businesses across sectors.";
 
 // ---------------------------------------------------------------------------
 // Testimonials
@@ -699,10 +759,11 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-    name: "Kym",
+    name: "Kaitlin Malaspina",
     role: "Founder",
-    initials: "K",
+    initials: "KM",
     accent: "brand",
+    image: "/images/Testimoniol/Katlin.jpg",
   },
   {
     quote:
@@ -1080,18 +1141,60 @@ export const CASE_STUDIES: CaseStudy[] = [
 // Names below are read from image alt text on the live site; two logos had
 // no descriptive alt text and need confirming with Rizwan.
 
+export const CLIENT_LOGOS_HEADING = "Trusted by fast-moving businesses";
+export const CLIENT_LOGOS_INTRO =
+  "Founders and operations leaders across industries chose us to run their automation and AI operations.";
+
+// Per-logo hover gradient for MarqueeLogoScroller (components/ui/), built
+// from this project's own --color-* tokens (app/globals.css) rather than
+// arbitrary hex, so the hover state stays on-brand instead of introducing a
+// new ad hoc palette.
 export const CLIENT_LOGOS = [
-  { name: "Shaping Wealth", src: "/logos/shaping-wealth.svg" },
-  { name: "Khudi Venture", src: "/logos/khudi-venture.svg" },
-  { name: "Byzantine", src: "/logos/byzantine.svg" },
-  { name: "Cycle Together", src: "/logos/cycle-together.svg" },
-  { name: "Kuunda", src: "/logos/kuunda.svg" },
-  { name: "Ncon", src: "/logos/ncon.svg" },
-  { name: "A brand who worked with us", src: "/logos/pitch-a-fete.svg" },
-  { name: "Dil Ka Rishta", src: "/logos/dil-ka-rishta.svg" },
-  { name: "Milkar", src: "/logos/milkar.svg" },
-  { name: "A brand who worked with us", src: "/logos/client-19.svg" },
+  {
+    name: "Shaping Wealth",
+    src: "/logos/shaping-wealth.svg",
+    gradient: { from: "#ff7a59", via: "#ff5c35", to: "#c9350f" }, // brand-light -> brand -> brand-deep
+  },
+  {
+    name: "Khudi Venture",
+    src: "/logos/khudi-venture.svg",
+    gradient: { from: "#2f9e77", via: "#1f8a66", to: "#103129" }, // leaf -> forest
+  },
+  {
+    name: "Byzantine",
+    src: "/logos/byzantine.svg",
+    gradient: { from: "#3d92a3", via: "#1f7a8c", to: "#103129" }, // teal -> forest
+  },
+  {
+    name: "Cycle Together",
+    src: "/logos/cycle-together.svg",
+    gradient: { from: "#ff7a59", via: "#e8431b", to: "#c9350f" }, // brand-light -> brand-dark -> brand-deep
+  },
+  {
+    name: "Kuunda",
+    src: "/logos/kuunda.svg",
+    gradient: { from: "#2f9e77", via: "#1f7a8c", to: "#103129" }, // leaf -> teal -> forest
+  },
+  {
+    name: "Ncon",
+    src: "/logos/ncon.svg",
+    gradient: { from: "#ff7a59", via: "#ff5c35", to: "#103129" }, // brand -> forest
+  },
+  {
+    name: "Dil Ka Rishta",
+    src: "/logos/dil-ka-rishta.svg",
+    gradient: { from: "#ffe8dd", via: "#ff7a59", to: "#c9350f" }, // peach -> brand-light -> brand-deep
+  },
+  {
+    name: "Milkar",
+    src: "/logos/milkar.svg",
+    gradient: { from: "#1f8a66", via: "#1f7a8c", to: "#103129" }, // leaf -> teal -> forest
+  },
 ];
+// Two entries were removed here: pitch-a-fete.svg and client-19.svg both
+// shipped with the literal name "A brand who worked with us", which renders
+// into the marquee's alt text. Re-add them with real names when known - the
+// SVGs are still in public/logos/.
 
 // ---------------------------------------------------------------------------
 // Engagement tiers (homepage comparison table)
@@ -1110,7 +1213,7 @@ export type EngagementTier = {
 export const ENGAGEMENT_TIERS: EngagementTier[] = [
   {
     name: "AI Consulting",
-    bestFor: "Startups mapping automation opportunities before committing to a build",
+    bestFor: "Businesses mapping automation opportunities before committing to a build",
     deliverable: "Workflow audit + prioritized roadmap",
     timeline: "2–3 weeks",
     investment: "$1K–$4K",
@@ -1152,7 +1255,12 @@ export type Faq = { q: string; a: string };
 export const FAQS: Faq[] = [
   {
     q: "What does it actually cost, and how quickly will we see ROI?",
-    a: "It depends on the engagement. An Automation Audit starts at $1K and gives you a prioritized roadmap within two weeks. An Automation Build starts at $10K and delivers a live, running system within 3–6 weeks. We target high-frequency workflows first, which means most clients recover the investment within their first quarter. Sometimes faster.",
+    // NOTE (pricing): this used to say the Build "starts at $10K", which
+    // directly contradicted ENGAGEMENT_TIERS above - the same homepage shows
+    // AI Implementation at $4K-$8K over 4-8 weeks. Aligned to the table's own
+    // figures rather than inventing a third number. If $10K is the real floor,
+    // the table is what needs changing, not this. Confirm with Rizwan/Husnain.
+    a: "It depends on the engagement. An Automation Audit starts at $1K and gives you a prioritized roadmap within two weeks. An Automation Build starts at $4K and delivers a live, running system within 4–8 weeks. We target high-frequency workflows first, which means most clients recover the investment within their first quarter. Sometimes faster.",
   },
   {
     q: "How long does implementation take?",

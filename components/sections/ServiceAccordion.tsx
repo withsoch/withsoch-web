@@ -76,13 +76,13 @@ export function ServiceAccordion({
       title: "Our approach",
       icon: "compass",
       content: (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           {service.ourApproach.map((step, i) => (
-            <div key={step} className="flex flex-col gap-1">
-              <span className="text-sm font-semibold text-brand">
+            <div key={step}>
+              <p className="text-sm font-semibold text-brand">
                 Step {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-slate">{step}</p>
+              </p>
+              <p className="text-slate leading-snug">{step}</p>
             </div>
           ))}
         </div>

@@ -8,8 +8,13 @@ import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/Icons";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
-import { SERVICE_LIST_IMAGES } from "@/components/sections/ServiceTabImages";
 import { ServicesFaqSection } from "@/components/sections/ServicesFaqSection";
+import { AgentDevHero } from "@/components/diagrams/AgentDevHero";
+import { OpsHero } from "@/components/diagrams/OpsHero";
+import { SupportHero } from "@/components/diagrams/SupportHero";
+import { MarketingHero } from "@/components/diagrams/MarketingHero";
+import { RevOpsHero } from "@/components/diagrams/RevOpsHero";
+import { getHeroAspectRatio } from "@/lib/heroAspectRatio";
 
 export default function ServicesPage() {
   return (
@@ -22,29 +27,62 @@ export default function ServicesPage() {
       />
 
       <Section className="bg-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
           {SERVICES.map((service, i) => {
-            const heroImage = SERVICE_LIST_IMAGES[service.slug];
+            const heroImage = service.heroImage;
             const firstDescription = Array.isArray(service.description)
               ? service.description[0]
               : service.description;
             const cardCopy = `${service.hook} ${firstDescription.split(". ")[0]}.`;
+            const heroAspect = getHeroAspectRatio(service.slug) ?? "aspect-square";
             return (
             <Reveal key={service.slug} delay={i * 0.05} className="h-full">
               <Link
                 href={`/services/${service.slug}`}
-                className="group flex h-full flex-col gap-4 rounded-3xl border border-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-ink/25 hover:shadow-lg"
+                className="group flex h-full flex-col gap-4 rounded-3xl border border-line bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-ink/25 hover:shadow-lg"
               >
-                {heroImage && (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-mist">
-                    <Image
-                      src={heroImage}
-                      alt={`${service.title} hero`}
-                      fill
-                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
-                      className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
+                {service.slug === "ai-agent-development" ? (
+                  // Proof-of-concept coded replacement for the baked hero PNG -
+                  // scoped to this one service only. See AgentDevHero.tsx.
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                    <AgentDevHero />
                   </div>
+                ) : service.slug === "operations-process-automation" ? (
+                  // Coded replacement for the baked hero PNG - scoped to
+                  // this one service only. See OpsHero.tsx.
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                    <OpsHero />
+                  </div>
+                ) : service.slug === "customer-support-automation" ? (
+                  // Coded replacement for the baked hero PNG - scoped to
+                  // this one service only. See SupportHero.tsx.
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                    <SupportHero />
+                  </div>
+                ) : service.slug === "marketing-automation" ? (
+                  // Coded replacement for the baked hero PNG - scoped to
+                  // this one service only. See MarketingHero.tsx.
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                    <MarketingHero />
+                  </div>
+                ) : service.slug === "revops-automation" ? (
+                  // Coded replacement for the baked hero PNG - scoped to
+                  // this one service only. See RevOpsHero.tsx.
+                  <div className={`relative ${heroAspect} w-full overflow-hidden rounded-2xl bg-mist p-1`}>
+                    <RevOpsHero />
+                  </div>
+                ) : (
+                  heroImage && (
+                    <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-mist">
+                      <Image
+                        src={heroImage}
+                        alt={`${service.title} hero`}
+                        fill
+                        sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+                        className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  )
                 )}
                 <div className="flex flex-1 flex-col gap-4">
                   <h3 className="text-h3">{service.title}</h3>

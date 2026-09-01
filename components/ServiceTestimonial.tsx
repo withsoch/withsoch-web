@@ -37,6 +37,7 @@ export function ServiceTestimonial({ testimonial }: ServiceTestimonialProps) {
   const accent = testimonial.accent;
   return (
     <figure className="mx-auto flex max-w-2xl flex-col gap-8">
+      <div className={`h-px w-full bg-gradient-to-r ${accentFrom[accent] ?? accentFrom.brand} to-line`} />
       <blockquote className="lead text-ink">{testimonial.quote}</blockquote>
       <figcaption className="flex items-center gap-4">
         {testimonial.image ? (

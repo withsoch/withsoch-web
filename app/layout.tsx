@@ -18,7 +18,7 @@ const wixMadeforText = Wix_Madefor_Text({
 
 export const metadata: Metadata = {
   title: {
-    default: SITE.name,
+    default: "Soch | AI Automation",
     template: `%s · ${SITE.name}`,
   },
   description: SITE.metaDescription,
