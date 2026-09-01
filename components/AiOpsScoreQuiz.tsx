@@ -208,7 +208,7 @@ export function AiOpsScoreQuiz() {
       },
       {} as Record<string, string | null>,
     );
-    return <ResultsScreen result={result} pregateValues={pregateValues} />;
+    return <ResultsScreen result={result} answers={answers} pregateValues={pregateValues} />;
   }
 
   const q = QUIZ_QUESTIONS[current];
@@ -288,9 +288,11 @@ export function AiOpsScoreQuiz() {
 
 function EmailGate({
   result,
+  answers,
   pregateValues,
 }: {
   result: ScoreResult;
+  answers: (number | null)[];
   pregateValues: Record<string, string | null>;
 }) {
   const [name, setName] = useState("");
@@ -354,6 +356,11 @@ function EmailGate({
     setSending(true);
     setError(null);
     try {
+      // Flat field names + shape here match what the "Soch Ops Score - Lead
+      // Report" n8n workflow's Extract Form Data node reads off `body`
+      // (pillar_ops/pillar_automation/pillar_team, headline, summary, and a
+      // per-question answers array). Keep these in sync with that workflow -
+      // a mismatch here silently blanks the pillar bars and the AI report.
       const res = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -363,8 +370,22 @@ function EmailGate({
           team_size: pregateValues.team_size,
           intent: pregateValues.intent,
           overall: result.overall,
-          pillarScores: result.pillarScores,
+          pillar_ops: result.pillarScores.ops_readiness,
+          pillar_automation: result.pillarScores.automation,
+          pillar_team: result.pillarScores.team_efficiency,
           tier: result.tier.label,
+          headline: result.tier.headline,
+          summary: result.tier.summary,
+          answers: QUIZ_QUESTIONS.map((q, i) => {
+            const selected = answers[i];
+            const option = selected !== null ? q.options[selected] : null;
+            return {
+              q: q.id,
+              question: q.question,
+              a: option ? option.label : "",
+              score: option ? Math.round((option.points / 3) * 100) : 0,
+            };
+          }),
         }),
       });
       if (!res.ok) throw new Error(`Request failed with ${res.status}`);
@@ -446,9 +467,11 @@ function EmailGate({
 
 function ResultsScreen({
   result,
+  answers,
   pregateValues,
 }: {
   result: ScoreResult;
+  answers: (number | null)[];
   pregateValues: Record<string, string | null>;
 }) {
   const { overall, pillarScores, tier, actions } = result;
@@ -585,7 +608,7 @@ function ResultsScreen({
             ))}
           </div>
 
-          <EmailGate result={result} pregateValues={pregateValues} />
+          <EmailGate result={result} answers={answers} pregateValues={pregateValues} />
 
           <div className="mt-12 flex flex-col items-center gap-4 rounded-2xl bg-forest px-6 py-14 text-center sm:px-10">
             <h2 className="text-h2 text-white">Want help acting on this?</h2>
