@@ -67,7 +67,7 @@ export const ABOUT_STATS = [
   },
   {
     value: "2.1×",
-    label: "SaaS startup doubled activation rates after automating their onboarding flow in two product cycles.",
+    label: "SaaS business doubled activation rates after automating their onboarding flow in two product cycles.",
   },
   {
     value: "€180k",
@@ -730,7 +730,7 @@ export const STATS = [
   {
     value: "2.1×",
     tag: "SaaS · onboarding automation",
-    label: "SaaS startup doubled activation rates after automating their onboarding flow.",
+    label: "SaaS business doubled activation rates after automating their onboarding flow.",
     metrics: [
       { value: "2", label: "product cycles" },
       { value: "2.1×", label: "activation rate" },
