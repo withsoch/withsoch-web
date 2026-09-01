@@ -100,11 +100,11 @@ export const HERO = {
 // CTA, and a tag list; see PageHero vs AboutHero component split.
 export const ABOUT_HERO = {
   headline: "AI automation partners for founders who want to move faster.",
-  sub: "We help early-stage startups build AI automation systems that remove manual work, speed up operations, and free their teams to focus on what actually drives growth.",
+  sub: "We help early-stage businesses build AI automation systems that remove manual work, speed up operations, and free their teams to focus on what actually drives growth.",
   ctaLabel: "Let's Get You Moving",
   ctaHref: SCHEDULER_URL,
   tags: [
-    "Startups",
+    "Businesses",
     "Pre-seed to Series A",
     "Technology and SaaS",
     "Professional and B2B Services",
@@ -276,18 +276,18 @@ export const PRINCIPLES_INTRO =
   "Our work is grounded in clear thinking and disciplined execution. These principles keep us focused, practical, and accountable in every engagement.";
 
 export const VISION =
-  "To become the most trusted AI automation partner for startups globally, helping founders replace manual work with intelligent systems that compound over time.";
+  "To become the most trusted AI automation partner for businesses globally, helping founders replace manual work with intelligent systems that compound over time.";
 
 export const VISION_TAGS = [
   "AI-Native",
-  "Startup-First",
+  "Business-First",
   "Operator-Led",
   "Client-Driven",
   "Built to Scale",
 ];
 
 export const MISSION =
-  "To give early-stage startups access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
+  "To give early-stage businesses access to the kind of AI automation infrastructure that usually only exists at large companies, so they can compete, grow, and lead without burning out their teams.";
 
 // Founders section intro quote (About page only) - see FOUNDERS_INTRO_QUOTE prop
 // on the Founders block in app/about/page.tsx.
@@ -342,7 +342,7 @@ export const SERVICES: Service[] = [
     title: "AI Agent Development",
     hook: "Put AI to work on the tasks eating your team's hours.",
     description:
-      "We design, build, and deploy custom AI agents for startups whose teams spend hours each week on research, document review, data extraction, and drafting. We pick the right model, ground it in your data, and integrate it into the tools you already use.",
+      "We design, build, and deploy custom AI agents for businesses whose teams spend hours each week on research, document review, data extraction, and drafting. We pick the right model, ground it in your data, and integrate it into the tools you already use.",
     points: ["Custom AI Agents", "LLM Integration", "Task Automation"],
     whoItsFor:
       "Founders, ops leads, and team leads at 10 to 150-person companies whose teams are spending hours on cognitive work that an AI agent could handle reliably.",
@@ -423,7 +423,7 @@ export const SERVICES: Service[] = [
     title: "Operations and Process Automation",
     hook: "Stop doing manually what AI can do in seconds.",
     description: [
-      "We design, build, and maintain custom automation systems for startups and SMBs losing time, money, and accuracy to manual operations.",
+      "We design, build, and maintain custom automation systems for businesses and SMBs losing time, money, and accuracy to manual operations.",
       "We don't just wire tools together. We map the workflow first, redesign it, and then build an automation that runs reliably at scale.",
     ],
     points: ["Process Design", "System Integration", "Workflow Efficiency"],
@@ -559,7 +559,7 @@ export const SERVICES: Service[] = [
     title: "Marketing Automation",
     hook: "More pipeline. Less manual work.",
     description:
-      "We build AI-powered marketing automation systems for startups that want consistent pipeline without the manual effort behind it. From automated email sequences and content generation to lead scoring and campaign orchestration, we set up the systems that keep your marketing running even when your team is focused elsewhere.",
+      "We build AI-powered marketing automation systems for businesses that want consistent pipeline without the manual effort behind it. From automated email sequences and content generation to lead scoring and campaign orchestration, we set up the systems that keep your marketing running even when your team is focused elsewhere.",
     points: ["Campaign Workflows", "Content Scheduling", "Lead Nurturing"],
     whoItsFor:
       "Founders, marketing leads, and growth managers running lean teams without the bandwidth to execute consistently week after week.",
@@ -618,7 +618,7 @@ export const SERVICES: Service[] = [
       "We build revenue operations systems that align your sales, marketing, and customer success teams around clean data, clear pipeline visibility, and automated workflows. No more manual CRM updates, scattered handoffs, or forecasts built on spreadsheets nobody actually trusts.",
     points: ["Pipeline Automation", "CRM Integration", "Revenue Reporting"],
     whoItsFor:
-      "Revenue leaders, founders, and sales managers at scaling startups where GTM teams are working hard but not in sync. Best for companies where CRM hygiene is poor and nobody fully trusts the forecast.",
+      "Revenue leaders, founders, and sales managers at scaling businesses where GTM teams are working hard but not in sync. Best for companies where CRM hygiene is poor and nobody fully trusts the forecast.",
     commonSymptoms: [
       "CRM incomplete; reps not logging activity consistently",
       "Sales and marketing not aligned on lead definitions",
@@ -740,7 +740,7 @@ export const STATS = [
 
 export const STATS_HEADING = "Real results from automation-first engagements";
 export const STATS_INTRO =
-  "Our clients see measurable progress, faster decisions, steadier operations, and sharper products. Here's a glimpse of the outcomes we've delivered for SMBs and startups across sectors.";
+  "Our clients see measurable progress, faster decisions, steadier operations, and sharper products. Here's a glimpse of the outcomes we've delivered for SMBs and businesses across sectors.";
 
 // ---------------------------------------------------------------------------
 // Testimonials
@@ -1213,7 +1213,7 @@ export type EngagementTier = {
 export const ENGAGEMENT_TIERS: EngagementTier[] = [
   {
     name: "AI Consulting",
-    bestFor: "Startups mapping automation opportunities before committing to a build",
+    bestFor: "Businesses mapping automation opportunities before committing to a build",
     deliverable: "Workflow audit + prioritized roadmap",
     timeline: "2–3 weeks",
     investment: "$1K–$4K",

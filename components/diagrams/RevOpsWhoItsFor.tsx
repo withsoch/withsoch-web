@@ -32,7 +32,7 @@ export function RevOpsWhoItsFor({
   needleLabel = "NOBODY TRUSTS IT",
   sentenceLines = [
     "Revenue leaders, founders, and sales managers at scaling",
-    "startups where GTM teams are working hard but not in sync.",
+    "businesses where GTM teams are working hard but not in sync.",
   ],
   className,
 }: RevOpsWhoItsForProps) {

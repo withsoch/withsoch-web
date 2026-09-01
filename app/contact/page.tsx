@@ -45,7 +45,7 @@ export default function ContactPage() {
             </h1>
             <p className="lead max-w-xl">
               We&apos;d love to help you out and see if there is potential for collaboration. Schedule a call with
-              us and let&apos;s start a conversation that moves your startup forward.
+              us and let&apos;s start a conversation that moves your business forward.
             </p>
           </div>
 

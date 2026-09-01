@@ -13,7 +13,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const INDUSTRIES = [
   {
-    name: "Startups & Venture-backed",
+    name: "Businesses & Venture-backed",
     image:
       "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a060a71137967408a50f53d_Editorial%20photograph%20A%20compact%20openplan%20office%20with%20expose_row42.avif",
   },
