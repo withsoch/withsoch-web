@@ -31,7 +31,7 @@ export const SITE = {
   social: {
     linkedin: "https://www.linkedin.com/company/sochconsulting",
     facebook: "https://www.facebook.com/SochConsulting/",
-    youtube: "https://www.youtube.com/@SochConsulting",
+    youtube: "https://www.youtube.com/@WithSoch",
     instagram: "https://www.instagram.com/withsoch",
   },
 };
