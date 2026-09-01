@@ -126,9 +126,9 @@ export function SupportHero({
 
       {/* refund */}
       <rect x="62" y="430" width="190" height="52" rx="26" fill="#ffe8dd" />
-      <path d="M97.1 448.2 a11.7 11.7 0 1 1 -11.7 11.7" fill="none" stroke="#e8431b" strokeWidth="1.6" />
-      <path d="M84.1 444.3 l-5.2 3.9 l5.2 3.9" fill="none" stroke="#e8431b" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      <text x="108" y="461" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13.5" fontWeight="600" fill="#1c2b26">
+      <path d="M92.1 448.2 a10.7 10.7 0 1 1 -10.7 10.7" fill="none" stroke="#e8431b" strokeWidth="1.6" />
+      <path d="M87.3 449.4 l4.8 -1.2 l4.8 1.2" fill="none" stroke="#e8431b" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="114" y="461" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13.5" fontWeight="600" fill="#1c2b26">
         {refundLabel}
       </text>
       <line x1="252" y1="456" x2="286" y2="456" stroke="#1c2b26" strokeWidth="1.4" />

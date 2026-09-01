@@ -27,7 +27,6 @@ const CARD_W = 152.5;
 const CARD_H = 260;
 const CARD_Y = 90;
 const CARD_FILL = ["#1c2b26", "#e8431b", "#103129", "#4c534f"];
-const LINK_X = [188.5, 371.0, 553.5];
 const LINK_CY = 220.0;
 
 function DeliverableIcon({ index, cx, cy }: { index: number; cx: number; cy: number }) {
@@ -74,13 +73,24 @@ function DeliverableIcon({ index, cx, cy }: { index: number; cx: number; cy: num
   }
 }
 
-// Chain-link glyph - two rotated rounded rectangles, matching the
-// reference's connector between cards exactly.
-function ChainLink({ x, cy }: { x: number; cy: number }) {
+// Connector between two cards - a solid line docked to each card edge with
+// an arrowhead at the midpoint, so the progression from one stage to the
+// next reads at a glance instead of relying on a small ambiguous glyph.
+function Connector({ xStart, xEnd, cy }: { xStart: number; xEnd: number; cy: number }) {
+  const mid = (xStart + xEnd) / 2;
   return (
     <>
-      <rect x={x} y={cy - 5.5} width="12" height="11" rx="5.5" fill="none" stroke="#1c2b26" strokeWidth="2.2" transform={`rotate(-45 ${x + 6} ${cy})`} />
-      <rect x={x + 10} y={cy - 5.5} width="12" height="11" rx="5.5" fill="none" stroke="#1c2b26" strokeWidth="2.2" transform={`rotate(-45 ${x + 16} ${cy})`} />
+      <circle cx={xStart} cy={cy} r="3" fill="#e8431b" />
+      <line x1={xStart} y1={cy} x2={mid - 6} y2={cy} stroke="#e8431b" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1={mid + 6} y1={cy} x2={xEnd} y2={cy} stroke="#e8431b" strokeWidth="2.4" strokeLinecap="round" />
+      <path
+        d={`M ${mid - 5} ${cy - 5} L ${mid + 5} ${cy} L ${mid - 5} ${cy + 5}`}
+        fill="none"
+        stroke="#e8431b"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </>
   );
 }
@@ -160,8 +170,8 @@ export function RevOpsDeliverables({
         );
       })}
 
-      {LINK_X.map((x) => (
-        <ChainLink key={x} x={x} cy={LINK_CY} />
+      {CARD_X.slice(0, -1).map((x, i) => (
+        <Connector key={x} xStart={x + CARD_W} xEnd={CARD_X[i + 1]} cy={LINK_CY} />
       ))}
     </svg>
   );

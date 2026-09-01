@@ -56,7 +56,7 @@ export function AgentDevCommonSymptoms({
             fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
             fontSize="64"
             fontWeight="800"
-            fill="#ffe8dd"
+            fill="#ffc7ae"
           >
             {String(i + 1).padStart(2, "0")}
           </text>
@@ -73,7 +73,6 @@ export function AgentDevCommonSymptoms({
               {line}
             </text>
           ))}
-          <rect x="122" y={row.barY} width="4" height="28" rx="2" fill="#e8431b" />
           {row.dividerY !== null && (
             <line x1="36" y1={row.dividerY} x2="716" y2={row.dividerY} stroke="#e7e2d7" strokeWidth="1.3" />
           )}

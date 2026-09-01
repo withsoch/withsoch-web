@@ -19,6 +19,8 @@ export type MarketingCommonSymptomCard = {
 export type MarketingCommonSymptomsProps = {
   boardLabel?: string;
   cards?: [MarketingCommonSymptomCard, MarketingCommonSymptomCard, MarketingCommonSymptomCard];
+  calloutTitle?: string;
+  calloutBody?: string;
   className?: string;
 };
 
@@ -39,6 +41,8 @@ export function MarketingCommonSymptoms({
     { lines: ["One-off campaigns", "with no nurture", "logic carrying", "them forward"], fill: "#ffffff" },
     { lines: ["Content", "production", "inconsistent;", "pipeline", "unpredictable"], fill: "#ffe8dd" },
   ],
+  calloutTitle = "The pattern underneath",
+  calloutBody = "Every symptom above traces back to one gap: no system running between campaigns.",
   className,
 }: MarketingCommonSymptomsProps) {
   return (
@@ -86,6 +90,18 @@ export function MarketingCommonSymptoms({
           </g>
         );
       })}
+
+      {/* Callout filling the space below the sticky notes - ties the three
+          symptoms back to one underlying takeaway. */}
+      <rect x="24" y="404" width="704" height="72" rx="12" fill="#ffffff" stroke="#e7e2d7" strokeWidth="1.3" />
+      <circle cx="58" cy="440" r="18" fill="#ffe8dd" />
+      <path d="M50 440 l6 6 l12 -13" fill="none" stroke="#e8431b" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="90" y="434" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13.5" fontWeight="800" fill="#1c2b26">
+        {calloutTitle}
+      </text>
+      <text x="90" y="453" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fill="#7a817d">
+        {calloutBody}
+      </text>
     </svg>
   );
 }

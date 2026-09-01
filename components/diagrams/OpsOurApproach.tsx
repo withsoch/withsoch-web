@@ -1,13 +1,16 @@
 // components/diagrams/OpsOurApproach.tsx
 //
-// Coded rebuild of the "Our approach" reference SVG (752x501, approved
-// design - do not redesign) for Operations & Process Automation. Horizontal
-// 5-step ruler flow with tick marks, a progress rule (steps 1-3 solid,
-// completed), numbered step dots, and per-step icon/title/description/
-// progress-dot. Root <svg> takes width="100%" height="100%" instead of the
-// fixed 752x501, following the same conventions as OpsHero.tsx /
-// AgentDevOurApproach.tsx: literal hex colors, viewBox preserved, key text
-// as props defaulted to reference copy.
+// Redesigned from the original reference SVG (752x501) for Operations &
+// Process Automation: the reference only used the top ~250px of the 501-tall
+// canvas for its 5-step ruler, leaving a large empty gap below it inside the
+// panel. This version keeps the same ruler/step-icon row unchanged and fills
+// the remaining height with a "process gears" mechanism diagram - three
+// meshed gears fed by the BUILD step, with dashed drive-lines running out to
+// TEST and HANDOVER - so the lower half reads as "the automation this
+// process builds keeps running," not empty space. Root <svg> takes
+// width="100%" height="100%" instead of the fixed 752x501, following the
+// same conventions as OpsHero.tsx / AgentDevOurApproach.tsx: literal hex
+// colors, viewBox preserved, key text as props defaulted to reference copy.
 
 export type OpsApproachStep = {
   label: string;
@@ -77,6 +80,53 @@ function StepIcon({ index }: { index: number }) {
         </>
       );
   }
+}
+
+// A gear glyph: a hub circle ringed with evenly-spaced teeth (small rounded
+// rects rotated around the center) and a punched-out center hole. Used for
+// the "process gears" mechanism filling the lower half of the diagram -
+// generated procedurally (like the arc paths in RevOpsWhoItsFor.tsx) rather
+// than hand-plotted, since teeth count/size vary per gear.
+function Gear({
+  cx,
+  cy,
+  r,
+  teeth,
+  toothLength,
+  toothWidth,
+  holeR,
+  fill,
+  rotation = 0,
+}: {
+  cx: number;
+  cy: number;
+  r: number;
+  teeth: number;
+  toothLength: number;
+  toothWidth: number;
+  holeR: number;
+  fill: string;
+  rotation?: number;
+}) {
+  const step = 360 / teeth;
+  return (
+    <g transform={`rotate(${rotation} ${cx} ${cy})`}>
+      <circle cx={cx} cy={cy} r={r} fill={fill} />
+      {Array.from({ length: teeth }).map((_, i) => (
+        <rect
+          key={i}
+          x={cx - toothWidth / 2}
+          y={cy - r - toothLength}
+          width={toothWidth}
+          height={toothLength + 5}
+          rx={1.5}
+          fill={fill}
+          transform={`rotate(${i * step} ${cx} ${cy})`}
+        />
+      ))}
+      <circle cx={cx} cy={cy} r={holeR} fill="#f6f2ea" />
+    </g>
+  );
 }
 
 export function OpsOurApproach({
@@ -171,6 +221,27 @@ export function OpsOurApproach({
           </g>
         );
       })}
+
+      {/* Process-gears mechanism - fills the empty lower half of the canvas.
+          BUILD (step 3) drives a meshed three-gear cluster; dashed drive
+          lines carry that motion out to TEST and HANDOVER, reading as "the
+          automation this step builds is what runs steps 4 and 5." */}
+      <line x1="376" y1="243" x2="376" y2="318" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+      <path d="M328 400 C 260 400 240 300 306 262" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+      <path d="M424 400 C 500 400 520 300 454 262" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+      <path d="M306 262 L300 268 L312 267" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M454 262 L448 268 L460 267" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+
+      <Gear cx={306} cy={330} r={26} teeth={10} toothLength={7} toothWidth={7} holeR={9} fill="#1c2b26" />
+      <Gear cx={376} cy={378} r={44} teeth={13} toothLength={9} toothWidth={9} holeR={15} fill="#e8431b" rotation={8} />
+      <Gear cx={452} cy={330} r={20} teeth={8} toothLength={6} toothWidth={6} holeR={7} fill="#ff7a59" rotation={-6} />
+
+      <text x="376" y="464" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12.5" fontWeight="800" letterSpacing="0.4" fill="#4c534f" textAnchor="middle">
+        BUILD DRIVES THE AUTOMATION
+      </text>
+      <text x="376" y="482" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="10.5" fill="#7a817d" textAnchor="middle">
+        The workflow built in step 3 keeps running through test and handover.
+      </text>
     </svg>
   );
 }

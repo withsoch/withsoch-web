@@ -20,6 +20,8 @@ export type MarketingWhoItsForProps = {
    */
   weeksFilled?: boolean[];
   sentenceLines?: string[];
+  calloutTitle?: string;
+  calloutBody?: string;
   className?: string;
 };
 
@@ -42,6 +44,8 @@ export function MarketingWhoItsFor({
     "teams without the bandwidth to execute consistently week after",
     "week.",
   ],
+  calloutTitle = "Built for lean teams",
+  calloutBody = "A cadence that runs itself, so no week gets skipped.",
   className,
 }: MarketingWhoItsForProps) {
   let pillX = 28;
@@ -131,6 +135,18 @@ export function MarketingWhoItsFor({
           {line}
         </text>
       ))}
+
+      {/* Callout filling the space below the sentence - a quick "what
+          changes" takeaway so the panel doesn't end in empty space. */}
+      <rect x="28" y="404" width="696" height="72" rx="12" fill="#ffffff" stroke="#e7e2d7" strokeWidth="1.3" />
+      <circle cx="62" cy="440" r="18" fill="#ffe8dd" />
+      <path d="M54 440 l6 6 l12 -13" fill="none" stroke="#e8431b" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="94" y="434" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13.5" fontWeight="800" fill="#1c2b26">
+        {calloutTitle}
+      </text>
+      <text x="94" y="453" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fill="#7a817d">
+        {calloutBody}
+      </text>
     </svg>
   );
 }

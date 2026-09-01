@@ -85,14 +85,14 @@ export function RevOpsHero({
 
       {/* The three overlapping circles - semi-transparent fills create the
           blended overlap zones; opacity values preserved exactly. */}
-      <circle cx="302.0" cy="287" r="155" fill="#4c534f" opacity="0.82" />
-      <circle cx="498.0" cy="287" r="155" fill="#ff5c35" opacity="0.82" />
-      <circle cx="400.0" cy="437" r="155" fill="#103129" opacity="0.88" />
+      <circle cx="302.0" cy="325" r="155" fill="#4c534f" opacity="0.82" />
+      <circle cx="498.0" cy="325" r="155" fill="#ff5c35" opacity="0.82" />
+      <circle cx="400.0" cy="475" r="155" fill="#103129" opacity="0.88" />
 
       {/* SALES */}
       <text
         x="302.0"
-        y="217"
+        y="255"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="22"
         fontWeight="800"
@@ -102,14 +102,14 @@ export function RevOpsHero({
       >
         {salesLabel}
       </text>
-      <circle cx="302.0" cy="257" r="16" fill="none" stroke="#ffffff" strokeWidth="2" />
-      <circle cx="302.0" cy="257" r="8" fill="none" stroke="#ffffff" strokeWidth="2" />
-      <circle cx="302.0" cy="257" r="2.5" fill="#ffffff" />
+      <circle cx="302.0" cy="295" r="16" fill="none" stroke="#ffffff" strokeWidth="2" />
+      <circle cx="302.0" cy="295" r="8" fill="none" stroke="#ffffff" strokeWidth="2" />
+      <circle cx="302.0" cy="295" r="2.5" fill="#ffffff" />
 
       {/* MARKETING */}
       <text
         x="498.0"
-        y="217"
+        y="255"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="22"
         fontWeight="800"
@@ -119,27 +119,27 @@ export function RevOpsHero({
       >
         {marketingLabel}
       </text>
-      <path d="M484.0 251 l14 -7 v22 l-14 -7 z" fill="#ffffff" />
-      <rect x="480.0" y="251" width="4" height="7" fill="#ffffff" />
-      <line x1="508.0" y1="249" x2="516.0" y2="245" stroke="#ffffff" strokeWidth="1.4" />
-      <line x1="508.0" y1="257" x2="516.0" y2="257" stroke="#ffffff" strokeWidth="1.4" />
-      <line x1="508.0" y1="265" x2="516.0" y2="269" stroke="#ffffff" strokeWidth="1.4" />
+      <path d="M484.0 289 l14 -7 v22 l-14 -7 z" fill="#ffffff" />
+      <rect x="480.0" y="289" width="4" height="7" fill="#ffffff" />
+      <line x1="508.0" y1="287" x2="516.0" y2="283" stroke="#ffffff" strokeWidth="1.4" />
+      <line x1="508.0" y1="295" x2="516.0" y2="295" stroke="#ffffff" strokeWidth="1.4" />
+      <line x1="508.0" y1="303" x2="516.0" y2="307" stroke="#ffffff" strokeWidth="1.4" />
 
       {/* CUSTOMER SUCCESS */}
       <text
         x="400.0"
-        y="532"
+        y="548"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
-        fontSize="22"
+        fontSize="18"
         fontWeight="800"
-        letterSpacing="0.5"
+        letterSpacing="0.3"
         fill="#ffffff"
         textAnchor="middle"
       >
         {successLabel}
       </text>
       <path
-        d="M400.0 574 c-7 -6 -15 -2 -15 5 c0 6 9 10 15 15 c6 -5 15 -9 15 -15 c0 -7 -8 -11 -15 -5 z"
+        d="M400.0 590 c-7 -6 -15 -2 -15 5 c0 6 9 10 15 15 c6 -5 15 -9 15 -15 c0 -7 -8 -11 -15 -5 z"
         fill="none"
         stroke="#ffffff"
         strokeWidth="2"
@@ -148,7 +148,7 @@ export function RevOpsHero({
       {/* Overlap-zone labels */}
       <text
         x="400.0"
-        y="279"
+        y="317"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="13"
         fontWeight="700"
@@ -160,7 +160,7 @@ export function RevOpsHero({
       </text>
       <text
         x="321.0"
-        y="392.0"
+        y="430.0"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="13"
         fontWeight="700"
@@ -172,7 +172,7 @@ export function RevOpsHero({
       </text>
       <text
         x="479.0"
-        y="392.0"
+        y="430.0"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="13"
         fontWeight="700"
@@ -186,7 +186,7 @@ export function RevOpsHero({
       {/* Center REVENUE label */}
       <text
         x="400.0"
-        y="345.0"
+        y="383.0"
         fontFamily="Liberation Sans, DejaVu Sans, sans-serif"
         fontSize="24"
         fontWeight="800"
@@ -196,9 +196,9 @@ export function RevOpsHero({
       >
         {centerLabel}
       </text>
-      <line x1="400.0" y1="379.0" x2="400.0" y2="361.0" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="400.0" y1="417.0" x2="400.0" y2="399.0" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" />
       <path
-        d="M392.0 369.0 l8 -10 l8 10"
+        d="M392.0 407.0 l8 -10 l8 10"
         fill="none"
         stroke="#ffffff"
         strokeWidth="2.4"

@@ -26,9 +26,9 @@ export type AgentDevDeliverablesProps = {
 // Per-row literal geometry from the reference.
 const ROWS = [
   { shadowY: 66, cardX: 66, cardY: 72, fill: "#e8431b", numeral: "01" },
-  { shadowY: 172, cardX: 86, cardY: 178, fill: "#4c534f", numeral: "02" },
+  { shadowY: 172, cardX: 66, cardY: 178, fill: "#4c534f", numeral: "02" },
   { shadowY: 278, cardX: 66, cardY: 284, fill: "#e8431b", numeral: "03" },
-  { shadowY: 384, cardX: 86, cardY: 390, fill: "#4c534f", numeral: "04" },
+  { shadowY: 384, cardX: 66, cardY: 390, fill: "#4c534f", numeral: "04" },
 ];
 const CARD_W = 632;
 const CARD_H = 84;

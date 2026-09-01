@@ -410,11 +410,11 @@ export const SERVICES: Service[] = [
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -467,11 +467,11 @@ export const SERVICES: Service[] = [
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "forest",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
     ctaOverride: {
       heading: "Let us audit your workflows and find your first 3 agent use cases.",
@@ -546,11 +546,11 @@ export const SERVICES: Service[] = [
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -602,11 +602,11 @@ export const SERVICES: Service[] = [
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
   {
@@ -658,11 +658,11 @@ export const SERVICES: Service[] = [
     testimonial: {
       quote:
         "Working with Umair was steady and grounding. He brought care, professionalism, and calm focus to a demanding season. Grateful for what we built together and highly recommend him for reliable, clear operational support.",
-      name: "Kaitlin Malaspina",
-      role: "CEO, Brenna Co.",
-      initials: "KM",
+      name: "Biola Babawale",
+      role: "Founder & CEO, Cycle Together",
+      initials: "BB",
       accent: "brand",
-      image: "/images/Testimoniol/Katlin.jpg",
+      image: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg",
     },
   },
 ];
@@ -759,11 +759,11 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Riz has been an awesome, methodical mind, out of the box thinker that moves and thinks quickly. Explains his thought process and methodology clearly and provides immense value. I highly recommend Riz. Do not hesitate to engage Riz. You will not be disappointed.",
-    name: "Kym",
+    name: "Kaitlin Malaspina",
     role: "Founder",
-    initials: "K",
+    initials: "KM",
     accent: "brand",
-    image: "/images/Testimoniol/kym.webp",
+    image: "/images/Testimoniol/Katlin.jpg",
   },
   {
     quote:

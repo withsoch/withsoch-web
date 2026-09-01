@@ -43,6 +43,12 @@ export function SupportOutcomes({
         <pattern id="oc3-dots" width="16" height="16" patternUnits="userSpaceOnUse">
           <circle cx="1" cy="1" r="1" fill="#ddd7c8" />
         </pattern>
+        {/* Same bounding box (x=28, width=696, rx=8) as the BEFORE bar below,
+            so the AFTER bar's two segments are guaranteed to start and end
+            flush with it instead of relying on hand-matched arc math. */}
+        <clipPath id="oc3-after-bar">
+          <rect x="28" y="116" width="696" height="38" rx="8" />
+        </clipPath>
       </defs>
       <rect x="0" y="0" width="752" height="501" fill="#f6f2ea" />
       <rect x="0" y="0" width="752" height="501" fill="url(#oc3-dots)" />
@@ -52,12 +58,18 @@ export function SupportOutcomes({
       <text x="44" y="71" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{beforeLabel}</text>
       <text x="710" y="71" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" fill="rgba(255,255,255,0.55)" textAnchor="end">100%</text>
 
-      <text x="28" y="96" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" letterSpacing="0.6" fill="#7a817d">AFTER</text>
-      {/* 30-60% deflection split baked into these two path widths */}
-      <path d="M28 106 h313.2 v38 h-313.2 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8 z" fill="#ff5c35" />
-      <path d="M341.2 106 h374.8 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-374.8 z" fill="#ffe8dd" />
-      <text x="44" y="131" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{afterDeflectLabel}</text>
-      <text x="532.6" y="131" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#e8431b" textAnchor="middle">{afterResolveLabel}</text>
+      <text x="28" y="106" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" letterSpacing="0.6" fill="#7a817d">AFTER</text>
+      {/* 30-60% deflection split baked into these two rect widths, clipped to
+          the exact same rounded box as the BEFORE bar so both bars are
+          pixel-equal width with flush left/right edges - no more arc math
+          that could under/overshoot the shared right edge. */}
+      <g clipPath="url(#oc3-after-bar)">
+        <rect x="28" y="116" width="313.2" height="38" fill="#ff5c35" />
+        <rect x="341.2" y="116" width="382.8" height="38" fill="#ffe8dd" />
+      </g>
+      <line x1="341.2" y1="116" x2="341.2" y2="154" stroke="#f6f2ea" strokeWidth="2" />
+      <text x="44" y="141" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{afterDeflectLabel}</text>
+      <text x="532.6" y="141" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#e8431b" textAnchor="middle">{afterResolveLabel}</text>
 
       <circle cx="54" cy="230.83" r="22" fill="#ffe8dd" />
       <path d="M45 236.83 l6.5 -7.5 l5 5 l9.5 -10.5" fill="none" stroke="#e8431b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />

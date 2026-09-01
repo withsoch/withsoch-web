@@ -1,13 +1,16 @@
 // components/diagrams/SupportOurApproach.tsx
 //
-// Coded rebuild of the "Our approach" reference SVG (752x501, approved
-// design - do not redesign) for Customer Support Automation. Same
-// structural pattern as OpsOurApproach.tsx (horizontal 5-step ruler flow,
-// tick marks, progress rule, numbered step dots), with this service's own
-// steps/icons (audit / KB review / build / test / handover). Root <svg>
-// takes width="100%" height="100%" instead of the fixed 752x501, following
-// the same conventions as SupportHero.tsx: literal hex colors, viewBox
-// preserved, key text as props defaulted to reference copy.
+// Coded rebuild of the "Our approach" reference SVG (752x501) for Customer
+// Support Automation. Keeps the same top ruler/step-icon row as
+// OpsOurApproach.tsx (shared 5-step scaffold across service pages), but the
+// lower half is a distinct "ticket triage" mechanism instead of Ops's
+// process-gears: tickets flow out of BUILD into an AI triage diamond that
+// splits into an auto-reply chat bubble and a human-escalation path - the
+// support-specific "what this step builds" payoff, so the two services no
+// longer share the same lower-half visual. Root <svg> takes width="100%"
+// height="100%" instead of the fixed 752x501, following the same
+// conventions as SupportHero.tsx: literal hex colors, viewBox preserved,
+// key text as props defaulted to reference copy.
 
 export type SupportApproachStep = {
   label: string;
@@ -171,6 +174,50 @@ export function SupportOurApproach({
           </g>
         );
       })}
+
+      {/* Ticket-triage mechanism - fills the lower half of the canvas with a
+          visual distinct from OpsOurApproach's process-gears. BUILD (step 3)
+          feeds an AI triage diamond that splits tickets into an auto-reply
+          path (chat bubble) and a human-escalation path, reading as "the
+          system this step builds is what handles steps 4 and 5's tickets." */}
+      <line x1="376" y1="243" x2="376" y2="288" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+
+      {/* Incoming ticket stack feeding the triage diamond */}
+      <rect x="336" y="300" width="30" height="20" rx="3" fill="#ffffff" stroke="#c7c0af" strokeWidth="1.4" />
+      <rect x="340" y="294" width="30" height="20" rx="3" fill="#ffffff" stroke="#c7c0af" strokeWidth="1.4" />
+      <rect x="344" y="288" width="30" height="20" rx="3" fill="#f6f2ea" stroke="#7a817d" strokeWidth="1.4" />
+      <line x1="349" y1="295" x2="367" y2="295" stroke="#7a817d" strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="349" y1="300" x2="361" y2="300" stroke="#7a817d" strokeWidth="1.3" strokeLinecap="round" />
+
+      {/* AI triage diamond */}
+      <path d="M376 336 L414 372 L376 408 L338 372 Z" fill="#1c2b26" />
+      <path d="M362 372 h6 l4 -8 l6 16 l4 -8 h6" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="376" y="425" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="10.5" fontWeight="800" letterSpacing="0.4" fill="#4c534f" textAnchor="middle">
+        AI TRIAGE
+      </text>
+
+      {/* Branch to auto-reply (toward TEST) */}
+      <path d="M352 388 C 300 420 268 420 248 400" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+      <path d="M248 400 L252 408 L260 400" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="222" cy="392" r="26" fill="#e8431b" />
+      <path d="M209 384 h20 a4 4 0 0 1 4 4 v9 a4 4 0 0 1 -4 4 h-15 l-6 5 v-5 h-1 a4 4 0 0 1 -4 -4 v-9 a4 4 0 0 1 4 -4 z" fill="none" stroke="#ffffff" strokeWidth="1.8" />
+      <text x="222" y="436" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="10.5" fontWeight="700" fill="#4c534f" textAnchor="middle">
+        AUTO-REPLY
+      </text>
+
+      {/* Branch to human escalation (toward HANDOVER) */}
+      <path d="M400 388 C 452 420 484 420 504 400" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeDasharray="3 4" />
+      <path d="M504 400 L500 408 L492 400" fill="none" stroke="#c7c0af" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="530" cy="392" r="26" fill="#ff7a59" />
+      <circle cx="530" cy="384" r="6" fill="none" stroke="#ffffff" strokeWidth="1.8" />
+      <path d="M517 402 a13 11 0 0 1 26 0" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+      <text x="530" y="436" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="10.5" fontWeight="700" fill="#4c534f" textAnchor="middle">
+        ESCALATE
+      </text>
+
+      <text x="376" y="472" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="10.5" fill="#7a817d" textAnchor="middle">
+        The triage built in step 3 keeps sorting tickets through test and handover.
+      </text>
     </svg>
   );
 }

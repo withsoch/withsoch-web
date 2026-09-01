@@ -53,11 +53,11 @@ export function OpsOutcomes({
       <text x="44" y="71" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{beforeLabel}</text>
       <text x="710" y="71" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" fill="rgba(255,255,255,0.55)" textAnchor="end">100%</text>
 
-      <text x="28" y="96" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" letterSpacing="0.6" fill="#7a817d">AFTER</text>
-      <path d="M28 106 h487.2 v38 h-487.2 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8 z" fill="#ff5c35" />
-      <path d="M515.2 106 h200.8 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-200.8 z" fill="#ffe8dd" />
-      <text x="44" y="131" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{afterLabel}</text>
-      <text x="619.6" y="131" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" fill="#e8431b" textAnchor="middle">{exceptionsLabel}</text>
+      <text x="28" y="100" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" letterSpacing="0.6" fill="#7a817d">AFTER</text>
+      <rect x="28" y="110" width="340" height="38" rx="8" fill="#ff5c35" />
+      <rect x="384" y="110" width="340" height="38" rx="8" fill="#ffe8dd" />
+      <text x="44" y="135" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="13" fontWeight="700" fill="#ffffff">{afterLabel}</text>
+      <text x="554" y="135" fontFamily="Liberation Sans, DejaVu Sans, sans-serif" fontSize="12" fontWeight="700" fill="#e8431b" textAnchor="middle">{exceptionsLabel}</text>
 
       <circle cx="54" cy="230.83" r="22" fill="#ffe8dd" />
       <path d="M45 236.83 l6.5 -7.5 l5 5 l9.5 -10.5" fill="none" stroke="#e8431b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
