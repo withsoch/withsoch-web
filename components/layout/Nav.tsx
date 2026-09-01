@@ -7,6 +7,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,6 +19,16 @@ const featured = CASE_STUDIES[0];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  // Starts false, matching both the server render and a normal load at the top
+  // of the page, so there is no hydration mismatch. If the browser restores a
+  // mid-page scroll position, useScroll's value moves off 0 on mount and the
+  // change handler below flips this immediately. Only colours transition, so
+  // either path is free of layout shift.
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 160, damping: 30, mass: 0.3 });
+
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 64));
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
@@ -41,7 +52,13 @@ export function Nav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-ink/10">
+    <header
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled || open
+          ? "border-ink/10 bg-white/95 backdrop-blur"
+          : "border-transparent bg-transparent"
+      }`}
+    >
       <div className="container-x flex items-center justify-between py-5">
         <Link href="/" className="flex items-center">
           <Image
@@ -174,6 +191,11 @@ export function Nav() {
           Get Your Free Audit Now
         </Button>
       </div>
+      <motion.div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-brand"
+        style={{ scaleX: progress }}
+      />
     </header>
   );
 }

@@ -1,12 +1,23 @@
 // components/ui/Reveal.tsx
 //
 // Scroll-triggered fade+rise. Respects reduced motion, fires once.
-// Matches DESIGN.md §8 exactly. "use client" required (hooks + viewport).
+// Matches DESIGN.md §8. "use client" required (hooks + viewport).
+//
+// IMPORTANT: never wrap a whole section in this. Reveal animates opacity, so
+// wrapping a coloured band fades its BACKGROUND in from the page white and
+// the band visibly pops into existence on scroll. Reveal goes around content.
 
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import type { Variants } from "motion/react";
 import type { ReactNode } from "react";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Trigger a little inside the viewport so items settle as they arrive rather
+// than snapping in at the very edge.
+const VIEWPORT = { once: true, margin: "-10% 0px -8% 0px" } as const;
 
 type RevealProps = {
   children: ReactNode;
@@ -16,7 +27,7 @@ type RevealProps = {
   as?: "div" | "section" | "article" | "li" | "span";
 };
 
-export function Reveal({ children, className, delay = 0, y = 24, as = "div" }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 18, as = "div" }: RevealProps) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as];
 
@@ -25,9 +36,79 @@ export function Reveal({ children, className, delay = 0, y = 24, as = "div" }: R
       className={className}
       initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={VIEWPORT}
+      transition={{ duration: 0.7, delay, ease: EASE }}
     >
+      {children}
+    </MotionTag>
+  );
+}
+
+type RevealGroupProps = {
+  children: ReactNode;
+  className?: string;
+  /** Gap between consecutive children, in seconds. */
+  stagger?: number;
+  delay?: number;
+  as?: "div" | "ul" | "ol" | "section";
+};
+
+/**
+ * Cascades its <RevealItem> children instead of moving them as one block.
+ * Use for grids and lists; pair with RevealItem on each child.
+ */
+export function RevealGroup({
+  children,
+  className,
+  stagger = 0.07,
+  delay = 0,
+  as = "div",
+}: RevealGroupProps) {
+  const reduce = useReducedMotion();
+  const MotionTag = motion[as];
+
+  const variants: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: reduce ? 0 : stagger,
+        delayChildren: delay,
+      },
+    },
+  };
+
+  return (
+    <MotionTag
+      className={className}
+      variants={variants}
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT}
+    >
+      {children}
+    </MotionTag>
+  );
+}
+
+type RevealItemProps = {
+  children: ReactNode;
+  className?: string;
+  y?: number;
+  as?: "div" | "li" | "article" | "span";
+};
+
+/** A single cascading child of <RevealGroup>. */
+export function RevealItem({ children, className, y = 18, as = "div" }: RevealItemProps) {
+  const reduce = useReducedMotion();
+  const MotionTag = motion[as];
+
+  const variants: Variants = {
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y },
+    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  };
+
+  return (
+    <MotionTag className={className} variants={variants}>
       {children}
     </MotionTag>
   );

@@ -26,9 +26,7 @@ export default function CaseStudiesPage() {
           ))}
         </div>
       </Section>
-      <Reveal as="section">
         <CtaBand />
-      </Reveal>
     </main>
   );
 }

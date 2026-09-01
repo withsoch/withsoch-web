@@ -17,7 +17,6 @@ import { PageHero } from "@/components/PageHero";
 import { ArticleToc } from "@/components/ArticleToc";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { Reveal } from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -59,15 +58,12 @@ export default async function BlogDetailPage({
         align="center"
       />
 
-      <Reveal as="section">
         <Section tight className="bg-white">
           <div className="relative mx-auto aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-xl border border-line bg-mist">
             <Image src={post.image} alt={post.title} fill className="object-cover" priority />
           </div>
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <Section className="bg-white">
         <div
           className={
@@ -109,11 +105,8 @@ export default async function BlogDetailPage({
           </article>
         </div>
         </Section>
-      </Reveal>
 
-      <Reveal as="section">
         <CtaBand />
-      </Reveal>
     </main>
   );
 }

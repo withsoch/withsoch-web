@@ -6,6 +6,8 @@
 import { getAllPosts } from "@/lib/blog";
 import { BlogCardSmall } from "@/components/BlogCard";
 import { Button } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export function BlogTeaser() {
   const posts = getAllPosts().slice(0, 3);
@@ -13,27 +15,27 @@ export function BlogTeaser() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-28">
-      <div className="container-x">
-        <div className="flex flex-col items-center gap-3 text-center">
+    <Section className="bg-mist" divider>
+      <Reveal className="flex flex-wrap items-end justify-between gap-6">
+        <div className="max-w-xl">
           <h2 className="text-h2">From our blogs</h2>
-          <p className="lead max-w-xl">
+          <p className="lead mt-4">
             Ideas, playbooks, and field notes from building AI automation systems.
           </p>
         </div>
+        <Button href="/blog" variant="secondary" arrow className="shrink-0">
+          Explore all blogs
+        </Button>
+      </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <BlogCardSmall key={post.slug} post={post} />
-          ))}
-        </div>
+      <RevealGroup className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <RevealItem key={post.slug} className="h-full">
+            <BlogCardSmall post={post} />
+          </RevealItem>
+        ))}
+      </RevealGroup>
 
-        <div className="mt-10 flex justify-center">
-          <Button href="/blog" variant="secondary" size="lg" arrow>
-            Explore all blogs
-          </Button>
-        </div>
-      </div>
-    </section>
+    </Section>
   );
 }
