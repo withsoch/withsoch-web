@@ -26,7 +26,7 @@ const POINTS: { lead: string; rest: string }[] = [
 
 export function Positioning() {
   return (
-    <Section className="bg-mist rounded-t-[2rem]" tight>
+    <Section className="bg-mist" tight>
       {/* The heading used to sit in a two-column grid whose second cell was
           empty - it just needs a width constraint. */}
       <Reveal>
