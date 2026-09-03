@@ -50,7 +50,7 @@ export function ServicesGrid() {
         />
         <Link
           href="/services"
-          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-base font-semibold text-ink shadow-soft transition-colors hover:border-brand hover:text-brand"
+          className="inline-flex shrink-0 items-center rounded-full border border-ink/15 bg-white px-6 py-3 text-16 font-semibold text-ink shadow-soft transition-colors hover:border-brand hover:text-brand"
         >
           See all services
         </Link>
@@ -81,7 +81,7 @@ export function ServicesGrid() {
                     <Icon name={service.icon} className="h-5 w-5" />
                   </span>
                   <span
-                    className={`text-h3 text-[1.02rem] flex-1 transition-colors duration-300 ease-in-out ${
+                    className={`text-h4 text-16 flex-1 transition-colors duration-300 ease-in-out ${
                       isOpen ? "text-brand" : "text-ink"
                     }`}
                   >
@@ -111,7 +111,7 @@ export function ServicesGrid() {
                           {service.points.map((point) => (
                             <li
                               key={point}
-                              className="rounded-full bg-peach px-3.5 py-1.5 text-sm font-medium text-brand"
+                              className="rounded-full bg-peach px-3.5 py-1.5 text-16 font-medium text-brand"
                             >
                               {point}
                             </li>
@@ -262,7 +262,7 @@ export function ServicesGrid() {
                       return Diagram ? <Diagram /> : <Icon name={activeService.icon} className="h-16 w-16 text-brand" />;
                     })()}
                   </span>
-                  <span className="text-h3 text-[1.05rem] text-ink">{activeService.title}</span>
+                  <span className="text-h4 text-18 text-ink">{activeService.title}</span>
                 </motion.div>
               )}
             </AnimatePresence>

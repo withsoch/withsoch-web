@@ -48,18 +48,18 @@ export function Footer() {
                 className="h-16 w-auto"
               />
             </Link>
-            <p className="max-w-xs text-sm text-white/60">{SITE.tagline}</p>
+            <p className="max-w-xs text-16 text-white/60">{SITE.tagline}</p>
             <NewsletterForm />
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold uppercase tracking-wider text-white">Pages</p>
+            <p className="text-16 font-semibold uppercase tracking-wider text-white">Pages</p>
             <nav className="flex flex-col gap-3">
               {PAGES.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-white/60 hover:text-brand-light transition-colors"
+                  className="text-16 text-white/60 hover:text-brand-light transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -68,13 +68,13 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold uppercase tracking-wider text-white">Utility</p>
+            <p className="text-16 font-semibold uppercase tracking-wider text-white">Utility</p>
             <nav className="flex flex-col gap-3">
               {UTILITY.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-white/60 hover:text-brand-light transition-colors"
+                  className="text-16 text-white/60 hover:text-brand-light transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -83,8 +83,8 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold uppercase tracking-wider text-white">Contact on</p>
-            <div className="flex flex-col gap-3 text-sm">
+            <p className="text-16 font-semibold uppercase tracking-wider text-white">Contact on</p>
+            <div className="flex flex-col gap-3 text-16">
               <a href={`mailto:${SITE.email}`} className="text-white/60 hover:text-brand-light transition-colors">
                 {SITE.email}
               </a>
@@ -96,7 +96,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold uppercase tracking-wider text-white">Featured case study</p>
+            <p className="text-16 font-semibold uppercase tracking-wider text-white">Featured case study</p>
             <Link
               href={featured.href ?? `/case-studies/${featured.slug}`}
               className="group flex flex-col gap-3 rounded-xl border border-white/10 p-3 transition-colors hover:border-white/30"
@@ -112,7 +112,7 @@ export function Footer() {
                   />
                 )}
               </div>
-              <p className="text-sm font-semibold text-white group-hover:text-brand-light transition-colors">
+              <p className="text-16 font-semibold text-white group-hover:text-brand-light transition-colors">
                 {featured.title}
               </p>
             </Link>
@@ -144,12 +144,12 @@ export function Footer() {
         </div>
 
         <div className="mt-5 border-t border-white/10 pt-5 text-center">
-          <p className="text-base font-semibold text-white">
+          <p className="text-16 font-semibold text-white">
             Soch: More Growth, Less Chaos
           </p>
         </div>
 
-        <div className="mt-3 text-center text-xs text-white/40">
+        <div className="mt-3 text-center text-14 text-white/50">
           © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </div>
       </div>

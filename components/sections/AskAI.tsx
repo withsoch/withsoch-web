@@ -74,7 +74,7 @@ export function AskAI() {
         <h2 className="text-h2 text-ink">
           Ask AI about <span className="italic text-brand">Soch</span>
         </h2>
-        <p className="lead mt-4 text-slate">
+        <p className="text-lead mt-4 text-slate">
           Pick your favourite AI and ask what it thinks about us. No filter, no
           spin - just what the models know.
         </p>
@@ -95,7 +95,7 @@ export function AskAI() {
             >
               <span className="h-8 w-8 sm:h-9 sm:w-9">{link.icon}</span>
             </a>
-            <span className="text-sm font-semibold text-ink-soft">
+            <span className="text-16 font-semibold text-ink-soft">
               {link.label}
             </span>
           </Reveal>

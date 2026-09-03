@@ -97,7 +97,7 @@ export function SectionHeading({
   return (
     <div className={`flex ${maxWidthClassName} flex-col gap-4 ${alignment}`}>
       <h2 className={titleClassName}>{title}</h2>
-      {intro && <p className="lead">{intro}</p>}
+      {intro && <p className="text-lead">{intro}</p>}
     </div>
   );
 }

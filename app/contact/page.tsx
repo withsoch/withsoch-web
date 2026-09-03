@@ -40,10 +40,10 @@ export default function ContactPage() {
       <section className="border-b border-line bg-mist">
         <div className="container-x py-16 sm:py-20 lg:py-24">
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-            <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
+            <h1 className="text-h1-page">
               Connect with <span className="italic text-brand">us</span>
             </h1>
-            <p className="lead max-w-xl">
+            <p className="text-lead max-w-xl">
               We&apos;d love to help you out and see if there is potential for collaboration. Schedule a call with
               us and let&apos;s start a conversation that moves your business forward.
             </p>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand ring-1 ring-line">
                     <Icon name={item.icon} className="h-4.5 w-4.5" />
                   </span>
-                  <h2 className="text-h3 !text-[1.05rem]">{item.label}</h2>
+                  <h2 className="text-h4 !text-18">{item.label}</h2>
                 </div>
                 {item.href ? (
                   <a

@@ -19,9 +19,9 @@ export function PageHero({ eyebrow, heading, sub, align = "left" }: PageHeroProp
           }`}
         >
           {eyebrow && <span className="eyebrow w-fit">{eyebrow}</span>}
-          <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">{heading}</h1>
+          <h1 className="text-h1-page">{heading}</h1>
           {subParagraphs.map((p) => (
-            <p key={p} className={`lead mt-2 max-w-2xl ${centered ? "mx-auto" : ""}`}>
+            <p key={p} className={`text-lead mt-2 max-w-2xl ${centered ? "mx-auto" : ""}`}>
               {p}
             </p>
           ))}

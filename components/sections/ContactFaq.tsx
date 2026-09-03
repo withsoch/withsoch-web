@@ -33,7 +33,7 @@ export function ContactFaq() {
         <h2 className="text-h2 text-ink">
           Frequently asked <span className="italic text-brand">questions</span>
         </h2>
-        <p className="lead mt-4 text-slate">
+        <p className="text-lead mt-4 text-slate">
           Got questions about our B2B consulting services, process, or working together? Here are some of the most
           common things clients ask us, with clear, helpful answers.
         </p>
@@ -55,7 +55,7 @@ export function ContactFaq() {
                   aria-expanded={isOpen}
                 >
                   <span className="shrink-0 text-muted">{String(i + 1).padStart(2, "0")}.</span>
-                  <span className="text-lg font-semibold text-ink">{faq.q}</span>
+                  <span className="text-18 font-semibold text-ink">{faq.q}</span>
                 </button>
                 <div
                   className="grid transition-[grid-template-rows] duration-300 ease-in-out"

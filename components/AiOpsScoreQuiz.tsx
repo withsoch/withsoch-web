@@ -141,7 +141,7 @@ export function AiOpsScoreQuiz() {
           <div className="mx-auto max-w-xl">
             <p className="eyebrow inline-flex">{QUIZ_COPY.preGate.eyebrow}</p>
             <h1 className="text-h2 mt-4">{QUIZ_COPY.preGate.heading}</h1>
-            <p className="lead mt-2">{QUIZ_COPY.preGate.subcopy}</p>
+            <p className="text-lead mt-2">{QUIZ_COPY.preGate.subcopy}</p>
 
             <div className="mt-8 flex flex-col gap-6">
               {PRE_GATE_QUESTIONS.map((pq, step) => (
@@ -149,7 +149,7 @@ export function AiOpsScoreQuiz() {
                   key={pq.id}
                   className="rounded-2xl border border-line bg-white p-6 sm:p-8"
                 >
-                  <p className="text-h3 text-ink">{pq.question}</p>
+                  <p className="text-h4 text-ink">{pq.question}</p>
                   <div className="mt-6 flex flex-col gap-3">
                     {pq.options.map((option, i) => {
                       const selected = pregateAnswers[step] === i;
@@ -173,7 +173,7 @@ export function AiOpsScoreQuiz() {
                               <Icon name="check" className="h-2.5 w-2.5 text-white" strokeWidth={3} />
                             )}
                           </span>
-                          <span className="text-[0.95rem] text-slate">{option}</span>
+                          <span className="text-16 text-slate">{option}</span>
                         </button>
                       );
                     })}
@@ -186,7 +186,7 @@ export function AiOpsScoreQuiz() {
               <button
                 type="button"
                 onClick={pregateBack}
-                className="text-sm font-semibold text-muted transition-colors hover:text-ink"
+                className="text-16 font-semibold text-muted transition-colors hover:text-ink"
               >
                 {QUIZ_COPY.preGate.backButton}
               </button>
@@ -220,10 +220,10 @@ export function AiOpsScoreQuiz() {
         <div className="mx-auto max-w-xl">
           <p className="eyebrow inline-flex">{QUIZ_COPY.intro.eyebrow}</p>
           <h1 className="text-h2 mt-4">{QUIZ_COPY.intro.headline}</h1>
-          <p className="lead mt-2">{QUIZ_COPY.intro.subheading}</p>
+          <p className="text-lead mt-2">{QUIZ_COPY.intro.subheading}</p>
 
           <div className="mt-8">
-            <div className="flex items-center justify-between text-sm font-medium text-muted">
+            <div className="flex items-center justify-between text-16 font-medium text-muted">
               <span>{PILLAR_LABELS[q.pillar]}</span>
               <span>
                 {current + 1} of {QUIZ_QUESTIONS.length}
@@ -238,7 +238,7 @@ export function AiOpsScoreQuiz() {
           </div>
 
           <div className="mt-8 rounded-2xl border border-line bg-white p-6 sm:p-8">
-            <p className="text-h3 text-ink">
+            <p className="text-h4 text-ink">
               {current + 1}. {q.question}
             </p>
             <div className="mt-6 flex flex-col gap-3">
@@ -262,7 +262,7 @@ export function AiOpsScoreQuiz() {
                     >
                       {selected && <Icon name="check" className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
                     </span>
-                    <span className="text-[0.95rem] text-slate">{option.label}</span>
+                    <span className="text-16 text-slate">{option.label}</span>
                   </button>
                 );
               })}
@@ -273,7 +273,7 @@ export function AiOpsScoreQuiz() {
             <button
               type="button"
               onClick={goBack}
-              className={`text-sm font-semibold text-muted transition-colors hover:text-ink ${
+              className={`text-16 font-semibold text-muted transition-colors hover:text-ink ${
                 current === 0 ? "invisible" : ""
               }`}
             >
@@ -400,13 +400,13 @@ function EmailGate({
   if (submitted) {
     return (
       <div className="mt-12 rounded-2xl border border-line bg-white p-10 text-center">
-        <h2 className="text-h3 text-ink">{QUIZ_COPY.success.heading}</h2>
-        <p className="lead mt-2 max-w-xl mx-auto">{QUIZ_COPY.success.message(name || "there")}</p>
-        <p className="mt-6 text-sm font-medium text-muted">{QUIZ_COPY.success.calBookingLine}</p>
+        <h2 className="text-h4 text-ink">{QUIZ_COPY.success.heading}</h2>
+        <p className="text-lead mt-2 max-w-xl mx-auto">{QUIZ_COPY.success.message(name || "there")}</p>
+        <p className="mt-6 text-16 font-medium text-muted">{QUIZ_COPY.success.calBookingLine}</p>
         <div className="mt-4 overflow-hidden rounded-xl border border-line">
           <div id="cal-inline-quiz" className="h-[600px] w-full" />
         </div>
-        <p className="mt-3 text-sm">
+        <p className="mt-3 text-16">
           <a
             href={QUIZ_CAL_BOOKING_URL}
             target="_blank"
@@ -422,15 +422,15 @@ function EmailGate({
 
   return (
     <div className="mt-12 rounded-2xl border border-line bg-white p-8 sm:p-10">
-      <h2 className="text-h3 text-ink">{QUIZ_COPY.emailGate.heading}</h2>
-      <p className="lead mt-2 max-w-xl">{QUIZ_COPY.emailGate.subcopy}</p>
+      <h2 className="text-h4 text-ink">{QUIZ_COPY.emailGate.heading}</h2>
+      <p className="text-lead mt-2 max-w-xl">{QUIZ_COPY.emailGate.subcopy}</p>
 
-      <p className="mt-6 text-xs font-bold uppercase tracking-widest text-muted">
+      <p className="mt-6 text-14 font-bold uppercase tracking-widest text-muted">
         {QUIZ_COPY.emailGate.whatsInsideLabel}
       </p>
       <ul className="mt-2 flex flex-col gap-1.5">
         {QUIZ_COPY.emailGate.whatsInsideBullets.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-2 text-sm text-slate">
+          <li key={bullet} className="flex items-start gap-2 text-16 text-slate">
             <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand" strokeWidth={3} />
             {bullet}
           </li>
@@ -445,7 +445,7 @@ function EmailGate({
           autoComplete={QUIZ_COPY.emailGate.fields.name.autocomplete}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-ink/45 sm:w-1/3"
+          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-16 outline-none transition-colors focus:border-ink/45 sm:w-1/3"
         />
         <input
           type="email"
@@ -454,13 +454,13 @@ function EmailGate({
           autoComplete={QUIZ_COPY.emailGate.fields.email.autocomplete}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-ink/45 sm:flex-1"
+          className="w-full rounded-xl border border-line bg-white px-4 py-3 text-16 outline-none transition-colors focus:border-ink/45 sm:flex-1"
         />
         <Button type="submit" disabled={sending}>
           {sending ? QUIZ_COPY.emailGate.submitButtonSending : QUIZ_COPY.emailGate.submitButton}
         </Button>
       </form>
-      {error && <p className="mt-3 text-sm text-brand-dark">{error}</p>}
+      {error && <p className="mt-3 text-16 text-brand-dark">{error}</p>}
     </div>
   );
 }
@@ -484,13 +484,13 @@ function ResultsScreen({
           <div className="flex flex-col items-start justify-between gap-4 border-b border-line pb-6 sm:flex-row sm:items-center">
             <div>
               <p className="eyebrow inline-flex">{QUIZ_COPY.results.eyebrow}</p>
-              <p className="mt-2 text-sm font-medium text-muted">
+              <p className="mt-2 text-16 font-medium text-muted">
                 {QUIZ_COPY.results.reportDatePrefix}
               </p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2">
               <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-ink">
+              <span className="text-14 font-semibold uppercase tracking-widest text-ink">
                 {tier.label}
               </span>
             </div>
@@ -499,12 +499,12 @@ function ResultsScreen({
           <Reveal>
             <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-muted">
+                <p className="text-14 font-bold uppercase tracking-widest text-muted">
                   {QUIZ_COPY.results.overallScoreLabel}
                 </p>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-display text-ink">{overall}</span>
-                  <span className="text-lg text-muted">{QUIZ_COPY.results.scoreDenominator}</span>
+                  <span className="text-h1 text-ink">{overall}</span>
+                  <span className="text-18 text-muted">{QUIZ_COPY.results.scoreDenominator}</span>
                 </div>
                 <div className="mt-4 flex gap-1">
                   {Array.from({ length: 10 }).map((_, i) => {
@@ -524,18 +524,18 @@ function ResultsScreen({
                     );
                   })}
                 </div>
-                <div className="mt-1 flex justify-between text-xs text-muted">
+                <div className="mt-1 flex justify-between text-14 text-muted">
                   {QUIZ_COPY.results.segLabels.map((label) => (
                     <span key={label}>{label}</span>
                   ))}
                 </div>
                 <div className="mt-6 border-t border-line pt-6">
-                  <p className="text-h3 text-ink">{tier.headline}</p>
+                  <p className="text-h4 text-ink">{tier.headline}</p>
                 </div>
               </div>
 
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-muted">
+                <p className="text-14 font-bold uppercase tracking-widest text-muted">
                   {QUIZ_COPY.results.pillarsEyebrow}
                 </p>
                 <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -566,24 +566,24 @@ function ResultsScreen({
                             >
                               <Icon name={PILLAR_ICONS[pillar]} className="h-4 w-4" />
                             </span>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                            <p className="text-14 font-semibold uppercase tracking-wider text-muted">
                               {PILLAR_LABELS[pillar]}
                             </p>
                           </div>
-                          <p className={`text-3xl font-light ${colors[style]}`}>{score}%</p>
+                          <p className={`text-22 font-normal ${colors[style]}`}>{score}%</p>
                           <div className="h-2.5 rounded-full bg-line">
                             <div
                               className={`h-full rounded-full ${bars[style]}`}
                               style={{ width: `${score}%` }}
                             />
                           </div>
-                          <p className={`text-xs ${colors[style]}`}>{pillarStatus(score)}</p>
+                          <p className={`text-14 ${colors[style]}`}>{pillarStatus(score)}</p>
                         </div>
                       </Reveal>
                     );
                   })}
                 </div>
-                <p className="mt-5 border-t border-line pt-5 text-sm leading-relaxed text-slate">
+                <p className="mt-5 border-t border-line pt-5 text-16 leading-relaxed text-slate">
                   {tier.summary}
                 </p>
               </div>
@@ -594,14 +594,14 @@ function ResultsScreen({
             {actions.map((action, i) => (
               <Reveal key={action.label} delay={i * 0.08}>
                 <div className="flex h-full items-center gap-4 rounded-xl border border-line bg-white p-4">
-                  <span className="text-2xl font-bold text-brand">
+                  <span className="text-20 font-bold text-brand">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                    <p className="text-14 font-semibold uppercase tracking-wider text-muted">
                       {action.slot}
                     </p>
-                    <p className="text-sm font-medium text-ink">{action.label}</p>
+                    <p className="text-16 font-medium text-ink">{action.label}</p>
                   </div>
                 </div>
               </Reveal>
@@ -612,7 +612,7 @@ function ResultsScreen({
 
           <div className="mt-12 flex flex-col items-center gap-4 rounded-2xl bg-forest px-6 py-14 text-center sm:px-10">
             <h2 className="text-h2 text-white">Want help acting on this?</h2>
-            <p className="lead max-w-xl text-white/75">
+            <p className="text-lead max-w-xl text-white/75">
               Book a free call and we&rsquo;ll walk through your results and show you where
               automation creates the most leverage in your business.
             </p>

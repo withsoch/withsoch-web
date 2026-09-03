@@ -18,14 +18,14 @@ export default function PrivacyPolicyPage() {
     <main className="flex-1">
       <div className="bg-mist py-16 sm:py-20">
         <div className="container-x text-center">
-          <h1 className="text-display">Privacy Policy</h1>
+          <h1 className="text-h1">Privacy Policy</h1>
         </div>
       </div>
 
       <Section className="bg-white">
         <div className="mx-auto max-w-3xl space-y-10 text-slate">
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Collecting Personal Information</h2>
+            <h2 className="text-h4 text-ink">Collecting Personal Information</h2>
             <p>
               We collect only the information required to operate our services, respond to
               inquiries, and improve our site experience. This includes:
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Sharing Personal Information</h2>
+            <h2 className="text-h4 text-ink">Sharing Personal Information</h2>
             <p>
               We only share personal data with trusted sub-processors that enable our business
               operations.
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Your Rights</h2>
+            <h2 className="text-h4 text-ink">Your Rights</h2>
             <p>If you are located in the EU or EEA, your data is processed under:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li>Legitimate interest (e.g., improving services)</li>
@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Cookies and Tracking</h2>
+            <h2 className="text-h4 text-ink">Cookies and Tracking</h2>
             <p>We use cookies to:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li>Keep the site secure</li>
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Data Retention</h2>
+            <h2 className="text-h4 text-ink">Data Retention</h2>
             <p>
               We retain personal data only as long as necessary to fulfill the purpose it was
               collected for, including:
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-h3 text-ink">Questions or Concerns?</h2>
+            <h2 className="text-h4 text-ink">Questions or Concerns?</h2>
             <p>
               If you have any questions about how we handle your data, email us at{" "}
               <a href={`mailto:${SITE.email}`} className="text-brand hover:text-brand-dark">

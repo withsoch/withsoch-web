@@ -19,8 +19,8 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-5 py-2.5 text-[0.95rem]",
-  lg: "px-6 py-3 text-base",
+  md: "px-5 py-2.5 text-16",
+  lg: "px-6 py-3 text-18",
 };
 
 type ButtonProps = {

@@ -23,7 +23,7 @@ export function LogoMarquee() {
   return (
     <BareSection bare className="bg-white overflow-hidden py-7 sm:py-9">
       <Reveal className="container-x flex flex-col items-center text-center mb-5 sm:mb-6">
-        <h2 className="text-h3 text-slate">Trusted by fast-moving businesses</h2>
+        <h2 className="text-h4 text-slate">Trusted by fast-moving businesses</h2>
       </Reveal>
       <div className="marquee-fade">
         <div className="flex w-max animate-marquee items-center gap-14 sm:gap-20 lg:gap-24">

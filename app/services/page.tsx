@@ -85,13 +85,13 @@ export default function ServicesPage() {
                   )
                 )}
                 <div className="flex flex-1 flex-col gap-4">
-                  <h3 className="text-h3">{service.title}</h3>
+                  <h3 className="text-h4">{service.title}</h3>
                   <p className="line-clamp-2 min-h-[3lh] text-slate">{cardCopy}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {service.points.map((point) => (
                       <span
                         key={point}
-                        className="rounded-full bg-peach px-2.5 py-1 text-xs font-semibold text-brand"
+                        className="rounded-full bg-peach px-2.5 py-1 text-14 font-semibold text-brand"
                       >
                         {point}
                       </span>
@@ -100,7 +100,7 @@ export default function ServicesPage() {
                 </div>
                 <div className="mt-auto flex flex-col gap-4">
                   <div className="rule-dashed" />
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-brand-dark">
+                  <span className="inline-flex items-center gap-1.5 text-16 font-semibold text-ink group-hover:text-brand-dark">
                     Explore service
                     <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>

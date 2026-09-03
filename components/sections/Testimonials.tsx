@@ -25,12 +25,12 @@ export function Testimonials() {
           >
             <div className="flex flex-col gap-6">
               <span className="eyebrow w-fit">Client feedback</span>
-              <blockquote className="text-h3 font-light leading-snug text-ink">
+              <blockquote className="text-h4 font-normal leading-snug text-ink">
                 {t.quote}
               </blockquote>
               <figcaption>
                 <span className="block font-semibold text-ink">{t.name}</span>
-                <span className="block text-sm text-muted">{t.role}</span>
+                <span className="block text-16 text-muted">{t.role}</span>
               </figcaption>
             </div>
             {t.image ? (
@@ -43,7 +43,7 @@ export function Testimonials() {
               />
             ) : (
               <span
-                className={`flex h-56 w-full items-center justify-center rounded-3xl text-3xl font-semibold sm:h-72 ${
+                className={`flex h-56 w-full items-center justify-center rounded-3xl text-22 font-semibold sm:h-72 ${
                   accentBg[t.accent] ?? accentBg.brand
                 }`}
               >

@@ -19,7 +19,7 @@ export function FaqAccordion() {
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="text-h2">Common questions</h2>
-          <p className="lead mt-4 max-w-sm">
+          <p className="text-lead mt-4 max-w-sm">
             The things founders usually want nailed down before starting.
           </p>
           <Button href="/contact" variant="secondary" className="mt-7" arrow>

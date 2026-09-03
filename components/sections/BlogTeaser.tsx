@@ -19,7 +19,7 @@ export function BlogTeaser() {
       <Reveal className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <h2 className="text-h2">From our blogs</h2>
-          <p className="lead mt-4">
+          <p className="text-lead mt-4">
             Ideas, playbooks, and field notes from building AI automation systems.
           </p>
         </div>

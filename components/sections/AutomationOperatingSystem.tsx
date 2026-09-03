@@ -110,7 +110,7 @@ export function AutomationOperatingSystem() {
       <Reveal className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
         <div className="max-w-2xl">
           <h2 className="text-h2">The Soch Automation Operating System</h2>
-          <p className="lead mt-4">
+          <p className="text-lead mt-4">
             A clear, repeatable process for deploying AI automation in your business.
           </p>
         </div>
@@ -120,7 +120,7 @@ export function AutomationOperatingSystem() {
       </Reveal>
 
       <Reveal className="mt-12 lg:mt-16" delay={0.06}>
-        <p className="text-sm font-medium text-muted">Automation leverage, compounding &rarr;</p>
+        <p className="text-16 font-medium text-muted">Automation leverage, compounding &rarr;</p>
 
         <div className="relative mt-6 h-[240px] sm:h-[300px] lg:h-[340px]">
           {/* Phase bands. Behind everything, and the reason the plot and the
@@ -283,7 +283,7 @@ export function AutomationOperatingSystem() {
                       }`}
                     />
                     <span
-                      className={`absolute bottom-full left-1/2 mb-4 hidden -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border bg-white py-1.5 pl-2.5 pr-3.5 text-xs font-medium transition-all duration-300 sm:inline-flex ${
+                      className={`absolute bottom-full left-1/2 mb-4 hidden -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border bg-white py-1.5 pl-2.5 pr-3.5 text-14 font-medium transition-all duration-300 sm:inline-flex ${
                         isActive || isLast
                           ? "border-brand/45 text-ink shadow-card"
                           : "border-line text-ink shadow-soft"
@@ -337,7 +337,7 @@ export function AutomationOperatingSystem() {
               than in a row of their own below it - a row there would break the
               band rules in half on their way down to the columns. */}
           <div
-            className="absolute inset-x-0 flex items-center justify-between text-sm text-muted"
+            className="absolute inset-x-0 flex items-center justify-between text-16 text-muted"
             style={{ top: `${BASE}%` }}
           >
             <span className="pt-2">Day 0</span>
@@ -376,7 +376,7 @@ export function AutomationOperatingSystem() {
                   and it takes the brand colour with the node it points at. */}
               <div className="flex items-center gap-4">
                 <span
-                  className={`text-[1.4rem] font-medium tabular-nums leading-none transition-colors duration-300 ${
+                  className={`text-22 font-medium tabular-nums leading-none transition-colors duration-300 ${
                     i === active ? "text-brand" : "text-ink"
                   }`}
                 >
@@ -391,13 +391,13 @@ export function AutomationOperatingSystem() {
                 <Icon name={step.icon} className="h-5 w-5 shrink-0 text-brand" />
               </div>
 
-              <h3 className="mt-5 text-h3">{step.title}</h3>
+              <h3 className="mt-5 text-h4">{step.title}</h3>
               <p className="mt-3 text-slate">{step.description}</p>
 
               {step.outputs && step.outputs.length > 0 && (
                 <ul className="mt-4 flex flex-col gap-1.5">
                   {step.outputs.map((output) => (
-                    <li key={output} className="flex items-center gap-2 text-sm text-ink-soft">
+                    <li key={output} className="flex items-center gap-2 text-16 text-ink-soft">
                       <span aria-hidden="true" className="h-1 w-1 shrink-0 rounded-full bg-brand" />
                       {output}
                     </li>

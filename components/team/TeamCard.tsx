@@ -42,15 +42,15 @@ export function TeamCard({ name, role, bio, photo, socials, index }: TeamCardPro
 
         {/* role badge - only shown for non-generic roles (e.g. founders) */}
         {role.toLowerCase() !== "team" && (
-          <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-brand-dark backdrop-blur-sm">
+          <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-14 font-medium uppercase tracking-wide text-brand-dark backdrop-blur-sm">
             {role}
           </span>
         )}
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-h3 text-ink font-semibold">{name}</h3>
-        <p className="mt-3 line-clamp-5 text-sm leading-relaxed text-slate">{bio}</p>
+        <h3 className="text-h4 text-ink font-semibold">{name}</h3>
+        <p className="mt-3 line-clamp-5 text-16 leading-relaxed text-slate">{bio}</p>
 
         {socials.length > 0 && (
           <div className="mt-4 flex gap-3">

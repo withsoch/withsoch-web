@@ -36,7 +36,7 @@ export function Stats({
             {/* max-w-md, not max-w-sm: narrower and "automation-first" breaks
                 across the hyphen, giving a five-line ragged heading. */}
             <h2 className="text-h2 max-w-md text-white">{STATS_HEADING}</h2>
-            <p className="lead mt-5 max-w-md text-white/70">{STATS_INTRO}</p>
+            <p className="text-lead mt-5 max-w-md text-white/70">{STATS_INTRO}</p>
           </Reveal>
         )}
 
@@ -50,7 +50,7 @@ export function Stats({
               className="group flex flex-col gap-6 rounded-2xl border border-line bg-white p-6 shadow-soft transition-shadow duration-300 hover:shadow-card"
             >
               <div className="flex items-center justify-between gap-2">
-                <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+                <span className="flex items-center gap-2 text-14 font-semibold uppercase tracking-wide text-muted">
                   <Icon name="trend" className="h-4 w-4 text-brand-dark" strokeWidth={1.8} />
                   {stat.tag}
                 </span>
@@ -64,16 +64,16 @@ export function Stats({
                   value={stat.value}
                   className="text-[clamp(2.2rem,1.8rem+2vw,3.1rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink"
                 />
-                <p className="mt-2 text-sm leading-relaxed text-slate">{stat.label}</p>
+                <p className="mt-2 text-16 leading-relaxed text-slate">{stat.label}</p>
               </div>
 
               <div className="mt-auto grid grid-cols-2 divide-x divide-line border-t border-line pt-5">
                 {stat.metrics.map((metric) => (
                   <div key={metric.label} className="px-4 first:pl-0 last:pr-0">
-                    <p className="text-xl font-medium leading-none tracking-[-0.01em] text-brand-dark">
+                    <p className="text-18 font-medium leading-none tracking-[-0.01em] text-brand-dark">
                       {metric.value}
                     </p>
-                    <p className="mt-1.5 text-xs leading-snug text-muted">{metric.label}</p>
+                    <p className="mt-1.5 text-14 leading-snug text-muted">{metric.label}</p>
                   </div>
                 ))}
               </div>

@@ -22,7 +22,7 @@ export function CtaBand({ override }: CtaBandProps = {}) {
     <section className="bg-forest pt-[var(--space-section)] pb-[calc(var(--space-section)*0.72)]">
       <div className="container-x mx-auto max-w-3xl text-center">
         <h2 className="text-h2 text-white">{heading}</h2>
-        <p className="lead mt-4 text-white/75">{CTA_BAND.lead}</p>
+        <p className="text-lead mt-4 text-white/75">{CTA_BAND.lead}</p>
         <div className="mt-8">
           <Button href={buttonHref} variant="light" size="lg" arrow>
             {buttonLabel}

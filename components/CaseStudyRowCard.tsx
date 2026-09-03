@@ -34,17 +34,17 @@ export function CaseStudyRowCard({
       </div>
 
       <div className="flex flex-1 flex-col">
-        <span className="mb-3 inline-flex w-fit items-center rounded-full border border-brand/35 px-3 py-1 text-xs font-medium tracking-[0.02em] text-brand-dark">
+        <span className="mb-3 inline-flex w-fit items-center rounded-full border border-brand/35 px-3 py-1 text-14 font-medium tracking-[0.02em] text-brand-dark">
           {study.carouselTag ?? study.category}
         </span>
 
         <Link href={study.href ?? `/case-studies/${study.slug}`}>
-          <h3 className="text-h3 font-display font-medium text-ink transition-colors group-hover:text-brand-dark">
+          <h3 className="text-h4 font-display font-medium text-ink transition-colors group-hover:text-brand-dark">
             {study.title}
           </h3>
         </Link>
 
-        <p className="mt-2 text-[0.95rem] leading-relaxed text-slate">
+        <p className="mt-2 text-16 leading-relaxed text-slate">
           {study.challenge ?? study.summary}
         </p>
 
@@ -53,8 +53,8 @@ export function CaseStudyRowCard({
           <div className="grid grid-cols-2 gap-4">
             {(study.heroStats ?? study.metrics.slice(0, 2)).map((stat) => (
               <div key={stat.label} className="flex flex-col gap-1">
-                <span className="text-h3 text-brand">{stat.value}</span>
-                <span className="text-sm text-muted">{stat.label}</span>
+                <span className="text-h4 text-brand">{stat.value}</span>
+                <span className="text-16 text-muted">{stat.label}</span>
               </div>
             ))}
           </div>

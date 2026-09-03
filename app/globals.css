@@ -11,7 +11,12 @@
   --color-ink: #1c2b26;
   --color-ink-soft: #33403b;
   --color-slate: #4c534f;
-  --color-muted: #7a817d;
+  /* Darkened from #7a817d, which measured 3.99:1 on white and 3.57:1 on
+     mist - under the 4.5:1 floor for body text on every surface it is
+     used on. #636a66 is the lightest value in the same warm-grey family
+     that clears 4.5:1 everywhere (incl. peach at 4.71:1), so it keeps
+     the muted role without failing. */
+  --color-muted: #636a66;
 
   /* Surfaces - warm */
   --color-mist: #f6f2ea;
@@ -33,17 +38,32 @@
   --font-sans: var(--font-wix-madefor-text), system-ui, sans-serif;
   --font-display: var(--font-wix-madefor-text), system-ui, sans-serif;
 
-  /* Type scale - ported 1:1 from withsoch.com's Webflow font tokens. */
-  --text-base: 16px;
-  --text-base--line-height: 22.4px;
-  --text-xs: 13px;
-  --text-sm: 15px;
-  --text-md: 16px;
-  --text-lg: 17px;
-  --text-xl: 18px;
-  --text-2xl: 20px;
-  --text-3xl: 22px;
-  --text-4xl: 24px;
+  /* Type scale - numeric tokens, 12-26px in steps of 2. The name is the size:
+     `text-16` is 16px, always. Replaces the old xs/sm/base/md/lg/xl/2xl/3xl/4xl
+     ramp, which packed 13/15/16/17/18 into five indistinguishable steps and
+     gave no clue what any name meant.
+
+     Line heights are declared here because the old scale declared one only on
+     --text-base. Every other size inherited body's absolute 22.4px, so 24px
+     text ran at a 0.93 line-height - lines physically overlapping. Ratios
+     tighten as size grows, which is what large type wants. An explicit
+     `leading-*` utility still overrides these. */
+  --text-12: 12px;
+  --text-12--line-height: 1.5;
+  --text-14: 14px;
+  --text-14--line-height: 1.5;
+  --text-16: 16px;
+  --text-16--line-height: 1.5;
+  --text-18: 18px;
+  --text-18--line-height: 1.45;
+  --text-20: 20px;
+  --text-20--line-height: 1.4;
+  --text-22: 22px;
+  --text-22--line-height: 1.35;
+  --text-24: 24px;
+  --text-24--line-height: 1.3;
+  --text-26: 26px;
+  --text-26--line-height: 1.25;
 
   /* Shadows - subtle, borders preferred over big shadows */
   --shadow-soft: 0 1px 2px rgba(20, 30, 25, 0.04);
@@ -73,9 +93,9 @@
     background: #ffffff;
     color: var(--color-slate);
     font-family: var(--font-sans);
-    font-size: var(--text-base);
+    font-size: var(--text-16);
     font-weight: 400;
-    line-height: var(--text-base--line-height);
+    line-height: var(--text-16--line-height);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -102,8 +122,17 @@
 }
 
 @layer components {
-  .text-display {
+  .text-h1 {
     font-size: clamp(2.7rem, 1.5rem + 4.4vw, 4.7rem);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+  }
+  /* Inner-page title. Smaller than the homepage .text-h1 - this exact clamp
+     was previously pasted inline as `text-h1 text-[clamp(...)]` across six
+     page heroes, so the page-title size could not be changed in one place. */
+  .text-h1-page {
+    font-size: clamp(2.5rem, 1.5rem + 3.2vw, 3.9rem);
     line-height: 1.02;
     letter-spacing: -0.018em;
     font-weight: 500;
@@ -115,11 +144,17 @@
     font-weight: 500;
   }
   .text-h3 {
+    font-size: clamp(1.625rem, 1.35rem + 1.1vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.013em;
+    font-weight: 500;
+  }
+  .text-h4 {
     font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.7rem);
     line-height: 1.16;
     font-weight: 500;
   }
-  .lead {
+  .text-lead {
     font-size: clamp(1.075rem, 1rem + 0.4vw, 1.28rem);
     line-height: 1.62;
     color: var(--color-slate);
@@ -130,7 +165,7 @@
     align-items: center;
     gap: 0.45rem;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: var(--text-14);
     font-weight: 600;
     color: var(--color-ink);
     background: #fff;
@@ -159,7 +194,7 @@
     flex-direction: column;
     gap: 1.25rem;
     color: var(--color-slate);
-    font-size: 1.05rem;
+    font-size: var(--text-18);
     line-height: 1.75;
   }
   .prose-blog h1,
@@ -211,7 +246,7 @@
     padding-left: 1.5rem;
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: var(--text-20);
     color: var(--color-ink);
   }
   .prose-blog code {
@@ -248,21 +283,21 @@
   .comparison-table thead th {
     text-align: center;
     font-weight: 700;
-    font-size: 1.375rem;
+    font-size: var(--text-22);
     padding: 1.25rem 1.5rem;
     border-bottom-width: 2px;
   }
   .comparison-table tbody th {
     text-align: left;
     font-weight: 700;
-    font-size: 1.0625rem;
+    font-size: var(--text-18);
     line-height: 1.6;
     width: 22%;
     padding: 1.25rem 1.5rem 1.25rem 0;
   }
   .comparison-table tbody td {
     text-align: left;
-    font-size: 1.0625rem;
+    font-size: var(--text-18);
     line-height: 1.6;
     color: var(--color-slate);
     padding: 1.25rem 1.5rem;
@@ -316,7 +351,7 @@
       content: attr(data-tier);
       display: block;
       margin-bottom: 0.15rem;
-      font-size: 0.75rem;
+      font-size: var(--text-12);
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;

@@ -63,8 +63,8 @@ const MarqueeLogoScroller = React.forwardRef<HTMLDivElement, MarqueeLogoScroller
           {/* Header */}
           <div className="p-6 md:p-8 lg:p-10">
             <div className="grid grid-cols-1 gap-6 border-b border-line pb-6 md:pb-8 lg:grid-cols-[3fr_2fr] lg:gap-8">
-              <h2 className="text-h3 text-balance text-ink">{title}</h2>
-              <p className="self-start text-balance text-base leading-relaxed text-slate lg:justify-self-end">
+              <h2 className="text-h4 text-balance text-ink">{title}</h2>
+              <p className="self-start text-balance text-16 leading-relaxed text-slate lg:justify-self-end">
                 {description}
               </p>
             </div>

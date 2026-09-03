@@ -14,7 +14,7 @@ export function ArticleToc({ headings }: { headings: Heading[] }) {
       <nav aria-labelledby="article-toc-heading">
         <h2
           id="article-toc-heading"
-          className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-muted"
+          className="font-sans text-14 font-semibold uppercase tracking-[0.16em] text-muted"
         >
           In this article
         </h2>
@@ -23,7 +23,7 @@ export function ArticleToc({ headings }: { headings: Heading[] }) {
             <li key={heading.id} className="border-t border-line first:border-t-0">
               <a
                 href={`#${heading.id}`}
-                className="block py-3 text-[0.95rem] leading-snug text-slate transition-colors hover:text-brand-dark"
+                className="block py-3 text-16 leading-snug text-slate transition-colors hover:text-brand-dark"
               >
                 {heading.text}
               </a>

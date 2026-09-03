@@ -17,7 +17,7 @@ export function Hero() {
       </div>
       <div className="container-x relative flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mt-0 lg:mt-1">
         <div className="flex flex-col items-start text-left gap-4 min-w-0 max-w-2xl lg:max-w-3xl">
-          <h1 className="text-display lg:text-[clamp(2.2rem,1.5rem+3vw,4rem)]">
+          <h1 className="text-h1 lg:text-[clamp(2.2rem,1.5rem+3vw,4rem)]">
             {HERO.headline}{" "}
             <span className="italic text-brand">{HERO.headlineEmphasis}</span>
           </h1>

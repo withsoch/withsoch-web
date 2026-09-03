@@ -32,12 +32,12 @@ export function WhoItsForCards({ cards }: { cards: AudienceCard[] }) {
           </span>
           <div className="flex min-w-0 flex-1 flex-col gap-1">
             <div className="flex items-center justify-between gap-3">
-              <span className="text-h3 text-[0.98rem] text-ink">{card.title}</span>
-              <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wide text-white">
+              <span className="text-h4 text-16 text-ink">{card.title}</span>
+              <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-12 font-semibold uppercase tracking-wide text-white">
                 {card.tag}
               </span>
             </div>
-            <p className="text-sm text-slate">{card.description}</p>
+            <p className="text-16 text-slate">{card.description}</p>
           </div>
         </div>
       ))}

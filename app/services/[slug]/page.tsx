@@ -54,11 +54,11 @@ export default async function ServiceDetailPage({
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="flex flex-col gap-4">
               <span className="eyebrow w-fit">Services</span>
-              <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
+              <h1 className="text-h1-page">
                 {service.title}
               </h1>
               {descriptionParagraphs.map((p) => (
-                <p key={p} className="lead mt-2 max-w-xl">
+                <p key={p} className="text-lead mt-2 max-w-xl">
                   {p}
                 </p>
               ))}
@@ -131,10 +131,10 @@ export default async function ServiceDetailPage({
                   key={card.no}
                   className="flex flex-col gap-3 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25"
                 >
-                  <span className="text-sm font-semibold text-brand">{card.no}</span>
+                  <span className="text-16 font-semibold text-brand">{card.no}</span>
                   <h3 className="font-semibold text-ink">{card.title}</h3>
-                  <p className="text-sm text-slate">{card.description}</p>
-                  <span className="mt-2 w-fit rounded-full bg-peach px-3 py-1 text-xs font-semibold tracking-wide text-brand">
+                  <p className="text-16 text-slate">{card.description}</p>
+                  <span className="mt-2 w-fit rounded-full bg-peach px-3 py-1 text-14 font-semibold tracking-wide text-brand">
                     {card.tag}
                   </span>
                 </div>
@@ -165,9 +165,9 @@ export default async function ServiceDetailPage({
                     <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-peach text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
                       <Icon name={offering.icon} className="h-7 w-7" />
                     </span>
-                    <h3 className="pt-2 text-lg font-semibold leading-snug text-ink">{offering.title}</h3>
+                    <h3 className="pt-2 text-18 font-semibold leading-snug text-ink">{offering.title}</h3>
                   </div>
-                  <p className="flex-1 text-sm leading-relaxed text-slate">{offering.description}</p>
+                  <p className="flex-1 text-16 leading-relaxed text-slate">{offering.description}</p>
                 </div>
               ))}
             </div>
@@ -188,7 +188,7 @@ export default async function ServiceDetailPage({
       <Section className="bg-white" tight divider>
         <Reveal>
           <div className="flex flex-col gap-8">
-            <h2 className="text-h3">Explore our other services</h2>
+            <h2 className="text-h4">Explore our other services</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
               {otherServices.map((other) => {
                 const description = Array.isArray(other.description)
@@ -232,16 +232,16 @@ export default async function ServiceDetailPage({
                       </div>
                     )}
                     <div className="flex flex-1 flex-col gap-2 px-5 py-4">
-                      <span className="text-lg font-serif font-semibold leading-snug text-ink">
+                      <span className="text-18 font-semibold leading-snug text-ink">
                         {other.title}
                       </span>
                       <div className="flex flex-1 flex-col gap-2">
-                        <p className="text-sm text-slate line-clamp-2">{description}</p>
+                        <p className="text-16 text-slate line-clamp-2">{description}</p>
                         <div className="flex flex-wrap gap-1.5">
                           {tags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full bg-peach px-2.5 py-1 text-xs font-semibold text-brand"
+                              className="rounded-full bg-peach px-2.5 py-1 text-14 font-semibold text-brand"
                             >
                               {tag}
                             </span>

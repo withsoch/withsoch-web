@@ -30,18 +30,23 @@ export function HeroNetworkDiagram() {
       { id: 10, x: 0.88, y: 0.66, side: "out" },
     ];
 
+    // Mobile vertical spacing is budgeted, not eyeballed. Usable height is
+    // ~202px; each node needs its icon (~11px tall) plus the label gap plus the
+    // label itself - about 28px. The old 0.08 steps gave 16px, which only
+    // worked because the labels were 6px and unreadable. 0.145 steps give ~29px
+    // and let the labels be legible without colliding with the icon below.
     const NODES_MOBILE = [
       { id: 0, x: 0.08, y: 0.02, side: "in" }, // CRM
-      { id: 1, x: 0.08, y: 0.18, side: "in" }, // EMAILS
-      { id: 2, x: 0.08, y: 0.26, side: "in" }, // SLACK
-      { id: 3, x: 0.14, y: 0.32, side: "in" }, // AD DATA
-      { id: 4, x: 0.84, y: 0.4, side: "out" }, // TICKETS
-      { id: 5, x: 0.88, y: 0.48, side: "out" }, // FORMS
-      { id: 6, x: 0.46, y: 0.22, side: "core" },
-      { id: 7, x: 0.82, y: 0.04, side: "out" }, // PIPELINE BUILT
-      { id: 8, x: 0.88, y: 0.14, side: "out" }, // TEAM NOTIFIED
-      { id: 9, x: 0.88, y: 0.24, side: "out" }, // DATA ENRICHED
-      { id: 10, x: 0.88, y: 0.32, side: "out" }, // BOARD READY
+      { id: 1, x: 0.08, y: 0.165, side: "in" }, // EMAILS
+      { id: 2, x: 0.08, y: 0.31, side: "in" }, // SLACK
+      { id: 3, x: 0.14, y: 0.455, side: "in" }, // AD DATA
+      { id: 4, x: 0.84, y: 0.6, side: "out" }, // TICKETS
+      { id: 5, x: 0.88, y: 0.745, side: "out" }, // FORMS
+      { id: 6, x: 0.46, y: 0.31, side: "core" },
+      { id: 7, x: 0.82, y: 0.02, side: "out" }, // PIPELINE BUILT
+      { id: 8, x: 0.88, y: 0.165, side: "out" }, // TEAM NOTIFIED
+      { id: 9, x: 0.88, y: 0.31, side: "out" }, // DATA ENRICHED
+      { id: 10, x: 0.88, y: 0.455, side: "out" }, // BOARD READY
     ];
 
     const ICONS_BY_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -170,6 +175,14 @@ export function HeroNetworkDiagram() {
     const INK = "28,43,38";
     const BRAND = "255,92,53";
     const LINE = "231,226,215";
+
+    // Canvas text does not inherit CSS, so the font stack has to be passed to
+    // ctx.font explicitly. next/font emits a hashed family name
+    // (__Wix_Madefor_Text_xxxxx), so read it off the element rather than
+    // hardcoding - the hash changes between builds. The canvas inherits
+    // font-family from body, so getComputedStyle gives us the real stack.
+    const LABEL_FONT =
+      getComputedStyle(canvas).fontFamily || "system-ui, sans-serif";
 
     const pulses: any[] = [];
     const completions: any[] = [];
@@ -344,8 +357,8 @@ export function HeroNetworkDiagram() {
         ctx!.beginPath();
         ctx!.arc(x, y, coreR, 0, Math.PI * 2);
         ctx!.fill();
-        const fs = size * 1.1;
-        ctx!.font = `500 ${fs}px -apple-system,sans-serif`;
+        const fs = isMobile ? 11 : 16;
+        ctx!.font = `600 ${fs}px ${LABEL_FONT}`;
         ctx!.fillStyle = `rgba(255,255,255,${a})`;
         ctx!.textAlign = "center";
         ctx!.textBaseline = "middle";
@@ -597,13 +610,25 @@ export function HeroNetworkDiagram() {
           ctx!.restore();
         }
         if (n.label) {
-          const ld = isCore ? (isMobile ? 22 : 32) : isOut ? (isMobile ? 14 : 22) : isMobile ? 12 : 20;
-          const la = (isCore ? 0.58 : isOut ? 0.4 : 0.32) + n.activation * 0.3;
-          ctx!.font = `${isCore ? (isMobile ? 8 : 11) : isMobile ? 6 : 8}px -apple-system,sans-serif`;
+          const ld = isCore ? (isMobile ? 22 : 34) : isOut ? (isMobile ? 12 : 24) : isMobile ? 12 : 22;
+          // Was 0.32-0.58 base: ink at a third opacity reads as pale grey, which
+          // on top of 6-8px type made these labels effectively unreadable.
+          // Raised into the near-solid range and capped so activation cannot
+          // push past 1.
+          // One opacity for every label. At 10px/8px the difference between 0.8
+          // and 0.9 is imperceptible, so a second tier only adds a hierarchy
+          // that reads as inconsistent rather than deliberate.
+          const la = Math.min(1, 0.9 + n.activation * 0.18);
+          const lfs = isCore ? (isMobile ? 10 : 12) : isMobile ? 8 : 10;
+          ctx!.font = `600 ${lfs}px ${LABEL_FONT}`;
+          // Uppercase micro-labels need tracking to stay legible; supported in
+          // current Chrome/Safari/Firefox and ignored harmlessly elsewhere.
+          ctx!.letterSpacing = isCore ? "0.06em" : "0.05em";
           ctx!.fillStyle = `rgba(${INK},${la})`;
           ctx!.textAlign = "center";
           ctx!.textBaseline = "top";
           ctx!.fillText(n.label, nx, ny + ld);
+          ctx!.letterSpacing = "0px";
         }
       });
 

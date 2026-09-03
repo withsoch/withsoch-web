@@ -123,12 +123,12 @@ export function AboutStats() {
                   <span className="text-h2 text-ink tracking-tight transition-colors duration-300 group-hover:text-brand">
                     {stat.value}
                   </span>
-                  <span className="mt-1 shrink-0 font-mono text-xs font-medium tracking-widest text-muted">
+                  <span className="mt-1 shrink-0 tabular-nums text-14 font-medium tracking-widest text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="flex flex-col gap-4">
-                  <p className="text-sm leading-relaxed text-slate">{stat.label}</p>
+                  <p className="text-16 leading-relaxed text-slate">{stat.label}</p>
                   <WorkflowNodes />
                 </div>
               </div>
@@ -143,8 +143,8 @@ export function AboutStats() {
               <Icon name="spark" className="h-5 w-5" />
             </span>
             <div className="flex-1">
-              <h4 className="text-h3 text-ink">{ABOUT_STATS_BOTTOM.title}</h4>
-              <p className="mt-1 text-sm text-slate">{ABOUT_STATS_BOTTOM.sub}</p>
+              <h4 className="text-h4 text-ink">{ABOUT_STATS_BOTTOM.title}</h4>
+              <p className="mt-1 text-16 text-slate">{ABOUT_STATS_BOTTOM.sub}</p>
             </div>
             <Icon
               name="arrow"

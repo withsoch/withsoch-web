@@ -68,12 +68,12 @@ export function CaseStudiesCarousel() {
                 aria-hidden={i !== current}
               >
                 <div className="flex flex-1 flex-col px-8 pt-8 max-[820px]:px-5 max-[820px]:pt-5">
-                  <span className="mb-3.5 inline-flex w-fit items-center rounded-full border border-brand/35 px-3 py-1 text-[0.8rem] font-medium tracking-[0.02em] text-brand-dark max-[820px]:mb-2.5 max-[820px]:px-2.5 max-[820px]:text-xs">
+                  <span className="mb-3.5 inline-flex w-fit items-center rounded-full border border-brand/35 px-3 py-1 text-14 font-medium tracking-[0.02em] text-brand-dark max-[820px]:mb-2.5 max-[820px]:px-2.5 max-[820px]:text-14">
                     {study.carouselTag ?? study.category}
                   </span>
 
                   <div className="mb-4 flex min-h-[3.5em] items-center max-[820px]:mb-4 max-[820px]:min-h-0 max-[820px]:items-start">
-                    <h2 className="text-h3 font-display font-medium text-ink max-[820px]:text-xl max-[390px]:text-lg">
+                    <h2 className="text-h4 font-display font-medium text-ink max-[820px]:text-18 max-[390px]:text-18">
                       {study.title}
                     </h2>
                   </div>
@@ -93,25 +93,25 @@ export function CaseStudiesCarousel() {
 
                     <div className="flex h-full flex-col justify-between pb-7 max-[820px]:pb-0">
                       <div>
-                        <div className="mb-1 text-[1.05rem] font-semibold text-ink max-[820px]:text-[0.95rem]">
+                        <div className="mb-1 text-18 font-semibold text-ink max-[820px]:text-16">
                           {study.company}
                         </div>
-                        <div className="mb-4 inline-block w-fit rounded-full border border-line bg-white px-3 py-0.5 text-xs text-muted max-[820px]:mb-3.5 max-[820px]:text-[0.8rem]">
+                        <div className="mb-4 inline-block w-fit rounded-full border border-line bg-white px-3 py-0.5 text-14 text-muted max-[820px]:mb-3.5 max-[820px]:text-14">
                           {study.region} &nbsp;·&nbsp; {study.duration}{" "}
                           &nbsp;·&nbsp; {study.service}
                         </div>
 
-                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.8rem]">
+                        <span className="mb-1 block text-14 font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-14">
                           Challenge
                         </span>
-                        <p className="mb-4 text-[0.95rem] leading-relaxed text-slate max-[820px]:mb-3 max-[820px]:text-[0.82rem]">
+                        <p className="mb-4 text-16 leading-relaxed text-slate max-[820px]:mb-3 max-[820px]:text-14">
                           {study.challenge}
                         </p>
 
-                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-[0.8rem]">
+                        <span className="mb-1 block text-14 font-semibold uppercase tracking-[0.05em] text-brand max-[820px]:text-14">
                           Solution
                         </span>
-                        <p className="text-[0.95rem] leading-relaxed text-slate max-[820px]:text-[0.82rem]">
+                        <p className="text-16 leading-relaxed text-slate max-[820px]:text-14">
                           {study.solution}
                         </p>
                       </div>
@@ -123,10 +123,10 @@ export function CaseStudiesCarousel() {
                               key={stat.label}
                               className="flex flex-1 flex-col items-center gap-1 rounded-xl border border-line bg-white px-4 py-3.5 text-center max-[820px]:rounded-lg max-[820px]:px-2.5 max-[820px]:py-3"
                             >
-                              <div className="text-[clamp(20px,2.2vw,26px)] font-bold leading-none tracking-tight text-brand max-[820px]:text-[clamp(18px,5vw,22px)] max-[390px]:text-[17px]">
+                              <div className="text-[clamp(20px,2.2vw,26px)] font-bold leading-none tracking-tight text-brand max-[820px]:text-[clamp(18px,5vw,22px)] max-[390px]:text-18">
                                 {stat.value}
                               </div>
-                              <div className="text-sm leading-snug text-slate max-[820px]:text-[0.8rem]">
+                              <div className="text-16 leading-snug text-slate max-[820px]:text-14">
                                 {stat.label}
                               </div>
                             </div>
@@ -136,7 +136,7 @@ export function CaseStudiesCarousel() {
                         <div className="flex justify-end max-[820px]:justify-stretch">
                           <Link
                             href={study.href ?? `/case-studies/${study.slug}`}
-                            className="inline-flex items-center gap-2 rounded-lg border border-ink/20 px-5 py-2.5 text-[0.8rem] font-semibold text-ink transition-colors hover:border-ink/45 hover:bg-ink/5 max-[820px]:w-full max-[820px]:justify-center"
+                            className="inline-flex items-center gap-2 rounded-lg border border-ink/20 px-5 py-2.5 text-14 font-semibold text-ink transition-colors hover:border-ink/45 hover:bg-ink/5 max-[820px]:w-full max-[820px]:justify-center"
                           >
                             View detail
                             <Icon name="arrow" className="h-3.5 w-3.5" />

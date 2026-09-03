@@ -38,7 +38,7 @@ export function ServiceTestimonial({ testimonial }: ServiceTestimonialProps) {
   return (
     <figure className="mx-auto flex max-w-2xl flex-col gap-8">
       <div className={`h-px w-full bg-gradient-to-r ${accentFrom[accent] ?? accentFrom.brand} to-line`} />
-      <blockquote className="lead text-ink">{testimonial.quote}</blockquote>
+      <blockquote className="text-lead text-ink">{testimonial.quote}</blockquote>
       <figcaption className="flex items-center gap-4">
         {testimonial.image ? (
           <Image
@@ -52,7 +52,7 @@ export function ServiceTestimonial({ testimonial }: ServiceTestimonialProps) {
           />
         ) : (
           <span
-            className={`inline-flex h-14 w-14 items-center justify-center rounded-full bg-mist text-sm font-semibold text-ink ring-2 ring-offset-2 ring-offset-white ${
+            className={`inline-flex h-14 w-14 items-center justify-center rounded-full bg-mist text-16 font-semibold text-ink ring-2 ring-offset-2 ring-offset-white ${
               accentRing[accent] ?? accentRing.brand
             }`}
           >
@@ -61,7 +61,7 @@ export function ServiceTestimonial({ testimonial }: ServiceTestimonialProps) {
         )}
         <span className={`flex flex-col gap-1 border-l-2 pl-4 ${accentBorder[accent] ?? accentBorder.brand}`}>
           <span className="font-semibold text-ink">{testimonial.name}</span>
-          <span className="font-mono text-xs uppercase tracking-widest text-muted">
+          <span className="text-14 uppercase tracking-widest text-muted">
             {testimonial.role}
           </span>
         </span>

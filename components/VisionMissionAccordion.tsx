@@ -81,7 +81,7 @@ export function VisionMissionAccordion() {
                   <Icon name={row.icon} className="h-5.5 w-5.5" />
                 </span>
                 <span
-                  className={`text-h3 text-[1.05rem] flex-1 transition-colors duration-300 ease-in-out ${
+                  className={`text-h4 text-18 flex-1 transition-colors duration-300 ease-in-out ${
                     isOpen ? "text-brand" : "text-ink"
                   }`}
                 >
@@ -111,7 +111,7 @@ export function VisionMissionAccordion() {
                           {row.tags.map((tag) => (
                             <li
                               key={tag}
-                              className="rounded-full bg-peach px-3.5 py-1.5 text-sm font-medium text-brand"
+                              className="rounded-full bg-peach px-3.5 py-1.5 text-16 font-medium text-brand"
                             >
                               {tag}
                             </li>

@@ -46,7 +46,7 @@ export function Positioning() {
         />
         <div className="flex flex-col justify-between gap-8">
           <div className="flex flex-col gap-8">
-            <p className="lead text-slate max-w-xl">{HERO.sub}</p>
+            <p className="text-lead text-slate max-w-xl">{HERO.sub}</p>
             <ul className="flex flex-col">
               {POINTS.map((point) => (
                 <li

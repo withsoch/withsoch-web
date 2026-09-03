@@ -37,7 +37,7 @@ export function NewsletterForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm text-white/75">Thanks - you&apos;re subscribed.</p>
+      <p className="text-16 text-white/75">Thanks - you&apos;re subscribed.</p>
     );
   }
 
@@ -51,17 +51,17 @@ export function NewsletterForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email"
           aria-label="Email address"
-          className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-white/30"
+          className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-16 text-white placeholder:text-white/50 outline-none transition-colors focus:border-white/30"
         />
         <button
           type="submit"
           disabled={sending}
-          className="shrink-0 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark disabled:opacity-60"
+          className="shrink-0 rounded-lg bg-brand px-4 py-2.5 text-16 font-semibold text-white transition-colors hover:bg-brand-dark disabled:opacity-60"
         >
           {sending ? "Sending..." : "Subscribe"}
         </button>
       </form>
-      {error && <p className="mt-2 text-sm text-brand">{error}</p>}
+      {error && <p className="mt-2 text-16 text-brand">{error}</p>}
     </div>
   );
 }

@@ -92,7 +92,7 @@ export function IndustriesSlider() {
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <span className="absolute bottom-5 left-5 right-5 text-xl font-medium leading-snug text-cream">
+            <span className="absolute bottom-5 left-5 right-5 text-18 font-medium leading-snug text-cream">
               {industry.name}
             </span>
           </div>

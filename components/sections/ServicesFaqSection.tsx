@@ -63,7 +63,7 @@ export function ServicesFaqSection() {
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-baseline gap-3">
-                    <span className="text-sm font-semibold text-brand">{faq.no}</span>
+                    <span className="text-16 font-semibold text-brand">{faq.no}</span>
                     <span className="font-semibold text-ink">{faq.q}</span>
                   </span>
                   <Icon

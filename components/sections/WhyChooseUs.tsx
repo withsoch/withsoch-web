@@ -65,7 +65,7 @@ export function WhyChooseUs() {
         <h2 className="text-h2 max-w-3xl">
           What makes us the right automation <span className="italic text-brand-deep">partner</span>
         </h2>
-        <p className="lead mt-5 max-w-2xl text-ink-soft">
+        <p className="text-lead mt-5 max-w-2xl text-ink-soft">
           We don&rsquo;t just identify automation opportunities. We build them, deploy them, and
           make sure they run.
         </p>
@@ -91,10 +91,10 @@ export function WhyChooseUs() {
                 strokeWidth={1.8}
               />
             </span>
-            <h3 className="text-h3 mt-4">
+            <h3 className="text-h4 mt-4">
               {feature.title}
             </h3>
-            <p className="mt-2.5 max-w-sm text-[0.95rem] text-ink-soft">{feature.description}</p>
+            <p className="mt-2.5 max-w-sm text-16 text-ink-soft">{feature.description}</p>
           </RevealItem>
         ))}
       </RevealGroup>
@@ -102,14 +102,14 @@ export function WhyChooseUs() {
       <Reveal className="mt-14 lg:mt-16" delay={0.06}>
         <figure className="group grid grid-cols-1 items-center gap-6 overflow-hidden rounded-2xl bg-white p-6 shadow-soft transition-shadow duration-300 hover:shadow-card sm:grid-cols-[1.6fr_0.4fr] sm:gap-8 sm:p-8">
           <div className="flex flex-col gap-5">
-            <blockquote className="lead max-w-none text-ink">
+            <blockquote className="text-lead max-w-none text-ink">
               {testimonial.quote}
             </blockquote>
             <div className="flex flex-col gap-2">
               <span className="h-px w-8 bg-ink/12" aria-hidden="true" />
               <cite className="not-italic">
                 <span className="block font-semibold text-ink">{testimonial.name}</span>
-                <span className="block text-sm text-muted">{testimonial.role}</span>
+                <span className="block text-16 text-muted">{testimonial.role}</span>
               </cite>
             </div>
           </div>
@@ -124,7 +124,7 @@ export function WhyChooseUs() {
               />
             ) : (
               <span
-                className={`flex h-full w-full items-center justify-center text-3xl font-semibold transition-transform duration-300 group-hover:scale-105 ${
+                className={`flex h-full w-full items-center justify-center text-22 font-semibold transition-transform duration-300 group-hover:scale-105 ${
                   accentBg[testimonial.accent] ?? accentBg.brand
                 }`}
               >

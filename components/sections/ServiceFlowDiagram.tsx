@@ -60,7 +60,7 @@ function ChipRow({ chips, bg, fg }: { chips: Chip[]; bg: string; fg: string }) {
           style={{ backgroundColor: bg, color: fg }}
         >
           <Icon name={chip.icon} className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true" />
-          <span className="text-[0.7rem] font-semibold leading-tight sm:text-xs">{chip.label}</span>
+          <span className="text-12 font-semibold leading-tight sm:text-14">{chip.label}</span>
         </div>
       ))}
     </div>
@@ -106,7 +106,7 @@ function CoreNode({ icon, label, style }: { icon: IconName; label: string; style
       <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/10 sm:h-10 sm:w-10">
         <Icon name={icon} className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
       </span>
-      <span className="text-[0.65rem] font-semibold tracking-wide sm:text-xs">{label}</span>
+      <span className="text-12 font-semibold tracking-wide sm:text-14">{label}</span>
     </div>
   );
 }
@@ -127,14 +127,14 @@ export function ServiceFlowDiagram({ data }: { data: ServiceFlowDiagramData }) {
     <div role="img" aria-label={buildAriaLabel(data)} className="h-full w-full">
       <DiagramFrame className="min-h-[420px]">
         <div className="flex w-full max-w-sm flex-col gap-1" aria-hidden="true">
-          <span className="mb-1 text-left text-[0.65rem] font-bold uppercase tracking-widest text-muted">
+          <span className="mb-1 text-left text-12 font-bold uppercase tracking-widest text-muted">
             01 {data.topRow.label}
           </span>
           <ChipRow chips={topItems} bg="#d3e2f2" fg="#22344a" />
 
           <DownArrows count={topItems.length} />
 
-          <span className="mb-1 text-left text-[0.65rem] font-bold uppercase tracking-widest text-muted">
+          <span className="mb-1 text-left text-12 font-bold uppercase tracking-widest text-muted">
             02 {data.core.label}
           </span>
           <div
@@ -148,7 +148,7 @@ export function ServiceFlowDiagram({ data }: { data: ServiceFlowDiagramData }) {
 
           <DownArrows count={bottomItems.length} />
 
-          <span className="mb-1 text-left text-[0.65rem] font-bold uppercase tracking-widest text-muted">
+          <span className="mb-1 text-left text-12 font-bold uppercase tracking-widest text-muted">
             03 {data.bottomRow.label}
           </span>
           <ChipRow chips={bottomItems} bg="#d3e0c4" fg="#2c3a20" />

@@ -79,7 +79,7 @@ export function ServiceAccordion({
         <div className="flex flex-col gap-5">
           {service.ourApproach.map((step, i) => (
             <div key={step}>
-              <p className="text-sm font-semibold text-brand">
+              <p className="text-16 font-semibold text-brand">
                 Step {String(i + 1).padStart(2, "0")}
               </p>
               <p className="text-slate leading-snug">{step}</p>
@@ -141,7 +141,7 @@ export function ServiceAccordion({
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
               <span
-                className={`text-h3 text-[1.02rem] flex-1 transition-colors duration-300 ease-in-out ${
+                className={`text-h4 text-16 flex-1 transition-colors duration-300 ease-in-out ${
                   isOpen ? "text-brand" : "text-ink"
                 }`}
               >

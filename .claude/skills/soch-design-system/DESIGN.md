@@ -166,13 +166,41 @@ Add this to `app/globals.css` after the `@theme` block:
 }
 ```
 
-The **fluid type scale** — use these classes for headings/lead everywhere instead
-of raw Tailwind text sizes:
+The type system has two halves.
+
+**1. UI scale — numeric tokens, 12→26px in steps of 2.** The token name *is*
+the size, so nothing needs looking up. Each declares its own line-height,
+tightening as size grows. An explicit `leading-*` still overrides.
+
+```css
+@theme {
+  --text-12: 12px; --text-12--line-height: 1.5;
+  --text-14: 14px; --text-14--line-height: 1.5;
+  --text-16: 16px; --text-16--line-height: 1.5;   /* body default */
+  --text-18: 18px; --text-18--line-height: 1.45;
+  --text-20: 20px; --text-20--line-height: 1.4;
+  --text-22: 22px; --text-22--line-height: 1.35;
+  --text-24: 24px; --text-24--line-height: 1.3;
+  --text-26: 26px; --text-26--line-height: 1.25;
+}
+```
+
+> The old `text-xs`/`sm`/`base`/`md`/`lg`/`xl`/`2xl`/`3xl`/`4xl` names are
+> **gone from `@theme`**. Tailwind still ships its own defaults under those
+> names, so writing `text-sm` compiles fine and renders at Tailwind's 14px
+> rather than anything in this design system. It fails silently — always use a
+> numeric token. Raw `text-[0.95rem]` values are equally out; round to a step.
+
+**2. Fluid display ramp** — for headings and lead paragraphs, never raw sizes:
 
 ```css
 @layer components {
-  .text-display {
+  .text-h1 {
     font-size: clamp(2.7rem, 1.5rem + 4.4vw, 4.7rem);
+    line-height: 1.02; letter-spacing: -0.018em; font-weight: 500;
+  }
+  .text-h1-page {            /* inner-page title, smaller than the home hero */
+    font-size: clamp(2.5rem, 1.5rem + 3.2vw, 3.9rem);
     line-height: 1.02; letter-spacing: -0.018em; font-weight: 500;
   }
   .text-h2 {
@@ -180,22 +208,31 @@ of raw Tailwind text sizes:
     line-height: 1.06; letter-spacing: -0.014em; font-weight: 500;
   }
   .text-h3 {
+    font-size: clamp(1.625rem, 1.35rem + 1.1vw, 2.25rem);
+    line-height: 1.12; letter-spacing: -0.013em; font-weight: 500;
+  }
+  .text-h4 {
     font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.7rem);
     line-height: 1.16; font-weight: 500;
   }
-  .lead {
+  .text-lead {
     font-size: clamp(1.075rem, 1rem + 0.4vw, 1.28rem);
     line-height: 1.62; color: var(--color-slate);
   }
 }
 ```
 
+**Font family.** Wix Madefor Text site-wide, weights **400–800 plus true
+italic**. There is no 300 — `font-light` silently resolves to 400, so write
+`font-normal` and mean it. No serif or mono family is loaded: `font-serif` and
+`font-mono` drop the text onto the OS default and must not be used.
+
 Signature moves: **weight `500`** on display headings, tight negative
 tracking, and `text-wrap: balance`. Headlines routinely carry **one word
 or phrase in italic brand orange** for emphasis:
 
 ```tsx
-<h1 className="text-display">
+<h1 className="text-h1">
   Your LinkedIn should be your most credible business asset.{" "}
   <span className="italic text-brand">We make it one.</span>
 </h1>
@@ -282,8 +319,8 @@ const variants = {
   light:     "bg-transparent text-white ring-1 ring-white/45 hover:bg-white/10",
 };
 const sizes = {
-  md: "px-5 py-2.5 text-[0.95rem]",
-  lg: "px-6 py-3 text-base",
+  md: "px-5 py-2.5 text-16",
+  lg: "px-6 py-3 text-18",
 };
 // base:
 "group inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-200"
@@ -303,7 +340,7 @@ Small bordered pill with a rotated orange square — the standard section kicker
 @layer components {
   .eyebrow {
     display: inline-flex; align-items: center; gap: 0.45rem;
-    font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600;
+    font-family: var(--font-sans); font-size: var(--text-14); font-weight: 600;
     color: var(--color-ink); background: #fff;
     border: 1px solid var(--color-line); border-radius: 8px;
     padding: 0.32rem 0.72rem; text-transform: none;
@@ -321,7 +358,7 @@ Small bordered pill with a rotated orange square — the standard section kicker
 <div className="group flex h-full flex-col rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25">
   …
   <div className="rule-dashed my-4" />   {/* divide with a hairline, not a nested box */}
-  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-brand-dark">
+  <span className="inline-flex items-center gap-1.5 text-16 font-semibold text-ink group-hover:text-brand-dark">
     Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
   </span>
 </div>
@@ -330,7 +367,7 @@ Small bordered pill with a rotated orange square — the standard section kicker
 ### Check-list row
 
 ```tsx
-<li className="flex items-start gap-2.5 text-sm text-slate">
+<li className="flex items-start gap-2.5 text-16 text-slate">
   <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={2.4} />
   Conversion-led headline, about & banner
 </li>
@@ -345,7 +382,7 @@ export function SectionHeading({ title, intro, align = "center" }) {
   return (
     <div className={`flex max-w-2xl flex-col gap-4 ${alignment}`}>
       <h2 className="text-h2">{title}</h2>
-      {intro && <p className="lead">{intro}</p>}
+      {intro && <p className="text-lead">{intro}</p>}
     </div>
   );
 }
@@ -359,7 +396,7 @@ export function SectionHeading({ title, intro, align = "center" }) {
     <h2 className="text-h2 text-white">
       Ready when you are<span className="text-brand">.</span>
     </h2>
-    <p className="lead mt-4 text-white/75">…</p>
+    <p className="text-lead mt-4 text-white/75">…</p>
     <div className="mt-8"><Button href="/book" arrow>Book a Discovery Call</Button></div>
   </div>
 </section>
@@ -371,8 +408,8 @@ export function SectionHeading({ title, intro, align = "center" }) {
 <section className="border-b border-line bg-mist">
   <div className="container-x py-16 sm:py-20 lg:py-24">
     <div className="max-w-3xl">
-      <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">{title}</h1>
-      {intro && <p className="lead mt-6 max-w-2xl">{intro}</p>}
+      <h1 className="text-h1-page">{title}</h1>
+      {intro && <p className="text-lead mt-6 max-w-2xl">{intro}</p>}
     </div>
   </div>
 </section>
@@ -389,7 +426,7 @@ hover:bg-mist hover:text-ink`.
 ### Dark footer
 
 `bg-charcoal text-white/70`, grid `lg:grid-cols-[1.4fr_1fr_1fr_1fr]`, `py-14`.
-Column headings `text-sm font-semibold uppercase tracking-wider text-white`; links
+Column headings `text-16 font-semibold uppercase tracking-wider text-white`; links
 `text-white/60 hover:text-brand-light`; bottom bar split by `border-t
 border-white/10`.
 

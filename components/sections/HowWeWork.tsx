@@ -18,9 +18,9 @@ export function HowWeWork() {
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-peach text-brand">
                 <Icon name={step.icon} className="h-5.5 w-5.5" />
               </span>
-              <span className="text-sm font-semibold text-muted">{step.no}</span>
+              <span className="text-16 font-semibold text-muted">{step.no}</span>
             </div>
-            <h3 className="text-h3">{step.title}</h3>
+            <h3 className="text-h4">{step.title}</h3>
             <p className="text-slate">{step.description}</p>
           </div>
         ))}

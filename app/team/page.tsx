@@ -27,11 +27,11 @@ export default function TeamPage() {
         />
         <div className="container-x relative py-16 sm:py-20 lg:py-24">
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-            <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
+            <h1 className="text-h1-page">
               Meet Our Team
             </h1>
-            <p className="lead mt-2 max-w-2xl">The people behind the work</p>
-            <p className="lead max-w-2xl text-slate">
+            <p className="text-lead mt-2 max-w-2xl">The people behind the work</p>
+            <p className="text-lead max-w-2xl text-slate">
               We&apos;re operators and strategists who&apos;ve built and scaled businesses from
               the ground up. We bring hands-on experience across AI automations, strategy,
               operations, product, and growth to help founders cut through complexity, make

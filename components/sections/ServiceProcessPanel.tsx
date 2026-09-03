@@ -350,7 +350,7 @@ export function ServiceProcessPanel({ service }: ServiceProcessPanelProps) {
                 <span className="w-full max-w-xs sm:max-w-sm">
                   {Diagram ? <Diagram /> : <Icon name={service.icon} className="h-16 w-16 text-brand" />}
                 </span>
-                <span className="text-h3 text-[1.05rem] text-ink">{service.title}</span>
+                <span className="text-h4 text-18 text-ink">{service.title}</span>
               </motion.div>
             )}
           </AnimatePresence>

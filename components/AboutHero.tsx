@@ -15,10 +15,10 @@ export function AboutHero() {
       <div className="container-x py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-3xl flex flex-col items-center gap-4 text-center">
           <span className="eyebrow w-fit">About Soch</span>
-          <h1 className="text-display text-[clamp(2.5rem,1.5rem+3.2vw,3.9rem)]">
+          <h1 className="text-h1-page">
             {ABOUT_HERO.headline}
           </h1>
-          <p className="lead mt-2 max-w-2xl">{ABOUT_HERO.sub}</p>
+          <p className="text-lead mt-2 max-w-2xl">{ABOUT_HERO.sub}</p>
           <div className="mt-4">
             <Button href={ABOUT_HERO.ctaHref} size="lg" arrow>
               {ABOUT_HERO.ctaLabel}
@@ -49,7 +49,7 @@ export function AboutHero() {
         </div>
 
         {/* Industry tags footer row */}
-        <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+        <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-16 text-muted">
           {ABOUT_HERO.tags.map((tag, i) => (
             <span key={tag} className="flex items-center gap-3">
               {tag}

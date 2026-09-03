@@ -76,13 +76,27 @@ headings, 400 for body), variable applied on `<html>`.
 ```
 
 Body is white `#ffffff`; warm tones are for **sections**. `h1–h4` default to
-**font-weight 500**, tracking `-0.012em`, `text-wrap: balance`. Fluid type
-classes (in `@layer components`): `.text-display`
-`clamp(2.7rem,1.5rem+4.4vw,4.7rem)`/500, `.text-h2`
+**font-weight 500**, tracking `-0.012em`, `text-wrap: balance`.
+
+**UI type scale — numeric tokens only.** `text-12` `text-14` `text-16`
+`text-18` `text-20` `text-22` `text-24` `text-26`. The name is the pixel size.
+Each carries its own line-height. Do **not** use `text-xs`/`text-sm`/`text-base`
+/`text-lg`/`text-xl`/`text-2xl`…: those names no longer exist in `@theme`, so
+they silently fall back to Tailwind's stock defaults and render at the wrong
+size. Do not add raw `text-[0.95rem]` values either — round to a step.
+
+**Fluid display ramp** (in `@layer components`): `.text-h1`
+`clamp(2.7rem,1.5rem+4.4vw,4.7rem)`/500, `.text-h1-page`
+`clamp(2.5rem,1.5rem+3.2vw,3.9rem)`/500 for inner-page titles, `.text-h2`
 `clamp(2.05rem,1.4rem+2.3vw,3.3rem)`/500, `.text-h3`
-`clamp(1.35rem,1.15rem+0.7vw,1.7rem)`/500, `.lead`
+`clamp(1.625rem,1.35rem+1.1vw,2.25rem)`/500, `.text-h4`
+`clamp(1.35rem,1.15rem+0.7vw,1.7rem)`/500, `.text-lead`
 `clamp(1.075rem,1rem+0.4vw,1.28rem)` in `text-slate`. Headlines put one word in
-`italic text-brand`.
+`italic text-brand` — the family ships true italics, so this is a real italic.
+
+Wix Madefor Text ships **400–800 only**. There is no 300: `font-light`
+resolves to 400. Never use `font-serif` or `font-mono` — no such family is
+loaded and the text drops to the OS default.
 
 ## Class cheat-sheet
 
@@ -90,7 +104,8 @@ classes (in `@layer components`): `.text-display`
 |---|---|
 | Page width | `.container-x` (max-w 78rem, padding-inline 1.5rem → 2.5rem @ lg) |
 | Section padding | `py-20 sm:py-24 lg:py-28` (tight `py-16 sm:py-20`) |
-| Headings / lead | `text-display` · `text-h2` · `text-h3` · `lead` |
+| Display ramp | `text-h1` (home hero) · `text-h1-page` (inner page title) · `text-h2` · `text-h3` · `text-h4` · `text-lead` |
+| UI sizes | `text-12` … `text-26`, in steps of 2 (never `text-sm`/`text-base`/…) |
 | Text colors | head `text-ink`, body `text-slate`, strong `text-ink-soft`, meta `text-muted` |
 | Accent | `text-brand`/`bg-brand`, hover `brand-dark` — **flat, no gradients/glow** |
 | Surfaces | white ↔ `bg-mist` ↔ dark `bg-forest`/`bg-charcoal` |
@@ -108,19 +123,19 @@ gap-2 rounded-lg font-semibold transition-colors duration-200`; variants
 `primary: bg-brand text-white hover:bg-brand-dark`, `secondary: bg-white text-ink
 ring-1 ring-ink/20 hover:ring-ink/45`, `dark: bg-ink text-white hover:bg-ink-soft`,
 `light: bg-transparent text-white ring-1 ring-white/45 hover:bg-white/10`; sizes
-`md: px-5 py-2.5 text-[0.95rem]`, `lg: px-6 py-3 text-base`. Optional hover-arrow
+`md: px-5 py-2.5 text-16`, `lg: px-6 py-3 text-18`. Optional hover-arrow
 `<Icon name="arrow" className="h-[1.05em] w-[1.05em] transition-transform group-hover:translate-x-0.5" />`.
 
 **Eyebrow** — bordered pill kicker: white bg, `1px solid var(--color-line)`,
 `border-radius: 8px`, `0.8rem/600`, with a `::before` 0.5rem orange square rotated
 45°.
 
-**Check-row** — `<li className="flex items-start gap-2.5 text-sm text-slate">` +
+**Check-row** — `<li className="flex items-start gap-2.5 text-16 text-slate">` +
 `<Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={2.4} />`.
 
 **CtaBand** (closes every page) — `bg-forest`, centered `mx-auto max-w-3xl
 text-center`, `text-h2 text-white` with optional trailing `<span
-className="text-brand">.</span>`, `lead text-white/75`, then a Button.
+className="text-brand">.</span>`, `text-lead text-white/75`, then a Button.
 
 **Icons** (`components/Icons.tsx`) — bespoke set, no library. `<Icon>` on a typed
 `IconName` union; `viewBox 0 0 24 24`, `fill=none`, `stroke=currentColor`,

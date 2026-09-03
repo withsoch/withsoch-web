@@ -46,7 +46,7 @@ export function Nav() {
 
   const navLinkClass = (href: string) => {
     const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
-    return `rounded-full px-4 py-2 text-base font-medium transition-colors ${
+    return `rounded-full px-4 py-2 text-16 font-medium transition-colors ${
       active ? "bg-mist text-ink" : "text-ink/70 hover:text-ink"
     }`;
   };
@@ -84,7 +84,7 @@ export function Nav() {
           >
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink"
+              className="flex items-center gap-1.5 rounded-full px-4 py-2 text-16 font-medium text-ink/70 transition-colors hover:text-ink"
               aria-expanded={open}
             >
               Menu
@@ -100,7 +100,7 @@ export function Nav() {
                   <div className="w-52 shrink-0">
                     <Link
                       href="/services"
-                      className="text-base font-medium text-ink underline decoration-ink/40 underline-offset-4 transition-colors hover:text-brand"
+                      className="text-16 font-medium text-ink underline decoration-ink/40 underline-offset-4 transition-colors hover:text-brand"
                     >
                       Services
                     </Link>
@@ -109,7 +109,7 @@ export function Nav() {
                         <li key={service.slug}>
                           <Link
                             href={`/services/${service.slug}`}
-                            className="text-sm text-ink hover:text-brand"
+                            className="text-16 text-ink hover:text-brand"
                           >
                             {service.title}
                           </Link>
@@ -119,34 +119,34 @@ export function Nav() {
                   </div>
 
                   <div className="w-52 shrink-0">
-                    <p className="text-base font-medium text-ink">Resources</p>
+                    <p className="text-16 font-medium text-ink">Resources</p>
                     <ul className="mt-4 space-y-2.5">
                       <li>
-                        <Link href="/team" className="text-sm text-ink hover:text-brand">
+                        <Link href="/team" className="text-16 text-ink hover:text-brand">
                           Our Team
                         </Link>
                       </li>
                       <li>
-                        <Link href="/blog" className="text-sm text-ink hover:text-brand">
+                        <Link href="/blog" className="text-16 text-ink hover:text-brand">
                           Blog
                         </Link>
                       </li>
                       <li>
-                        <Link href="/case-studies" className="text-sm text-ink hover:text-brand">
+                        <Link href="/case-studies" className="text-16 text-ink hover:text-brand">
                           Case Studies
                         </Link>
                       </li>
                     </ul>
 
-                    <p className="mt-5 text-base font-medium text-muted">Support</p>
+                    <p className="mt-5 text-16 font-medium text-muted">Support</p>
                     <ul className="mt-4 space-y-2.5">
                       <li>
-                        <Link href="/contact" className="text-sm text-ink hover:text-brand">
+                        <Link href="/contact" className="text-16 text-ink hover:text-brand">
                           Contact
                         </Link>
                       </li>
                       <li>
-                        <Link href="/privacy-policy" className="text-sm text-ink hover:text-brand">
+                        <Link href="/privacy-policy" className="text-16 text-ink hover:text-brand">
                           Privacy Policy
                         </Link>
                       </li>
@@ -168,7 +168,7 @@ export function Nav() {
                           />
                         )}
                       </div>
-                      <p className="mt-3 text-sm font-bold text-ink group-hover:text-brand">
+                      <p className="mt-3 text-16 font-bold text-ink group-hover:text-brand">
                         {featured.title}
                       </p>
                     </Link>
