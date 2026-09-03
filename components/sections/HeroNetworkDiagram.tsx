@@ -1,9 +1,59 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { BookingModal } from "@/components/BookingModal";
+
+/**
+ * Short "pop" for the AI core, synthesised rather than loaded as a file: no
+ * asset request, no format fallbacks, and nothing to preload. Autoplay policy
+ * is not a concern because this only ever runs from a real click.
+ *
+ * The context is created lazily and reused - constructing one per click leaks
+ * audio contexts, and browsers cap how many a page may hold.
+ */
+let audioCtx: AudioContext | null = null;
+
+function playPop() {
+  try {
+    const Ctor =
+      window.AudioContext ??
+      (window as unknown as { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext;
+    if (!Ctor) return;
+    audioCtx ??= new Ctor();
+    // Browsers may hand back a suspended context until a gesture unlocks it.
+    if (audioCtx.state === "suspended") void audioCtx.resume();
+
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(640, t);
+    osc.frequency.exponentialRampToValueAtTime(190, t + 0.085);
+
+    // Ramps are exponential, which cannot reach or start from zero.
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.16, t + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.1);
+
+    osc.start(t);
+    osc.stop(t + 0.11);
+  } catch {
+    // Audio is decoration - never let it break the click.
+  }
+}
 
 export function HeroNetworkDiagram() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Positioned over the AI core every frame. A real button rather than a
+  // canvas hit-test, so the CTA is focusable and announced to screen readers -
+  // a canvas has no DOM node to expose.
+  const coreBtnRef = useRef<HTMLButtonElement | null>(null);
+  const coreHoverRef = useRef(false);
+  const [booking, setBooking] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -351,7 +401,7 @@ export function HeroNetworkDiagram() {
         ctx!.lineTo(x + w * 0.05, y + h * 0.32);
         ctx!.stroke();
       } else if (type === 6) {
-        const coreR = isMobile ? 24 : 38;
+        const coreR = (isMobile ? 24 : 38) * (coreHoverRef.current ? 1.06 : 1);
         ctx!.save();
         ctx!.fillStyle = `rgba(${BRAND},${a})`;
         ctx!.beginPath();
@@ -589,6 +639,16 @@ export function HeroNetworkDiagram() {
         const ia = Math.min(1, (isCore ? 0.85 : isOut ? 0.64 : 0.56) + (isCore ? Math.max(n.activation, aiFlash) * 0.18 : n.activation * 0.3));
         const sz = isCore ? (isMobile ? 13 : 20) : isMobile ? 7 : 10;
         drawIcon(n.icon, nx, ny, sz, ia, flash);
+        if (isCore && coreBtnRef.current) {
+          // Sized to the hovered circle so the hit area never shrinks out from
+          // under the pointer mid-hover. Written straight to style rather than
+          // through state - this runs every frame.
+          const hitR = (isMobile ? 24 : 38) * 1.06;
+          const style = coreBtnRef.current.style;
+          style.width = `${hitR * 2}px`;
+          style.height = `${hitR * 2}px`;
+          style.transform = `translate(${nx - hitR}px, ${ny - hitR}px)`;
+        }
         if (isOut) {
           const bx = nx + sz * 0.72,
             by = ny - sz * 0.72,
@@ -690,9 +750,39 @@ export function HeroNetworkDiagram() {
     };
   }, []);
 
+  const openBooking = useCallback(() => {
+    playPop();
+    setBooking(true);
+  }, []);
+
+  const closeBooking = useCallback(() => {
+    setBooking(false);
+    // Send focus back to the trigger so keyboard users are not dropped at the
+    // top of the document.
+    coreBtnRef.current?.focus();
+  }, []);
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <canvas ref={canvasRef} className="block w-full h-full" />
-    </div>
+    <>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <canvas ref={canvasRef} className="block w-full h-full" />
+        {/* The wrapper stays pointer-events-none so the decorative diagram
+            never swallows clicks; only this control opts back in. */}
+        <button
+          ref={coreBtnRef}
+          type="button"
+          onClick={openBooking}
+          onPointerEnter={() => (coreHoverRef.current = true)}
+          onPointerLeave={() => (coreHoverRef.current = false)}
+          onFocus={() => (coreHoverRef.current = true)}
+          onBlur={() => (coreHoverRef.current = false)}
+          aria-haspopup="dialog"
+          aria-label="Book a call with Soch"
+          title="Book a call"
+          className="pointer-events-auto absolute left-0 top-0 cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        />
+      </div>
+      {booking && <BookingModal onClose={closeBooking} />}
+    </>
   );
 }
