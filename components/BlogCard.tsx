@@ -7,7 +7,7 @@ import { formatPostDate } from "@/lib/blog";
 
 function CategoryPill({ category }: { category: string }) {
   return (
-    <span className="w-fit rounded-full bg-peach px-3.5 py-1.5 text-16 font-medium text-brand">
+    <span className="inline-block w-fit shrink-0 whitespace-nowrap rounded-full bg-peach px-3.5 py-1.5 text-16 font-medium leading-none text-brand">
       {category}
     </span>
   );
@@ -29,7 +29,7 @@ export function BlogCardLarge({ post }: { post: BlogPost }) {
         />
       </div>
       <div className="flex flex-col gap-3 px-6 pb-6">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
           <CategoryPill category={post.category} />
           <span className="text-16 text-muted">{formatPostDate(post.date)}</span>
         </div>
@@ -56,7 +56,7 @@ export function BlogCardSmall({ post }: { post: BlogPost }) {
         />
       </div>
       <div className="flex flex-col gap-3 px-5 pb-5">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
           <CategoryPill category={post.category} />
           <span className="text-16 text-muted">{formatPostDate(post.date)}</span>
         </div>
