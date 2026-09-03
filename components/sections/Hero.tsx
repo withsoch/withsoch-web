@@ -3,12 +3,13 @@
 import { HERO } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { HeroNetworkDiagram } from "@/components/sections/HeroNetworkDiagram";
+import { BareSection } from "@/components/ui/Section";
 
 export function Hero() {
   return (
-    <section
-      className="bg-mist relative overflow-hidden pt-4 pb-14 sm:pt-5 sm:pb-16 lg:pt-6 lg:pb-20"
-      style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 2rem), 0 100%)" }}
+    <BareSection
+      bare
+      className="bg-mist relative pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14 mb-8 sm:mb-10 lg:mb-12 shadow-[0_24px_48px_-24px_rgba(16,49,41,0.28)]"
     >
       <div className="container-x relative h-[240px] sm:h-[280px] lg:h-[340px] rounded-2xl overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
@@ -31,6 +32,6 @@ export function Hero() {
           Explore our services
         </Button>
       </div>
-    </section>
+    </BareSection>
   );
 }
