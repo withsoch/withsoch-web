@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <BareSection
       bare
-      className="bg-mist relative rounded-b-[2rem] pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14 mb-8 sm:mb-10 lg:mb-12 shadow-[0_24px_48px_-24px_rgba(16,49,41,0.28)]"
+      className="bg-mist relative pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14"
     >
       <div className="container-x relative h-[240px] sm:h-[280px] lg:h-[340px] rounded-2xl overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
