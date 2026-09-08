@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import { isValidElement } from "react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -10,10 +9,11 @@ import {
   getAllPosts,
   getPostBySlug,
   formatPostDate,
+  getReadingTime,
   getHeadings,
   slugifyHeading,
 } from "@/lib/blog";
-import { PageHero } from "@/components/PageHero";
+import { BlogPostHero } from "@/components/sections/BlogPostHero";
 import { ArticleToc } from "@/components/ArticleToc";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -51,18 +51,13 @@ export default async function BlogDetailPage({
 
   return (
     <main className="flex-1">
-      <PageHero
-        eyebrow={post.category}
-        heading={post.title}
-        sub={formatPostDate(post.date)}
-        align="center"
+      <BlogPostHero
+        category={post.category}
+        title={post.title}
+        date={formatPostDate(post.date)}
+        readingTime={getReadingTime(post.body)}
+        image={post.image}
       />
-
-        <Section tight className="bg-white">
-          <div className="relative mx-auto aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-xl border border-line bg-mist">
-            <Image src={post.image} alt={post.title} fill className="object-cover" priority />
-          </div>
-        </Section>
 
         <Section className="bg-white">
         <div
