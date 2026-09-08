@@ -21,6 +21,29 @@ export type BlogPost = {
   body: string;
 };
 
+/**
+ * Frontmatter date as an ISO `YYYY-MM-DD` string.
+ *
+ * `date: 2026-05-25` is unquoted in every post, so js-yaml hands gray-matter a
+ * real Date object, and `String(...)` on that yields "Mon May 25 2026 …".
+ * Sorting those as strings orders posts by *weekday name*, which is what
+ * scrambled the blog index. Normalise to ISO here so the value is both sortable
+ * and safe to hand to `new Date()`.
+ */
+function isoDate(value: unknown): string {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? "" : value.toISOString().slice(0, 10);
+  }
+  if (typeof value !== "string" && typeof value !== "number") return "";
+  const text = String(value).trim();
+  if (!text) return "";
+  if (/^\d{4}-\d{2}-\d{2}/.test(text)) return text.slice(0, 10);
+  const parsed = new Date(text);
+  return Number.isNaN(parsed.getTime()) ? text : parsed.toISOString().slice(0, 10);
+}
+
+/** Posts newest first. Undated posts sort last, then alphabetically by slug so
+ *  the build output is deterministic. */
 export function getAllPosts(): BlogPost[] {
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
 
@@ -31,7 +54,7 @@ export function getAllPosts(): BlogPost[] {
     return {
       slug: data.slug ?? file.replace(/\.md$/, ""),
       title: data.title ?? "",
-      date: data.date ? String(data.date) : "",
+      date: isoDate(data.date),
       category: data.category ?? "",
       featured: Boolean(data.featured),
       excerpt: data.excerpt ?? "",
@@ -40,7 +63,14 @@ export function getAllPosts(): BlogPost[] {
     };
   });
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => {
+    if (a.date !== b.date) {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return a.date < b.date ? 1 : -1;
+    }
+    return a.slug.localeCompare(b.slug);
+  });
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
