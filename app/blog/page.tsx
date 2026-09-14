@@ -1,11 +1,11 @@
 // app/blog/page.tsx
 
 import { getAllPosts } from "@/lib/blog";
-import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
-import { BlogCardLarge, BlogCardSmall } from "@/components/BlogCard";
+import { BlogCardFeatured, BlogCardSmall } from "@/components/BlogCard";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
+import { BlogHero } from "@/components/sections/BlogHero";
 
 export default function BlogPage() {
   // getAllPosts is newest-first. The index shows posts in that order and
@@ -19,28 +19,17 @@ export default function BlogPage() {
 
   return (
     <main className="flex-1">
-      <PageHero
-        heading="Our Blogs"
-        sub="Ideas, playbooks, and field notes from building AI automation systems."
-        align="center"
-      />
+      <BlogHero />
 
       <Section className="bg-white">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {featured && (
-            <Reveal>
-              <BlogCardLarge post={featured} />
-            </Reveal>
-          )}
-          {secondary && (
-            <Reveal delay={0.08}>
-              <BlogCardLarge post={secondary} />
-            </Reveal>
-          )}
-        </div>
+        {featured && (
+          <Reveal>
+            <BlogCardFeatured post={featured} />
+          </Reveal>
+        )}
 
         {gridPosts.length > 0 && (
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {gridPosts.map((post, i) => (
               <Reveal key={post.slug} delay={(i % 3) * 0.08}>
                 <BlogCardSmall post={post} />
