@@ -5,7 +5,6 @@ import { Section } from "@/components/ui/Section";
 import { BlogCardFeatured, BlogCardSmall } from "@/components/BlogCard";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
-import { BlogHero } from "@/components/sections/BlogHero";
 
 export default function BlogPage() {
   // getAllPosts is newest-first. The index shows posts in that order and
@@ -19,8 +18,6 @@ export default function BlogPage() {
 
   return (
     <main className="flex-1">
-      <BlogHero />
-
       <Section className="bg-white">
         {featured && (
           <Reveal>
