@@ -31,7 +31,11 @@ export function getAllPosts(): BlogPost[] {
     return {
       slug: data.slug ?? file.replace(/\.md$/, ""),
       title: data.title ?? "",
-      date: data.date ? String(data.date) : "",
+      date: data.date
+        ? data.date instanceof Date
+          ? data.date.toISOString().slice(0, 10)
+          : String(data.date)
+        : "",
       category: data.category ?? "",
       featured: Boolean(data.featured),
       excerpt: data.excerpt ?? "",

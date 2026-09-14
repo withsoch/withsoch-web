@@ -9,7 +9,10 @@ import { Reveal } from "@/components/ui/Reveal";
 export default function BlogPage() {
   const posts = getAllPosts();
 
-  const featured = posts.find((post) => post.featured) ?? posts[0];
+  // posts is already sorted newest-first by getAllPosts, so the most recent
+  // post is always the one featured up top - no separate frontmatter flag
+  // to keep in sync as new posts are published.
+  const featured = posts[0];
   // Every remaining post, not just the next few - the grid wraps as the list grows.
   const rest = posts.filter((post) => post.slug !== featured.slug);
 
