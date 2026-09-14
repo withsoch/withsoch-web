@@ -146,3 +146,9 @@ export function formatPostDate(date: string): string {
     year: "numeric",
   });
 }
+
+/** Estimated reading time, rounded up, at ~200 words/minute. */
+export function getReadingTime(body: string): number {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
