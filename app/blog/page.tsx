@@ -1,31 +1,47 @@
 // app/blog/page.tsx
 
 import { getAllPosts } from "@/lib/blog";
+import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
-import { BlogCardFeatured, BlogCardSmall } from "@/components/BlogCard";
+import { BlogCardLarge, BlogCardSmall } from "@/components/BlogCard";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
 
 export default function BlogPage() {
+  // getAllPosts is newest-first. The index shows posts in that order and
+  // nothing else - a `featured: true` post no longer jumps the queue, because
+  // the two lead cards must always be the two most recent articles.
   const posts = getAllPosts();
 
-  // posts is already sorted newest-first by getAllPosts, so the most recent
-  // post is always the one featured up top - no separate frontmatter flag
-  // to keep in sync as new posts are published.
-  const featured = posts[0];
-  // Every remaining post, not just the next few - the grid wraps as the list grows.
-  const rest = posts.filter((post) => post.slug !== featured.slug);
+  const [featured, secondary] = posts;
+  // Every remaining post, not just the next three - the grid wraps as the list grows.
+  const gridPosts = posts.slice(2);
 
   return (
     <main className="flex-1">
-      <Section className="bg-white">
-        <Reveal>
-          <BlogCardFeatured post={featured} />
-        </Reveal>
+      <PageHero
+        heading="Our Blogs"
+        sub="Ideas, playbooks, and field notes from building AI automation systems."
+        align="center"
+      />
 
-        {rest.length > 0 && (
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((post, i) => (
+      <Section className="bg-white">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {featured && (
+            <Reveal>
+              <BlogCardLarge post={featured} />
+            </Reveal>
+          )}
+          {secondary && (
+            <Reveal delay={0.08}>
+              <BlogCardLarge post={secondary} />
+            </Reveal>
+          )}
+        </div>
+
+        {gridPosts.length > 0 && (
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {gridPosts.map((post, i) => (
               <Reveal key={post.slug} delay={(i % 3) * 0.08}>
                 <BlogCardSmall post={post} />
               </Reveal>
