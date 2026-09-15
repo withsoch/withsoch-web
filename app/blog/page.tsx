@@ -9,12 +9,14 @@ import { Reveal } from "@/components/ui/Reveal";
 export default function BlogPage() {
   // getAllPosts is newest-first. The index shows posts in that order and
   // nothing else - a `featured: true` post no longer jumps the queue, because
-  // the two lead cards must always be the two most recent articles.
+  // the lead card must always be the most recent article.
   const posts = getAllPosts();
 
-  const [featured, secondary] = posts;
-  // Every remaining post, not just the next three - the grid wraps as the list grows.
-  const gridPosts = posts.slice(2);
+  // One lead card, then every other post in the grid (it wraps as the list
+  // grows). If the number of lead cards changes, change this split with it:
+  // leaving slice(2) behind after the second lead card was removed silently
+  // hid the second-newest post from the index.
+  const [featured, ...gridPosts] = posts;
 
   return (
     <main className="flex-1">
