@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Wix_Madefor_Text } from "next/font/google";
 import "./globals.css";
+import { jsonLd, SITE_URL as SEO_SITE_URL } from "@/lib/seo";
 import { SITE } from "@/lib/content";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -21,7 +22,19 @@ const wixMadeforText = Wix_Madefor_Text({
   display: "swap",
 });
 
+/** Who the site is, for search engines and AI answer engines. */
+const SITE_ENTITY = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Soch",
+  url: SEO_SITE_URL,
+  description: "AI automation partners for businesses. We build and deploy automation systems across operations, products, and outreach, and run AI training for firms.",
+  logo: `${SEO_SITE_URL}/logos/soch-logo-removebg-preview.png`,
+  sameAs: Object.values(SITE.social),
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SEO_SITE_URL),
   title: {
     default: "Soch | AI Automation",
     template: `%s · ${SITE.name}`,
@@ -40,6 +53,10 @@ export default function RootLayout({
       className={`${wixMadeforText.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(SITE_ENTITY) }}
+        />
         <Nav />
         {children}
         <Footer />

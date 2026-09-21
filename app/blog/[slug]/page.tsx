@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { isValidElement } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -13,10 +14,32 @@ import {
   getHeadings,
   slugifyHeading,
 } from "@/lib/blog";
+import { absoluteUrl, faqFromMarkdown, jsonLd } from "@/lib/seo";
 import { BlogPostHero } from "@/components/sections/BlogPostHero";
 import { ArticleToc } from "@/components/ArticleToc";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      images: post.image ? [post.image] : undefined,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -46,11 +69,45 @@ export default async function BlogDetailPage({
     notFound();
   }
 
+  // What this post is, for search engines and AI answer engines: an article
+  // with its dates and author, and its FAQ as questions and answers.
+  const faq = faqFromMarkdown(post.body);
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt || undefined,
+      ...(post.image ? { image: absoluteUrl(post.image) } : {}),
+      ...(post.date ? { datePublished: post.date, dateModified: post.date } : {}),
+      author: { "@type": "Organization", name: "Soch", url: absoluteUrl("/") },
+      publisher: { "@type": "Organization", name: "Soch", url: absoluteUrl("/") },
+      mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+    },
+    ...(faq.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          },
+        ]
+      : []),
+  ];
+
   const headings = getHeadings(post.body);
   const hasToc = headings.length > 1;
 
   return (
     <main className="flex-1">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }}
+      />
       <BlogPostHero
         category={post.category}
         title={post.title}
