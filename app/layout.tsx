@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Wix_Madefor_Text } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { jsonLd, SITE_URL as SEO_SITE_URL } from "@/lib/seo";
 import { SITE } from "@/lib/content";
@@ -61,6 +62,9 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }
