@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 // embed=true drops cal.com's page chrome - the "Need help?" button, the layout
 // switcher and the Cal.com footer. Without it the booker sits below that
@@ -26,6 +27,25 @@ export function BookingModal({ onClose }: BookingModalProps) {
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const router = useRouter();
+
+  // cal.com's booking page posts a window.postMessage once the booking is
+  // confirmed, from inside the iframe (no @calcom/embed-react here to
+  // normalise the event name/shape - see the file comment below). We match
+  // loosely on "booking" + "success" in the type so a minor cal.com payload
+  // change doesn't silently break the redirect.
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      const data = e.data;
+      if (!data || typeof data !== "object") return;
+      const type = String((data as { type?: unknown }).type ?? "").toLowerCase();
+      if (type.includes("booking") && type.includes("success")) {
+        router.push("/thank-you");
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [router]);
 
   // Escape closes, and Tab is kept inside the dialog while it is open.
   useEffect(() => {
