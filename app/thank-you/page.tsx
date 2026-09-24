@@ -7,6 +7,7 @@
 // the page, so this owns only the content between them.
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/Icons";
 import { Button } from "@/components/ui/Button";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const featured = CASE_STUDIES[0];
+const featuredCaseStudies = CASE_STUDIES.slice(0, 3);
 
 export default function ThankYouPage() {
   return (
@@ -84,7 +85,13 @@ export default function ThankYouPage() {
                 We&rsquo;ll send a short email reminder the day before. Need to move the time
                 instead?
               </p>
-              <Button href="/contact" variant="secondary" size="md" className="mt-3">
+              <Button
+                href="https://wa.me/37253890745"
+                external
+                variant="secondary"
+                size="md"
+                className="mt-3"
+              >
                 Message us to reschedule
               </Button>
             </div>
@@ -102,29 +109,47 @@ export default function ThankYouPage() {
 
       {/* Proof, while the decision is still warm. */}
       <Section tight className="pt-0">
-        <Reveal className="mx-auto max-w-xl">
-          <Link
-            href={featured.href ?? `/case-studies/${featured.slug}`}
-            className="group flex flex-col justify-between gap-4 rounded-xl border border-line bg-white p-6 transition-colors hover:border-ink/25 sm:flex-row sm:items-center"
-          >
-            <div>
-              <p className="text-12 font-semibold uppercase tracking-[0.14em] text-muted">
-                Recent work
-              </p>
-              <p className="mt-1.5 text-18 font-semibold text-ink">{featured.title}</p>
-              <p className="mt-1 text-14 text-slate">
-                Built for {featured.company} in {featured.industry}.
-              </p>
-            </div>
-            <span className="inline-flex shrink-0 items-center gap-1.5 text-14 font-semibold text-brand-dark transition-colors group-hover:text-brand">
-              See case studies
-              <Icon
-                name="arrow"
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              />
-            </span>
-          </Link>
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="text-12 font-semibold uppercase tracking-[0.14em] text-muted">
+            Recent work
+          </p>
+          <h2 className="mt-2 text-h3">What we&rsquo;ve built for teams like yours</h2>
         </Reveal>
+
+        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredCaseStudies.map((study, index) => (
+            <Reveal key={study.slug} delay={index * 0.06}>
+              <Link
+                href={study.href ?? `/case-studies/${study.slug}`}
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-colors hover:border-ink/25"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
+                  <Image
+                    src={study.image}
+                    alt={study.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <p className="text-11 font-semibold uppercase tracking-[0.14em] text-muted">
+                    {study.industry}
+                  </p>
+                  <p className="text-16 font-semibold leading-snug text-ink">{study.title}</p>
+                  <p className="text-13 text-slate">Built for {study.company}</p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-14 font-semibold text-brand-dark transition-colors group-hover:text-brand">
+                    Read case study
+                    <Icon
+                      name="arrow"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       <ThankYouFaq />
