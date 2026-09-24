@@ -163,8 +163,7 @@ export const TEAM: TeamMember[] = [
     role: "Team",
     linkedin: "",
     initials: "HS",
-    photo:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/691d9cfe8d35f76dbc32b091_Husnain%201-Photoroom.png",
+    photo: "/images/team/husnain.png",
     bio: "Husnain is a business operations analyst and workflow architect across branding, Shopify, Webflow, fulfillment, and 3PL, turning complex processes into actionable systems.",
   },
   {
