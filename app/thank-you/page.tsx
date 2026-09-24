@@ -55,32 +55,28 @@ export default function ThankYouPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="text-h3">Before we talk</h2>
-            <p className="mt-3 text-slate">Nothing to prepare - just these two things.</p>
+            <p className="mt-3 text-slate">Nothing to prepare - just these two steps.</p>
 
-            <ul className="mt-7 flex flex-col gap-5">
-              <li className="flex items-start gap-3">
-                <Icon
-                  name="check"
-                  className="mt-0.5 h-5 w-5 shrink-0 text-brand"
-                  strokeWidth={2.4}
-                />
+            <ol className="mt-7 flex flex-col gap-5">
+              <li className="flex items-start gap-4">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand/10 text-13 font-semibold text-brand-dark">
+                  1
+                </span>
                 <span className="text-16 text-slate">
-                  <span className="font-semibold text-ink">Accept the calendar invite</span> in
-                  your inbox so the slot stays held on your end too.
+                  <span className="font-semibold text-ink">Step 1: Accept the calendar invite</span>{" "}
+                  in your inbox so the slot stays held on your end too.
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <Icon
-                  name="check"
-                  className="mt-0.5 h-5 w-5 shrink-0 text-brand"
-                  strokeWidth={2.4}
-                />
+              <li className="flex items-start gap-4">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand/10 text-13 font-semibold text-brand-dark">
+                  2
+                </span>
                 <span className="text-16 text-slate">
-                  <span className="font-semibold text-ink">Reply to the confirmation email</span>{" "}
+                  <span className="font-semibold text-ink">Step 2: Reply to the confirmation email</span>{" "}
                   with anything about your situation we should know before the call.
                 </span>
               </li>
-            </ul>
+            </ol>
 
             <div className="mt-7 rounded-xl border-l-2 border-brand bg-peach/60 px-5 py-4">
               <p className="text-14 text-ink-soft">
@@ -100,11 +96,19 @@ export default function ThankYouPage() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <WistiaEmbed mediaId="sc06j2rg5h" />
-            <p className="mt-4 text-14 text-muted">
-              A quick word from Riz - what the call covers, what it doesn&rsquo;t, and the one
-              thing worth thinking through first.
-            </p>
+            <div className="flex items-start gap-4">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand/10 text-13 font-semibold text-brand-dark">
+                3
+              </span>
+              <span className="text-16 text-slate">
+                <span className="font-semibold text-ink">Step 3: Watch the quick word from Riz</span>{" "}
+                - what the call covers, what it doesn&rsquo;t, and the one thing worth thinking
+                through first.
+              </span>
+            </div>
+            <div className="mt-5">
+              <WistiaEmbed mediaId="sc06j2rg5h" />
+            </div>
           </Reveal>
         </div>
       </Section>
