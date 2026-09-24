@@ -23,7 +23,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const featuredCaseStudies = CASE_STUDIES.slice(0, 3);
+const featuredCaseStudies = CASE_STUDIES.filter(
+  (study): study is typeof study & { image: string } => Boolean(study.image)
+).slice(0, 3);
 
 export default function ThankYouPage() {
   return (
