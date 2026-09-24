@@ -173,7 +173,7 @@ export const TEAM: TeamMember[] = [
     linkedin: "",
     initials: "MJ",
     photo:
-      "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/691d7b7f52d8975dc3e0c39e_Muniba%201.png",
+      "/images/team/muniba.png",
     bio: "Muniba brings structure, consistency, and operational clarity to day-to-day work as a Business Operations Associate, helping early-stage startups run smoother and more efficiently.",
   },
   {
