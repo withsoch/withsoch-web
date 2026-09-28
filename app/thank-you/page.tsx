@@ -23,9 +23,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const featuredCaseStudies = CASE_STUDIES.filter(
-  (study): study is typeof study & { image: string } => Boolean(study.image)
-).slice(0, 3);
+const FEATURED_SLUGS = ["physical-therapy-first", "aesthetics-lab", "be-london"];
+
+const featuredCaseStudies = FEATURED_SLUGS.map((slug) =>
+  CASE_STUDIES.find((study) => study.slug === slug)
+).filter((study): study is (typeof CASE_STUDIES)[number] & { image: string } =>
+  Boolean(study?.image)
+);
 
 export default function ThankYouPage() {
   return (
@@ -129,7 +133,7 @@ export default function ThankYouPage() {
                 href={study.href ?? `/case-studies/${study.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-colors hover:border-ink/25"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
+                <div className="relative aspect-[4/3.8] w-full overflow-hidden bg-mist">
                   <Image
                     src={study.image}
                     alt={study.title}
