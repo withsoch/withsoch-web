@@ -70,7 +70,7 @@ export function Button({
 
   if (href && external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} onClick={onClick}>
         {content}
       </a>
     );
@@ -78,7 +78,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {content}
       </Link>
     );

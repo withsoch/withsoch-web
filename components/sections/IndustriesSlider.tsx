@@ -39,15 +39,18 @@ const INDUSTRIES = [
   },
 ];
 
-const CARD_WIDTH = 420; // px, matches w-[420px] below
-const CARD_GAP = 20; // px, matches gap-5 below
-
 export function IndustriesSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
 
+  // Step by one card plus the gap, measured from the DOM - card width is
+  // responsive (see below), so a fixed px step would skip or under-scroll.
   function scrollByCard(direction: 1 | -1) {
-    trackRef.current?.scrollBy({
-      left: direction * (CARD_WIDTH + CARD_GAP),
+    const track = trackRef.current;
+    const card = track?.firstElementChild as HTMLElement | null;
+    if (!track || !card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    track.scrollBy({
+      left: direction * (card.offsetWidth + gap),
       behavior: "smooth",
     });
   }
@@ -78,12 +81,12 @@ export function IndustriesSlider() {
 
       <div
         ref={trackRef}
-        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-5 overflow-x-auto pb-2 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)] snap-x snap-mandatory scrollbar-hide"
+        className="flex w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] gap-5 overflow-x-auto pb-2 pl-[calc(1.5rem+5px)] pr-[calc(1.5rem+5px)] sm:pl-[calc(2rem+5px)] sm:pr-[calc(2rem+5px)] lg:pl-[calc(2.5rem+5px)] lg:pr-[calc(2.5rem+5px)] scroll-px-[calc(1.5rem+5px)] sm:scroll-px-[calc(2rem+5px)] lg:scroll-px-[calc(2.5rem+5px)] snap-x snap-mandatory scrollbar-hide"
       >
         {INDUSTRIES.map((industry) => (
           <div
             key={industry.name}
-            className="group relative h-[380px] w-[420px] shrink-0 snap-start overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
+            className="group relative h-[300px] w-[82vw] max-w-[420px] shrink-0 sm:h-[380px] sm:w-[420px] snap-start overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- external CDN photo, no local optimization needed */}
             <img

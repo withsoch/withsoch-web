@@ -80,9 +80,16 @@ export function WhyChooseUs() {
           <RevealItem
             as="li"
             key={feature.title}
+            // At sm the third item wraps to its own full-width row, so it
+            // drops the column divider/indent and takes a top gap instead;
+            // at lg it is back in line as the third column.
             className={`py-8 sm:py-0 sm:pt-0 ${
-              i === 0 ? "" : "sm:border-l sm:border-ink/12 sm:pl-8 lg:pl-10"
-            } ${i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}`}
+              i === 1 ? "sm:border-l sm:border-ink/12 sm:pl-8 lg:pl-10" : ""
+            } ${
+              i === 2
+                ? "sm:col-span-2 sm:mt-10 lg:col-span-1 lg:mt-0 lg:border-l lg:border-ink/12 lg:pl-10"
+                : ""
+            }`}
           >
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-soft">
               <Icon

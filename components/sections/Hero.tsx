@@ -11,7 +11,11 @@ export function Hero() {
       bare
       className="bg-mist relative pt-4 pb-10 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-14"
     >
-      <div className="container-x relative h-[240px] sm:h-[280px] lg:h-[340px] rounded-2xl overflow-hidden">
+      {/* HeroNetworkDiagram switches to its six-input desktop layout at 640px
+          canvas width. That layout needs ~340px of height for each node's
+          label to clear the icon below it, so sm gets the lg height too -
+          at 280px the tablet labels overlapped the icons. */}
+      <div className="container-x relative h-[240px] sm:h-[340px] rounded-2xl overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" aria-hidden="true" />
         <HeroNetworkDiagram />
       </div>
@@ -27,7 +31,7 @@ export function Hero() {
           variant="primary"
           size="lg"
           arrow
-          className="shrink-0 lg:mb-2"
+          className="shrink-0 sm:self-start lg:mb-2 lg:self-auto"
         >
           Explore our services
         </Button>

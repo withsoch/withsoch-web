@@ -2,12 +2,14 @@
 //
 // Sticky top nav - white bg, border-bottom, flat per DESIGN.md §6.
 // "Menu" opens a hover-triggered mega-menu; stays open while hovering
-// either the trigger or the panel.
+// either the trigger or the panel. Below lg, where hover does not exist and
+// the desktop links are hidden, a toggle opens a full-width panel with the
+// same links instead.
 
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,6 +21,7 @@ const featured = CASE_STUDIES[0];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   // Starts false, matching both the server render and a normal load at the top
   // of the page, so there is no hydration mismatch. If the browser restores a
   // mid-page scroll position, useScroll's value moves off 0 on mount and the
@@ -44,6 +47,39 @@ export function Nav() {
     closeTimer.current = setTimeout(() => setOpen(false), 200);
   };
 
+  // While the mobile panel is open: lock page scroll behind it, close on
+  // Escape, and close if the viewport grows past lg (where the panel's
+  // toggle is hidden and it could otherwise never be dismissed).
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const root = document.documentElement;
+    const prevOverflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onDesktop = () => {
+      if (desktop.matches) setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", onDesktop);
+    return () => {
+      root.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onDesktop);
+    };
+  }, [mobileOpen]);
+
+  const closeMobile = () => setMobileOpen(false);
+
+  const mobileLinkClass = (href: string) => {
+    const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return `block rounded-lg px-3 py-3 text-18 font-medium transition-colors ${
+      active ? "bg-mist text-ink" : "text-ink/80 hover:text-ink"
+    }`;
+  };
+
   const navLinkClass = (href: string) => {
     const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
     return `rounded-full px-4 py-2 text-16 font-medium transition-colors ${
@@ -54,13 +90,13 @@ export function Nav() {
   return (
     <header
       className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled || open
+        scrolled || open || mobileOpen
           ? "border-ink/10 bg-white/95 backdrop-blur"
           : "border-transparent bg-transparent"
       }`}
     >
       <div className="container-x flex items-center justify-between py-5">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center" onClick={closeMobile}>
           <Image
             src="/logos/soch-logo-removebg-preview.png"
             alt="Soch"
@@ -187,10 +223,89 @@ export function Nav() {
             Contact
           </Link>
         </nav>
-        <Button href="/ai-ops-score" variant="primary" size="md">
-          Get Your Free Audit Now
-        </Button>
+        <div className="flex items-center gap-2">
+          {/* Below sm there is no room for this label next to the logo and the
+              menu toggle - it wrapped to two lines and doubled the bar's
+              height - so on phones it moves into the menu panel instead. */}
+          <div className="hidden sm:block">
+            <Button href="/ai-ops-score" variant="primary" size="md" className="whitespace-nowrap">
+              Get Your Free Audit Now
+            </Button>
+          </div>
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-mist lg:hidden"
+          >
+            <Icon name={mobileOpen ? "close" : "menu"} className="h-6 w-6" />
+          </button>
+        </div>
       </div>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.nav
+            id="mobile-nav"
+            aria-label="Main"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-100%)] overflow-y-auto border-b border-ink/10 bg-white shadow-lift lg:hidden"
+          >
+            <div className="container-x flex flex-col gap-6 py-6">
+              <ul className="flex flex-col">
+                <li>
+                  <Link href="/" className={mobileLinkClass("/")} onClick={closeMobile}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services" className={mobileLinkClass("/services")} onClick={closeMobile}>
+                    Services
+                  </Link>
+                  <ul className="mb-1 ml-3 flex flex-col border-l border-line pl-3">
+                    {SERVICES.map((service) => (
+                      <li key={service.slug}>
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="block py-2 text-16 text-slate transition-colors hover:text-brand"
+                          onClick={closeMobile}
+                        >
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                {[
+                  { href: "/case-studies", label: "Case Studies" },
+                  { href: "/blog", label: "Blog" },
+                  { href: "/team", label: "Our Team" },
+                  { href: "/about", label: "About" },
+                  { href: "/contact", label: "Contact" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={mobileLinkClass(link.href)} onClick={closeMobile}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {/* Only below sm - from sm up the same CTA is already in the bar. */}
+              <div className="sm:hidden">
+                <Button href="/ai-ops-score" variant="primary" size="lg" className="w-full" onClick={closeMobile}>
+                  Get Your Free Audit Now
+                </Button>
+              </div>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
       <motion.div
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-brand"
