@@ -165,7 +165,7 @@ export function ServicesGrid() {
                           landed below the fold anyway. Capped from sm so a
                           tablet-width square stays shorter than the screen. */}
                       {!isDesktop && (
-                        <div className="px-4 pb-5">
+                        <div className="px-6 pb-5">
                           <div
                             data-row-visual
                             className={`relative mx-auto w-full sm:max-w-[28rem] ${getHeroAspectRatio(service.slug) ?? "aspect-square"}`}
@@ -174,7 +174,11 @@ export function ServicesGrid() {
                           </div>
                         </div>
                       )}
-                      <div className="flex flex-col gap-4 px-6 pb-5 pl-[4rem]">
+                      {/* The 4rem indent lines the text up with the title beside
+                          the icon - right on desktop, but under a full-width
+                          visual on mobile it read as off-centre. Below lg the
+                          text shares the row's 24px edge with icon and visual. */}
+                      <div className="flex flex-col gap-4 px-6 pb-5 lg:pl-[4rem]">
                         <p className="text-slate">{service.description}</p>
                         <ul className="flex flex-wrap gap-2">
                           {service.points.map((point) => (
