@@ -26,40 +26,49 @@ export function AboutHero() {
           </div>
         </div>
 
-        {/* Collage row - asymmetric 3-up, real photography (hotlinked) */}
-        <div
-          className="mt-12 grid gap-4 sm:gap-6 lg:w-[calc(100%+6rem)] lg:-mx-12"
-          style={{ gridTemplateColumns: "0.9fr 1.2fr 0.65fr" }}
-        >
+        {/* Collage row - asymmetric 3-up, real photography (hotlinked).
+            From md up: the 3-up row at a fixed 30rem height. Below md the
+            three columns collapse to slivers (~55-120px wide at phone
+            widths) that crop each photo to a strip, so instead the landscape
+            shot runs full width on top and the two portraits sit side by
+            side under it - each at its own 3:2 / 2:3 ratio, so nothing is
+            cropped. */}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-[0.9fr_1.2fr_0.65fr] lg:w-[calc(100%+6rem)] lg:-mx-12">
           <img
             src="/images/about/team-discussion.webp"
             alt="With Soch team collaborating with founders to build clarity and growth."
-            className="h-80 w-full rounded-xl border border-line object-cover sm:h-[30rem]"
+            className="aspect-[2/3] w-full rounded-xl border border-line object-cover md:aspect-auto md:h-[30rem]"
           />
           <img
             src="/images/about/team-table.webp"
             alt="With Soch strategists aligning teams for sustainable business growth."
-            className="h-80 w-full rounded-xl border border-line object-cover sm:h-[30rem]"
+            className="col-span-2 row-start-1 aspect-[3/2] w-full rounded-xl border border-line object-cover md:col-span-1 md:row-start-auto md:aspect-auto md:h-[30rem]"
           />
           <img
             src="/images/about/whiteboard-matrix.webp"
             alt="With Soch operators guiding founders through strategy and execution."
-            className="h-80 w-full rounded-xl border border-line object-cover sm:h-[30rem]"
+            className="aspect-[2/3] w-full rounded-xl border border-line object-cover md:aspect-auto md:h-[30rem]"
           />
         </div>
 
-        {/* Industry tags footer row */}
-        <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-16 text-muted">
-          {ABOUT_HERO.tags.map((tag, i) => (
-            <span key={tag} className="flex items-center gap-3">
-              {tag}
-              {i < ABOUT_HERO.tags.length - 1 && (
+        {/* Industry tags footer row. Each tag carries a leading separator, and
+            the row is pulled left by exactly separator + its gap (the row's
+            own gap-x only sits between items, never before a line's first)
+            inside an overflow-hidden wrapper - so whichever tag starts a line
+            has its separator clipped. With trailing separators, every wrapped
+            line ended in a dangling "|" (one per line on phones). */}
+        <div className="mt-10 overflow-hidden">
+          {/* 0.247em = advance width of "|" in Wix Madefor Text. */}
+          <div className="-ml-[calc(0.75rem+0.247em)] flex flex-wrap items-center gap-x-3 gap-y-2 text-16 text-muted">
+            {ABOUT_HERO.tags.map((tag) => (
+              <span key={tag} className="flex items-center gap-3">
                 <span className="text-line" aria-hidden="true">
                   |
                 </span>
-              )}
-            </span>
-          ))}
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

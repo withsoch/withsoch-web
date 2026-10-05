@@ -86,7 +86,9 @@ export function ServicesFaqSection() {
           })}
         </div>
 
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-line bg-mist lg:aspect-auto lg:h-full lg:sticky lg:top-24">
+        {/* 3:2 below lg = the photo's own ratio, so the stacked mobile view
+            shows the whole shot; from lg it stretches to the accordion. */}
+        <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-line bg-mist lg:aspect-auto lg:h-full lg:sticky lg:top-24">
           <Image
             src="https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/69282aa85fe2558709b774fc_pexels-yankrukov-8867262.jpg"
             alt="Customer service team working at computers"

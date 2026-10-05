@@ -10,7 +10,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { CONTACT_FAQS } from "@/lib/content";
 
@@ -70,9 +70,13 @@ export function ContactFaq() {
           })}
         </div>
 
+        {/* Height tracking only applies from lg, where the photo sits beside
+            the accordion. Below lg it stacks underneath, and tracking made it
+            a ~550px-tall crop of a 3:2 landscape photo that grew every time
+            an answer opened - so there it simply keeps the photo's ratio. */}
         <div
-          className="min-h-[420px] overflow-hidden rounded-2xl transition-[height] duration-300 ease-in-out lg:min-h-0"
-          style={stackHeight ? { height: stackHeight } : undefined}
+          className="aspect-[3/2] overflow-hidden rounded-2xl transition-[height] duration-300 ease-in-out lg:aspect-auto lg:h-[var(--stack-h)]"
+          style={stackHeight ? ({ "--stack-h": `${stackHeight}px` } as CSSProperties) : undefined}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
