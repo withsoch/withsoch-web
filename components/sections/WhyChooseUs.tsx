@@ -120,7 +120,9 @@ export function WhyChooseUs() {
               </cite>
             </div>
           </div>
-          <div className="relative mx-auto h-52 w-40 shrink-0 overflow-hidden rounded-3xl sm:h-64 sm:w-48">
+          {/* Right-aligned when stacked under the quote (below sm); centred in
+              its own column from sm up. */}
+          <div className="relative ml-auto h-52 w-40 shrink-0 overflow-hidden rounded-3xl sm:mx-auto sm:h-64 sm:w-48">
             {testimonial.image ? (
               <Image
                 src={testimonial.image}
